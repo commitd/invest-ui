@@ -1,0 +1,47 @@
+{
+  "name": "vessel-app",
+  "version": "0.1.0",
+  "private": true,
+  "license": "ASL",
+  "dependencies": {
+    "@types/loglevel": "^1.5.1",
+    "loglevel": "^1.5.1",
+    "loglevel-plugin-prefix": "^0.5.3",
+    "material-ui": "^1.0.0-beta.17",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "moment": "^2.19.1",
+    "numeral": "^2.0.6",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-scripts-ts": "2.7.0",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
+    "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1",
+    "seamless-immutable": "^7.1.2",
+    "typeface-roboto": "^0.0.41"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.1.0",
+    "@types/jest": "^21.1.2",
+    "@types/material-ui": "^0.18.3",
+    "@types/node": "^8.0.34",
+    "@types/numeral": "^0.0.22",
+    "@types/react": "^16.0.10",
+    "@types/react-dom": "^16.0.1",
+    "@types/react-redux": "^5.0.10",
+    "@types/redux-actions": "^2.2.2",
+    "@types/redux-saga": "^0.10.5",
+    "@types/reselect": "^2.2.0",
+    "@types/seamless-immutable": "^7.1.1",
+    "enzyme": "^3.1.0",
+    "react-addons-test-utils": "^15.6.2"
+  }
+}
