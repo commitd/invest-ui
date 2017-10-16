@@ -1,5 +1,5 @@
 
-import { rootLogger } from "./logger"
+import { rootLogger } from './logger'
 
-rootLogger.info("Logger initialised")
+rootLogger.info('Logger initialised')
 export const Logger = rootLogger
