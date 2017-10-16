@@ -3,7 +3,7 @@ import { rootReducer, RootState } from './RootReducer'
 import createSagaMiddleware from 'redux-saga'
 import { rootSaga } from './RootSaga'
 
-import logger from '../projects/log'
+import { Logger } from 'vessel-utils'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -17,8 +17,10 @@ function configureStore(initialState?: RootState) {
 
 const store = configureStore()
 
-logger.info('hello')
+Logger.info('Store created')
 
 sagaMiddleware.run(rootSaga)
+
+Logger.info('Sagas running')
 
 export default store

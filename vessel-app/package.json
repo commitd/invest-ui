@@ -4,8 +4,6 @@
   "private": true,
   "license": "ASL",
   "dependencies": {
-    "loglevel": "^1.5.1",
-    "loglevel-plugin-prefix": "^0.5.3",
     "material-ui": "^1.0.0-beta.17",
     "material-ui-icons": "^1.0.0-beta.17",
     "moment": "^2.19.1",
@@ -20,7 +18,8 @@
     "redux-saga": "^0.16.0",
     "reselect": "^3.0.1",
     "seamless-immutable": "^7.1.2",
-    "typeface-roboto": "^0.0.41"
+    "typeface-roboto": "^0.0.41",
+    "vessel-utils": "0.1.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
