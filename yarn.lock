@@ -103,6 +103,10 @@
   version "7.1.1"
   resolved "https://nexus.committed.software/repository/npm/@types/seamless-immutable/-/seamless-immutable-7.1.1.tgz#44e91ea708a9b16565f8fab2f2d108bb99c41aea"
 
+"@types/shortid@^0.0.29":
+  version "0.0.29"
+  resolved "https://nexus.committed.software/repository/npm/@types/shortid/-/shortid-0.0.29.tgz#8093ee0416a6e2bf2aa6338109114b3fbffa0e9b"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://nexus.committed.software/repository/npm/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -6075,6 +6079,10 @@ uniqid@^4.0.0:
 uniqs@^2.0.0:
   version "2.0.0"
   resolved "https://nexus.committed.software/repository/npm/uniqs/-/uniqs-2.0.0.tgz#ffede4b36b25290696e6e165d4a59edb998e6b02"
+
+uniqueid@^1.0.0:
+  version "1.0.0"
+  resolved "https://nexus.committed.software/repository/npm/uniqueid/-/uniqueid-1.0.0.tgz#e4ed178395c768c8b80a66673b81cfe11653c31d"
 
 universalify@^0.1.0:
   version "0.1.1"

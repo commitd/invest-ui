@@ -2,6 +2,7 @@
     "private":true,
     "workspaces": [
         "vessel-app",
+        "vessel-rpc",
         "vessel-utils"
     ]
 
