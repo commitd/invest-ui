@@ -1,5 +1,5 @@
 
-import { JsonRpcId } from './types'
+import { JsonRpcId } from './JsonRpcTypes'
 
 /** Determine if data is a properly formatted JSONRPC 2.0 ID. */
 export function isJsonRpcId(input: JsonRpcId|{}): input is JsonRpcId {
