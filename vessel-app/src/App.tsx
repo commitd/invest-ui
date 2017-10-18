@@ -1,22 +1,57 @@
 import * as React from 'react'
-import {
-  Route,
-  Link
-} from 'react-router-dom'
+import { IFrame } from 'vessel-ui-app'
 
-class App extends React.Component {
+interface Props {}
+
+interface State {
+    plugins: string[],
+    selectedPlugin?: string
+}
+
+class App extends React.Component<Props, State> {
+
+  state = {
+    plugins: ['HelloUiPlugin', 'graphiql'],
+    selectedPlugin: undefined
+  }
+
+  componentDidMount() {
+    // fetch('/core/ui', { method: 'GET' })
+    //   .then(res => {
+    //     return res.text()
+    //   })
+    //   .then(res => {
+    //     this.setState({
+    //       plugins: res.split('\\n')
+    //     })
+    //   })
+  }
+
   render() {
+    const { plugins, selectedPlugin } = this.state
+
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Welcome to Vessel</h2>
-        </div>
+        <header className="App-header">
+          <h1 className="App-title">Welcome to Jonah</h1>
+        </header>
+        <ul>
+          {plugins.map(p => (
+            <li key={p} onClick={() => this.setState({ selectedPlugin: p })}>
+              {p}
+            </li>
+          ))}
+        </ul>
 
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Link to="/about">Go to about page</Link>
-        <Route path="/about" component={() => <p>On the about page</p>} />
+        {selectedPlugin != null ? (
+          <div>
+            <IFrame
+              src={'http://localhost:8080/ui/' + selectedPlugin + '/index.html'}
+            />
+          </div>
+        ) : (
+          <div />
+        )}
       </div>
     )
   }

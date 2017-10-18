@@ -3,7 +3,10 @@
     "workspaces": [
         "vessel-app",
         "vessel-rpc",
-        "vessel-utils"
+        "vessel-utils",
+        "vessel-redux",
+        "vessel-ui-app",
+        "vessel-ui-components"
     ]
 
 }

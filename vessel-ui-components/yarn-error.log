@@ -1,0 +1,63 @@
+Arguments: 
+  /usr/local/bin/node /Users/chrisflatley/.yarn/bin/yarn.js watch
+
+PATH: 
+  /Users/chrisflatley/.yarn/bin:/Users/chrisflatley/anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Applications/Wireshark.app/Contents/MacOS:/Users/chrisflatley/Projects/go/bin
+
+Yarn version: 
+  1.2.0
+
+Node version: 
+  6.11.4
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "vessel-ui-components",
+    "version": "0.1.0",
+    "private": true,
+    "module": "src/index.ts",
+    "main": "build/index.js",
+    "browser": "build/index.js",
+    "types": "build/index.d.ts",
+    "license": "ASL",
+    "dependencies": {
+      "material-ui": "^1.0.0-beta.17",
+      "material-ui-icons": "^1.0.0-beta.17",
+      "typeface-roboto": "^0.0.41"
+    },
+    "peerDependencies": {
+      "react": "^16.0.0",
+      "react-dom": "^16.0.0"
+    },
+    "devDependencies": {
+      "ts-loader": "2.2.1",
+      "tslint": "^5.2.0",
+      "typescript": "~2.4.0",
+      "@types/loglevel": "^1.5.1",
+      "@types/react": "^16.0.10",
+      "@types/react-dom": "^16.0.1",
+      "react": "^16.0.0",
+      "react-dom": "^16.0.0",
+    },
+    "scripts": {
+      "build": "tsc",
+      "watch": "tsc -w"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  SyntaxError: /Users/chrisflatley/Projects/vessel/vessel-js/vessel-ui-components/package.json: Unexpected token } in JSON at position 688
+      at Object.parse (native)
+      at /Users/chrisflatley/.yarn/lib/cli.js:770:59
+      at next (native)
+      at step (/Users/chrisflatley/.yarn/lib/cli.js:92:30)
+      at /Users/chrisflatley/.yarn/lib/cli.js:103:13

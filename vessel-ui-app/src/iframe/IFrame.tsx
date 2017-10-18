@@ -1,10 +1,10 @@
 import * as React from 'react'
 import Connection, { Handler } from 'vessel-rpc'
 
-interface Props<S> {
+export interface Props<S> {
   src: string,
-  handler: Handler<S>,
-  onLoad(connection: Connection<S>): void
+  handler?: Handler<S>,
+  onLoad?(connection: Connection<S>): void
 }
 
 // TODO: We want some defined behaviour here which I don't think is implemented. 
@@ -18,19 +18,25 @@ class IFrame<S> extends React.Component<Props<S>, {}>  {
   private connection: Connection<S>
   
   componentDidMount() {
-    if (this.ref) {
+    const handler = this.props.handler
+    if (this.ref && handler) {
       this.ref.onload = () => {
-        this.connection = new Connection<S>(window, this.ref.contentWindow, this.props.handler)
+        this.connection = new Connection<S>(window, this.ref.contentWindow, handler)
         this.connection.start()
 
         // Go async and give the frame some time to setup...
-        setTimeout( () => this.props.onLoad(this.connection), 100)
+        if (this.props.onLoad) {
+          const onLoad = this.props.onLoad
+          setTimeout( () => onLoad(this.connection), 100)
+        }
       }
     }
   }
 
   componentWillUnmount() {
-    this.connection.stop()
+    if (this.connection) {
+      this.connection.stop()
+    }
   }
 
   // Don't rerender because we'll drop all the state

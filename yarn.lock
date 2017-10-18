@@ -25,13 +25,6 @@
   version "1.5.1"
   resolved "https://nexus.committed.software/repository/npm/@types/loglevel/-/loglevel-1.5.1.tgz#634be32ed33f273d42e9e27f8d1b038207d2e72e"
 
-"@types/material-ui@^0.18.3":
-  version "0.18.3"
-  resolved "https://nexus.committed.software/repository/npm/@types/material-ui/-/material-ui-0.18.3.tgz#3a2a9fc81e57799419d8a58137800cd803d64a76"
-  dependencies:
-    "@types/react" "*"
-    "@types/react-addons-linked-state-mixin" "*"
-
 "@types/node@*", "@types/node@^8.0.34":
   version "8.0.34"
   resolved "https://nexus.committed.software/repository/npm/@types/node/-/node-8.0.34.tgz#55f801fa2ddb2a40dd6dfc15ecfe1dde9c129fe9"
@@ -43,12 +36,6 @@
 "@types/numeral@^0.0.22":
   version "0.0.22"
   resolved "https://nexus.committed.software/repository/npm/@types/numeral/-/numeral-0.0.22.tgz#86bef1f0a2d743afdc2ef3168d45f2905e1a0b93"
-
-"@types/react-addons-linked-state-mixin@*":
-  version "0.14.18"
-  resolved "https://nexus.committed.software/repository/npm/@types/react-addons-linked-state-mixin/-/react-addons-linked-state-mixin-0.14.18.tgz#6977ae59e19aa0ce3a5d7a9e057961aaf1afe959"
-  dependencies:
-    "@types/react" "*"
 
 "@types/react-dom@^16.0.1":
   version "16.0.1"
@@ -5483,6 +5470,10 @@ shell-quote@1.6.1:
 shellwords@^0.1.0:
   version "0.1.1"
   resolved "https://nexus.committed.software/repository/npm/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
+
+shortid@^2.2.8:
+  version "2.2.8"
+  resolved "https://nexus.committed.software/repository/npm/shortid/-/shortid-2.2.8.tgz#033b117d6a2e975804f6f0969dbe7d3d0b355131"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"

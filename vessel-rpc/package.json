@@ -9,6 +9,7 @@
   "license": "ASL",
   "dependencies": {
     "@types/shortid": "^0.0.29",
+    "shortid": "^2.2.8",
     "uniqueid": "^1.0.0"
   },
   "devDependencies": {
