@@ -20,7 +20,6 @@ class PluginListSidebar extends React.Component<Props, {}> {
           <List dense={true}>
                 {
                 plugins.map(p => (
-                    
                       <ListItem key={p.id} button={true} onClick={() => onPluginSelected(p)}>
                         <ListItemIcon>
                             <Icon >{p.icon || 'add_circle'}</Icon>

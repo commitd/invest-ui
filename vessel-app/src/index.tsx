@@ -14,8 +14,8 @@ import { rootReducer, RootState } from './redux/RootReducer'
 import { rootSaga } from './redux/RootSaga'
 const store = newStore<RootState>(rootReducer, rootSaga)
 
-// TODO; This sshould be in material-ui but 
-import 'typeface-roboto'
+// TODO; These sshould be in vessel-ui-componnts MaterialUi but 
+import './icons/index'
 
 import { MaterialUi } from 'vessel-ui-components'
 
