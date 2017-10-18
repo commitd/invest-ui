@@ -10,10 +10,6 @@ export class GlobalHandler implements Handler<GlobalHandler> {
 
 }
 
-export function mergeHandler<S, T>(a: Handler<S>, b: Handler<T>): Handler<S & T> {
-    return Object.assign(<Handler<S & T>> {}, a, b)
-} 
-
 export function newGlobalHandler(client: ApolloClient): GlobalHandler {
     const h = new GlobalHandler()
     h.graphql = createGraphQLHandlerForClient(client)

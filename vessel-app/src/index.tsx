@@ -26,12 +26,12 @@ ReactDOM.render(
     <MaterialUi>
       <Provider store={store}>
         <Router>
-          <App client={client}  />
+          <App client={client} />
         </Router>
       </Provider>
     </MaterialUi>
   </ApolloProvider>
-,
+  ,
   document.getElementById('root') as HTMLElement
 )
 registerServiceWorker()

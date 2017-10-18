@@ -3,12 +3,11 @@ import Helmet from 'react-helmet'
 import { ApolloClient } from 'react-apollo'
 
 import { UiPlugin } from 'vessel-types'
-import { Layout, NavBar, PluginListSidebar } from 'vessel-ui-app'
+import { Layout, NavBar } from 'vessel-ui-components'
 
-import PluginViewManager from './PluginViewManager'
-import FallbackView from './FallbackView'
+import { PluginListSidebar, GlobalHandler, newGlobalHandler, PluginViewManager, FallbackView } from 'vessel-ui-app'
 
-import { GlobalHandler, newGlobalHandler } from './GlobalHandler'
+import { } from './GlobalHandler'
 
 interface Props {
   client: ApolloClient

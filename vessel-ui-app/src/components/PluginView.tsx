@@ -1,12 +1,12 @@
 import * as React from 'react'
 
 import { Handler } from 'vessel-rpc'
-import { IFrame } from 'vessel-ui-app'
 import { UiPlugin } from 'vessel-types'
+import IFrame from './IFrame'
 
-interface Props {
+export interface Props {
     plugin: UiPlugin
-    globalHandler:  Handler<{}>
+    globalHandler: Handler<{}>
     hide?: boolean
 }
 
@@ -24,7 +24,7 @@ class PluginView extends React.Component<Props> {
     render() {
         const { plugin, hide } = this.props
         return (
-            <IFrame src={plugin.url} handler={this.handler} hide={hide} /> 
+            <IFrame src={plugin.url} handler={this.handler} hide={hide} />
         )
     }
 }

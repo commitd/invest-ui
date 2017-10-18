@@ -21,7 +21,7 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
     },
 })
 
-interface Props {
+export interface Props {
     plugins: UiPlugin[],
     onSelectPlugin(plugin: UiPlugin): void
 }
@@ -48,4 +48,4 @@ class FallbackView extends React.Component<Props & WithStyles> {
     }
 }
 
-export default withStyles(styles)(FallbackView)
+export default withStyles(styles)(FallbackView) as React.ComponentType<Props>

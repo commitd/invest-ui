@@ -4,7 +4,7 @@ import { UiPlugin } from 'vessel-types'
 import { Handler } from 'vessel-rpc'
 import PluginView from './PluginView'
 
-interface Props {
+export interface Props {
     plugins: UiPlugin[],
     plugin?: UiPlugin,
     globalHandler: Handler<{}>
@@ -19,9 +19,9 @@ class PluginViewManager extends React.Component<Props, State> {
     // TODO: The idea would be to have non running plugins to be hidden, after they've first been loaded
 
     render() {
-        const {plugin, fallback } = this.props
+        const { plugin, fallback } = this.props
         return (
-            <div style={{height: '100%', width: '100%'}}>
+            <div style={{ height: '100%', width: '100%' }}>
                 {plugin && <PluginView key={plugin.id} plugin={plugin} globalHandler={this.props.globalHandler} />}
                 {!plugin && fallback}
             </div>
@@ -29,4 +29,4 @@ class PluginViewManager extends React.Component<Props, State> {
     }
 }
 
-export default PluginViewManager
+export default PluginViewManager as React.ComponentType<Props>
