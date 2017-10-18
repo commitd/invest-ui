@@ -29,6 +29,12 @@ class App extends React.Component<Props, State> {
       description: 'GraphQL Browser',
       url: '/ui/graphiql/index.html',
       icon: 'add-circle'
+    }, {
+      id: 'dev',
+      name: 'Development',
+      description: 'Development plugin',
+      url: 'http://localhost:3001',
+      icon: 'add-circle'
     }],
     selectedPlugin: undefined,
     open: true
@@ -58,30 +64,32 @@ class App extends React.Component<Props, State> {
     })
   }
 
-  componentDidMount() {
-    // fetch('/core/ui', { method: 'GET' })
-    //   .then(res => {
-    //     return res.text()
-    //   })
-    //   .then(res => {
-    //     this.setState({
-    //       plugins: res.split('\\n')
-    //     })
-    //   })
+  absoluteUrlForPlugin(p: UiPlugin) {
+    if (p.url.startsWith('http:') || p.url.startsWith('https:')) {
+      return p.url
+    } else {
+      return 'http://localhost:8080' + p.url
+    }
   }
 
   render() {
     const { plugins, selectedPlugin } = this.state
     const title = 'Vessel'
     const navBar = <NavBar title={title}  onSideBarToggle={this.handleDrawerToggle} />
-    const sideBar =  <PluginListSidebar selectedPlugin={selectedPlugin} plugins={plugins} onPluginSelected={this.handlePluginSelected} />
+    const sideBar = (
+      <PluginListSidebar 
+          selectedPlugin={selectedPlugin} 
+          plugins={plugins} 
+          onPluginSelected={this.handlePluginSelected} 
+      />
+    )
 
     return (
       <div>
       <Helmet title={title} />
       <Layout navBar={navBar} sideBar={sideBar} open={this.state.open}>
       {selectedPlugin != null ? 
-          <IFrame src={'http://localhost:8080' + selectedPlugin.url} /> 
+          <IFrame src={this.absoluteUrlForPlugin(selectedPlugin)} /> 
          : <p>Select a plugin</p>}
       </Layout>
     </div>

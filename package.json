@@ -2,12 +2,14 @@
     "private":true,
     "workspaces": [
         "vessel-app",
+        "vessel-graphql",
         "vessel-redux",
         "vessel-rpc",
         "vessel-types",
         "vessel-ui-app",
         "vessel-ui-components",
-        "vessel-utils"
+        "vessel-utils",
+        "example-ui"
     ]
 
 }
