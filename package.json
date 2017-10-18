@@ -2,11 +2,12 @@
     "private":true,
     "workspaces": [
         "vessel-app",
-        "vessel-rpc",
-        "vessel-utils",
         "vessel-redux",
+        "vessel-rpc",
+        "vessel-types",
         "vessel-ui-app",
-        "vessel-ui-components"
+        "vessel-ui-components",
+        "vessel-utils"
     ]
 
 }

@@ -48,12 +48,12 @@ class IFrame<S> extends React.Component<Props<S>, {}>  {
     const { src } = this.props
 
     return (
-      <div className="fullsize-iframe-container" >
         <iframe
           key={src}
           title="View"
           sandbox="allow-scripts"
           src={src}
+          style={{height: '100%', width: '100%'}}
           ref={e => {
             if (e != null) {
               // TODO: is e changed?
@@ -63,7 +63,6 @@ class IFrame<S> extends React.Component<Props<S>, {}>  {
             }
           }}
         />
-      </div>
     )
   }
 }

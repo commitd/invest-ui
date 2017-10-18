@@ -1,18 +1,61 @@
 import * as React from 'react'
-import { IFrame } from 'vessel-ui-app'
+import Helmet from 'react-helmet'
+import { IFrame, Layout, NavBar, PluginListSidebar } from 'vessel-ui-app'
+import { UiPlugin } from 'vessel-types'
 
 interface Props {}
 
 interface State {
-    plugins: string[],
-    selectedPlugin?: string
+    plugins: UiPlugin[],
+    selectedPlugin?: UiPlugin,
+    open: boolean
 }
+
+// TODO The iframe stakes a http://localhost:8080 which is ok, but what ist ehv alue of it
+// window.location.hostname? That doesn;t work in dev mode with webpack . It might have to come from the server / config? And if null then fallback
 
 class App extends React.Component<Props, State> {
 
-  state = {
-    plugins: ['HelloUiPlugin', 'graphiql'],
-    selectedPlugin: undefined
+  state: State = {
+    plugins: [{
+      id: 'hello',
+      name: 'helloword',
+      description: 'hello world',
+      url: '/ui/HelloUiPlugin/index.html',
+      icon: 'add-circle'
+    }, {
+      id: 'graphiql',
+      name: 'GraphiQL',
+      description: 'GraphQL Browser',
+      url: '/ui/graphiql/index.html',
+      icon: 'add-circle'
+    }],
+    selectedPlugin: undefined,
+    open: true
+  }
+
+  handleDrawerClose = () => {
+    this.setState({
+      open: false
+    })
+  }
+
+  handleDrawerOpen = () => {
+    this.setState({
+      open: true
+    })
+  }
+
+  handleDrawerToggle = () => {
+    this.setState({
+      open: !this.state.open
+    })
+  }
+
+  handlePluginSelected = (p?: UiPlugin) => {
+    this.setState({
+      selectedPlugin: p
+    })
   }
 
   componentDidMount() {
@@ -29,30 +72,19 @@ class App extends React.Component<Props, State> {
 
   render() {
     const { plugins, selectedPlugin } = this.state
+    const title = 'Vessel'
+    const navBar = <NavBar title={title}  onSideBarToggle={this.handleDrawerToggle} />
+    const sideBar =  <PluginListSidebar selectedPlugin={selectedPlugin} plugins={plugins} onPluginSelected={this.handlePluginSelected} />
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to Jonah</h1>
-        </header>
-        <ul>
-          {plugins.map(p => (
-            <li key={p} onClick={() => this.setState({ selectedPlugin: p })}>
-              {p}
-            </li>
-          ))}
-        </ul>
-
-        {selectedPlugin != null ? (
-          <div>
-            <IFrame
-              src={'http://localhost:8080/ui/' + selectedPlugin + '/index.html'}
-            />
-          </div>
-        ) : (
-          <div />
-        )}
-      </div>
+      <div>
+      <Helmet title={title} />
+      <Layout navBar={navBar} sideBar={sideBar} open={this.state.open}>
+      {selectedPlugin != null ? 
+          <IFrame src={'http://localhost:8080' + selectedPlugin.url} /> 
+         : <p>Select a plugin</p>}
+      </Layout>
+    </div>
     )
   }
 }
