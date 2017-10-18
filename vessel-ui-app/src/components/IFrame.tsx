@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Connection, { Handler } from 'vessel-rpc'
+import { Connection, Handler } from 'vessel-rpc'
 
 export interface Props<S> {
   src: string,

@@ -5,8 +5,8 @@ export interface UnfulfilledPromise {
     reject: (value?: {} | PromiseLike<{}> | undefined) => void, 
 }
 
-export interface HandlerFunction { (...params: JsonRpcParameter[]): Promise<{}>}
+export interface HandlerFunction<T> { (...params: JsonRpcParameter[]): Promise<T>}
 
 export type Handler<S> = Object &  {
-    [P in keyof S]: HandlerFunction
+    [P in keyof S]: HandlerFunction<{}>
 }
