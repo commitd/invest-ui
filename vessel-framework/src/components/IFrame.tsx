@@ -17,19 +17,18 @@ export interface Props<S> {
 class IFrame<S> extends React.Component<Props<S>, {}>  {
   private ref: HTMLIFrameElement
   private connection: Connection<S>
-  
+
   componentDidMount() {
     const handler = this.props.handler
     if (this.ref && handler) {
       this.ref.onload = () => {
-        console.log('onload')
         this.connection = new Connection<S>(window, this.ref.contentWindow, handler)
         this.connection.start()
 
         // Go async and give the frame some time to setup...
         if (this.props.onLoad) {
           const onLoad = this.props.onLoad
-          setTimeout( () => onLoad(this.connection), 100)
+          setTimeout(() => onLoad(this.connection), 100)
         }
       }
     }
@@ -51,26 +50,26 @@ class IFrame<S> extends React.Component<Props<S>, {}>  {
 
     let style
     if (!hide) {
-      style = {height: '100%', width: '100%'}
+      style = { height: '100%', width: '100%' }
     } else {
-      style = {display: 'none'}
+      style = { display: 'none' }
     }
 
     return (
-        <iframe
-          title="View"
-          sandbox="allow-scripts"
-          src={src}
-          style={style}
-          ref={e => {
-            if (e != null) {
-              // TODO: is e changed?
-              this.ref = e
-            } else {
-              // TODO
-            }
-          }}
-        />
+      <iframe
+        title="View"
+        sandbox="allow-scripts"
+        src={src}
+        style={style}
+        ref={e => {
+          if (e != null) {
+            // TODO: is e changed?
+            this.ref = e
+          } else {
+            // TODO
+          }
+        }}
+      />
     )
   }
 }
