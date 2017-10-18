@@ -1,46 +1,45 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { IFrame, Layout, NavBar, PluginListSidebar } from 'vessel-ui-app'
+import { ApolloClient } from 'react-apollo'
+
 import { UiPlugin } from 'vessel-types'
+import { Layout, NavBar, PluginListSidebar } from 'vessel-ui-app'
 
-// TODO: Have a single handler for the minute, but it should probably be one per iframe (and it obviously should be a component )
-import { createGraphQLHandlerForClient } from 'vessel-graphql'
-import { ApolloProvider, ApolloClient } from 'react-apollo'
+import PluginViewManager from './PluginViewManager'
+import FallbackView from './FallbackView'
 
-const client = new ApolloClient()
-
-const handler = {
-  'graphql':  createGraphQLHandlerForClient(client),
-}
-
-// END OF TODO
+import { GlobalHandler, newGlobalHandler } from './GlobalHandler'
 
 interface Props {
+  client: ApolloClient
 }
 
 interface State {
-    plugins: UiPlugin[],
-    selectedPlugin?: UiPlugin,
-    open: boolean,
+  plugins: UiPlugin[],
+  selectedPlugin?: UiPlugin,
+  open: boolean,
 }
 
 // TODO The iframe stakes a http://localhost:8080 which is ok, but what ist ehv alue of it
 // window.location.hostname? That doesn;t work in dev mode with webpack . It might have to come from the server / config? And if null then fallback
+const baseServerPath = 'http://localhost:8080'
 
 class App extends React.Component<Props, State> {
+
+  globalHandler: GlobalHandler
 
   state: State = {
     plugins: [{
       id: 'hello',
       name: 'helloword',
       description: 'hello world',
-      url: '/ui/HelloUiPlugin/index.html',
+      url: baseServerPath + '/ui/HelloUiPlugin/index.html',
       icon: 'add-circle'
     }, {
       id: 'graphiql',
       name: 'GraphiQL',
       description: 'GraphQL Browser',
-      url: '/ui/graphiql/index.html',
+      url: baseServerPath + '/ui/graphiql/index.html',
       icon: 'add-circle'
     }, {
       id: 'dev',
@@ -51,6 +50,11 @@ class App extends React.Component<Props, State> {
     }],
     selectedPlugin: undefined,
     open: true
+  }
+
+  constructor(props: Props) {
+    super(props)
+    this.globalHandler = newGlobalHandler(props.client)
   }
 
   handleDrawerClose = () => {
@@ -77,39 +81,30 @@ class App extends React.Component<Props, State> {
     })
   }
 
-  absoluteUrlForPlugin(p: UiPlugin) {
-    if (p.url.startsWith('http:') || p.url.startsWith('https:')) {
-      return p.url
-    } else {
-      return 'http://localhost:8080' + p.url
-    }
-  }
-
   render() {
     const { plugins, selectedPlugin } = this.state
     const title = 'Vessel'
-    const navBar = <NavBar title={title}  onSideBarToggle={this.handleDrawerToggle} />
+    const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} />
     const sideBar = (
-      <PluginListSidebar 
-          selectedPlugin={selectedPlugin} 
-          plugins={plugins} 
-          onPluginSelected={this.handlePluginSelected} 
+      <PluginListSidebar
+        selectedPlugin={selectedPlugin}
+        plugins={plugins}
+        onPluginSelected={this.handlePluginSelected}
       />
     )
 
     return (
-      <ApolloProvider client={client}>
       <div>
-      <Helmet title={title} />
-      <Layout navBar={navBar} sideBar={sideBar} open={this.state.open}>
-      {selectedPlugin != null ? 
-          // THe key here is important:
-          // we want a change in the plugin to result in a new iframe instance - so we have a new Connection etc
-          <IFrame key={selectedPlugin.id} src={this.absoluteUrlForPlugin(selectedPlugin)} handler={handler} /> 
-         : <p>Select a plugin</p>}
-      </Layout>
-      </div>
-      </ApolloProvider>
+        <Helmet title={title} />
+        <Layout navBar={navBar} sideBar={sideBar} open={this.state.open}>
+          <PluginViewManager
+            globalHandler={this.globalHandler}
+            plugin={selectedPlugin}
+            plugins={plugins}
+            fallback={<FallbackView plugins={plugins} onSelectPlugin={this.handlePluginSelected} />}
+          />
+        </Layout>
+      </div >
     )
   }
 }

@@ -18,15 +18,20 @@ const store = newStore<RootState>(rootReducer, rootSaga)
 import './icons/index'
 
 import { MaterialUi } from 'vessel-ui-components'
+import { ApolloProvider, ApolloClient } from 'react-apollo'
+const client = new ApolloClient()
 
 ReactDOM.render(
-  <MaterialUi>
-    <Provider store={store}>
-    < Router>
-        <App />
-      </Router>
-    </Provider>
-  </MaterialUi>,
+  <ApolloProvider client={client} >
+    <MaterialUi>
+      <Provider store={store}>
+        <Router>
+          <App client={client}  />
+        </Router>
+      </Provider>
+    </MaterialUi>
+  </ApolloProvider>
+,
   document.getElementById('root') as HTMLElement
 )
 registerServiceWorker()

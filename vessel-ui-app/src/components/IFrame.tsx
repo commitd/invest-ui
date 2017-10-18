@@ -3,8 +3,9 @@ import { Connection, Handler } from 'vessel-rpc'
 
 export interface Props<S> {
   src: string,
+  hide?: boolean
   handler?: Handler<S>,
-  onLoad?(connection: Connection<S>): void
+  onLoad?(connection: Connection<S>): void,
 }
 
 // TODO: We want some defined behaviour here which I don't think is implemented. 
@@ -46,14 +47,21 @@ class IFrame<S> extends React.Component<Props<S>, {}>  {
   }
 
   render() {
-    const { src } = this.props
+    const { src, hide } = this.props
+
+    let style
+    if (!hide) {
+      style = {height: '100%', width: '100%'}
+    } else {
+      style = {display: 'none'}
+    }
 
     return (
         <iframe
           title="View"
           sandbox="allow-scripts"
           src={src}
-          style={{height: '100%', width: '100%'}}
+          style={style}
           ref={e => {
             if (e != null) {
               // TODO: is e changed?
