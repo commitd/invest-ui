@@ -3,9 +3,9 @@ import Helmet from 'react-helmet'
 import { ApolloClient } from 'react-apollo'
 
 import { UiPlugin } from 'vessel-types'
-import { Layout, NavBar } from 'vessel-ui-components'
+import { Layout, NavBar } from 'vessel-components'
 
-import { PluginListSidebar, GlobalHandler, newGlobalHandler, PluginViewManager, FallbackView } from 'vessel-ui-app'
+import { PluginListSidebar, GlobalHandler, newGlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
 
 import { } from './GlobalHandler'
 

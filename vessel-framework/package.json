@@ -1,5 +1,5 @@
 {
-  "name": "vessel-ui-components",
+  "name": "vessel-framework",
   "version": "0.1.0",
   "private": true,
   "module": "src/index.ts",
@@ -8,23 +8,25 @@
   "types": "build/index.d.ts",
   "license": "ASL",
   "dependencies": {
-    "material-ui": "^1.0.0-beta.17",
-    "material-ui-icons": "^1.0.0-beta.17",
-    "typeface-roboto": "^0.0.41"
+    "@types/classnames": "^2.2.3"
   },
   "peerDependencies": {
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "vessel-rpc": "0.1.0",
+    "vessel-components": "0.1.0",
+    "vessel-types": "0.1.0"
   },
   "devDependencies": {
-    "ts-loader": "2.2.1",
-    "tslint": "^5.2.0",
-    "typescript": "~2.4.0",
     "@types/loglevel": "^1.5.1",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.1",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "ts-loader": "2.2.1",
+    "tslint": "^5.2.0",
+    "typescript": "~2.4.0",
+    "vessel-components": "0.1.0"
   },
   "scripts": {
     "build": "tsc",

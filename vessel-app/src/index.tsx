@@ -17,7 +17,7 @@ const store = newStore<RootState>(rootReducer, rootSaga)
 // TODO; These sshould be in vessel-ui-componnts MaterialUi but 
 import './icons/index'
 
-import { MaterialUi } from 'vessel-ui-components'
+import { MaterialUi } from 'vessel-components'
 import { ApolloProvider, ApolloClient } from 'react-apollo'
 const client = new ApolloClient()
 

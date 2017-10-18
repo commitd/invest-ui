@@ -14,9 +14,9 @@
     "vessel-graphql": "0.1.0",
     "vessel-redux": "0.1.0",
     "vessel-rpc": "0.1.0",
-    "vessel-types":"0.1.0",    
-    "vessel-ui-app": "0.1.0",
-    "vessel-ui-components": "0.1.0",
+    "vessel-types": "0.1.0",
+    "vessel-framework": "0.1.0",
+    "vessel-components": "0.1.0",
     "vessel-utils": "0.1.0"
   },
   "scripts": {
