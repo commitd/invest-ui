@@ -21,6 +21,7 @@ class IFrame<S> extends React.Component<Props<S>, {}>  {
     const handler = this.props.handler
     if (this.ref && handler) {
       this.ref.onload = () => {
+        console.log('onload')
         this.connection = new Connection<S>(window, this.ref.contentWindow, handler)
         this.connection.start()
 
@@ -49,7 +50,6 @@ class IFrame<S> extends React.Component<Props<S>, {}>  {
 
     return (
         <iframe
-          key={src}
           title="View"
           sandbox="allow-scripts"
           src={src}

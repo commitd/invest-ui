@@ -17,6 +17,7 @@ export default class Connection<S> {
 
     private sourceWindow: Window
     private targetWindow: Window
+    private targetWindowOrigin: string
     private handler: Handler<S>
 
     private _instanceId: String = shortid()
@@ -30,10 +31,20 @@ export default class Connection<S> {
         this.targetWindow = targetWindow
         this.sourceWindow = sourceWindow
         this.handler = handler
-    }
+
+        // Best guess is that it's here.. but if we have permission we can find out more
+        this.targetWindowOrigin = '*'
+        try {
+            let origin = this.targetWindow.location.origin
+            if (origin !== 'null' && origin !== 'about://' /* IE */) {
+                this.targetWindowOrigin = origin
+            }
+        } catch (e) {
+            // Security denies us... leave as is
+        }
+    }   
 
     handleMessage = (e: MessageEvent) => {
-        
         if (!e.data || !e.data.jsonrpc || e.target !== this.sourceWindow || e.source !== this.targetWindow) {
             return
         }
@@ -56,12 +67,14 @@ export default class Connection<S> {
      */
     start() {
         this.sourceWindow.addEventListener('message', this.handleMessage)
+        this.sourceWindow.addEventListener('onunload', this.stop)
     }
 
     /** Stop listening for `message` events.
      */
     stop() {
         this.sourceWindow.removeEventListener('message', this.handleMessage)
+        this.sourceWindow.removeEventListener('onunload', this.stop)   
     }
 
     /** Invoke a named RPC method on the server window, ignoring the result.
@@ -93,10 +106,12 @@ export default class Connection<S> {
     private _handleRequestOrNotification(message: JsonRpcRequest<{}> | JsonRpcNotification<{}>) {
         if (this.handler.hasOwnProperty(message.method)) {
             let p: Promise<{}>
-            if (message.params !== undefined) {
-                p = this.handler[message.method].apply(message.params)
+            if (message.params === undefined) {
+                p = this.handler[message.method]()
+            } else if (message.params instanceof Array) {
+                p = this.handler[message.method](...message.params)
             } else {
-                p = this.handler[message.method].call()
+                p = this.handler[message.method](message.params)
             }
             
             // If this is a request, we need to send the result back
@@ -156,7 +171,8 @@ export default class Connection<S> {
                     jsonrpc: '2.0',
                     id,
                     method,
-                    params
+                    // TODO: Only support call with array here (not call where you put the names of params in)
+                    params: params
                 }
                 this._send(message)
                 if (typeof id === 'undefined') {
@@ -171,11 +187,7 @@ export default class Connection<S> {
     }
 
     private _send(message: JsonRpcMessage) {
-        let origin = this.targetWindow.location.origin
-        if (origin === 'null' || origin === 'about://' /* holy crap, IE! */) {
-            origin = '*'
-        }
-        this.targetWindow.postMessage(message, origin)
+       this.targetWindow.postMessage(message, this.targetWindowOrigin)
     }
 
 }
