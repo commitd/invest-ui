@@ -4,42 +4,31 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 
-/////// TODO: Move to library
-import { Connection } from 'vessel-rpc'
-import { createApolloRpcClient } from 'vessel-graphql'
-import { ApolloProvider, ApolloClient } from 'react-apollo'
+import { VesselUiPlugin } from 'vessel-plugin'
 
-function inIframe() {
-  try {
-    return window.self !== window.top
-  } catch (e) {
-    return true
-  }
+const handler = {
+  onLoad: () => {
+    console.log('Loaded')
+    return Promise.resolve('ok')
+  },
+  onUnload: () => {
+    console.log('Unloaded')
+    return Promise.resolve('ok')
+  },
+  onShow: () => {
+    console.log('Shown')
+    return Promise.resolve('ok')
+  },
+  onHide: () => {
+    console.log('Hide')
+    return Promise.resolve('ok')
+  },
 }
-const isInIFrame = inIframe()
-
-let client: ApolloClient
-if (!isInIFrame) {
-  console.log('Running standalone')
-  client = new ApolloClient()
-} else {
-  console.log('Running inside vessel')
-  const handler = {
-    'ping': () => Promise.resolve('pong'),
-    'pong': () => console.log('Recieved pong')
-  }
-  const connection = new Connection(window, window.parent, handler)
-  connection.start()
-  client = createApolloRpcClient({
-    connection: connection
-  })
-}
-/////// END OF TODO: Move to library (maybe have a VesselUi here admittedly which include ApolloProvider below)
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <VesselUiPlugin handler={handler}>
     <App />
-  </ApolloProvider>,
+  </VesselUiPlugin>,
   document.getElementById('root') as HTMLElement
 )
 registerServiceWorker()

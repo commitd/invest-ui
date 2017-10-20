@@ -44,6 +44,18 @@ class App extends React.Component<Props, State> {
       description: 'Development plugin',
       url: 'http://localhost:3001',
       icon: 'add-circle'
+    }, {
+      id: 'kibana',
+      name: 'Kibana',
+      description: 'Kibana for search',
+      url: 'https://dci.arga.committed.software/',
+      icon: 'add-circle'
+    }, {
+      id: 'arga',
+      name: 'Arga',
+      description: 'Report writer',
+      url: 'https://dpi.arga.committed.software/',
+      icon: 'add-circle'
     }],
     selectedPlugin: undefined,
     open: true
