@@ -7,8 +7,6 @@ import { Layout, NavBar } from 'vessel-components'
 
 import { PluginListSidebar, GlobalHandler, newGlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
 
-import { } from './GlobalHandler'
-
 interface Props {
   client: ApolloClient
 }
