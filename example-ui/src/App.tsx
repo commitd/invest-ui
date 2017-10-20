@@ -5,7 +5,6 @@ interface Response {
   things: {
     name: string
   }[]
-  hello: string
 }
 
 interface Props {
@@ -14,7 +13,6 @@ interface Props {
 
 class App extends React.Component<Props> {
   render() {
-    console.log(this.props.data)
     return (
       <div className="App">
         <p>Hello, got {this.props.data.things ? this.props.data.things.length : '0'} results</p>
@@ -30,6 +28,9 @@ class App extends React.Component<Props> {
 // }
 const ALL_THINGS_QUERY = gql`
 query AllThings {
+  things {
+    name
+  }
   vesselUi {
     status
   }

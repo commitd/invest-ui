@@ -9,34 +9,34 @@ import { Connection } from 'vessel-rpc'
 import { createApolloRpcClient } from 'vessel-graphql'
 import { ApolloProvider, ApolloClient } from 'react-apollo'
 
-function inIframe () {
+function inIframe() {
   try {
-      return window.self !== window.top
+    return window.self !== window.top
   } catch (e) {
-      return true
+    return true
   }
 }
 const isInIFrame = inIframe()
-console.log(isInIFrame)
 
 let client: ApolloClient
 if (!isInIFrame) {
+  console.log('Running standalone')
   client = new ApolloClient()
 } else {
-  // TODO: Check if we are in a vessel iframe somehow? Or perhaps we don't care?
+  console.log('Running inside vessel')
   const handler = {
-    'ping':  () => Promise.resolve('pong'),
-    'pong':  () => console.log('Recieved pong')
+    'ping': () => Promise.resolve('pong'),
+    'pong': () => console.log('Recieved pong')
   }
   const connection = new Connection(window, window.parent, handler)
   connection.start()
   client = createApolloRpcClient({
-      connection:  connection
+    connection: connection
   })
 }
 /////// END OF TODO: Move to library (maybe have a VesselUi here admittedly which include ApolloProvider below)
 
-ReactDOM.render (
+ReactDOM.render(
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>,

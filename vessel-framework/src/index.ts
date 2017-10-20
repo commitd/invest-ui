@@ -7,4 +7,5 @@ export { default as PluginViewManager } from './components/PluginViewManager'
 
 export * from './handlers/GlobalHandler'
 export * from './handlers/HandlerUtils'
+
 export * from './graphql'

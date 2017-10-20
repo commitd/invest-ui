@@ -4,7 +4,7 @@ import { takeLatest } from 'redux-saga/effects'
 import { Actions } from '../RootAction'
 
 function doExample() {
-    // console.log('example')
+    // Do something
 }
 
 export default function* example() {
