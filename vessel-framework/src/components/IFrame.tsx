@@ -62,11 +62,9 @@ class IFrame<S> extends React.Component<Props<S>, {}>  {
         src={src}
         style={style}
         ref={e => {
+          // TODO: Should we start / stop / create new connections if this happens when we already have a ref?
           if (e != null) {
-            // TODO: is e changed?
             this.ref = e
-          } else {
-            // TODO
           }
         }}
       />

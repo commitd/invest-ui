@@ -3,6 +3,8 @@
     "workspaces": [
         "vessel-app",
         "vessel-graphql",
+        "vessel-common",
+        "vessel-plugin",
         "vessel-redux",
         "vessel-rpc",
         "vessel-types",

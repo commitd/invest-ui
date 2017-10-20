@@ -18,8 +18,31 @@ const store = newStore<RootState>(rootReducer, rootSaga)
 import './icons/index'
 
 import { MaterialUi } from 'vessel-components'
-import { ApolloProvider, ApolloClient } from 'react-apollo'
-const client = new ApolloClient()
+import { ApolloProvider, ApolloClient, createNetworkInterface } from 'react-apollo'
+
+import { vesselUiRoot, schema, VesselUiGraphQLRoot } from 'vessel-framework'
+import { SpiltNetworkInterface, LocalNetworkInterface } from 'vessel-graphql'
+
+const simpleRoot: VesselUiGraphQLRoot = {
+  vesselUi: {
+    status: () => 'ok'
+  }
+}
+
+const client = new ApolloClient({
+  networkInterface: new SpiltNetworkInterface({
+    interfaces: {
+      [vesselUiRoot]: new LocalNetworkInterface(schema, simpleRoot)
+      // TODO: Likely have something like this
+      // 'vesselServer': createNetworkInterface({
+      //   uri: '/vessel/graphql'
+      // }),
+    },
+    defaultInterface: createNetworkInterface({
+      uri: '/graphql'
+    })
+  })
+})
 
 ReactDOM.render(
   <ApolloProvider client={client} >
