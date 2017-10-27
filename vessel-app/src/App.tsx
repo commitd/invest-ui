@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
 import { ApolloClient, ChildProps } from 'react-apollo'
+import { withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
 
 import { UiPlugin } from 'vessel-types'
 import { Layout, NavBar } from 'vessel-components'
@@ -18,54 +19,20 @@ interface OwnProps {
   client: ApolloClient
 }
 
-type Props = ChildProps<OwnProps, GqlResponse>
+type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>
 
 interface State {
-  selectedPlugin?: UiPlugin,
-  open: boolean,
+  sidebarOpen: boolean,
 }
 
+// Note that we use the URL to decide on the plugin and we do it internally here. 
+// We don't rely on the Route from 
 class App extends React.Component<Props, State> {
 
   globalHandler: GlobalHandler
 
-  // Mock data from server:
-
-  // plugins: [{
-  //   id: 'hello',
-  //   name: 'helloword',
-  //   description: 'hello world',
-  //   url: '/ui/HelloUiPlugin/index.html',
-  //   icon: 'add-circle'
-  // }, {
-  //   id: 'graphiql',
-  //   name: 'GraphiQL',
-  //   description: 'GraphQL Browser',
-  //   url: '/ui/graphiql/index.html',
-  //   icon: 'add-circle'
-  // }, {
-  //   id: 'dev',
-  //   name: 'Development',
-  //   description: 'Development plugin',
-  //   url: 'http://localhost:3001',
-  //   icon: 'add-circle'
-  // }, {
-  //   id: 'kibana',
-  //   name: 'Kibana',
-  //   description: 'Kibana for search',
-  //   url: 'https://dci.arga.committed.software/',
-  //   icon: 'add-circle'
-  // }, {
-  //   id: 'arga',
-  //   name: 'Arga',
-  //   description: 'Report writer',
-  //   url: 'https://dpi.arga.committed.software/',
-  //   icon: 'add-circle'
-  // }],
-
   state: State = {
-    selectedPlugin: undefined,
-    open: true
+    sidebarOpen: true
   }
 
   constructor(props: Props) {
@@ -75,41 +42,61 @@ class App extends React.Component<Props, State> {
 
   handleDrawerClose = () => {
     this.setState({
-      open: false
+      sidebarOpen: false
     })
   }
 
   handleDrawerOpen = () => {
     this.setState({
-      open: true
+      sidebarOpen: true
     })
   }
 
   handleDrawerToggle = () => {
-    this.setState({
-      open: !this.state.open
-    })
+    this.setState((state) => ({
+      sidebarOpen: !state.sidebarOpen
+    }))
   }
 
   handlePluginSelected = (p?: UiPlugin) => {
-    this.setState({
-      selectedPlugin: p
-    })
+    if (p) {
+      this.props.history.push('/view/' + p.id)
+    } else {
+      this.props.history.push('/')
+    }
   }
 
-  render() {
-    let plugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
-    const { selectedPlugin } = this.state
-    const title = 'Vessel'
+  findSelectedPlugin() {
+    const path =
+      matchPath<{ pluginId?: string }>(this.props.history.location.pathname, {
+        path: '/view/:pluginId',
+        exact: true
+      })
 
+    if (path && path.params && path.params.pluginId) {
+      return this.getPlugins().find(p => p.id === path.params.pluginId)
+    } else {
+      return undefined
+    }
+  }
+
+  getPlugins() {
+    let plugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
     // Hack for development
-    plugins = [{
+    return [{
       id: 'dev',
       name: 'Development',
       description: 'Development plugin',
       url: 'http://localhost:3001',
       icon: 'add-circle'
     }].concat(plugins)
+  }
+
+  render() {
+    let plugins = this.getPlugins()
+    const title = 'Vessel'
+
+    const selectedPlugin = this.findSelectedPlugin()
 
     const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} />
     const sideBar = (
@@ -123,7 +110,7 @@ class App extends React.Component<Props, State> {
     return (
       <div>
         <Helmet title={title} />
-        <Layout navBar={navBar} sideBar={sideBar} open={this.state.open}>
+        <Layout navBar={navBar} sideBar={sideBar} open={this.state.sidebarOpen}>
           <PluginViewManager
             globalHandler={this.globalHandler}
             plugin={selectedPlugin}
@@ -150,4 +137,4 @@ const APP_QUERY = gql`
   }
 `
 
-export default graphql<Response, OwnProps, Props>(APP_QUERY)(App)
+export default graphql<Response, OwnProps, Props>(APP_QUERY)(withRouter(App))
