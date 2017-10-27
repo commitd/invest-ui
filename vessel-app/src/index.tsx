@@ -14,7 +14,7 @@ import { rootReducer, RootState } from './redux/RootReducer'
 import { rootSaga } from './redux/RootSaga'
 const store = newStore<RootState>(rootReducer, rootSaga)
 
-// TODO; These sshould be in vessel-ui-componnts MaterialUi but 
+// TODO; These sshould be in vessel-ui-componnts MaterialUi but that's a simple library (not webpacked)
 import './icons/index'
 
 import { MaterialUi } from 'vessel-components'
@@ -35,8 +35,6 @@ const simpleRoot: VesselUiGraphQLRoot = {
     }
   }
 }
-
-console.log(schema)
 
 const client = new ApolloClient({
   networkInterface: new SpiltNetworkInterface({

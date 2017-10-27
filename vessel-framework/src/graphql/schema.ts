@@ -6,12 +6,17 @@ import {
 
 export const vesselUiRoot = 'vesselUi'
 
-export type GraphQLResolverCallback<Result, Source, Context>
+export type QueryResolverCallback<Result, Source, Context>
     = (source: Source, context: Context, info: GraphQLResolveInfo) => Result | Promise<Result>
-export type GraphQLResolver<Result, Source = {}, Context = {}> = Result
+export type QueryResolver<Result, Source = {}, Context = {}> = Result
     | Promise<Result>
     // This is a generaalisation of th GraphQLTypeResolver in graphql
-    | GraphQLResolverCallback<Result, Source, Context>
+    | QueryResolverCallback<Result, Source, Context>
+
+export type MutationResolverCallback<Result, Arguments, Context>
+    = (args: Arguments, context: Context, info: GraphQLResolveInfo) => Result | Promise<Result>
+export type MutationResolver<Result, Arguments = {}, Context = {}> = Result | Promise<Result>
+    | MutationResolverCallback<Result, Arguments, Context>
 
 export const schema: GraphQLSchema = buildSchema(`
     type Query {
@@ -52,12 +57,12 @@ export const schema: GraphQLSchema = buildSchema(`
 export interface VesselUiGraphQLRoot {
     query: {
         vesselUi: {
-            status: GraphQLResolver<string>
+            status: QueryResolver<string>
         }
     },
     mutation: {
         vesselUi: {
-            navigate(args: { id: String }): GraphQLResolver<{ success: boolean }>
+            navigate(args: { id: String }): MutationResolver<{ success: boolean }>
         }
     }
 }
