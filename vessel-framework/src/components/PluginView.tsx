@@ -51,10 +51,18 @@ class PluginView extends React.Component<Props> {
 
     render() {
         const { plugin, hide } = this.props
-        const url = baseServerPath + plugin.url
+        const url = this.generateAbsoluteUrl(plugin.url)
         return (
             <IFrame src={url} handler={this.handler} hide={hide} onLoad={this.handleLoad} />
         )
+    }
+
+    private generateAbsoluteUrl(relativeUrl: string) {
+        if (relativeUrl.startsWith('http')) {
+            return relativeUrl
+        } else {
+            return baseServerPath + relativeUrl
+        }
     }
 }
 

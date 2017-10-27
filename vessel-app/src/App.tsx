@@ -98,9 +98,19 @@ class App extends React.Component<Props, State> {
   }
 
   render() {
-    const plugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
+    let plugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
     const { selectedPlugin } = this.state
     const title = 'Vessel'
+
+    // Hack for development
+    plugins = [{
+      id: 'dev',
+      name: 'Development',
+      description: 'Development plugin',
+      url: 'http://localhost:3001',
+      icon: 'add-circle'
+    }].concat(plugins)
+
     const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} />
     const sideBar = (
       <PluginListSidebar

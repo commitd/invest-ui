@@ -24,10 +24,17 @@ import { vesselUiRoot, schema, VesselUiGraphQLRoot } from 'vessel-framework'
 import { SpiltNetworkInterface, LocalNetworkInterface } from 'vessel-graphql'
 
 const simpleRoot: VesselUiGraphQLRoot = {
-  vesselUi: {
-    status: () => 'ok'
+  query: {
+    vesselUi: {
+      status: () => 'ok'
+    }
+  },
+  mutation: {
+    navigate: (pluginId: String) => console.log('navigate to ' + pluginId)
   }
 }
+
+console.log(schema)
 
 const client = new ApolloClient({
   networkInterface: new SpiltNetworkInterface({
