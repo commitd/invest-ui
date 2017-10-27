@@ -20,7 +20,7 @@ export type JsonRpcMethod = string
  */
 export type JsonRpcId = number | string | void
 
-export type JsonRpcParameter = never | {}
+export type JsonRpcParameter = undefined | {}
 export type JsonRpcParameters = JsonRpcParameter | JsonRpcParameter[]
 export type JsonRpcResult = never | {} | {}[]
 
@@ -35,23 +35,23 @@ export interface JsonRpcRequest<T extends JsonRpcParameters> extends JsonRpcNoti
 }
 
 export interface JsonRpcResponse {
-      jsonrpc: JsonRpcVersion
-      id: JsonRpcId
+    jsonrpc: JsonRpcVersion
+    id: JsonRpcId
 }
 
 export interface JsonRpcSuccess<T extends JsonRpcResult> extends JsonRpcResponse {
-        result?: T
+    result?: T
 }
 
 export interface JsonRpcFailure<T extends JsonRpcResult> extends JsonRpcResponse {
-        error: JsonRpcError<T>
+    error: JsonRpcError<T>
 }
 
 export interface JsonRpcError<T extends JsonRpcResult> {
-      /** Must be an integer */
-      code: number
-      message: string
-      data?: T
+    /** Must be an integer */
+    code: number
+    message: string
+    data?: T
 }
 
 export type JsonRpcMessage = JsonRpcSuccess<{}> | JsonRpcFailure<{}> | JsonRpcRequest<{}> | JsonRpcNotification<{}>

@@ -9,16 +9,18 @@
   "types": "build/index.d.ts",
   "license": "ASL",
   "dependencies": {
-    "vessel-rpc": "0.1.0",
+    "prop-types": "^15.6.0",
+    "vessel-common": "0.1.0",
     "vessel-graphql": "0.1.0",
-    "vessel-common": "0.1.0"
+    "vessel-rpc": "0.1.0"
   },
   "peerDependencies": {
-    "react-apollo": "^1.4.16",
     "react": "^16.0.0",
+    "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
+    "@types/prop-types": "^15.5.2",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.13",
     "enzyme": "^3.1.0",

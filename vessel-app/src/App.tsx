@@ -1,62 +1,69 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { ApolloClient } from 'react-apollo'
+import { ApolloClient, ChildProps } from 'react-apollo'
 
 import { UiPlugin } from 'vessel-types'
 import { Layout, NavBar } from 'vessel-components'
 
 import { PluginListSidebar, GlobalHandler, newGlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
+import { graphql, gql } from 'react-apollo'
 
-interface Props {
+interface GqlResponse {
+  vesselServer: {
+    uiPlugins: UiPlugin[]
+  }
+}
+
+interface OwnProps {
   client: ApolloClient
 }
 
+type Props = ChildProps<OwnProps, GqlResponse>
+
 interface State {
-  plugins: UiPlugin[],
   selectedPlugin?: UiPlugin,
   open: boolean,
 }
-
-// TODO The iframe stakes a http://localhost:8080 which is ok, but what ist ehv alue of it
-// window.location.hostname? That doesn;t work in dev mode with webpack . It might have to come from the server / config? And if null then fallback
-const baseServerPath = 'http://localhost:8080'
 
 class App extends React.Component<Props, State> {
 
   globalHandler: GlobalHandler
 
+  // Mock data from server:
+
+  // plugins: [{
+  //   id: 'hello',
+  //   name: 'helloword',
+  //   description: 'hello world',
+  //   url: '/ui/HelloUiPlugin/index.html',
+  //   icon: 'add-circle'
+  // }, {
+  //   id: 'graphiql',
+  //   name: 'GraphiQL',
+  //   description: 'GraphQL Browser',
+  //   url: '/ui/graphiql/index.html',
+  //   icon: 'add-circle'
+  // }, {
+  //   id: 'dev',
+  //   name: 'Development',
+  //   description: 'Development plugin',
+  //   url: 'http://localhost:3001',
+  //   icon: 'add-circle'
+  // }, {
+  //   id: 'kibana',
+  //   name: 'Kibana',
+  //   description: 'Kibana for search',
+  //   url: 'https://dci.arga.committed.software/',
+  //   icon: 'add-circle'
+  // }, {
+  //   id: 'arga',
+  //   name: 'Arga',
+  //   description: 'Report writer',
+  //   url: 'https://dpi.arga.committed.software/',
+  //   icon: 'add-circle'
+  // }],
+
   state: State = {
-    plugins: [{
-      id: 'hello',
-      name: 'helloword',
-      description: 'hello world',
-      url: baseServerPath + '/ui/HelloUiPlugin/index.html',
-      icon: 'add-circle'
-    }, {
-      id: 'graphiql',
-      name: 'GraphiQL',
-      description: 'GraphQL Browser',
-      url: baseServerPath + '/ui/graphiql/index.html',
-      icon: 'add-circle'
-    }, {
-      id: 'dev',
-      name: 'Development',
-      description: 'Development plugin',
-      url: 'http://localhost:3001',
-      icon: 'add-circle'
-    }, {
-      id: 'kibana',
-      name: 'Kibana',
-      description: 'Kibana for search',
-      url: 'https://dci.arga.committed.software/',
-      icon: 'add-circle'
-    }, {
-      id: 'arga',
-      name: 'Arga',
-      description: 'Report writer',
-      url: 'https://dpi.arga.committed.software/',
-      icon: 'add-circle'
-    }],
     selectedPlugin: undefined,
     open: true
   }
@@ -91,7 +98,8 @@ class App extends React.Component<Props, State> {
   }
 
   render() {
-    const { plugins, selectedPlugin } = this.state
+    const plugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
+    const { selectedPlugin } = this.state
     const title = 'Vessel'
     const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} />
     const sideBar = (
@@ -118,4 +126,18 @@ class App extends React.Component<Props, State> {
   }
 }
 
-export default App
+const APP_QUERY = gql`
+  query {
+    vesselServer {
+      uiPlugins {
+        id
+        name
+        description
+        url
+        icon
+      }
+    }
+  }
+`
+
+export default graphql<Response, OwnProps, Props>(APP_QUERY)(App)

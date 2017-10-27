@@ -10,6 +10,10 @@ export interface Props {
     hide?: boolean
 }
 
+// TODO The iframe stakes a http://localhost:8080 which is ok, but what ist ehv alue of it
+// window.location.hostname? That doesn;t work in dev mode with webpack . It might have to come from the server / config? And if null then fallback
+const baseServerPath = 'http://localhost:8080'
+
 class PluginView extends React.Component<Props> {
 
     handler: Handler<{}>
@@ -47,8 +51,9 @@ class PluginView extends React.Component<Props> {
 
     render() {
         const { plugin, hide } = this.props
+        const url = baseServerPath + plugin.url
         return (
-            <IFrame src={plugin.url} handler={this.handler} hide={hide} onLoad={this.handleLoad} />
+            <IFrame src={url} handler={this.handler} hide={hide} onLoad={this.handleLoad} />
         )
     }
 }

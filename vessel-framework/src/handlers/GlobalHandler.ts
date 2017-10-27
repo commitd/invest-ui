@@ -8,6 +8,11 @@ export class GlobalHandler implements Handler<GlobalHandler> {
 
     graphql: HandlerFunction<ExecutionResult>
 
+    fetch: HandlerFunction<{}> = function (input: RequestInfo, init?: RequestInit): Promise<Response> {
+        // TODO: Add the Auth here
+        return fetch(input, init)
+    }
+
 }
 
 export function newGlobalHandler(client: ApolloClient): GlobalHandler {

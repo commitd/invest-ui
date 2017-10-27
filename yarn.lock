@@ -45,6 +45,10 @@
   version "0.0.22"
   resolved "https://nexus.committed.software/repository/npm/@types/numeral/-/numeral-0.0.22.tgz#86bef1f0a2d743afdc2ef3168d45f2905e1a0b93"
 
+"@types/prop-types@^15.5.2":
+  version "15.5.2"
+  resolved "https://nexus.committed.software/repository/npm/@types/prop-types/-/prop-types-15.5.2.tgz#3c6b8dceb2906cc87fe4358e809f9d20c8d59be1"
+
 "@types/react-dom@^16.0.1":
   version "16.0.1"
   resolved "https://nexus.committed.software/repository/npm/@types/react-dom/-/react-dom-16.0.1.tgz#de159d00dd70050000f462e8bcff0c08ef803dee"

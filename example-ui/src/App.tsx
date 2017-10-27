@@ -23,9 +23,7 @@ class App extends React.Component<Props> {
     )
   }
 }
-// things{
-//   name
-// }
+
 const ALL_THINGS_QUERY = gql`
 query AllThings {
   things {

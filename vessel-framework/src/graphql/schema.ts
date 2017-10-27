@@ -19,13 +19,38 @@ export const schema: GraphQLSchema = buildSchema(`
     }
 
     type VesselUi {
-        status: String
+        status: String!,
+        plugins: [Plugin!]!
+    }
+
+    type Plugin {
+        id: String!,
+        name: String!,
+        description: String
+    }
+
+    type NavigateResponse {
+        success: Boolean!
+    }
+
+    type Mutation {
+        navigate(id: String!): NavigateResponse!
+    }
+
+    schema {
+        query: Query,
+        mutation: Mutation
     }
 `)
 
-// This should match the schema!
+// This should match the schema above!
 export interface VesselUiGraphQLRoot {
-    vesselUi: {
-        status: GraphQLResolver<string>
+    query: {
+        vesselUi: {
+            status: GraphQLResolver<string>
+        }
+    },
+    mutation: {
+        navigate(id: String): void
     }
 }
