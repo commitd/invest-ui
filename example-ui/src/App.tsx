@@ -32,9 +32,24 @@ class App extends React.Component<Props> {
   context: Context
 
   handleNavigate = () => {
+    // Call through the props (created)
     if (this.props.mutate) {
       this.props.mutate({ variables: { pluginId: 'HelloUiPlugin' } })
     }
+    // Or call directly: 
+    // const s = gql`
+    // mutation {
+    //   vesselUi {
+    //     navigate(id:"HelloUiPlugin") {
+    //       success
+    //     }
+    //   }
+    // }
+    // `
+    // console.log(s)
+    // this.context.pluginApi.mutate({ mutation: s }).then(response => {
+    //   console.log(response)
+    // })
   }
 
   render() {
