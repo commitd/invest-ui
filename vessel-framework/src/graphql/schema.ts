@@ -33,8 +33,13 @@ export const schema: GraphQLSchema = buildSchema(`
         success: Boolean!
     }
 
-    type Mutation {
+    type VesselUiMutation {
         navigate(id: String!): NavigateResponse!
+        
+    }
+
+    type Mutation {
+        vesselUi: VesselUiMutation
     }
 
     schema {
@@ -51,6 +56,8 @@ export interface VesselUiGraphQLRoot {
         }
     },
     mutation: {
-        navigate(id: String): void
+        vesselUi: {
+            navigate(args: { id: String }): GraphQLResolver<{ success: boolean }>
+        }
     }
 }

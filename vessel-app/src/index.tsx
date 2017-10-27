@@ -30,7 +30,9 @@ const simpleRoot: VesselUiGraphQLRoot = {
     }
   },
   mutation: {
-    navigate: (pluginId: String) => console.log('navigate to ' + pluginId)
+    vesselUi: {
+      navigate: function (args: { id: String }) { console.log('navigate to ' + args.id); return { success: true } }
+    }
   }
 }
 

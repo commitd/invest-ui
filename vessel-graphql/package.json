@@ -9,12 +9,14 @@
   "license": "ASL",
   "dependencies": {
     "graphql": "^0.11.7",
+    "lodash.merge": "^4.6.0",
     "react-apollo": "^1.4.16"
   },
   "peerDependencies": {
     "redux": "^3.7.2"
   },
   "devDependencies": {
+    "@types/lodash.merge": "^4.6.3",
     "@types/loglevel": "^1.5.1",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.13",

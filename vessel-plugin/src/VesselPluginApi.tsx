@@ -1,5 +1,8 @@
 import { Connection } from 'vessel-rpc'
-import { ApolloClient, WatchQueryOptions, NetworkStatus } from 'react-apollo'
+import {
+    ApolloClient, WatchQueryOptions, ApolloQueryResult,
+    ApolloExecutionResult, MutationOptions
+} from 'react-apollo'
 
 export class VesselPluginApi {
 
@@ -19,12 +22,11 @@ export class VesselPluginApi {
         }
     }
 
-    graphql(options: WatchQueryOptions): Promise<{
-        data: {},
-        loading: boolean,
-        stale: boolean,
-        networkStatus: NetworkStatus
-    }> {
+    query(options: WatchQueryOptions): Promise<ApolloQueryResult<{}>> {
         return this.client.query(options)
+    }
+
+    mutate(options: MutationOptions<{}>): Promise<ApolloExecutionResult<{}>> {
+        return this.client.mutate(options)
     }
 }

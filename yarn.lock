@@ -29,6 +29,16 @@
   version "21.1.4"
   resolved "https://nexus.committed.software/repository/npm/@types/jest/-/jest-21.1.4.tgz#83c5c474dd6dee5bef9d014ff36787edfd4ab5a7"
 
+"@types/lodash.merge@^4.6.3":
+  version "4.6.3"
+  resolved "https://nexus.committed.software/repository/npm/@types/lodash.merge/-/lodash.merge-4.6.3.tgz#a41c49fe404c4bfb653ae6dda76abeedeace14ff"
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*", "@types/lodash@^4.14.80":
+  version "4.14.80"
+  resolved "https://nexus.committed.software/repository/npm/@types/lodash/-/lodash-4.14.80.tgz#a6b8b7900e6a7dcbc2e90d9b6dfbe3f6a7f69951"
+
 "@types/loglevel@^1.5.1":
   version "1.5.2"
   resolved "https://nexus.committed.software/repository/npm/@types/loglevel/-/loglevel-1.5.2.tgz#5438a1058817e1dbf20042182b73e405bd49f6e0"
@@ -3594,6 +3604,10 @@ lodash.flattendeep@^4.4.0:
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://nexus.committed.software/repository/npm/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
+
+lodash.merge@^4.6.0:
+  version "4.6.0"
+  resolved "https://nexus.committed.software/repository/npm/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
 
 lodash.pick@^4.4.0:
   version "4.4.0"
