@@ -9,6 +9,11 @@ interface Response {
   }[]
   vesselUi: {
     status: string
+    actions: {
+      pluginId: string,
+      action: string,
+      title: string
+    }[]
   }
 }
 
@@ -34,19 +39,23 @@ class App extends React.Component<Props> {
   handleNavigate = () => {
     // Call through the props (created)
     if (this.props.mutate) {
-      this.props.mutate({ variables: { pluginId: 'HelloUiPlugin' } })
+      const pluginId = this.props.data.vesselUi.actions[0].pluginId
+      this.props.mutate({
+        variables: {
+          pluginId: pluginId
+        }
+      })
     }
-    // Or call directly: 
+    // Or call directly without need: 
     // const s = gql`
     // mutation {
     //   vesselUi {
-    //     navigate(id:"HelloUiPlugin") {
+    //     navigate(pluginId:"HelloUiPlugin") {
     //       success
     //     }
     //   }
     // }
     // `
-    // console.log(s)
     // this.context.pluginApi.mutate({ mutation: s }).then(response => {
     //   console.log(response)
     // })
@@ -54,6 +63,7 @@ class App extends React.Component<Props> {
 
   render() {
     const things = this.props.data && this.props.data.things ? this.props.data.things : []
+    const actions = this.props.data && this.props.data.vesselUi && this.props.data.vesselUi.actions
     return (
       <div className="App" >
         <p>Hello, got {things.length} results, with status
@@ -61,7 +71,9 @@ class App extends React.Component<Props> {
         <ul>
           {things.map(t => <li key={t.name}>{t.name}</li>)}
         </ul>
-        <p><a onClick={this.handleNavigate}>Click</a> to go somewhere else</p>
+
+        {actions != null
+          && <p><a onClick={this.handleNavigate}>Click</a> to go view document (with {actions[0].pluginId})</p>}
       </div>
     )
   }
@@ -70,7 +82,7 @@ class App extends React.Component<Props> {
 const NAVIGATE_MUTATION = gql`
 mutation navigate($pluginId: String!) {
           vesselUi {
-        navigate(id: $pluginId) {
+        navigate(pluginId: $pluginId) {
           success
         }
         }
@@ -86,6 +98,11 @@ query AllThings {
   }
   vesselUi {
           status
+          actions(action:"documents.view") {
+            pluginId,
+            action, 
+            title
+          }
         }
   }
 `
