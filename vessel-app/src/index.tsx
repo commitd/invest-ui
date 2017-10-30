@@ -24,8 +24,7 @@ import { createGraphQLResolver } from './graphql/Resolver'
 import history from './history'
 const store = newStore<RootState>(rootReducer, rootSaga)
 
-// TODO: Move the resolver into a component (when we have redux)
-const graphQlResolver = createGraphQLResolver(store, history)
+const graphQlResolver = createGraphQLResolver(store.dispatch, history)
 
 const client = new ApolloClient({
   networkInterface: new SpiltNetworkInterface({
