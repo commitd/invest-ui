@@ -4,11 +4,16 @@ import createSagaMiddleware from 'redux-saga'
 // In effect redeclaring Saga0 from redux-saga here
 export type RootSaga = () => Iterator<{}>
 
+const composeEnhancers = (
+  process.env.NODE_ENV === 'development' &&
+  window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+) || compose
+
 function configureStore<S>(rootReducer: Reducer<S>, middleware: Middleware[], initialState?: S): Store<S> {
   return createStore<S>(
     rootReducer,
     initialState!,
-    compose(...middleware.map(m => applyMiddleware(m))
+    composeEnhancers(...middleware.map(m => applyMiddleware(m))
     )
   )
 }

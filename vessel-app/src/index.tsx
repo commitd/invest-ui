@@ -8,6 +8,7 @@ import './index.css'
 import App from './App'
 
 import { newStore } from 'vessel-redux'
+import { Store, Dispatch, combineReducers } from 'redux'
 import { rootReducer, RootState } from './redux/RootReducer'
 import { rootSaga } from './redux/RootSaga'
 
@@ -22,18 +23,16 @@ import { SpiltNetworkInterface, LocalNetworkInterface } from 'vessel-graphql'
 import { createGraphQLResolver } from './graphql/Resolver'
 
 import history from './history'
-const store = newStore<RootState>(rootReducer, rootSaga)
+let store: Store<RootState>
 
-const graphQlResolver = createGraphQLResolver(store.dispatch, history)
+const storeDispatcher: Dispatch<{}> = (a) => store.dispatch(a)
+
+const graphQlResolver = createGraphQLResolver(storeDispatcher, history)
 
 const client = new ApolloClient({
   networkInterface: new SpiltNetworkInterface({
     interfaces: {
       [vesselUiRoot]: new LocalNetworkInterface(schema, graphQlResolver)
-      // TODO: Likely have something like this
-      // 'vesselServer': createNetworkInterface({
-      //   uri: '/vessel/graphql'
-      // }),
     },
     defaultInterface: createNetworkInterface({
       uri: '/graphql'
@@ -41,8 +40,13 @@ const client = new ApolloClient({
   })
 })
 
+store = newStore<RootState>(
+  combineReducers({ ...rootReducer, apollo: client.reducer() }),
+  rootSaga,
+  [client.middleware()])
+
 ReactDOM.render(
-  <ApolloProvider client={client} >
+  <ApolloProvider store={store} client={client} >
     <MaterialUi>
       <Provider store={store}>
         <Router history={history} >
