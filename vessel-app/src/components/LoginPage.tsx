@@ -104,8 +104,6 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
                         <Login
                             username={username}
                             password={password}
-                            failed={failed}
-                            onSend={this.handleSend}
                             onUsernameChange={this.handleUsernameChange}
                             onPasswordChange={this.handlePasswordChange}
                         />

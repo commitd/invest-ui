@@ -9,7 +9,6 @@ import Grid from 'material-ui/Grid'
 export type Props = {
     username: string,
     password: string,
-    onSend(): void,
     onUsernameChange(usernae: string): void,
     onPasswordChange(password: string): void
 }

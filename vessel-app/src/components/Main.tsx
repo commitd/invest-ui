@@ -1,13 +1,13 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
 
-import { ApolloClient, ChildProps, withApollo } from 'react-apollo'
+import { ChildProps } from 'react-apollo'
 import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
 
 import { UiPlugin, ActionDefinition } from 'vessel-types'
 import { Layout, NavBar } from 'vessel-components'
 
-import { PluginListSidebar, GlobalHandler, newGlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
+import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
 import { graphql, gql } from 'react-apollo'
 
 import { Login } from 'vessel-components'
@@ -19,7 +19,7 @@ interface GqlResponse {
 }
 
 interface OwnProps {
-  client: ApolloClient
+  globalHandler: GlobalHandler
 }
 
 type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>
@@ -30,17 +30,10 @@ interface State {
 
 // Note that we use the URL to decide on the plugin and we do it internally here. 
 // We don't rely on the Route from 
-class App extends React.Component<Props, State> {
-
-  globalHandler: GlobalHandler
+class Main extends React.Component<Props, State> {
 
   state: State = {
     sidebarOpen: true
-  }
-
-  constructor(props: Props) {
-    super(props)
-    this.globalHandler = newGlobalHandler(props.client)
   }
 
   handleDrawerClose = () => {
@@ -117,7 +110,7 @@ class App extends React.Component<Props, State> {
         <Route path="/auth/login" component={Login} />
         <Layout navBar={navBar} sideBar={sideBar} open={this.state.sidebarOpen}>
           <PluginViewManager
-            globalHandler={this.globalHandler}
+            globalHandler={this.props.globalHandler}
             plugin={selectedPlugin}
             plugins={plugins}
             fallback={<FallbackView plugins={plugins} onSelectPlugin={this.handlePluginSelected} />}
@@ -147,4 +140,4 @@ const APP_QUERY = gql`
   }
 `
 
-export default withRouter(withApollo(graphql<Response, OwnProps, Props>(APP_QUERY)(App)))
+export default withRouter(graphql<Response, OwnProps, Props>(APP_QUERY)(Main))

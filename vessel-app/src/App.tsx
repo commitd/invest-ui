@@ -2,17 +2,39 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom'
+import { ApolloClient, withApollo } from 'react-apollo'
+import { GlobalHandler, newGlobalHandler } from 'vessel-framework'
 
 import LoginPage from './components/LoginPage'
 import Main from './components/Main'
 
 import { RootState } from './types'
 
-interface Props {
-  authenticated: boolean
+interface OwnProps {
+
 }
 
+interface ConnectProps {
+  authenticated: boolean,
+  session?: string
+}
+
+interface WithApolloProps {
+  client: ApolloClient
+}
+
+type Props = WithApolloProps & ConnectProps & OwnProps
+
 class App extends React.Component<Props> {
+
+  globalHandler: GlobalHandler
+
+  constructor(props: Props) {
+    super(props)
+    this.globalHandler = newGlobalHandler(props.client, () => this.props.session)
+  }
+
+  renderMain = () => <Main globalHandler={this.globalHandler} />
 
   render() {
     const title = 'Vessel'
@@ -28,7 +50,7 @@ class App extends React.Component<Props> {
         <Switch>
           <Route path="/auth/login" component={LoginPage} />
           {redirect}
-          <Route path="/view" component={Main} />
+          <Route path="/view" component={this.renderMain} />
         </Switch>
 
       </div >
@@ -36,8 +58,9 @@ class App extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: RootState) => ({
-  authenticated: state.auth.authenticated
+const mapStateToProps = (state: RootState, props: OwnProps) => ({
+  authenticated: state.auth.authenticated,
+  session: state.auth.session
 })
 
-export default withRouter(connect(mapStateToProps)(App))
+export default withRouter(connect(mapStateToProps)(withApollo(App)))
