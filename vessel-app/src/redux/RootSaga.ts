@@ -1,9 +1,10 @@
 import { all } from 'redux-saga/effects'
 
-import example from './sagas/example' 
+import vesselUiResolver from './sagas/vesselUiResolver'
 
 export function* rootSaga() {
+    console.log('rootSaga')
     yield all([
-        example
+        vesselUiResolver()
     ])
 }

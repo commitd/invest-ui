@@ -10,10 +10,12 @@ interface Response {
   vesselUi: {
     status: string
     actions: {
-      pluginId: string,
-      action: string,
-      title: string
-    }[]
+      definitions: {
+        pluginId: string,
+        action: string,
+        title: string
+      }[]
+    }
   }
 }
 
@@ -39,7 +41,7 @@ class App extends React.Component<Props> {
   handleNavigate = () => {
     // Call through the props (created)
     if (this.props.mutate) {
-      const pluginId = this.props.data.vesselUi.actions[0].pluginId
+      const pluginId = this.props.data.vesselUi.actions.definitions[0].pluginId
       this.props.mutate({
         variables: {
           pluginId: pluginId
@@ -63,7 +65,7 @@ class App extends React.Component<Props> {
 
   render() {
     const things = this.props.data && this.props.data.things ? this.props.data.things : []
-    const actions = this.props.data && this.props.data.vesselUi && this.props.data.vesselUi.actions
+    const actions = this.props.data && this.props.data.vesselUi && this.props.data.vesselUi.actions.definitions
     return (
       <div className="App" >
         <p>Hello, got {things.length} results, with status
@@ -82,7 +84,7 @@ class App extends React.Component<Props> {
 const NAVIGATE_MUTATION = gql`
 mutation navigate($pluginId: String!) {
           vesselUi {
-        navigate(pluginId: $pluginId) {
+        navigate(input: {pluginId: $pluginId}) {
           success
         }
         }
@@ -98,10 +100,12 @@ query AllThings {
   }
   vesselUi {
           status
-          actions(action:"documents.view") {
-            pluginId,
-            action, 
-            title
+          actions(input: {action:"documents.view"}) {
+            definitions {
+              pluginId,
+              action, 
+              title
+            }
           }
         }
   }

@@ -37,21 +37,35 @@ export const schema: GraphQLSchema = buildSchema(`
 
     # Query specific
 
+    input QueryActionInput {
+        action: String!
+    }
+
+    type QueryActionOutput {
+        definitions: [PluginActionDefinition!]!
+    }
+
     type VesselUiQuery {
         status: String!,
-        actions(action: String): [PluginActionDefinition!]!
+        actions(input: QueryActionInput): QueryActionOutput!
     }
 
     # Mutation specific
 
-    type NavigateResponse {
+    input NavigateInput {
+        pluginId: String!,
+        action: String,
+        payload: String
+    }
+
+    type NavigateOutput{
         success: Boolean!
     }
 
     type VesselUiMutation {
         # TODO: For the moment paylload is a JSOn.strinfify()... but it can be better maanged with a customer JSONScalar type 
         # see https://stackoverflow.com/questions/45842544/graphql-objecttype-with-dynamic-fields-based-on-arguments
-        navigate(pluginId: String!, action: String, payload: String): NavigateResponse!
+        navigate(input: NavigateInput): NavigateOutput!
         
     }
 
@@ -72,16 +86,35 @@ export const schema: GraphQLSchema = buildSchema(`
 `)
 
 // This should match the schema above!
+
+export type QueryActionInput = {
+    action: string
+}
+
+export type QueryActionOutput = {
+    definitions: PluginActionDefinition[]
+}
+
+export type NavigateInput = {
+    pluginId: string,
+    action?: string
+    payload?: string
+}
+
+export type NavigateOutput = {
+    success: boolean
+}
+
 export interface VesselUiGraphQLRoot {
     query: {
         vesselUi: {
             status: QueryResolver<string>,
-            actions: QueryResolver<PluginActionDefinition[], { action: string }>
+            actions: QueryResolver<QueryActionOutput, { input: QueryActionInput }>
         },
     }
     mutation: {
         vesselUi: {
-            navigate: MutationResolver<{ success: boolean }, { pluginId: string, action?: string, payload?: String }>
+            navigate: MutationResolver<NavigateOutput, { input: NavigateInput }>
         }
     }
 }

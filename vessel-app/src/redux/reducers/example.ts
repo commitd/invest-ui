@@ -1,7 +1,7 @@
 import { Reducer } from 'redux'
 import { Action } from 'redux-actions'
 
-import  { Actions } from '../RootAction'
+// import { Actions } from '../RootAction'
 import * as Immutable from 'seamless-immutable'
 
 export interface State {
@@ -15,13 +15,13 @@ export const initialState = Immutable.from({
 })
 
 export const reducer: Reducer<Immutable.ImmutableObject<State>> = (state = initialState, action: Action<{}>) => {
-    switch (action.type) {
-        case Actions.example.EXAMPLE_NO_PAYLOAD:
-            return state.update('noPayload', value => (value + 1))
-        case Actions.example.EXAMPLE_WITH_PAYLOAD:
-            return state.update('withPayload', value => (value + 1))
-        default:
-            break
-    }
+    // switch (action.type) {
+    //     case Actions.example.EXAMPLE_NO_PAYLOAD:
+    //         return state.update('noPayload', value => (value + 1))
+    //     case Actions.example.EXAMPLE_WITH_PAYLOAD:
+    //         return state.update('withPayload', value => (value + 1))
+    //     default:
+    //         break
+    // }
     return state
 }

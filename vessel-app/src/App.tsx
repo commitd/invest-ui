@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import { ApolloClient, ChildProps } from 'react-apollo'
 import { withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
 
-import { UiPlugin } from 'vessel-types'
+import { UiPlugin, ActionDefinition } from 'vessel-types'
 import { Layout, NavBar } from 'vessel-components'
 
 import { PluginListSidebar, GlobalHandler, newGlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
@@ -80,7 +80,7 @@ class App extends React.Component<Props, State> {
     }
   }
 
-  getPlugins() {
+  getPlugins(): UiPlugin[] {
     let plugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
     // Hack for development
     return [{
@@ -88,7 +88,8 @@ class App extends React.Component<Props, State> {
       name: 'Development',
       description: 'Development plugin',
       url: 'http://localhost:3001',
-      icon: 'add-circle'
+      icon: 'add-circle',
+      actions: [] as ActionDefinition[]
     }].concat(plugins)
   }
 
@@ -132,6 +133,11 @@ const APP_QUERY = gql`
         description
         url
         icon
+        actions {
+          action
+          title
+          description
+        }
       }
     }
   }

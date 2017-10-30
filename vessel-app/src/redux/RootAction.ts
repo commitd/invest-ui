@@ -1,9 +1,9 @@
-import * as Example from './actions/example'
+import * as VesselUiResolver from './actions/vesselUi'
 
 export const Actions = {
-    example: Example.Actions
+    vesselUi: VesselUiResolver.Actions
 }
 
 export const actionCreators = {
-    example: Example.actionCreators
+    vesselUi: VesselUiResolver.actionCreators
 }

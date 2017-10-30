@@ -83,12 +83,16 @@ export class SpiltNetworkInterface implements NetworkInterface {
             const compiledErrors = p.reduce(
                 (a, i) => i.errors !== undefined ? a.concat(i.errors) : a,
                 [] as GraphQLError[])
-            const error = compiledErrors.length === 0 ? undefined : compiledErrors
-            const combined = {
-                data: p.reduce((a, i) => { Object.assign(a, i.data); return a }, {}),
-                error
+
+            if (compiledErrors.length !== 0) {
+                return {
+                    errors: compiledErrors
+                }
+            } else {
+                return {
+                    data: p.reduce((a, i) => { Object.assign(a, i.data); return a }, {})
+                }
             }
-            return combined
         })
     }
 

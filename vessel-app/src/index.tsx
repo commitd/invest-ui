@@ -2,7 +2,6 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 
@@ -22,9 +21,10 @@ import { vesselUiRoot, schema } from 'vessel-framework'
 import { SpiltNetworkInterface, LocalNetworkInterface } from 'vessel-graphql'
 import { createGraphQLResolver } from './graphql/Resolver'
 
-const history = createBrowserHistory()
+import history from './history'
 const store = newStore<RootState>(rootReducer, rootSaga)
 
+// TODO: Move the resolver into a component (when we have redux)
 const graphQlResolver = createGraphQLResolver(store, history)
 
 const client = new ApolloClient({
