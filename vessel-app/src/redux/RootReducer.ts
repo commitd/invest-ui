@@ -1,13 +1,12 @@
-import { combineReducers } from 'redux'
 
-import * as Test from './reducers/example'
+import * as Auth from './reducers/auth'
 
 interface StoreEnhancerState { }
 
 export interface RootState extends StoreEnhancerState {
-    test: Test.State
+    auth: Auth.State
 }
 
-export const rootReducer = combineReducers<RootState>({
-    test: Test.reducer
-})
+export const rootReducer = {
+    auth: Auth.reducer
+}

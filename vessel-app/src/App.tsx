@@ -1,146 +1,43 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
-import { ApolloClient, ChildProps } from 'react-apollo'
-import { withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
+import { Route, Redirect, Switch, withRouter } from 'react-router-dom'
 
-import { UiPlugin, ActionDefinition } from 'vessel-types'
-import { Layout, NavBar } from 'vessel-components'
+import LoginPage from './components/LoginPage'
+import Main from './components/Main'
 
-import { PluginListSidebar, GlobalHandler, newGlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
-import { graphql, gql } from 'react-apollo'
+import { RootState } from './types'
 
-interface GqlResponse {
-  vesselServer: {
-    uiPlugins: UiPlugin[]
-  }
+interface Props {
+  authenticated: boolean
 }
 
-interface OwnProps {
-  client: ApolloClient
-}
-
-type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>
-
-interface State {
-  sidebarOpen: boolean,
-}
-
-// Note that we use the URL to decide on the plugin and we do it internally here. 
-// We don't rely on the Route from 
-class App extends React.Component<Props, State> {
-
-  globalHandler: GlobalHandler
-
-  state: State = {
-    sidebarOpen: true
-  }
-
-  constructor(props: Props) {
-    super(props)
-    this.globalHandler = newGlobalHandler(props.client)
-  }
-
-  handleDrawerClose = () => {
-    this.setState({
-      sidebarOpen: false
-    })
-  }
-
-  handleDrawerOpen = () => {
-    this.setState({
-      sidebarOpen: true
-    })
-  }
-
-  handleDrawerToggle = () => {
-    this.setState((state) => ({
-      sidebarOpen: !state.sidebarOpen
-    }))
-  }
-
-  handlePluginSelected = (p?: UiPlugin) => {
-    if (p) {
-      this.props.history.push('/view/' + p.id)
-    } else {
-      this.props.history.push('/')
-    }
-  }
-
-  findSelectedPlugin() {
-    const path =
-      matchPath<{ pluginId?: string }>(this.props.history.location.pathname, {
-        path: '/view/:pluginId',
-        exact: true
-      })
-
-    if (path && path.params && path.params.pluginId) {
-      return this.getPlugins().find(p => p.id === path.params.pluginId)
-    } else {
-      return undefined
-    }
-  }
-
-  getPlugins(): UiPlugin[] {
-    let plugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
-    // Hack for development
-    return [{
-      id: 'dev',
-      name: 'Development',
-      description: 'Development plugin',
-      url: 'http://localhost:3001',
-      icon: 'add-circle',
-      actions: [] as ActionDefinition[]
-    }].concat(plugins)
-  }
+class App extends React.Component<Props> {
 
   render() {
-    let plugins = this.getPlugins()
     const title = 'Vessel'
+    const { authenticated } = this.props
 
-    const selectedPlugin = this.findSelectedPlugin()
+    console.log(authenticated)
 
-    const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} />
-    const sideBar = (
-      <PluginListSidebar
-        selectedPlugin={selectedPlugin}
-        plugins={plugins}
-        onPluginSelected={this.handlePluginSelected}
-      />
-    )
+    const redirect = !authenticated ? <Redirect to="/auth/login" /> : undefined
 
     return (
       <div>
         <Helmet title={title} />
-        <Layout navBar={navBar} sideBar={sideBar} open={this.state.sidebarOpen}>
-          <PluginViewManager
-            globalHandler={this.globalHandler}
-            plugin={selectedPlugin}
-            plugins={plugins}
-            fallback={<FallbackView plugins={plugins} onSelectPlugin={this.handlePluginSelected} />}
-          />
-        </Layout>
+        <Switch>
+          <Route path="/auth/login" component={LoginPage} />
+          {redirect}
+          <Route path="/view" component={Main} />
+        </Switch>
+
       </div >
     )
   }
 }
 
-const APP_QUERY = gql`
-  query {
-    vesselServer {
-      uiPlugins {
-        id
-        name
-        description
-        url
-        icon
-        actions {
-          action
-          title
-          description
-        }
-      }
-    }
-  }
-`
+const mapStateToProps = (state: RootState) => ({
+  authenticated: state.auth.authenticated
+})
 
-export default graphql<Response, OwnProps, Props>(APP_QUERY)(withRouter(App))
+export default withRouter(connect(mapStateToProps)(App))

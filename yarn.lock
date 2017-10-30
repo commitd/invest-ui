@@ -35,7 +35,7 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash@*", "@types/lodash@^4.14.80":
+"@types/lodash@*":
   version "4.14.80"
   resolved "https://nexus.committed.software/repository/npm/@types/lodash/-/lodash-4.14.80.tgz#a6b8b7900e6a7dcbc2e90d9b6dfbe3f6a7f69951"
 
@@ -128,6 +128,10 @@
 "@types/shortid@^0.0.29":
   version "0.0.29"
   resolved "https://nexus.committed.software/repository/npm/@types/shortid/-/shortid-0.0.29.tgz#8093ee0416a6e2bf2aa6338109114b3fbffa0e9b"
+
+"@types/validate.js@^0.0.2":
+  version "0.0.2"
+  resolved "https://nexus.committed.software/repository/npm/@types/validate.js/-/validate.js-0.0.2.tgz#e102038a3aa48310322cca35f7faaaca38b5fbd9"
 
 abab@^1.0.3:
   version "1.0.4"
@@ -6321,6 +6325,10 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
+
+validate.js@^0.12.0:
+  version "0.12.0"
+  resolved "https://nexus.committed.software/repository/npm/validate.js/-/validate.js-0.12.0.tgz#17f989e37c192ea2f826bbf19bf4e97e6e4be68f"
 
 value-equal@^0.4.0:
   version "0.4.0"

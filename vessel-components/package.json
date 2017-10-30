@@ -8,9 +8,11 @@
   "types": "build/index.d.ts",
   "license": "ASL",
   "dependencies": {
+    "@types/validate.js": "^0.0.2",
     "material-ui": "^1.0.0-beta.17",
     "material-ui-icons": "^1.0.0-beta.17",
-    "typeface-roboto": "^0.0.41"
+    "typeface-roboto": "^0.0.41",
+    "validate.js": "^0.12.0"
   },
   "peerDependencies": {
     "react": "^16.0.0",
