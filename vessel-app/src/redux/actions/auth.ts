@@ -12,5 +12,5 @@ export enum Actions {
 
 export const actionCreators = {
     setAuth: createAction<SetAuthPayload>(Actions.SET_AUTH),
-    clearAuth: createAction<{}>(Actions.CLEAR_AUTH)
+    clearAuth: createAction(Actions.CLEAR_AUTH)
 }

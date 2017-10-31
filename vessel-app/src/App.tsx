@@ -37,20 +37,28 @@ class App extends React.Component<Props> {
   renderMain = () => <Main globalHandler={this.globalHandler} />
 
   render() {
+    // Should come from settings
     const title = 'Vessel'
+    const requireAuthentication = false
+
     const { authenticated } = this.props
 
-    console.log(authenticated)
+    // If you want to force authentication (which should be a configuration option then)
 
-    const redirect = !authenticated ? <Redirect to="/auth/login" /> : undefined
+    let redirect
 
+    if (requireAuthentication) {
+      redirect = !authenticated ? <Redirect to="/auth/login" /> : undefined
+    } else {
+      redirect = <Redirect from="/" to="/view" />
+    }
     return (
       <div>
         <Helmet title={title} />
         <Switch>
           <Route path="/auth/login" component={LoginPage} />
-          {redirect}
           <Route path="/view" component={this.renderMain} />
+          {redirect}
         </Switch>
 
       </div >

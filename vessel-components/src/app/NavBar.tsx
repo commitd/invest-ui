@@ -7,7 +7,8 @@ import MenuIcon from 'material-ui-icons/Menu'
 import { withStyles, WithStyles, StyleRules, Theme } from 'material-ui/styles'
 
 function styles(theme: Theme): StyleRules {
-    return ({appBar: {
+  return ({
+    appBar: {
       position: 'absolute'
     },
     menuButton: {
@@ -15,14 +16,15 @@ function styles(theme: Theme): StyleRules {
       marginRight: 20
     },
     flex: {
-        flex: 1
+      flex: 1
     }
   })
 }
 
 export interface Props {
-    title: string,
-    onSideBarToggle?(): void
+  title: string,
+  rightArea: React.ReactElement<{}>,
+  onSideBarToggle?(): void
 }
 
 class NavBar extends React.Component<Props & WithStyles, {}> {
@@ -35,27 +37,27 @@ class NavBar extends React.Component<Props & WithStyles, {}> {
   }
 
   render() {
-      const { title, classes, onSideBarToggle } = this.props
+    const { title, classes, onSideBarToggle, rightArea } = this.props
 
-      return(
+    return (
       <AppBar className={classes.appBar}>
-      <Toolbar>
-        {onSideBarToggle && <IconButton
-          color="contrast"
-          aria-label="open drawer"
-          onClick={this.handleDrawerToggle}
-          className={classes.menuButton}
-        >
-          <MenuIcon />
-        </IconButton>}
-        <Typography type="title" color="inherit" noWrap={true}>
-          {title}
-        </Typography>
-        <div className={classes.flex}>&nbsp;</div>
-
-      </Toolbar>
-    </AppBar>
-      )
+        <Toolbar>
+          {onSideBarToggle && <IconButton
+            color="contrast"
+            aria-label="open drawer"
+            onClick={this.handleDrawerToggle}
+            className={classes.menuButton}
+          >
+            <MenuIcon />
+          </IconButton>}
+          <Typography type="title" color="inherit" noWrap={true}>
+            {title}
+          </Typography>
+          <div className={classes.flex}>&nbsp;</div>
+          {rightArea}
+        </Toolbar>
+      </AppBar>
+    )
   }
 }
 

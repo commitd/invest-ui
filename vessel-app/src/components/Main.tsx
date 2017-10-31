@@ -1,16 +1,13 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
-
-import { ChildProps } from 'react-apollo'
+import { graphql, gql, ChildProps } from 'react-apollo'
 import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
 
-import { UiPlugin, ActionDefinition } from 'vessel-types'
-import { Layout, NavBar } from 'vessel-components'
-
 import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
-import { graphql, gql } from 'react-apollo'
+import { UiPlugin, ActionDefinition } from 'vessel-types'
+import { Layout, NavBar, Login } from 'vessel-components'
 
-import { Login } from 'vessel-components'
+import AuthMenu from './AuthMenu'
 
 interface GqlResponse {
   vesselServer: {
@@ -95,7 +92,8 @@ class Main extends React.Component<Props, State> {
 
     const selectedPlugin = this.findSelectedPlugin()
 
-    const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} />
+    const rightMenu = <AuthMenu />
+    const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} rightArea={rightMenu} />
     const sideBar = (
       <PluginListSidebar
         selectedPlugin={selectedPlugin}
