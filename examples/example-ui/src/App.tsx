@@ -30,7 +30,7 @@ interface Context {
   pluginApi: VesselPluginApi
 }
 
-class App extends React.Component<Props> {
+export class App extends React.Component<Props> {
 
   static contextTypes = {
     pluginApi: PropTypes.instanceOf(VesselPluginApi)
