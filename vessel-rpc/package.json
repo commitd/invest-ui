@@ -13,9 +13,9 @@
   },
   "devDependencies": {
     "@types/loglevel": "^1.5.1",
+    "@types/shortid": "^0.0.29",
     "tslint": "^5.7.0",
-    "typescript": "~2.5.0",
-    "@types/shortid": "^0.0.29"
+    "typescript": "~2.5.0"
   },
   "scripts": {
     "build": "tsc",
