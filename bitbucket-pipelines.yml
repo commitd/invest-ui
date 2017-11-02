@@ -9,4 +9,5 @@ pipelines:
           - curl -o- -L https://yarnpkg.com/install.sh | bash
           - export PATH=$HOME/.yarn/bin:$PATH
           - yarn global add lerna
+          - lerna bootstrap
           - yarn test
