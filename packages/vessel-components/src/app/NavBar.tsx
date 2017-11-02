@@ -23,7 +23,7 @@ function styles(theme: Theme): StyleRules {
 
 export interface Props {
   title: string,
-  rightArea: React.ReactElement<{}>,
+  rightArea?: React.ReactElement<{}>,
   onSideBarToggle?(): void
 }
 
