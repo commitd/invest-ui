@@ -1,10 +1,12 @@
 const uniqueId = require('uniqueid')
 import * as shortid from 'shortid'
 
-import { JsonRpcId, JsonRpcRequest, JsonRpcMethod, JsonRpcParameter, 
-    JsonRpcResult, JsonRpcNotification, 
+import {
+    JsonRpcId, JsonRpcRequest, JsonRpcMethod, JsonRpcParameter,
+    JsonRpcResult, JsonRpcNotification,
     JsonRpcErrorCode,
-    JsonRpcMessage, JsonRpcSuccess, JsonRpcFailure } from './JsonRpcTypes'
+    JsonRpcMessage, JsonRpcSuccess, JsonRpcFailure
+} from './JsonRpcTypes'
 
 import { Handler, UnfulfilledPromise } from './types'
 
@@ -42,7 +44,7 @@ export default class Connection<S> {
         } catch (e) {
             // Security denies us... leave as is
         }
-    }   
+    }
 
     handleMessage = (e: MessageEvent) => {
         if (!e.data || !e.data.jsonrpc || e.target !== this.sourceWindow || e.source !== this.targetWindow) {
@@ -54,12 +56,12 @@ export default class Connection<S> {
         // If a request or notification we need to pass to handler
         // if a response or error then we need to deal with, if we have an id for that
 
-        if ( (<JsonRpcNotification<{}>> message).method ) {
-            this._handleRequestOrNotification(<JsonRpcNotification<{}> | JsonRpcRequest<{}>> message)
+        if ((<JsonRpcNotification<{}>>message).method) {
+            this._handleRequestOrNotification(<JsonRpcNotification<{}> | JsonRpcRequest<{}>>message)
         } else {
-            this._handleResponse(<JsonRpcSuccess<{}> | JsonRpcFailure<{}>> message)
+            this._handleResponse(<JsonRpcSuccess<{}> | JsonRpcFailure<{}>>message)
         }
-        
+
     }
 
     /** Start listening for `message` events (to receive results of requests).
@@ -74,7 +76,7 @@ export default class Connection<S> {
      */
     stop() {
         this.sourceWindow.removeEventListener('message', this.handleMessage)
-        this.sourceWindow.removeEventListener('onunload', this.stop)   
+        this.sourceWindow.removeEventListener('onunload', this.stop)
     }
 
     /** Invoke a named RPC method on the server window, ignoring the result.
@@ -84,7 +86,7 @@ export default class Connection<S> {
         return this._dispatch<void>(method, undefined, ...params)
     }
 
-    request<T>(method: JsonRpcMethod, ...params: JsonRpcParameter[]): Promise<T > {
+    request<T>(method: JsonRpcMethod, ...params: JsonRpcParameter[]): Promise<T> {
         return this._dispatch(method, this.uniqueIdGenerator(), ...params)
     }
 
@@ -94,12 +96,12 @@ export default class Connection<S> {
         this._dispatches.delete(response.id)
         if (dispatch && dispatch.resolve && dispatch.reject) {
             if ((<JsonRpcFailure<{}>> response).error) {
-                dispatch.reject((<JsonRpcFailure<{}>> response).error)
+                dispatch.reject((<JsonRpcFailure<{}>>response).error)
             } else {
-                dispatch.resolve((<JsonRpcSuccess<{}>> response).result)
+                dispatch.resolve((<JsonRpcSuccess<{}>>response).result)
             }
         } else {
-            // TODO Log
+            // TODO Log?
         }
     }
 
@@ -113,30 +115,30 @@ export default class Connection<S> {
             } else {
                 p = this.handler[message.method](message.params)
             }
-            
+
             // If this is a request, we need to send the result back
-            if ( (<JsonRpcRequest<{}>> message ).id) {
-                const id = (<JsonRpcRequest<{}>> message ).id
+            if ((<JsonRpcRequest<{}>>message).id) {
+                const id = (<JsonRpcRequest<{}>>message).id
                 p.then(
                     value => this._replyWithSuccess(id, value),
                     reason => {
                         // TODO: Log this error
                         this._replyWithError(id, JsonRpcErrorCode.INTERNAL_ERROR, 'Handling error', reason)
                     }
-                )   
-            } 
+                )
+            }
         } else {
             // TODO: Log this error
-            if ( (<JsonRpcRequest<{}>> message ).id) {
-                const id = (<JsonRpcRequest<{}>> message ).id
-                this._replyWithError(id, 
-                                     JsonRpcErrorCode.INTERNAL_ERROR, 
-                                     'Cant find method: ' + message.method, 
+            if ((<JsonRpcRequest<{}>>message).id) {
+                const id = (<JsonRpcRequest<{}>>message).id
+                this._replyWithError(id,
+                                     JsonRpcErrorCode.INTERNAL_ERROR,
+                    'Cant find method: ' + message.method,
                                      undefined)
-            } 
+            }
         }
     }
-    
+
     private _replyWithSuccess(id: JsonRpcId, data: JsonRpcResult) {
         const message: JsonRpcSuccess<{}> = {
             jsonrpc: '2.0',
@@ -159,7 +161,7 @@ export default class Connection<S> {
         this._send(failure)
     }
 
-    private _dispatch<T>(method: JsonRpcMethod, id: JsonRpcId, ...params: JsonRpcParameter[]): Promise< T> {
+    private _dispatch<T>(method: JsonRpcMethod, id: JsonRpcId, ...params: JsonRpcParameter[]): Promise<T> {
         return new Promise((resolve, reject) => {
             if (typeof id !== 'undefined') {
                 this._dispatches.set(id, {
@@ -187,7 +189,7 @@ export default class Connection<S> {
     }
 
     private _send(message: JsonRpcMessage) {
-       this.targetWindow.postMessage(message, this.targetWindowOrigin)
+        this.targetWindow.postMessage(message, this.targetWindowOrigin)
     }
 
 }

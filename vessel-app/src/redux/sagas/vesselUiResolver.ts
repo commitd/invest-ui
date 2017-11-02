@@ -5,6 +5,7 @@ import { Actions } from '../RootAction'
 import { QueryActionInput, QueryActionOutput, NavigateInput, NavigateOutput, ResolverAction } from 'vessel-framework'
 import { PluginActionDefinition } from 'vessel-types'
 import history from '../../history'
+import { intentToSearch } from '../../utils/qs'
 
 function* handleStatus(action: ResolverAction<{}, string>) {
     yield call(action.meta.promise.resolve, 'OK')
@@ -46,9 +47,15 @@ function* handleNavigate(action: ResolverAction<NavigateInput, NavigateOutput>) 
         return
     }
 
-    // TODO: Should validate this is available in this store .... 
-    // TODO: action and payload
-    history.push('/view/' + action.payload.pluginId)
+    // TODO: Should validate this plugin is available in this store ?
+
+    const search = action.payload ? intentToSearch({
+        action: action.payload.action != null ? action.payload.action : '',
+        payload: action.payload.payload
+    }) : ''
+    const url = '/view/' + action.payload.pluginId + '?' + search
+
+    history.push(url)
 
     yield call(action.meta.promise.resolve, { success: true })
 }

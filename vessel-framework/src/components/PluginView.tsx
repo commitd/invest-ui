@@ -1,11 +1,12 @@
 import * as React from 'react'
 
 import { Handler, Connection } from 'vessel-rpc'
-import { UiPlugin } from 'vessel-types'
+import { PluginWithIntent } from 'vessel-types'
 import IFrame from './IFrame'
+const isEqual = require('lodash.isequal')
 
 export interface Props {
-    plugin: UiPlugin
+    plugin: PluginWithIntent
     globalHandler: Handler<{}>
     hide?: boolean
 }
@@ -30,6 +31,8 @@ class PluginView extends React.Component<Props> {
         this.connection = connection
         this.connection.notify('onLoad')
         this.connection.notify('onShow')
+        this.sendAction()
+
     }
 
     componentWillUnmount() {
@@ -47,11 +50,16 @@ class PluginView extends React.Component<Props> {
                 this.connection.notify('onShow')
             }
         }
+
+        // If the action has changed, then we need to tell the plugin
+        if (!isEqual(prevProps.plugin.intent, this.props.plugin.intent)) {
+            this.sendAction()
+        }
     }
 
     render() {
         const { plugin, hide } = this.props
-        const url = this.generateAbsoluteUrl(plugin.url)
+        const url = this.generateAbsoluteUrl(plugin.plugin.url)
         return (
             <IFrame src={url} handler={this.handler} hide={hide} onLoad={this.handleLoad} />
         )
@@ -62,6 +70,14 @@ class PluginView extends React.Component<Props> {
             return relativeUrl
         } else {
             return baseServerPath + relativeUrl
+        }
+    }
+
+    private sendAction() {
+        if (this.props.plugin.intent != null) {
+            this.connection.notify('onAction', this.props.plugin.intent.action, this.props.plugin.intent.payload)
+        } else {
+            this.connection.notify('onAction', '', undefined)
         }
     }
 }

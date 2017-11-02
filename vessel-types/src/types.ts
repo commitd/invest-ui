@@ -17,3 +17,13 @@ export interface UiPlugin {
 export type PluginActionDefinition = ActionDefinition & {
     pluginId: string
 }
+
+export interface Intent {
+    action: string,
+    payload?: {},
+}
+
+export interface PluginWithIntent {
+    plugin: UiPlugin,
+    intent?: Intent,
+}

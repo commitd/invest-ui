@@ -4,9 +4,9 @@ import { graphql, gql, ChildProps } from 'react-apollo'
 import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
 
 import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
-import { UiPlugin, ActionDefinition } from 'vessel-types'
+import { UiPlugin, ActionDefinition, PluginWithIntent } from 'vessel-types'
 import { Layout, NavBar, Login } from 'vessel-components'
-
+import { searchToIntent } from '../utils/qs'
 import AuthMenu from './AuthMenu'
 
 interface GqlResponse {
@@ -92,6 +92,11 @@ class Main extends React.Component<Props, State> {
 
     const selectedPlugin = this.findSelectedPlugin()
 
+    const plugin: PluginWithIntent | undefined = selectedPlugin ? {
+      plugin: selectedPlugin,
+      intent: searchToIntent(this.props.location)
+    } : undefined
+
     const rightMenu = <AuthMenu />
     const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} rightArea={rightMenu} />
     const sideBar = (
@@ -109,7 +114,7 @@ class Main extends React.Component<Props, State> {
         <Layout navBar={navBar} sideBar={sideBar} open={this.state.sidebarOpen}>
           <PluginViewManager
             globalHandler={this.props.globalHandler}
-            plugin={selectedPlugin}
+            plugin={plugin}
             plugins={plugins}
             fallback={<FallbackView plugins={plugins} onSelectPlugin={this.handlePluginSelected} />}
           />

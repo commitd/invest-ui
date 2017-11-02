@@ -1,12 +1,12 @@
 import * as React from 'react'
 
-import { UiPlugin } from 'vessel-types'
+import { UiPlugin, PluginWithIntent } from 'vessel-types'
 import { Handler } from 'vessel-rpc'
 import PluginView from './PluginView'
 
 export interface Props {
     plugins: UiPlugin[],
-    plugin?: UiPlugin,
+    plugin?: PluginWithIntent,
     globalHandler: Handler<{}>
     fallback?: React.ReactElement<{}>
 }
@@ -22,8 +22,10 @@ class PluginViewManager extends React.Component<Props, State> {
         const { plugin, fallback } = this.props
         return (
             <div style={{ height: '100%', width: '100%' }}>
-                {plugin && <PluginView key={plugin.id} plugin={plugin} globalHandler={this.props.globalHandler} />}
-                {!plugin && fallback}
+                {plugin ?
+                    <PluginView key={plugin.plugin.id} plugin={plugin} globalHandler={this.props.globalHandler} />
+                    :
+                    fallback}
             </div>
         )
     }

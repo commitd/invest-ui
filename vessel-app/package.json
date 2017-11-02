@@ -6,6 +6,7 @@
   "dependencies": {
     "moment": "^2.19.1",
     "numeral": "^2.0.6",
+    "qs": "^6.5.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-helmet": "^5.2.0",
@@ -31,6 +32,7 @@
     "@types/loglevel": "^1.5.1",
     "@types/node": "^8.0.34",
     "@types/numeral": "^0.0.22",
+    "@types/qs": "^6.5.1",
     "@types/react": "^16.0.13",
     "@types/react-dom": "^16.0.1",
     "@types/react-helmet": "^5.0.3",

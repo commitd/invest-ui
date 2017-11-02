@@ -44,7 +44,9 @@ class App extends React.Component<Props> {
       const pluginId = this.props.data.vesselUi.actions.definitions[0].pluginId
       this.props.mutate({
         variables: {
-          pluginId: pluginId
+          pluginId: pluginId,
+          action: 'document.view',
+          payload: JSON.stringify({ documentId: '12345' })
         }
       })
     }
@@ -82,9 +84,9 @@ class App extends React.Component<Props> {
 }
 
 const NAVIGATE_MUTATION = gql`
-mutation navigate($pluginId: String!) {
+mutation navigate($pluginId: String!, $action:String, $payload: String) {
           vesselUi {
-        navigate(input: {pluginId: $pluginId}) {
+        navigate(input: {pluginId: $pluginId, action: $action,  payload: $payload}) {
           success
         }
         }

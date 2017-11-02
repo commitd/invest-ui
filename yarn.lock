@@ -29,6 +29,12 @@
   version "21.1.4"
   resolved "https://nexus.committed.software/repository/npm/@types/jest/-/jest-21.1.4.tgz#83c5c474dd6dee5bef9d014ff36787edfd4ab5a7"
 
+"@types/lodash.isequal@^4.5.2":
+  version "4.5.2"
+  resolved "https://nexus.committed.software/repository/npm/@types/lodash.isequal/-/lodash.isequal-4.5.2.tgz#adbdff67f7c956ed703009e5466a34eeddb0b712"
+  dependencies:
+    "@types/lodash" "*"
+
 "@types/lodash.merge@^4.6.3":
   version "4.6.3"
   resolved "https://nexus.committed.software/repository/npm/@types/lodash.merge/-/lodash.merge-4.6.3.tgz#a41c49fe404c4bfb653ae6dda76abeedeace14ff"
@@ -58,6 +64,10 @@
 "@types/prop-types@^15.5.2":
   version "15.5.2"
   resolved "https://nexus.committed.software/repository/npm/@types/prop-types/-/prop-types-15.5.2.tgz#3c6b8dceb2906cc87fe4358e809f9d20c8d59be1"
+
+"@types/qs@^6.5.1":
+  version "6.5.1"
+  resolved "https://nexus.committed.software/repository/npm/@types/qs/-/qs-6.5.1.tgz#a38f69c62528d56ba7bd1f91335a8004988d72f7"
 
 "@types/react-dom@^16.0.1":
   version "16.0.1"
@@ -3605,6 +3615,10 @@ lodash.flattendeep@^4.4.0:
   version "4.4.0"
   resolved "https://nexus.committed.software/repository/npm/lodash.flattendeep/-/lodash.flattendeep-4.4.0.tgz#fb030917f86a3134e5bc9bec0d69e0013ddfedb2"
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://nexus.committed.software/repository/npm/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://nexus.committed.software/repository/npm/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -4800,7 +4814,7 @@ q@^1.1.2:
   version "1.5.0"
   resolved "https://nexus.committed.software/repository/npm/q/-/q-1.5.0.tgz#dd01bac9d06d30e6f219aecb8253ee9ebdc308f1"
 
-qs@6.5.1, qs@~6.5.1:
+qs@6.5.1, qs@^6.5.1, qs@~6.5.1:
   version "6.5.1"
   resolved "https://nexus.committed.software/repository/npm/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
 
