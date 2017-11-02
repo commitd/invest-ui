@@ -29,6 +29,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "build:systemjs": "tsc -p tsconfig.systemjs.json",
     "watch": "tsc -w"
   }
 }

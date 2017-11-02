@@ -8,10 +8,11 @@
         "lerna": "^2.4.0"
     },
     "scripts": {
-        "dev-app": "lerna run --stream --scope vessel-app start",
-        "dev-examples": "lerna run --parallel --scope example-* start",
-        "dev-libs": "lerna run --parallel watch",
+        "dev:app": "lerna run --stream --scope vessel-app start",
+        "dev:examples": "lerna run --parallel --scope example-* start",
+        "dev:libs": "lerna run --parallel watch",
         "build": "lerna run build",
+        "build:systemjs": "lerna run build:systemjs",
         "test": "lerna run test"
     }
 }
