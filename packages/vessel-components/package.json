@@ -1,0 +1,35 @@
+{
+  "name": "vessel-components",
+  "version": "0.1.0",
+  "private": true,
+  "module": "src/index.ts",
+  "main": "build/index.js",
+  "browser": "build/index.js",
+  "types": "build/index.d.ts",
+  "license": "ASL",
+  "dependencies": {
+    "@types/validate.js": "^0.0.2",
+    "material-ui": "^1.0.0-beta.17",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "typeface-roboto": "^0.0.41",
+    "validate.js": "^0.12.0"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/loglevel": "^1.5.1",
+    "@types/react": "^16.0.2",
+    "@types/react-dom": "^16.0.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "tslint": "^5.7.0",
+    "typescript": "~2.5.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:systemjs": "tsc -p tsconfig.systemjs.json",
+    "watch": "tsc -w"
+  }
+}

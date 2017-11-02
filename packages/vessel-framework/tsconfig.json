@@ -1,0 +1,13 @@
+{
+    "extends": "../../config/tsconfig.lib.json",
+    "compilerOptions": {
+        "module": "amd",
+        "rootDir": "./src",
+        "outDir": "./build",
+        "outFile": "vessel-framework.js",
+        "declarationDir": "./build"
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
