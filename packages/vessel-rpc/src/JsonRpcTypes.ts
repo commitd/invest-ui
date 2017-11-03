@@ -1,59 +1,73 @@
-// http://codegists.com/snippet/typescript/jsonrpc2ts_rickcarlino_typescript
+// Based on http://codegists.com/snippet/typescript/jsonrpc2ts_rickcarlino_typescript
 
 /** A String specifying the version of the JSON-RPC protocol. MUST be exactly "2.0". */
 export type JsonRpcVersion = '2.0'
 
 /** Method names that begin with the word rpc followed by a period character 
- * (U+002E or ASCII 46) are reserved for rpc-internal methods and extensions
- * and MUST NOT be used for anything else.
+ * (U+002E or ASCII 46) are reserved.
  */
 export type JsonRpcReservedMethod = string
 
+/** Name of a JSON RPC Method */
 export type JsonRpcMethod = string
 
-/** An identifier established by the Client.
- * 
- * MUST contain a String, Number,
- * or NULL value if included. If it is not included it is assumed to be a 
- * notification. The value SHOULD normally not be Null and Numbers SHOULD
- * NOT contain fractional parts [2].
- */
+/** JSON RPC message id */
 export type JsonRpcId = number | string | void
 
+/** JSON RPC method argument  */
 export type JsonRpcParameter = undefined | {}
+/** JSON RPC method arguments  */
 export type JsonRpcParameters = JsonRpcParameter | JsonRpcParameter[]
+/** JSON RPC method return  */
 export type JsonRpcResult = never | {} | {}[]
 
+/** A JSON RPC notification (one way method call), not response expected */
 export interface JsonRpcNotification<T extends JsonRpcParameters> extends JsonRpcResponse {
+    /** JSON RPC version = 2.0 */
     jsonrpc: JsonRpcVersion
+    /** The method to call */
     method: JsonRpcMethod,
+    /** The parameters to call with */
     params?: T
 }
 
+/** A JSON RPC method call */
 export interface JsonRpcRequest<T extends JsonRpcParameters> extends JsonRpcNotification<T> {
+    /** The request id. Should be non-null in order to type the response back to this call */
     id: JsonRpcId
 }
 
+/** Base for JSON RPC messages */
 export interface JsonRpcResponse {
+    /** JSON RPC version number = 2.0 */
     jsonrpc: JsonRpcVersion
+    /** The id of the message, optional  */
     id: JsonRpcId
 }
 
+/** Successful RPC response, holding the returned result */
 export interface JsonRpcSuccess<T extends JsonRpcResult> extends JsonRpcResponse {
+    /** The result */
     result?: T
 }
 
+/** Failure message */
 export interface JsonRpcFailure<T extends JsonRpcResult> extends JsonRpcResponse {
+    /** The error */
     error: JsonRpcError<T>
 }
 
+/** A JSON RPC Error */
 export interface JsonRpcError<T extends JsonRpcResult> {
-    /** Must be an integer */
+    /** Must be an integer, see JsonRpcErrorCode */
     code: number
+    /** Error message */
     message: string
+    /** any other data  */
     data?: T
 }
 
+/** A JSON RPC Message */
 export type JsonRpcMessage = JsonRpcSuccess<{}> | JsonRpcFailure<{}> | JsonRpcRequest<{}> | JsonRpcNotification<{}>
 
 /** Predefined Json RPC 2.0 Error codes as per the specification */
