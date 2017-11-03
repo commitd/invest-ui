@@ -7,17 +7,27 @@ import { Handler } from 'vessel-rpc'
 
 import { VesselPluginApi } from './VesselPluginApi'
 import { PluginLifecycle } from 'vessel-common'
+import { loggerFactory } from 'vessel-utils'
 
+const logger = loggerFactory.getLogger('VesselUiPlugin')
+
+/** Our child can receive action and payload via props */
 export type ChildProps = {
+    /** The action (if any) */
     action?: string,
+    /** the payload (if any) */
     payload?: {}
 }
 
+/** Props  */
 export interface Props {
-    handler: Handler<PluginLifecycle>
+    /** Handler to pass any plugin lifecycle notification too.  */
+    handler?: Handler<PluginLifecycle>
+    /** A single child. THis will have the action and payload push to as props (when they change). */
     children: React.ReactElement<{} & ChildProps>
 }
 
+/** The Context will will provide  */
 export interface Context {
     pluginApi: VesselPluginApi
 }
@@ -27,6 +37,28 @@ interface State {
     payload?: {}
 }
 
+/**
+ * A helper implementation to support plugin development set.
+ * 
+ * This is designed to be used at the top level wrapper in React:
+ * 
+ * ```
+ * ReactDOM.render(
+ * <VesselUiPlugin handler={handler}>
+ *   <App />
+ * </VesselUiPlugin>,
+ * document.getElementById('root') as HTMLElement
+ * ```
+ * 
+ * It will set up Apollo, the RPC connection and provide the VesselPluginAPI via context.
+ * 
+ * You can provide a handler via props which will receive PLuginLifecycle notifications.
+ * 
+ * Any recieved actions and payloads will be placed on this components React.Child via 
+ * the props mechanism. As such you can listen to shouldWillRecieveProps in order to 
+ * response to changes. 
+ * 
+ */
 class VesselUiPlugin extends React.Component<Props, State> {
     static childContextTypes = {
         pluginApi: PropTypes.instanceOf(VesselPluginApi)
@@ -44,13 +76,13 @@ class VesselUiPlugin extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
 
-        const handler = this.wrapHandler(this.props.handler)
+        const handler = this.wrapHandler(this.props.handler || {})
         if (!this.isInIFrame()) {
-            console.log('Running standalone')
+            logger.info('Running standalone')
             // TODO: We need to discard the vesselUI stuff when passed to this. Messy
             this.client = new ApolloClient()
         } else {
-            console.log('Running inside vessel')
+            logger.info('Running inside vessel')
             this.connection = new Connection(window, window.parent, handler)
             this.connection.start()
             this.client = createApolloRpcClient({
@@ -110,6 +142,7 @@ class VesselUiPlugin extends React.Component<Props, State> {
     }
 }
 
+// Typescript dance to loose the State
 const Component = VesselUiPlugin as React.ComponentType<Props>
 export {
     Component as VesselUiPlugin
