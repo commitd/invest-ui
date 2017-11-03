@@ -29,7 +29,10 @@ describe('Connection', () => {
         }
 
         targetWindow = {
-            postMessage: targetPostMessage
+            postMessage: targetPostMessage,
+            location: {
+                origin: 'target'
+            }
         }
 
         handler = {

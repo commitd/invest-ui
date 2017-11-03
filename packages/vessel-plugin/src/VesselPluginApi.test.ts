@@ -10,10 +10,6 @@ type State = {
 
 }
 
-interface Conn {
-    hell(): string
-}
-
 const schema = makeExecutableSchema({
     typeDefs: `
         type User {
@@ -31,7 +27,6 @@ const schema = makeExecutableSchema({
 
 ` })
 addMockFunctionsToSchema({ schema })
-
 const client = new ApolloClient({
     networkInterface: mockNetworkInterfaceWithSchema({ schema })
 })
