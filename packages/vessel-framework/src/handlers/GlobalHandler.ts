@@ -13,7 +13,7 @@ export class GlobalHandler implements Handler<GlobalHandler> {
 
 }
 
-type Fetch = (input: RequestInfo, init?: RequestInit) => Promise<Response>
+export type Fetch = (input: RequestInfo, init?: RequestInit) => Promise<Response>
 
 function createFetchHandler(sessionProvider: () => string | undefined): Fetch {
     // TODO: We should perhaps clone the init, before we modify to avoid leaking session back into the caller
