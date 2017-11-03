@@ -1,5 +1,9 @@
 
-import { rootLogger } from './logger'
+import { loggerFactory } from './logger'
 
-rootLogger.info('Logger initialised')
-export const Logger = rootLogger
+loggerFactory.info('Logger initialised')
+
+export {
+    loggerFactory,
+    loggerFactory as rootLogger
+} 

@@ -1,5 +1,7 @@
-import { rootLogger } from './index'
+import { loggerFactory } from './index'
 
-test('Root Logger non-null', () => {
-    expect(rootLogger).toBeDefined()
+describe('LoggerFactory', () => {
+    it('is non-null', () => {
+        expect(loggerFactory).toBeDefined()
+    })
 })

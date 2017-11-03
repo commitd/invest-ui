@@ -56,10 +56,7 @@ export interface JsonRpcError<T extends JsonRpcResult> {
 
 export type JsonRpcMessage = JsonRpcSuccess<{}> | JsonRpcFailure<{}> | JsonRpcRequest<{}> | JsonRpcNotification<{}>
 
-//
-// PRE-DEFINED ERROR CODES
-//
-//
+/** Predefined Json RPC 2.0 Error codes as per the specification */
 export enum JsonRpcErrorCode {
     /** An error occurred on the server while parsing the JSON text. */
     PARSE_ERROR = -32700,
