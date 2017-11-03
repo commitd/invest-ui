@@ -24,7 +24,9 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.0",
@@ -43,7 +45,10 @@
     "@types/reselect": "^2.2.0",
     "@types/seamless-immutable": "^7.1.1",
     "enzyme": "^3.1.0",
-    "react-addons-test-utils": "^15.6.2"
+    "react-addons-test-utils": "^15.6.2",
+    "@storybook/react": "^3.2.14",
+    "@storybook/addon-actions": "^3.2.14",
+    "@storybook/addon-links": "^3.2.14"
   },
   "proxy": "http://localhost:8080"
 }

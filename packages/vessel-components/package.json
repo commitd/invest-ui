@@ -8,7 +8,6 @@
   "types": "build/index.d.ts",
   "license": "ASL",
   "dependencies": {
-    "@types/validate.js": "^0.0.2",
     "material-ui": "^1.0.0-beta.17",
     "material-ui-icons": "^1.0.0-beta.17",
     "typeface-roboto": "^0.0.41",
@@ -19,21 +18,36 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
+    "@types/validate.js": "^0.0.2",
+    "@storybook/addon-storyshots": "^3.2.14",
+    "@storybook/addon-info": "^3.2.14",
+    "@storybook/addon-knobs": "^3.2.14",
+    "@storybook/react": "^3.2.14",
     "@types/loglevel": "^1.5.1",
     "@types/react": "^16.0.2",
     "@types/react-dom": "^16.0.1",
+    "@types/storybook__addon-actions": "^3.0.1",
+    "@types/storybook__addon-info": "^3.2.0",
+    "@types/storybook__addon-knobs": "^3.2.1",
+    "@types/storybook__addon-links": "^3.0.2",
+    "@types/storybook__react": "^3.0.5",
+    "awesome-typescript-loader": "^3.3.0",
+    "jest": "^21.2.1",
+    "raw-loader": "^0.5.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "storybook-readme": "^3.1.1",
+    "ts-jest": "^21.1.4",
     "tslint": "^5.7.0",
-    "typescript": "~2.5.0",
-    "jest": "^21.2.1",
-    "ts-jest": "^21.1.4"
+    "typescript": "~2.5.0"
   },
   "scripts": {
     "build": "tsc",
     "build:systemjs": "tsc -p tsconfig.systemjs.json",
     "watch": "tsc -w",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "jest": {
     "transform": {
