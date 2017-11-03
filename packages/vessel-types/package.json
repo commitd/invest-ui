@@ -24,7 +24,12 @@
       "^.+\\.tsx?$": "../../node_modules/ts-jest/preprocessor.js"
     },
     "mapCoverage": true,
-    "testRegex": "(/__tests__/.*|(/src/.*\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "build/",
+      "lib/"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",

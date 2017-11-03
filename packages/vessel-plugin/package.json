@@ -43,6 +43,11 @@
     },
     "mapCoverage": true,
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "build/",
+      "lib/"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
