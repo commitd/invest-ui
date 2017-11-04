@@ -71,22 +71,29 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
 })
 
 export interface Props {
-    navBar?: React.ReactElement<{}>,
-    sideBar?: React.ReactElement<{}>,
-    open: boolean
+  /** Navbar at the top */
+  navBar?: React.ReactElement<{}>,
+  /** Side bar (optional) */
+  sideBar?: React.ReactElement<{}>,
+  /** whether the sidebar is open or not */
+  open: boolean
 }
 
+/** A classical left sidebar, top navbar and then main content 
+ * area 9which is former of the React.children). The sidebar 
+ * many be open or closed 
+ */
 class Layout extends React.Component<Props & WithStyles> {
   render() {
     const { children, classes, open, sideBar, navBar } = this.props
 
     const displaySideBar = open && sideBar != null
-    
+
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
           {navBar}
-          { displaySideBar && <Drawer
+          {displaySideBar && <Drawer
             type="persistent"
             classes={{
               paper: classes.drawerPaper
