@@ -6,8 +6,11 @@ import IFrame from './IFrame'
 const isEqual = require('lodash.isequal')
 
 export interface Props {
+    /** The plugin (with intent) to display */
     plugin: PluginWithIntent
+    /** Handler to pass messages up to */
     globalHandler: Handler<{}>
+    /** Should this plugin view be hidden */
     hide?: boolean
 }
 
@@ -15,6 +18,11 @@ export interface Props {
 // window.location.hostname? That doesn;t work in dev mode with webpack . It might have to come from the server / config? And if null then fallback
 const baseServerPath = 'http://localhost:8080'
 
+/**
+ * A wrapper for displaying a plugin.
+ * 
+ * Provides messaging support and controls the iframe in which the plugin will be displayed.
+ */
 class PluginView extends React.Component<Props> {
 
     handler: Handler<{}>

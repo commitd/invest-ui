@@ -55,6 +55,7 @@
   },
   "jest": {
     "transform": {
+      "^.+\\.jsx?$": "../../node_modules/babel-jest",
       "^.+\\.tsx?$": "../../node_modules/ts-jest/preprocessor.js"
     },
     "mapCoverage": true,

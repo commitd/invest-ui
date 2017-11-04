@@ -22,10 +22,17 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
 })
 
 export interface Props {
+    /** Plugins to display */
     plugins: UiPlugin[],
+    /** Callback when a plugin is selected */
     onSelectPlugin(plugin: UiPlugin): void
 }
 
+/** 
+ * A component whish displays a list of plugins. 
+ * It could be used either a a fallback for pluginviewmanager 
+ * when no plugin has been selected.
+ */
 class FallbackView extends React.Component<Props & WithStyles> {
 
     render() {

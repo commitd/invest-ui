@@ -6,17 +6,22 @@ import {
 
 import { PluginActionDefinition } from 'vessel-types'
 
+/** Route object in the graphql schema for Vessel UI  */
 export const vesselUiRoot = 'vesselUi'
 
+/** Type of a callback which will statify a query */
 export type QueryResolverCallback<Result, Arguments, Source, Context>
     = (args: Arguments, source: Source, context: Context, info: GraphQLResolveInfo) => Result | Promise<Result>
+/** Type for a graphql resolver which will statify a query */
 export type QueryResolver<Result, Arguments = {}, Source = {}, Context = {}> = Result
     | Promise<Result>
     // This is a generaalisation of th GraphQLTypeResolver in graphql
     | QueryResolverCallback<Result, Arguments, Source, Context>
 
+/** Type of a callback which will statify a mutation */
 export type MutationResolverCallback<Result, Arguments, Context>
     = (args: Arguments, context: Context, info: GraphQLResolveInfo) => Result | Promise<Result>
+/** Type for a graphql resolver which will statify a mutation */
 export type MutationResolver<Result, Arguments = {}, Context = {}> = Result | Promise<Result>
     | MutationResolverCallback<Result, Arguments, Context>
 
@@ -63,7 +68,8 @@ export const schema: GraphQLSchema = buildSchema(`
     }
 
     type VesselUiMutation {
-        # TODO: For the moment paylload is a JSOn.strinfify()... but it can be better maanged with a customer JSONScalar type 
+        # TODO: For the moment paylload is a JSOn.strinfify()... 
+        # but it can be better maanged with a customer JSONScalar type 
         # see https://stackoverflow.com/questions/45842544/graphql-objecttype-with-dynamic-fields-based-on-arguments
         navigate(input: NavigateInput): NavigateOutput!
         
@@ -85,26 +91,29 @@ export const schema: GraphQLSchema = buildSchema(`
     }
 `)
 
-// This should match the schema above!
-
+/**  Arguments of query action */
 export type QueryActionInput = {
     action: string
 }
 
+/** Results of query.actiosn */
 export type QueryActionOutput = {
     definitions: PluginActionDefinition[]
 }
 
+/** Arguments of navigate() */
 export type NavigateInput = {
     pluginId: string,
     action?: string
     payload?: string
 }
 
+/** Results of navigate() */
 export type NavigateOutput = {
     success: boolean
 }
 
+/** JS representation of the GraphQL schema */
 export interface VesselUiGraphQLRoot {
     query: {
         vesselUi: {

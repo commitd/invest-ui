@@ -1,7 +1,326 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Welcome to Storybook 1`] = `
-<p>
-  hello
-</p>
+exports[`Storyshots FallbackView empty 1`] = `
+<div
+  className="MuiGrid-typeContainer-4 MuiGrid-spacing-xs-16-24 FallbackView-root-1"
+/>
+`;
+
+exports[`Storyshots FallbackView index 1`] = `
+<div
+  className="MuiGrid-typeContainer-4 MuiGrid-spacing-xs-16-24 FallbackView-root-1"
+>
+  <div
+    className="MuiGrid-typeItem-5 MuiGrid-grid-xs-6-33"
+  >
+    <div
+      className="MuiPaper-root-92 MuiPaper-shadow2-96 MuiPaper-rounded-93 FallbackView-paper-2"
+      onClick={[Function]}
+    >
+      <h2
+        className="MuiTypography-root-119 MuiTypography-title-125"
+      >
+        Example
+      </h2>
+      <h3
+        className="MuiTypography-root-119 MuiTypography-subheading-126"
+      >
+        My example
+      </h3>
+    </div>
+  </div>
+  <div
+    className="MuiGrid-typeItem-5 MuiGrid-grid-xs-6-33"
+  >
+    <div
+      className="MuiPaper-root-92 MuiPaper-shadow2-96 MuiPaper-rounded-93 FallbackView-paper-2"
+      onClick={[Function]}
+    >
+      <h2
+        className="MuiTypography-root-119 MuiTypography-title-125"
+      >
+        Tester
+      </h2>
+      <h3
+        className="MuiTypography-root-119 MuiTypography-subheading-126"
+      >
+        Another example
+      </h3>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots IFrame index 1`] = `
+<iframe
+  sandbox="allow-scripts"
+  src="http://localhost:6006"
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+  title="View"
+/>
+`;
+
+exports[`Storyshots PluginListSidebar no selection 1`] = `
+<ul
+  className="MuiList-root-143 MuiList-dense-145 MuiList-padding-144"
+>
+  <li
+    className="MuiButtonBase-root-157 MuiListItem-root-147 MuiListItem-gutters-154 MuiListItem-button-155 MuiListItem-dense-151"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <span
+      aria-hidden="true"
+      className="material-icons MuiIcon-root-160 MuiListItemIcon-root-159"
+    >
+      add-circle
+    </span>
+    <div
+      className="MuiListItemText-root-167 MuiListItemText-dense-169"
+    >
+      <h3
+        className="MuiTypography-root-119 MuiTypography-subheading-126 MuiListItemText-text-170 MuiListItemText-textDense-171"
+      >
+        Example
+      </h3>
+      <p
+        className="MuiTypography-root-119 MuiTypography-body1-128 MuiTypography-colorSecondary-140 MuiListItemText-text-170 MuiListItemText-textDense-171"
+      >
+        My example
+      </p>
+    </div>
+    <span
+      className="MuiTouchRipple-root-172"
+    />
+  </li>
+  <li
+    className="MuiButtonBase-root-157 MuiListItem-root-147 MuiListItem-gutters-154 MuiListItem-button-155 MuiListItem-dense-151"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <span
+      aria-hidden="true"
+      className="material-icons MuiIcon-root-160 MuiListItemIcon-root-159"
+    >
+      add-circle
+    </span>
+    <div
+      className="MuiListItemText-root-167 MuiListItemText-dense-169"
+    >
+      <h3
+        className="MuiTypography-root-119 MuiTypography-subheading-126 MuiListItemText-text-170 MuiListItemText-textDense-171"
+      >
+        Tester
+      </h3>
+      <p
+        className="MuiTypography-root-119 MuiTypography-body1-128 MuiTypography-colorSecondary-140 MuiListItemText-text-170 MuiListItemText-textDense-171"
+      >
+        Another example
+      </p>
+    </div>
+    <span
+      className="MuiTouchRipple-root-172"
+    />
+  </li>
+</ul>
+`;
+
+exports[`Storyshots PluginListSidebar with selected 1`] = `
+<ul
+  className="MuiList-root-143 MuiList-dense-145 MuiList-padding-144"
+>
+  <li
+    className="MuiButtonBase-root-157 MuiListItem-root-147 MuiListItem-gutters-154 MuiListItem-button-155 MuiListItem-dense-151"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <span
+      aria-hidden="true"
+      className="material-icons MuiIcon-root-160 MuiListItemIcon-root-159"
+    >
+      add-circle
+    </span>
+    <div
+      className="MuiListItemText-root-167 MuiListItemText-dense-169"
+    >
+      <h3
+        className="MuiTypography-root-119 MuiTypography-subheading-126 MuiListItemText-text-170 MuiListItemText-textDense-171"
+      >
+        Example
+      </h3>
+      <p
+        className="MuiTypography-root-119 MuiTypography-body1-128 MuiTypography-colorSecondary-140 MuiListItemText-text-170 MuiListItemText-textDense-171"
+      >
+        My example
+      </p>
+    </div>
+    <span
+      className="MuiTouchRipple-root-172"
+    />
+  </li>
+  <li
+    className="MuiButtonBase-root-157 MuiListItem-root-147 MuiListItem-gutters-154 MuiListItem-button-155 MuiListItem-dense-151"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    tabIndex={0}
+  >
+    <span
+      aria-hidden="true"
+      className="material-icons MuiIcon-root-160 MuiListItemIcon-root-159"
+    >
+      add-circle
+    </span>
+    <div
+      className="MuiListItemText-root-167 MuiListItemText-dense-169"
+    >
+      <h3
+        className="MuiTypography-root-119 MuiTypography-subheading-126 MuiListItemText-text-170 MuiListItemText-textDense-171"
+      >
+        Tester
+      </h3>
+      <p
+        className="MuiTypography-root-119 MuiTypography-body1-128 MuiTypography-colorSecondary-140 MuiListItemText-text-170 MuiListItemText-textDense-171"
+      >
+        Another example
+      </p>
+    </div>
+    <span
+      className="MuiTouchRipple-root-172"
+    />
+  </li>
+</ul>
+`;
+
+exports[`Storyshots PluginView with selected 1`] = `
+<iframe
+  sandbox="allow-scripts"
+  src="http://localhost:6006/"
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+  title="View"
+/>
+`;
+
+exports[`Storyshots PluginViewManager empty 1`] = `
+<div
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+/>
+`;
+
+exports[`Storyshots PluginViewManager no selection 1`] = `
+<div
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <p>
+    has a fallback
+  </p>
+</div>
+`;
+
+exports[`Storyshots PluginViewManager no selection, no fallback 1`] = `
+<div
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+/>
+`;
+
+exports[`Storyshots PluginViewManager with selected 1`] = `
+<div
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <iframe
+    sandbox="allow-scripts"
+    src="http://localhost:6006/"
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+    title="View"
+  />
+</div>
+`;
+
+exports[`Storyshots Welcome Vessel Framework 1`] = `
+<div>
+  <p>
+    Vessel framework holds components which are useful for building the the outer Vessel application rather than than for plugins.
+  </p>
+</div>
 `;

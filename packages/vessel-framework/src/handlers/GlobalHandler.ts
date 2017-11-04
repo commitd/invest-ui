@@ -1,7 +1,5 @@
 import { ApolloClient } from 'react-apollo'
 import { ExecutionResult } from 'graphql'
-
-import { loggerFactory } from 'vessel-utils'
 import { Handler, HandlerFunction } from 'vessel-rpc'
 import { createGraphQLHandlerForClient } from 'vessel-graphql'
 
@@ -38,6 +36,11 @@ function createFetchHandler(sessionProvider: () => string | undefined): Fetch {
     }
 }
 
+/**
+ * Create a new handler for ourter application to fulfil its API to the Plugin
+ * @param client the graph client 
+ * @param sessionProvider callback to provide the current session (for auth in HTTP calls)
+ */
 export function newGlobalHandler(client: ApolloClient, sessionProvider: () => string | undefined): GlobalHandler {
     const h = new GlobalHandler()
     h.graphql = createGraphQLHandlerForClient(client)

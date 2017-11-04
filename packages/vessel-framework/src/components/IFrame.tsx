@@ -2,32 +2,45 @@ import * as React from 'react'
 import { Connection, Handler } from 'vessel-rpc'
 
 export interface Props<S> {
+  /** The src url for the iframe */
   src: string,
+  /** Hide the iframe - but don't delete it or remove from the DOM */
   hide?: boolean
+  /** Handler to handle messages recieved from the iframe target window */
   handler?: Handler<S>,
-  onLoad?(connection: Connection<S>): void,
+  /**
+   * Call back when the iframe has loaded.
+   * 
+   * connection will only be undefined if handler has been provided in the props
+   */
+  onLoad?(connection?: Connection<S>): void,
 }
 
-// TODO: We want some defined behaviour here which I don't think is implemented. 
-// new src => new iframe => new handler, etc
-// we probably need to be smarter really. For example create iframes by src but as the user navigates away just 
-// hide them rather than destorying then the state is till around... 
-// reducing load time and the need to worry about immediately saving any state 
-
+/**
+ * Displays the src url inside an iframe.
+ * 
+ * The iframe is sandboxsed which allows scripts, but the same origin access (aka to the parent window).
+ * 
+ * Users of this component will want to consider who changes in src effect 
+ * state page within.
+ */
 class IFrame<S> extends React.Component<Props<S>, {}>  {
   private ref: HTMLIFrameElement
   private connection: Connection<S>
 
   componentDidMount() {
-    const handler = this.props.handler
-    if (this.ref && handler) {
+    if (this.ref) {
       this.ref.onload = () => {
-        this.connection = new Connection<S>(window, this.ref.contentWindow, handler)
-        this.connection.start()
+        const handler = this.props.handler
+        if (handler) {
+          this.connection = new Connection<S>(window, this.ref.contentWindow, handler)
+          this.connection.start()
+        }
 
         // Go async and give the frame some time to setup...
         if (this.props.onLoad) {
           const onLoad = this.props.onLoad
+          // Note if a handler has not ben set then connection here will be undefined
           setTimeout(() => onLoad(this.connection), 100)
         }
       }

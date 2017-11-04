@@ -1,7 +1,18 @@
 import * as React from 'react'
 
 import { storiesOf } from '@storybook/react'
-// import { action } from '@storybook/addon-actions'
-// import { linkTo } from '@storybook/addon-links'
 
-storiesOf('Welcome', module).add('to Storybook', () => <p>hello</p>)
+import './components/FallbackView'
+import './components/IFrame'
+import './components/PluginListSidebar'
+import './components/PluginViewManager'
+import './components/PluginView'
+
+storiesOf('Welcome', module).add('Vessel Framework', () => (
+    <div>
+        <p>
+            Vessel framework holds components which are useful for building the the outer Vessel application
+            rather than than for plugins.
+        </p>
+    </div>
+))
