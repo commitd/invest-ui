@@ -73,7 +73,6 @@ describe('createResolverAction', () => {
         expect(action.type).toBe('test')
         expect(action.payload).toBe(testPayload)
 
-
         action.meta.promise.reject('any')
         expect(reject).toBeCalledWith('any')
         expect(resolve).not.toBeCalled()
