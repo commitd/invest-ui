@@ -29,6 +29,7 @@ type State = {
     open: boolean
 }
 
+// TODO: Move to -framework (abstracting dependency on state/RootActions)
 class AuthMenu extends React.Component<Props, State> {
     state = {
         anchorEl: undefined,

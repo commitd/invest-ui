@@ -1,7 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Welcome to Storybook 1`] = `
+exports[`Storyshots Layout TODO 1`] = `
 <p>
-  hello
+  TODO
 </p>
+`;
+
+exports[`Storyshots Login TODO 1`] = `
+<p>
+  TODO
+</p>
+`;
+
+exports[`Storyshots Navbar TODO 1`] = `
+<p>
+  TODO
+</p>
+`;
+
+exports[`Storyshots Welcome to Vessel Components 1`] = `
+<div>
+  <p>
+    Vessel Components contains reusable react components which are not tried to any particular plugin or the application framework.
+  </p>
+</div>
 `;

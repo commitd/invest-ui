@@ -28,6 +28,7 @@ interface State {
     dirty: boolean
 }
 
+// TODO: Moved this code in but not the tests / storybooks
 class FormInput extends React.PureComponent<Props, State> {
 
     static defaultProps = {
