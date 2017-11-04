@@ -6,7 +6,7 @@ import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-
 import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
 import { UiPlugin, ActionDefinition, PluginWithIntent } from 'vessel-types'
 import { Layout, NavBar, Login } from 'vessel-components'
-import { searchToIntent } from '../utils/qs'
+import { searchToIntent } from 'vessel-utils'
 import AuthMenu from './AuthMenu'
 
 interface GqlResponse {

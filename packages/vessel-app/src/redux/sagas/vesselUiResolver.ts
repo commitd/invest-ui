@@ -5,7 +5,7 @@ import { Actions } from '../RootAction'
 import { QueryActionInput, QueryActionOutput, NavigateInput, NavigateOutput, ResolverAction } from 'vessel-framework'
 import { PluginActionDefinition } from 'vessel-types'
 import history from '../../history'
-import { intentToSearch } from '../../utils/qs'
+import { intentToSearch } from 'vessel-utils'
 
 function* handleStatus(action: ResolverAction<{}, string>) {
     yield call(action.meta.promise.resolve, 'OK')

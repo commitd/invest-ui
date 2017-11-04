@@ -1,5 +1,6 @@
 
 import { loggerFactory } from './logger'
+export * from './qs'
 
 loggerFactory.info('Logger initialised')
 
