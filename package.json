@@ -11,6 +11,7 @@
         "dev:app": "lerna run --stream --scope vessel-app start",
         "dev:examples": "lerna run --parallel --scope example-* start",
         "dev:libs": "lerna run --parallel watch",
+        "publish:local": "lerna run publish:local",
         "build": "lerna run build",
         "build:systemjs": "lerna run build:systemjs",
         "test": "lerna run test"

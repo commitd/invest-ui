@@ -2,7 +2,7 @@
   "name": "vessel-app",
   "version": "0.1.0",
   "private": true,
-  "license": "ASL",
+  "license": "Apache-2.0",
   "dependencies": {
     "moment": "^2.19.1",
     "numeral": "^2.0.6",

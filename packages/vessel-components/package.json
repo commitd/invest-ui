@@ -1,12 +1,11 @@
 {
   "name": "vessel-components",
   "version": "0.1.0",
-  "private": true,
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
   "types": "build/index.d.ts",
-  "license": "ASL",
+  "license": "Apache-2.0",
   "dependencies": {
     "material-ui": "^1.0.0-beta.17",
     "material-ui-icons": "^1.0.0-beta.17",
@@ -47,7 +46,8 @@
     "watch": "tsc -w",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "publish:local": "npm unpublish --registry http://localhost:4873 $npm_pacakge_name@$npm_package_version && yarn publish --registry http://localhost:4873 --new-version $npm_package_version"
   },
   "jest": {
     "transform": {

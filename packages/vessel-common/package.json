@@ -1,12 +1,11 @@
 {
   "name": "vessel-common",
   "version": "0.1.0",
-  "private": true,
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
   "types": "build/index.d.ts",
-  "license": "ASL",
+  "license": "Apache-2.0",
   "dependencies": {},
   "peerDependencies": {},
   "devDependencies": {
@@ -19,7 +18,8 @@
     "build": "tsc",
     "build:systemjs": "tsc -p tsconfig.systemjs.json",
     "watch": "tsc -w",
-    "test": "jest"
+    "test": "jest",
+    "publish:local": "npm unpublish --registry http://localhost:4873 $npm_pacakge_name@$npm_package_version && yarn publish --registry http://localhost:4873 --new-version $npm_package_version"
   },
   "jest": {
     "transform": {
