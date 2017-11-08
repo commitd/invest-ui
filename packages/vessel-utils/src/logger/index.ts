@@ -7,4 +7,4 @@ loglevel.noConflict()
 // prefix.apply(loglevel)
 
 /** A factory from which you can use directly or craete new loggers from */
-export const loggerFactory = loglevel.getLogger('root')
+export const loggerFactory = loglevel

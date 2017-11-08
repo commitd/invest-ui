@@ -8,7 +8,7 @@ interface TestIntent {
 
 describe('qs intents', () => {
     it('intent to search to intent', () => {
-        const intent = {
+        const intent: TestIntent = {
             action: 'test',
             payload: {
                 value: true
