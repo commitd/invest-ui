@@ -4,7 +4,7 @@ import { graphql, gql, ChildProps } from 'react-apollo'
 import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
 
 import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
-import { UiPlugin, ActionDefinition, PluginWithIntent } from 'vessel-types'
+import { UiPlugin, PluginWithIntent } from 'vessel-types'
 import { Layout, NavBar, Login } from 'vessel-components'
 import { searchToIntent } from 'vessel-utils'
 import AuthMenu from './AuthMenu'
@@ -74,16 +74,7 @@ class Main extends React.Component<Props, State> {
   }
 
   getPlugins(): UiPlugin[] {
-    let plugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
-    // Hack for development
-    return [{
-      id: 'dev',
-      name: 'Development',
-      description: 'Development plugin',
-      url: 'http://localhost:3001',
-      icon: 'add-circle',
-      actions: [] as ActionDefinition[]
-    }].concat(plugins)
+    return this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
   }
 
   render() {
@@ -94,7 +85,7 @@ class Main extends React.Component<Props, State> {
 
     const plugin: PluginWithIntent | undefined = selectedPlugin ? {
       plugin: selectedPlugin,
-      intent: searchToIntent(this.props.location)
+      intent: searchToIntent(this.props.location.search)
     } : undefined
 
     const rightMenu = <AuthMenu />
