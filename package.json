@@ -12,6 +12,8 @@
         "dev:examples": "lerna run --parallel --scope example-* start",
         "dev:libs": "lerna run --parallel watch",
         "publish:local": "lerna run publish:local",
+        "cache:clear": "rm -rf $(yarn cache dir)/npm-vessel-*",
+        "link:libs": "lerna exec yarn link",
         "build": "lerna run build",
         "build:systemjs": "lerna run build:systemjs",
         "test": "lerna run test"

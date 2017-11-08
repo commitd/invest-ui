@@ -7,9 +7,9 @@
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "qs": "^6.5.1",
     "loglevel": "^1.5.1",
-    "loglevel-plugin-prefix": "^0.5.3"
+    "loglevel-plugin-prefix": "^0.5.3",
+    "qs": "^6.5.1"
   },
   "devDependencies": {
     "@types/jest": "^21.1.5",

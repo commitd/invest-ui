@@ -9,9 +9,11 @@
   "license": "Apache-2.0",
   "dependencies": {
     "prop-types": "^15.6.0",
-    "vessel-common": "0.1.0",
-    "vessel-graphql": "0.1.0",
-    "vessel-rpc": "0.1.0"
+    "vessel-common": "*",
+    "vessel-graphql": "*",
+    "vessel-rpc": "*",
+    "vessel-utils": "*",
+    "vessel-types": "*"
   },
   "peerDependencies": {
     "react": "^16.0.0",

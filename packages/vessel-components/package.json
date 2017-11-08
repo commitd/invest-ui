@@ -17,10 +17,9 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
-    "@types/validate.js": "^0.0.2",
-    "@storybook/addon-storyshots": "^3.2.14",
     "@storybook/addon-info": "^3.2.14",
     "@storybook/addon-knobs": "^3.2.14",
+    "@storybook/addon-storyshots": "^3.2.14",
     "@storybook/react": "^3.2.14",
     "@types/loglevel": "^1.5.1",
     "@types/react": "^16.0.2",
@@ -30,6 +29,7 @@
     "@types/storybook__addon-knobs": "^3.2.1",
     "@types/storybook__addon-links": "^3.0.2",
     "@types/storybook__react": "^3.0.5",
+    "@types/validate.js": "^0.0.2",
     "awesome-typescript-loader": "^3.3.0",
     "jest": "^21.2.1",
     "raw-loader": "^0.5.1",
