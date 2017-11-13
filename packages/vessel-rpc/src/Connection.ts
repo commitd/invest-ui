@@ -1,5 +1,6 @@
 const uniqueId = require('uniqueid')
 import * as shortid from 'shortid'
+import { loggerFactory } from 'vessel-utils'
 
 import {
     JsonRpcId, JsonRpcRequest, JsonRpcMethod, JsonRpcParameter,
@@ -9,6 +10,8 @@ import {
 } from './JsonRpcTypes'
 
 import { Handler, UnfulfilledPromise } from './types'
+
+const logger = loggerFactory.getLogger('Connection')
 
 /** This is a partial implementation of Window, to reduce mock/test surface */
 export type SourceWindow = EventTarget & {
@@ -112,10 +115,19 @@ export default class Connection<S> {
      * @param e the event to handle
      * 
      */
-    handleMessage(e: MessageEvent) {
+    handleMessage = (e: MessageEvent) => {
+        logger.trace('Connection.handleMessage', e)
+
+        // console.log(!this.disableWindowChecking &&
+        console.log(!this.disableWindowChecking && e.target === this.sourceWindow)
+
         if (!e.data || !e.data.jsonrpc
-            || (!this.disableWindowChecking &&
-                (e.target !== this.sourceWindow || (<{}>e.source) !== (<{}>this.targetWindow)))) {
+            || !(!this.disableWindowChecking ||
+                (e.target === this.sourceWindow
+                    // TODO: This fails, but the idea of the check is right
+                    // && (<{}>e.source) === (<{}>this.targetWindow)
+                ))
+        ) {
             return
         }
 
@@ -137,14 +149,16 @@ export default class Connection<S> {
      * @param response 
      */
     private _handleResponse(response: JsonRpcSuccess<{}> | JsonRpcFailure<{}>) {
+        logger.trace('Connection._handleResponse', response)
+
         // Is this a response to our message? 
         const dispatch = this._dispatches.get(response.id)
         this._dispatches.delete(response.id)
         if (dispatch && dispatch.resolve && dispatch.reject) {
             if ((<JsonRpcFailure<{}>>response).error) {
-                dispatch.reject((<JsonRpcFailure<{}>>response).error)
+                dispatch.reject((<JsonRpcFailure<{}>> response).error)
             } else {
-                dispatch.resolve((<JsonRpcSuccess<{}>>response).result)
+                dispatch.resolve((<JsonRpcSuccess<{}>> response).result)
             }
         } else {
             // TODO Log?
@@ -172,8 +186,8 @@ export default class Connection<S> {
             }
 
             // If this is a request, we need to send the result back
-            if ((<JsonRpcRequest<{}>>message).id) {
-                const id = (<JsonRpcRequest<{}>>message).id
+            if ((<JsonRpcRequest<{}>> message).id) {
+                const id = (<JsonRpcRequest<{}>> message).id
                 p.then(
                     value => this._replyWithSuccess(id, value),
                     reason => {
@@ -184,8 +198,8 @@ export default class Connection<S> {
             }
         } else {
             // TODO: Log this error lcoally?
-            if ((<JsonRpcRequest<{}>>message).id) {
-                const id = (<JsonRpcRequest<{}>>message).id
+            if ((<JsonRpcRequest<{}>> message).id) {
+                const id = (<JsonRpcRequest<{}>> message).id
                 this._replyWithError(
                     id,
                     JsonRpcErrorCode.INTERNAL_ERROR,
@@ -268,6 +282,7 @@ export default class Connection<S> {
      * @param message the message
      */
     private _send(message: JsonRpcMessage) {
+        logger.trace('Connection._send', message)
         this.targetWindow.postMessage(message, this.targetWindowOrigin)
     }
 

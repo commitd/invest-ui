@@ -2,9 +2,9 @@ import {
     Request,
     NetworkInterface,
     ApolloClient
-  } from 'apollo-client'
+} from 'apollo-client'
 import { ExecutionResult } from 'graphql'
-import { Connection } from 'vessel-rpc' 
+import { Connection } from 'vessel-rpc'
 
 export interface Options {
     connection: Connection<{}>,
