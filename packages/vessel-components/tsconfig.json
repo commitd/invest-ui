@@ -1,7 +1,10 @@
 {
     "extends": "../../config/tsconfig.lib.json",
     "compilerOptions": {
-        "rootDir": ".",
+        "rootDirs": [
+            "src/",
+            "stories/"
+        ],
         "outDir": "./build",
         "declarationDir": "./build"
     },
