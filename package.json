@@ -1,7 +1,8 @@
 {
     "private": true,
     "workspaces": [
-        "packages/*",
+        "apps/*",
+        "libs/*",
         "examples/*"
     ],
     "devDependencies": {

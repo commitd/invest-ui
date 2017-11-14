@@ -2,9 +2,12 @@ import {
     Request,
     NetworkInterface,
     ApolloClient
-  } from 'apollo-client'
+} from 'apollo-client'
 import { ExecutionResult } from 'graphql'
-import { Connection } from 'vessel-rpc' 
+import { Connection } from 'vessel-rpc'
+
+import { loggerFactory } from 'vessel-utils'
+const logger = loggerFactory.getLogger('VesselRpcNetworkInterface')
 
 export interface Options {
     connection: Connection<{}>,
@@ -21,6 +24,7 @@ export class VesselRpcNetworkInterface implements NetworkInterface {
     }
 
     query(request: Request): Promise<ExecutionResult> {
+        logger.trace('VesselRpcNetworkInterface.query', request)
         return this.connection.request<ExecutionResult>(this.method, request)
     }
 
