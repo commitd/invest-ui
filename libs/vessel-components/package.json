@@ -7,9 +7,6 @@
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "material-ui": "^1.0.0-beta.17",
-    "material-ui-icons": "^1.0.0-beta.17",
-    "typeface-roboto": "^0.0.41",
     "validate.js": "^0.12.0"
   },
   "peerDependencies": {
