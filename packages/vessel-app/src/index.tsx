@@ -52,7 +52,7 @@ store = newStore<RootState>(
 httpNetworkInterface.use([{
   applyMiddleware(req: MiddlewareRequest, next: Function) {
     if (!req.options.headers) {
-      req.options.headers = {}  // Create the header object if needed.
+      req.options.headers = new Headers() // Create the header object if needed.
     }
 
     const auth = store.getState().auth
