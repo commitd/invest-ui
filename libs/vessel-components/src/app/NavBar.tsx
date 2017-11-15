@@ -24,7 +24,7 @@ class NavBar extends React.Component<Props> {
     const { title, onSideBarToggle, rightArea } = this.props
 
     return (
-      <Menu inverted={true} basic={true} style={{ borderRadius: 0 }}>
+      <Menu inverted={true} style={{ borderRadius: 0 }}>
         {onSideBarToggle && <Menu.Item onClick={this.handleDrawerToggle} icon="bars" />}
         <Menu.Item name={title} />
         <Menu.Item position="right">
