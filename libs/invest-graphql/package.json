@@ -8,10 +8,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "lodash.merge": "^4.6.0",
-    "react-apollo": "^1.4.16"
-  },
-  "peerDependencies": {
-    "redux": "^3.7.2"
+    "react-apollo": "2"
   },
   "devDependencies": {
     "@types/lodash.merge": "^4.6.3",
