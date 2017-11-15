@@ -12,8 +12,8 @@
     "vessel-common": "*",
     "vessel-graphql": "*",
     "vessel-rpc": "*",
-    "vessel-utils": "*",
-    "vessel-types": "*"
+    "vessel-types": "*",
+    "vessel-utils": "*"
   },
   "peerDependencies": {
     "react": "^16.0.0",

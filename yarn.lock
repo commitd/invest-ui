@@ -6,11 +6,11 @@
   version "3.0.9"
   resolved "http://localhost:4873/@hypnosphi%2ffuse.js/-/fuse.js-3.0.9.tgz#ea99f6121b4a8f065b4c71f85595db2714498807"
 
-"@storybook/addon-actions@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2faddon-actions/-/addon-actions-3.2.14.tgz#ba20befc3cd67ffdb3cd58eed6702102d58602c2"
+"@storybook/addon-actions@^3.2.14", "@storybook/addon-actions@^3.2.15":
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2faddon-actions/-/addon-actions-3.2.15.tgz#a54228d86baeb637adbbbdd11ff0c040d9862952"
   dependencies:
-    "@storybook/addons" "^3.2.14"
+    "@storybook/addons" "^3.2.15"
     deep-equal "^1.0.1"
     json-stringify-safe "^5.0.1"
     prop-types "^15.6.0"
@@ -18,11 +18,11 @@
     uuid "^3.1.0"
 
 "@storybook/addon-info@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2faddon-info/-/addon-info-3.2.14.tgz#9c4eff70a0319cf25fb367564fc1a928ad81323f"
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2faddon-info/-/addon-info-3.2.15.tgz#bc310fb54801657a687329729ad9dac426f6b9ab"
   dependencies:
-    "@storybook/addons" "^3.2.14"
-    "@storybook/components" "^3.2.14"
+    "@storybook/addons" "^3.2.15"
+    "@storybook/components" "^3.2.15"
     babel-runtime "^6.26.0"
     global "^4.3.2"
     marksy "^2.0.0"
@@ -31,56 +31,56 @@
     util-deprecate "^1.0.2"
 
 "@storybook/addon-knobs@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2faddon-knobs/-/addon-knobs-3.2.14.tgz#2934275dfbe3f940d4be3732af1c8f2b80ee7639"
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2faddon-knobs/-/addon-knobs-3.2.15.tgz#c9619c33bec490ad972415689ba019ede53d8bf4"
   dependencies:
-    "@storybook/addons" "^3.2.14"
+    "@storybook/addons" "^3.2.15"
     babel-runtime "^6.26.0"
     deep-equal "^1.0.1"
     global "^4.3.2"
-    insert-css "^1.0.0"
+    insert-css "^2.0.0"
     lodash.debounce "^4.0.8"
     moment "^2.19.1"
     prop-types "^15.6.0"
     react-color "^2.11.4"
     react-datetime "^2.10.3"
-    react-textarea-autosize "^4.3.0"
+    react-textarea-autosize "^5.2.0"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-links@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2faddon-links/-/addon-links-3.2.14.tgz#a8eb9a99df904fbaa3412eb0ecfbf2c7e257959d"
+"@storybook/addon-links@^3.2.14", "@storybook/addon-links@^3.2.15":
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2faddon-links/-/addon-links-3.2.15.tgz#87a0dc9bad7b208aca7142863a237b5135a47a34"
   dependencies:
-    "@storybook/addons" "^3.2.14"
+    "@storybook/addons" "^3.2.15"
 
 "@storybook/addon-storyshots@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2faddon-storyshots/-/addon-storyshots-3.2.14.tgz#c92dc3b54f0759e8c8a2bc9330ec02e3eaf20b2f"
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2faddon-storyshots/-/addon-storyshots-3.2.15.tgz#98c26e0b429a4da03b0a5eeca12949af09c235b2"
   dependencies:
     babel-runtime "^6.26.0"
     global "^4.3.2"
     prop-types "^15.6.0"
-    read-pkg-up "^2.0.0"
+    read-pkg-up "^3.0.0"
 
-"@storybook/addons@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2faddons/-/addons-3.2.14.tgz#4d765c47e94729a33ca5466c9ee0f159c9f141db"
+"@storybook/addons@^3.2.15":
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2faddons/-/addons-3.2.15.tgz#120fc3e34454b9e6c779f25b945d354511168abc"
 
-"@storybook/channel-postmessage@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2fchannel-postmessage/-/channel-postmessage-3.2.14.tgz#b54785d26f67019324f1daf822ed526f26363fc6"
+"@storybook/channel-postmessage@^3.2.15":
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2fchannel-postmessage/-/channel-postmessage-3.2.15.tgz#34ef971cd231a4c034c293693bb5b78c83a1b7cb"
   dependencies:
-    "@storybook/channels" "^3.2.14"
+    "@storybook/channels" "^3.2.15"
     global "^4.3.2"
     json-stringify-safe "^5.0.1"
 
-"@storybook/channels@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2fchannels/-/channels-3.2.14.tgz#0d7522bff3fdefe534828e80ef3b3b1360057c9e"
+"@storybook/channels@^3.2.15":
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2fchannels/-/channels-3.2.15.tgz#c76277d9050e0a0027a9e06edff662db55f391d6"
 
-"@storybook/components@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2fcomponents/-/components-3.2.14.tgz#da17f8ee4582fb10fcfec07be5f72b9031534ee1"
+"@storybook/components@^3.2.15":
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2fcomponents/-/components-3.2.15.tgz#238e8faf0f5668534dea98868327760b24139460"
   dependencies:
     glamor "^2.20.40"
     glamorous "^4.11.0"
@@ -96,14 +96,14 @@
     prop-types "^15.5.9"
 
 "@storybook/react@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2freact/-/react-3.2.14.tgz#42612fb96da4bf84e3367e5371e95a484b54a4fb"
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2freact/-/react-3.2.15.tgz#f031d78c667dead434ae196aba4d5d9b83376f46"
   dependencies:
-    "@storybook/addon-actions" "^3.2.14"
-    "@storybook/addon-links" "^3.2.14"
-    "@storybook/addons" "^3.2.14"
-    "@storybook/channel-postmessage" "^3.2.14"
-    "@storybook/ui" "^3.2.14"
+    "@storybook/addon-actions" "^3.2.15"
+    "@storybook/addon-links" "^3.2.15"
+    "@storybook/addons" "^3.2.15"
+    "@storybook/channel-postmessage" "^3.2.15"
+    "@storybook/ui" "^3.2.15"
     airbnb-js-shims "^1.3.0"
     autoprefixer "^7.1.6"
     babel-core "^6.26.0"
@@ -125,7 +125,7 @@
     core-js "^2.5.1"
     css-loader "^0.28.7"
     express "^4.16.2"
-    file-loader "^0.11.2"
+    file-loader "^1.1.5"
     find-cache-dir "^1.0.0"
     glamor "^2.20.40"
     glamorous "^4.11.0"
@@ -139,7 +139,6 @@
     postcss-loader "^2.0.8"
     prop-types "^15.6.0"
     qs "^6.5.1"
-    react-modal "^2.4.1"
     redux "^3.7.2"
     request "^2.83.0"
     serve-favicon "^2.4.5"
@@ -152,12 +151,12 @@
     webpack-dev-middleware "^1.12.0"
     webpack-hot-middleware "^2.20.0"
 
-"@storybook/ui@^3.2.14":
-  version "3.2.14"
-  resolved "http://localhost:4873/@storybook%2fui/-/ui-3.2.14.tgz#3a2fbd770340829d018750ceab75bf85708b9467"
+"@storybook/ui@^3.2.15":
+  version "3.2.15"
+  resolved "http://localhost:4873/@storybook%2fui/-/ui-3.2.15.tgz#a73d24aa67877df4f69f497a0d7a67cfb34f3f39"
   dependencies:
     "@hypnosphi/fuse.js" "^3.0.9"
-    "@storybook/components" "^3.2.14"
+    "@storybook/components" "^3.2.15"
     "@storybook/react-fuzzy" "^0.4.3"
     babel-runtime "^6.26.0"
     deep-equal "^1.0.1"
@@ -175,7 +174,7 @@
     react-icons "^2.2.7"
     react-inspector "^2.2.1"
     react-komposer "^2.0.0"
-    react-modal "^2.4.1"
+    react-modal "^3.1.2"
     react-split-pane "^0.1.68"
     react-treebeard "^2.0.3"
     redux "^3.7.2"
@@ -189,8 +188,8 @@
   resolved "http://localhost:4873/@types%2fclassnames/-/classnames-2.2.3.tgz#3f0ff6873da793870e20a260cada55982f38a9e5"
 
 "@types/enzyme@^3.1.0":
-  version "3.1.3"
-  resolved "http://localhost:4873/@types%2fenzyme/-/enzyme-3.1.3.tgz#e10f3675c28e555cf968e41538b6632a4dede8ae"
+  version "3.1.4"
+  resolved "http://localhost:4873/@types%2fenzyme/-/enzyme-3.1.4.tgz#5d6fc570786345a8fb10d9b3643335746612f9d8"
   dependencies:
     "@types/cheerio" "*"
     "@types/react" "*"
@@ -204,16 +203,16 @@
   resolved "http://localhost:4873/@types%2fgraphql/-/graphql-0.9.4.tgz#cdeb6bcbef9b6c584374b81aa7f48ecf3da404fa"
 
 "@types/history@*":
-  version "4.6.1"
-  resolved "http://localhost:4873/@types%2fhistory/-/history-4.6.1.tgz#0dbaef4febad5d074d06dbdfae6b027d1d701d25"
+  version "4.6.2"
+  resolved "http://localhost:4873/@types%2fhistory/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
 
 "@types/inline-style-prefixer@^3.0.0":
   version "3.0.1"
   resolved "http://localhost:4873/@types%2finline-style-prefixer/-/inline-style-prefixer-3.0.1.tgz#8541e636b029124b747952e9a28848286d2b5bf6"
 
 "@types/jest@^21.1.2", "@types/jest@^21.1.4", "@types/jest@^21.1.5":
-  version "21.1.5"
-  resolved "http://localhost:4873/@types%2fjest/-/jest-21.1.5.tgz#3db93d069d12602ca115d3604550e15131d8eb7a"
+  version "21.1.6"
+  resolved "http://localhost:4873/@types%2fjest/-/jest-21.1.6.tgz#9467945ce33261e4fdd14276576951aa130515aa"
 
 "@types/lodash.isequal@^4.5.2":
   version "4.5.2"
@@ -236,8 +235,8 @@
   resolved "http://localhost:4873/@types%2floglevel/-/loglevel-1.5.3.tgz#adfce55383edc5998a2170ad581b3e23d6adb5b8"
 
 "@types/node@*", "@types/node@^8.0.34", "@types/node@^8.0.44":
-  version "8.0.50"
-  resolved "http://localhost:4873/@types%2fnode/-/node-8.0.50.tgz#dc545448e128c88c4eec7cd64025fcc3b7604541"
+  version "8.0.52"
+  resolved "http://localhost:4873/@types%2fnode/-/node-8.0.52.tgz#8e7f47747868e7687f2cd4922966e2d6af78d22d"
 
 "@types/numeral@^0.0.22":
   version "0.0.22"
@@ -252,8 +251,8 @@
   resolved "http://localhost:4873/@types%2fqs/-/qs-6.5.1.tgz#a38f69c62528d56ba7bd1f91335a8004988d72f7"
 
 "@types/react-dom@^16.0.1", "@types/react-dom@^16.0.2":
-  version "16.0.2"
-  resolved "http://localhost:4873/@types%2freact-dom/-/react-dom-16.0.2.tgz#2da9de21fd83f0140b64794ad9c47930230aedae"
+  version "16.0.3"
+  resolved "http://localhost:4873/@types%2freact-dom/-/react-dom-16.0.3.tgz#8accad7eabdab4cca3e1a56f5ccb57de2da0ff64"
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
@@ -272,23 +271,23 @@
     redux "^3.6.0"
 
 "@types/react-router-dom@^4.0.8":
-  version "4.2.0"
-  resolved "http://localhost:4873/@types%2freact-router-dom/-/react-router-dom-4.2.0.tgz#0f2f11d1553bd5aafbd8f613317e8dc9291d7a34"
+  version "4.2.1"
+  resolved "http://localhost:4873/@types%2freact-router-dom/-/react-router-dom-4.2.1.tgz#c5583550d7246dea60612cc55a523cf980d56df1"
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
     "@types/react-router" "*"
 
 "@types/react-router@*":
-  version "4.0.16"
-  resolved "http://localhost:4873/@types%2freact-router/-/react-router-4.0.16.tgz#5153d07cb138a30c50aaaa33c8d654e8f321ae13"
+  version "4.0.17"
+  resolved "http://localhost:4873/@types%2freact-router/-/react-router-4.0.17.tgz#1032c800ed0da188d8a3bb38fe6afa8c917865d5"
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.0.10", "@types/react@^16.0.18", "@types/react@^16.0.2":
-  version "16.0.21"
-  resolved "http://localhost:4873/@types%2freact/-/react-16.0.21.tgz#1f4313594f784a477521a0795c46e7b832051ef3"
+  version "16.0.23"
+  resolved "http://localhost:4873/@types%2freact/-/react-16.0.23.tgz#f0f713b07912c6fd8e10c9ccc539443ceb06dbca"
 
 "@types/redux-actions@^2.2.2":
   version "2.2.2"
@@ -313,8 +312,8 @@
   resolved "http://localhost:4873/@types%2fstorybook__addon-actions/-/storybook__addon-actions-3.0.1.tgz#e76b6cc3e6221d6578962a2ae59c3c33b6762453"
 
 "@types/storybook__addon-info@^3.2.0":
-  version "3.2.0"
-  resolved "http://localhost:4873/@types%2fstorybook__addon-info/-/storybook__addon-info-3.2.0.tgz#5d9f89c71cbc7997a1f1bfd291bfa075d6832ce0"
+  version "3.2.1"
+  resolved "http://localhost:4873/@types%2fstorybook__addon-info/-/storybook__addon-info-3.2.1.tgz#5314344763cfe8c32baa122145a2ee98efb173e0"
   dependencies:
     "@types/react" "*"
 
@@ -662,9 +661,9 @@ assert@^1.1.1:
   dependencies:
     util "0.10.3"
 
-ast-types@0.9.14:
-  version "0.9.14"
-  resolved "http://localhost:4873/ast-types/-/ast-types-0.9.14.tgz#d34ba5dffb9d15a44351fd2a9d82e4ab2838b5ba"
+ast-types@0.10.1:
+  version "0.10.1"
+  resolved "http://localhost:4873/ast-types/-/ast-types-0.10.1.tgz#f52fca9715579a14f841d67d7f8d25432ab6a3dd"
 
 astral-regex@^1.0.0:
   version "1.0.0"
@@ -1918,11 +1917,11 @@ browserify-sign@^4.0.0:
     inherits "^2.0.1"
     parse-asn1 "^5.0.0"
 
-browserify-zlib@^0.1.4:
-  version "0.1.4"
-  resolved "http://localhost:4873/browserify-zlib/-/browserify-zlib-0.1.4.tgz#bb35f8a519f600e0fa6b8485241c979d0141fb2d"
+browserify-zlib@^0.2.0:
+  version "0.2.0"
+  resolved "http://localhost:4873/browserify-zlib/-/browserify-zlib-0.2.0.tgz#2869459d9aa3be245fe8fe2ca1f46e2e7f54d73f"
   dependencies:
-    pako "~0.2.0"
+    pako "~1.0.5"
 
 browserslist@^1.3.6, browserslist@^1.5.2, browserslist@^1.7.6:
   version "1.7.7"
@@ -1931,7 +1930,14 @@ browserslist@^1.3.6, browserslist@^1.5.2, browserslist@^1.7.6:
     caniuse-db "^1.0.30000639"
     electron-to-chromium "^1.2.7"
 
-browserslist@^2.1.2, browserslist@^2.1.5, browserslist@^2.5.1:
+browserslist@^2.1.2, browserslist@^2.5.1:
+  version "2.9.0"
+  resolved "http://localhost:4873/browserslist/-/browserslist-2.9.0.tgz#706aca15c53be15610f466e348cbfa0c00a6a379"
+  dependencies:
+    caniuse-lite "^1.0.30000760"
+    electron-to-chromium "^1.3.27"
+
+browserslist@^2.1.5:
   version "2.8.0"
   resolved "http://localhost:4873/browserslist/-/browserslist-2.8.0.tgz#27d64028130a2e8585ca96f7c3b7730eff4de493"
   dependencies:
@@ -2040,12 +2046,16 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000760"
-  resolved "http://localhost:4873/caniuse-db/-/caniuse-db-1.0.30000760.tgz#3ea29473eb78a6ccb09f2eb73ac9e1debfec528d"
+  version "1.0.30000764"
+  resolved "http://localhost:4873/caniuse-db/-/caniuse-db-1.0.30000764.tgz#d73ab11ae62f6a9e2f69867d6d9c23ae3f2e5d8d"
 
-caniuse-lite@^1.0.30000697, caniuse-lite@^1.0.30000748, caniuse-lite@^1.0.30000758:
+caniuse-lite@^1.0.30000697:
   version "1.0.30000760"
   resolved "http://localhost:4873/caniuse-lite/-/caniuse-lite-1.0.30000760.tgz#ec720395742f1c7ec8947fd6dd2604e77a8f98ff"
+
+caniuse-lite@^1.0.30000748, caniuse-lite@^1.0.30000758, caniuse-lite@^1.0.30000760:
+  version "1.0.30000764"
+  resolved "http://localhost:4873/caniuse-lite/-/caniuse-lite-1.0.30000764.tgz#97ea7472f9d3e691eede34f21983cfc219ac7842"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -2190,8 +2200,8 @@ cliui@^3.2.0:
     wrap-ansi "^2.0.0"
 
 clone@^1.0.2:
-  version "1.0.2"
-  resolved "http://localhost:4873/clone/-/clone-1.0.2.tgz#260b7a99ebb1edfe247538175f783243cb19d149"
+  version "1.0.3"
+  resolved "http://localhost:4873/clone/-/clone-1.0.3.tgz#298d7e2231660f40c003c2ed3140decf3f53085f"
 
 cmd-shim@^2.0.2:
   version "2.0.2"
@@ -2222,8 +2232,8 @@ collection-visit@^1.0.0:
     object-visit "^1.0.0"
 
 color-convert@^1.3.0, color-convert@^1.9.0:
-  version "1.9.0"
-  resolved "http://localhost:4873/color-convert/-/color-convert-1.9.0.tgz#1accf97dd739b983bf994d56fec8f95853641b7a"
+  version "1.9.1"
+  resolved "http://localhost:4873/color-convert/-/color-convert-1.9.1.tgz#c1261107aeb2f294ebffec9ed9ecad529a6097ed"
   dependencies:
     color-name "^1.1.1"
 
@@ -3189,18 +3199,19 @@ enzyme-adapter-utils@^1.1.0:
     prop-types "^15.5.10"
 
 enzyme@^3.1.0:
-  version "3.1.1"
-  resolved "http://localhost:4873/enzyme/-/enzyme-3.1.1.tgz#c6948dfccd055d75fbd8627ad1c96a024d0e247b"
+  version "3.2.0"
+  resolved "http://localhost:4873/enzyme/-/enzyme-3.2.0.tgz#998bdcda0fc71b8764a0017f7cc692c943f54a7a"
   dependencies:
     cheerio "^1.0.0-rc.2"
     function.prototype.name "^1.0.3"
+    has "^1.0.1"
     is-subset "^0.1.1"
     lodash "^4.17.4"
     object-is "^1.0.1"
     object.assign "^4.0.4"
     object.entries "^1.0.4"
     object.values "^1.0.4"
-    raf "^3.3.2"
+    raf "^3.4.0"
     rst-selector-parser "^2.2.3"
 
 errno@^0.1.3, errno@^0.1.4:
@@ -3606,11 +3617,18 @@ figures@^2.0.0:
   dependencies:
     escape-string-regexp "^1.0.5"
 
-file-loader@0.11.2, file-loader@^0.11.2:
+file-loader@0.11.2:
   version "0.11.2"
   resolved "http://localhost:4873/file-loader/-/file-loader-0.11.2.tgz#4ff1df28af38719a6098093b88c82c71d1794a34"
   dependencies:
     loader-utils "^1.0.2"
+
+file-loader@^1.1.5:
+  version "1.1.5"
+  resolved "http://localhost:4873/file-loader/-/file-loader-1.1.5.tgz#91c25b6b6fbe56dae99f10a425fd64933b5c9daa"
+  dependencies:
+    loader-utils "^1.0.2"
+    schema-utils "^0.3.0"
 
 filename-regex@^2.0.0:
   version "2.0.1"
@@ -3765,12 +3783,19 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "http://localhost:4873/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
-fsevents@1.1.2, fsevents@^1.0.0, fsevents@^1.1.1:
+fsevents@1.1.2, fsevents@^1.1.1:
   version "1.1.2"
   resolved "http://localhost:4873/fsevents/-/fsevents-1.1.2.tgz#3282b713fb3ad80ede0e9fcf4611b5aa6fc033f4"
   dependencies:
     nan "^2.3.0"
     node-pre-gyp "^0.6.36"
+
+fsevents@^1.0.0:
+  version "1.1.3"
+  resolved "http://localhost:4873/fsevents/-/fsevents-1.1.3.tgz#11f82318f5fe7bb2cd22965a108e9306208216d8"
+  dependencies:
+    nan "^2.3.0"
+    node-pre-gyp "^0.6.39"
 
 fstream-ignore@^1.0.5:
   version "1.0.5"
@@ -4370,9 +4395,9 @@ http-signature@~1.2.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
-https-browserify@0.0.1:
-  version "0.0.1"
-  resolved "http://localhost:4873/https-browserify/-/https-browserify-0.0.1.tgz#3f91365cabe60b77ed0ebba24b454e3e09d95a82"
+https-browserify@^1.0.0:
+  version "1.0.0"
+  resolved "http://localhost:4873/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
 
 hyphenate-style-name@^1.0.1, hyphenate-style-name@^1.0.2:
   version "1.0.2"
@@ -4470,9 +4495,9 @@ inquirer@3.3.0, inquirer@^3.2.2:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-insert-css@^1.0.0:
-  version "1.1.0"
-  resolved "http://localhost:4873/insert-css/-/insert-css-1.1.0.tgz#4a3f7a3e783877381bb8471a6452d1d27315db9e"
+insert-css@^2.0.0:
+  version "2.0.0"
+  resolved "http://localhost:4873/insert-css/-/insert-css-2.0.0.tgz#eb5d1097b7542f4c79ea3060d3aee07d053880f4"
 
 internal-ip@^1.2.0:
   version "1.2.0"
@@ -5358,6 +5383,10 @@ json-loader@^0.5.4, json-loader@^0.5.7:
   version "0.5.7"
   resolved "http://localhost:4873/json-loader/-/json-loader-0.5.7.tgz#dca14a70235ff82f0ac9a3abeb60d337a365185d"
 
+json-parse-better-errors@^1.0.1:
+  version "1.0.1"
+  resolved "http://localhost:4873/json-parse-better-errors/-/json-parse-better-errors-1.0.1.tgz#50183cd1b2d25275de069e9e71b467ac9eab973a"
+
 json-schema-traverse@^0.3.0:
   version "0.3.1"
   resolved "http://localhost:4873/json-schema-traverse/-/json-schema-traverse-0.3.1.tgz#349a6d44c53a51de89b40805c5d5e59b417d3340"
@@ -5557,6 +5586,15 @@ load-json-file@^3.0.0:
     pify "^2.0.0"
     strip-bom "^3.0.0"
 
+load-json-file@^4.0.0:
+  version "4.0.0"
+  resolved "http://localhost:4873/load-json-file/-/load-json-file-4.0.0.tgz#2f5f45ab91e33216234fd53adab668eb4ec0993b"
+  dependencies:
+    graceful-fs "^4.1.2"
+    parse-json "^4.0.0"
+    pify "^3.0.0"
+    strip-bom "^3.0.0"
+
 loader-runner@^2.3.0:
   version "2.3.0"
   resolved "http://localhost:4873/loader-runner/-/loader-runner-2.3.0.tgz#f482aea82d543e07921700d5a46ef26fdac6b8a2"
@@ -5686,9 +5724,13 @@ loglevel-plugin-prefix@^0.5.3:
   version "0.5.3"
   resolved "http://localhost:4873/loglevel-plugin-prefix/-/loglevel-plugin-prefix-0.5.3.tgz#8e9131b96e4697a0dba517996f76b9e6c3f43210"
 
-loglevel@^1.4.1, loglevel@^1.5.1:
+loglevel@^1.4.1:
   version "1.5.1"
   resolved "http://localhost:4873/loglevel/-/loglevel-1.5.1.tgz#189078c94ab9053ee215a0acdbf24244ea0f6502"
+
+loglevel@^1.5.1:
+  version "1.6.0"
+  resolved "http://localhost:4873/loglevel/-/loglevel-1.6.0.tgz#ae0caa561111498c5ba13723d6fb631d24003934"
 
 longest@^1.0.1:
   version "1.0.1"
@@ -5963,7 +6005,11 @@ modify-values@^1.0.0:
   version "1.0.0"
   resolved "http://localhost:4873/modify-values/-/modify-values-1.0.0.tgz#e2b6cdeb9ce19f99317a53722f3dbf5df5eaaab2"
 
-moment@^2.19.1, moment@^2.6.0:
+moment@^2.19.1:
+  version "2.19.2"
+  resolved "http://localhost:4873/moment/-/moment-2.19.2.tgz#8a7f774c95a64550b4c7ebd496683908f9419dbe"
+
+moment@^2.6.0:
   version "2.19.1"
   resolved "http://localhost:4873/moment/-/moment-2.19.1.tgz#56da1a2d1cbf01d38b7e1afc31c10bcfa1929167"
 
@@ -5987,8 +6033,8 @@ mute-stream@0.0.7:
   resolved "http://localhost:4873/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
 nan@^2.3.0:
-  version "2.7.0"
-  resolved "http://localhost:4873/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
+  version "2.8.0"
+  resolved "http://localhost:4873/nan/-/nan-2.8.0.tgz#ed715f3fe9de02b57a5e6252d90a96675e1f085a"
 
 nanomatch@^1.2.5:
   version "1.2.5"
@@ -6056,28 +6102,28 @@ node-int64@^0.4.0:
   resolved "http://localhost:4873/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
 
 node-libs-browser@^2.0.0:
-  version "2.0.0"
-  resolved "http://localhost:4873/node-libs-browser/-/node-libs-browser-2.0.0.tgz#a3a59ec97024985b46e958379646f96c4b616646"
+  version "2.1.0"
+  resolved "http://localhost:4873/node-libs-browser/-/node-libs-browser-2.1.0.tgz#5f94263d404f6e44767d726901fff05478d600df"
   dependencies:
     assert "^1.1.1"
-    browserify-zlib "^0.1.4"
+    browserify-zlib "^0.2.0"
     buffer "^4.3.0"
     console-browserify "^1.1.0"
     constants-browserify "^1.0.0"
     crypto-browserify "^3.11.0"
     domain-browser "^1.1.1"
     events "^1.0.0"
-    https-browserify "0.0.1"
-    os-browserify "^0.2.0"
+    https-browserify "^1.0.0"
+    os-browserify "^0.3.0"
     path-browserify "0.0.0"
-    process "^0.11.0"
+    process "^0.11.10"
     punycode "^1.2.4"
     querystring-es3 "^0.2.0"
-    readable-stream "^2.0.5"
+    readable-stream "^2.3.3"
     stream-browserify "^2.0.1"
-    stream-http "^2.3.1"
-    string_decoder "^0.10.25"
-    timers-browserify "^2.0.2"
+    stream-http "^2.7.2"
+    string_decoder "^1.0.0"
+    timers-browserify "^2.0.4"
     tty-browserify "0.0.0"
     url "^0.11.0"
     util "^0.10.3"
@@ -6092,7 +6138,7 @@ node-notifier@^5.0.2:
     shellwords "^0.1.0"
     which "^1.2.12"
 
-node-pre-gyp@^0.6.36:
+node-pre-gyp@^0.6.36, node-pre-gyp@^0.6.39:
   version "0.6.39"
   resolved "http://localhost:4873/node-pre-gyp/-/node-pre-gyp-0.6.39.tgz#c00e96860b23c0e1420ac7befc5044e1d78d8649"
   dependencies:
@@ -6334,9 +6380,9 @@ original@>=0.0.5:
   dependencies:
     url-parse "1.0.x"
 
-os-browserify@^0.2.0:
-  version "0.2.1"
-  resolved "http://localhost:4873/os-browserify/-/os-browserify-0.2.1.tgz#63fc4ccee5d2d7763d26bbf8601078e6c2e0044f"
+os-browserify@^0.3.0:
+  version "0.3.0"
+  resolved "http://localhost:4873/os-browserify/-/os-browserify-0.3.0.tgz#854373c7f5c2315914fc9bfc6bd8238fdda1ec27"
 
 os-homedir@^1.0.0, os-homedir@^1.0.1:
   version "1.0.2"
@@ -6407,9 +6453,9 @@ package-json@^4.0.1:
     registry-url "^3.0.3"
     semver "^5.1.0"
 
-pako@~0.2.0:
-  version "0.2.9"
-  resolved "http://localhost:4873/pako/-/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"
+pako@~1.0.5:
+  version "1.0.6"
+  resolved "http://localhost:4873/pako/-/pako-1.0.6.tgz#0101211baa70c4bca4a0f63f2206e97b7dfaf258"
 
 param-case@2.1.x:
   version "2.1.1"
@@ -6451,6 +6497,13 @@ parse-json@^3.0.0:
   resolved "http://localhost:4873/parse-json/-/parse-json-3.0.0.tgz#fa6f47b18e23826ead32f263e744d0e1e847fb13"
   dependencies:
     error-ex "^1.3.1"
+
+parse-json@^4.0.0:
+  version "4.0.0"
+  resolved "http://localhost:4873/parse-json/-/parse-json-4.0.0.tgz#be35f5425be1f7f6c747184f98a788cb99477ee0"
+  dependencies:
+    error-ex "^1.3.1"
+    json-parse-better-errors "^1.0.1"
 
 parse-passwd@^1.0.0:
   version "1.0.0"
@@ -6531,6 +6584,12 @@ path-type@^2.0.0:
   resolved "http://localhost:4873/path-type/-/path-type-2.0.0.tgz#f012ccb8415b7096fc2daa1054c3d72389594c73"
   dependencies:
     pify "^2.0.0"
+
+path-type@^3.0.0:
+  version "3.0.0"
+  resolved "http://localhost:4873/path-type/-/path-type-3.0.0.tgz#cef31dc8e0a1a3bb0d105c0cd97cf3bf47f4e36f"
+  dependencies:
+    pify "^3.0.0"
 
 pbkdf2@^3.0.3:
   version "3.0.14"
@@ -6763,8 +6822,8 @@ postcss-minify-selectors@^2.0.4:
     postcss-selector-parser "^2.0.0"
 
 postcss-modules-extract-imports@^1.0.0:
-  version "1.2.0"
-  resolved "http://localhost:4873/postcss-modules-extract-imports/-/postcss-modules-extract-imports-1.2.0.tgz#66140ecece38ef06bf0d3e355d69bf59d141ea85"
+  version "1.1.0"
+  resolved "http://localhost:4873/postcss-modules-extract-imports/-/postcss-modules-extract-imports-1.1.0.tgz#b614c9720be6816eaee35fb3a5faa1dba6a05ddb"
   dependencies:
     postcss "^6.0.1"
 
@@ -6937,7 +6996,7 @@ process-nextick-args@~1.0.6:
   version "1.0.7"
   resolved "http://localhost:4873/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
 
-process@^0.11.0:
+process@^0.11.10:
   version "0.11.10"
   resolved "http://localhost:4873/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
 
@@ -7050,7 +7109,7 @@ radium@^0.19.0:
     inline-style-prefixer "^2.0.5"
     prop-types "^15.5.8"
 
-raf@^3.3.2:
+raf@^3.4.0:
   version "3.4.0"
   resolved "http://localhost:4873/raf/-/raf-3.4.0.tgz#a28876881b4bc2ca9117d4138163ddb80f781575"
   dependencies:
@@ -7149,8 +7208,8 @@ react-color@^2.11.4:
     tinycolor2 "^1.4.1"
 
 react-datetime@^2.10.3:
-  version "2.10.3"
-  resolved "http://localhost:4873/react-datetime/-/react-datetime-2.10.3.tgz#9807a7d9be1dd4ee01b3466b0416614e3543378e"
+  version "2.11.0"
+  resolved "http://localhost:4873/react-datetime/-/react-datetime-2.11.0.tgz#6560a8e5b81f7e52986083dc2e8cb94bb74528ea"
   dependencies:
     create-react-class "^15.5.2"
     object-assign "^3.0.0"
@@ -7181,8 +7240,8 @@ react-dev-utils@^4.0.1:
     text-table "0.2.0"
 
 react-docgen@^2.15.0:
-  version "2.19.0"
-  resolved "http://localhost:4873/react-docgen/-/react-docgen-2.19.0.tgz#a9e356277aa31f42df163f0b4917d3b077985f9d"
+  version "2.20.0"
+  resolved "http://localhost:4873/react-docgen/-/react-docgen-2.20.0.tgz#41a6da483a34a4aaed041a9909f5e61864d681cb"
   dependencies:
     async "^2.1.4"
     babel-runtime "^6.9.2"
@@ -7193,8 +7252,8 @@ react-docgen@^2.15.0:
     recast "^0.12.6"
 
 react-dom@^16.0.0:
-  version "16.0.0"
-  resolved "http://localhost:4873/react-dom/-/react-dom-16.0.0.tgz#9cc3079c3dcd70d4c6e01b84aab2a7e34c303f58"
+  version "16.1.1"
+  resolved "http://localhost:4873/react-dom/-/react-dom-16.1.1.tgz#b2e331b6d752faf1a2d31399969399a41d8d45f8"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -7257,16 +7316,16 @@ react-komposer@^2.0.0:
     react-stubber "^1.0.0"
     shallowequal "^0.2.2"
 
-react-modal@^2.4.1:
-  version "2.4.1"
-  resolved "http://localhost:4873/react-modal/-/react-modal-2.4.1.tgz#cb09b26711b148eb9f59cb180e1b7d82980ded05"
+react-modal@^3.1.2:
+  version "3.1.2"
+  resolved "http://localhost:4873/react-modal/-/react-modal-3.1.2.tgz#6e1fd656315d6fc62a1edda2b5aecc9752ac6bca"
   dependencies:
     exenv "^1.2.0"
     prop-types "^15.5.10"
 
 react-onclickoutside@^6.5.0:
-  version "6.6.3"
-  resolved "http://localhost:4873/react-onclickoutside/-/react-onclickoutside-6.6.3.tgz#f3b9226f4541039d6d5a4a6120c4dfffcf7de60c"
+  version "6.7.0"
+  resolved "http://localhost:4873/react-onclickoutside/-/react-onclickoutside-6.7.0.tgz#997a4d533114c9a0a104913638aa26afc084f75c"
 
 react-redux@^5.0.6:
   version "5.0.6"
@@ -7359,8 +7418,8 @@ react-simple-di@^1.2.0:
     hoist-non-react-statics "1.x.x"
 
 react-split-pane@^0.1.68:
-  version "0.1.68"
-  resolved "http://localhost:4873/react-split-pane/-/react-split-pane-0.1.68.tgz#a4ed40b0e77f0578cb6c9f9e65edd32726e4b16a"
+  version "0.1.71"
+  resolved "http://localhost:4873/react-split-pane/-/react-split-pane-0.1.71.tgz#19b1b30638655e655f9f5fe57b1ae7cc6c151829"
   dependencies:
     "@types/inline-style-prefixer" "^3.0.0"
     "@types/react" "^16.0.18"
@@ -7387,11 +7446,11 @@ react-test-renderer@^16.0.0-0:
     fbjs "^0.8.16"
     object-assign "^4.1.1"
 
-react-textarea-autosize@^4.3.0:
-  version "4.3.2"
-  resolved "http://localhost:4873/react-textarea-autosize/-/react-textarea-autosize-4.3.2.tgz#962a52c68caceae408c18acecec29049b81e42fa"
+react-textarea-autosize@^5.2.0:
+  version "5.2.1"
+  resolved "http://localhost:4873/react-textarea-autosize/-/react-textarea-autosize-5.2.1.tgz#2b78f9067180f41b08ac59f78f1581abadd61e54"
   dependencies:
-    prop-types "^15.5.8"
+    prop-types "^15.6.0"
 
 react-transition-group@^1.1.2:
   version "1.2.1"
@@ -7415,8 +7474,8 @@ react-treebeard@^2.0.3:
     velocity-react "^1.3.1"
 
 react@^16.0.0:
-  version "16.0.0"
-  resolved "http://localhost:4873/react/-/react-16.0.0.tgz#ce7df8f1941b036f02b2cca9dbd0cb1f0e855e2d"
+  version "16.1.1"
+  resolved "http://localhost:4873/react/-/react-16.1.1.tgz#d5c4ef795507e3012282dd51261ff9c0e824fe1f"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -7456,6 +7515,13 @@ read-pkg-up@^2.0.0:
     find-up "^2.0.0"
     read-pkg "^2.0.0"
 
+read-pkg-up@^3.0.0:
+  version "3.0.0"
+  resolved "http://localhost:4873/read-pkg-up/-/read-pkg-up-3.0.0.tgz#3ed496685dba0f8fe118d0691dc51f4a1ff96f07"
+  dependencies:
+    find-up "^2.0.0"
+    read-pkg "^3.0.0"
+
 read-pkg@^1.0.0, read-pkg@^1.1.0:
   version "1.1.0"
   resolved "http://localhost:4873/read-pkg/-/read-pkg-1.1.0.tgz#f5ffaa5ecd29cb31c0474bca7d756b6bb29e3f28"
@@ -7472,6 +7538,14 @@ read-pkg@^2.0.0:
     normalize-package-data "^2.3.2"
     path-type "^2.0.0"
 
+read-pkg@^3.0.0:
+  version "3.0.0"
+  resolved "http://localhost:4873/read-pkg/-/read-pkg-3.0.0.tgz#9cbc686978fee65d16c00e2b19c237fcf6e38389"
+  dependencies:
+    load-json-file "^4.0.0"
+    normalize-package-data "^2.3.2"
+    path-type "^3.0.0"
+
 readable-stream@1.0:
   version "1.0.34"
   resolved "http://localhost:4873/readable-stream/-/readable-stream-1.0.34.tgz#125820e34bc842d2f2aaafafe4c2916ee32c157c"
@@ -7481,7 +7555,7 @@ readable-stream@1.0:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.2.6, readable-stream@^2.2.9:
+readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.2.6, readable-stream@^2.2.9, readable-stream@^2.3.3:
   version "2.3.3"
   resolved "http://localhost:4873/readable-stream/-/readable-stream-2.3.3.tgz#368f2512d79f9d46fdfc71349ae7878bbc1eb95c"
   dependencies:
@@ -7503,10 +7577,10 @@ readdirp@^2.0.0:
     set-immediate-shim "^1.0.1"
 
 recast@^0.12.6:
-  version "0.12.8"
-  resolved "http://localhost:4873/recast/-/recast-0.12.8.tgz#bb5dc9501dfa0cd075686e1daf9d67797cc5499f"
+  version "0.12.9"
+  resolved "http://localhost:4873/recast/-/recast-0.12.9.tgz#e8e52bdb9691af462ccbd7c15d5a5113647a15f1"
   dependencies:
-    ast-types "0.9.14"
+    ast-types "0.10.1"
     core-js "^2.4.1"
     esprima "~4.0.0"
     private "~0.1.5"
@@ -8302,7 +8376,7 @@ stream-browserify@^2.0.1:
     inherits "~2.0.1"
     readable-stream "^2.0.2"
 
-stream-http@^2.3.1:
+stream-http@^2.7.2:
   version "2.7.2"
   resolved "http://localhost:4873/stream-http/-/stream-http-2.7.2.tgz#40a050ec8dc3b53b33d9909415c02c0bf1abfbad"
   dependencies:
@@ -8364,15 +8438,15 @@ string.prototype.padstart@^3.0.0:
     es-abstract "^1.4.3"
     function-bind "^1.0.2"
 
-string_decoder@^0.10.25, string_decoder@~0.10.x:
-  version "0.10.31"
-  resolved "http://localhost:4873/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
-
-string_decoder@~1.0.3:
+string_decoder@^1.0.0, string_decoder@~1.0.3:
   version "1.0.3"
   resolved "http://localhost:4873/string_decoder/-/string_decoder-1.0.3.tgz#0fc67d7c141825de94282dd536bec6b9bce860ab"
   dependencies:
     safe-buffer "~5.1.0"
+
+string_decoder@~0.10.x:
+  version "0.10.31"
+  resolved "http://localhost:4873/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
 
 stringstream@~0.0.4, stringstream@~0.0.5:
   version "0.0.5"
@@ -8601,7 +8675,7 @@ timed-out@^4.0.0:
   version "4.0.1"
   resolved "http://localhost:4873/timed-out/-/timed-out-4.0.1.tgz#f32eacac5a175bea25d7fab565ab3ed8741ef56f"
 
-timers-browserify@^2.0.2:
+timers-browserify@^2.0.4:
   version "2.0.4"
   resolved "http://localhost:4873/timers-browserify/-/timers-browserify-2.0.4.tgz#96ca53f4b794a5e7c0e1bd7cc88a372298fa01e6"
   dependencies:
@@ -8696,8 +8770,8 @@ ts-jest@^20.0.7:
     yargs "^8.0.1"
 
 ts-jest@^21.1.4:
-  version "21.2.1"
-  resolved "http://localhost:4873/ts-jest/-/ts-jest-21.2.1.tgz#cc98f4ed432c8f650940b5090a2efef365693fd0"
+  version "21.2.2"
+  resolved "http://localhost:4873/ts-jest/-/ts-jest-21.2.2.tgz#60bd8a6bc599cf746bfa054600ba5694d3f39ebc"
   dependencies:
     babel-core "^6.24.1"
     babel-plugin-istanbul "^4.1.4"
