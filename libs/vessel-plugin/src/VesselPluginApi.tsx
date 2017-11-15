@@ -1,8 +1,43 @@
-import { Connection } from 'vessel-rpc'
 import {
     ApolloClient, WatchQueryOptions, ApolloQueryResult,
-    ApolloExecutionResult, MutationOptions
+    ApolloExecutionResult, MutationOptions, gql
 } from 'react-apollo'
+
+import { Connection } from 'vessel-rpc'
+import { PluginActionDefinition } from 'vessel-types'
+
+const NAVIGATE_MUTATION = gql`
+mutation navigate($pluginId: String!, $action: String, $payload: String) {
+  vesselUi {
+    navigate(input: {pluginId: $pluginId, action: $action, payload: $payload}) {
+      success
+    }
+  }
+}
+`
+
+interface FindPluginResponse {
+    vesselUi: {
+        actions: {
+            definitions: PluginActionDefinition[]
+        }
+    }
+}
+
+const FIND_PLUGINS_QUERY = gql`
+query findPlugins($action: String!){
+  vesselUi {
+    actions(input: { action: $action }) {
+      definitions {
+        pluginId
+        action
+        title
+        description
+      }
+    }
+  }
+}
+`
 
 /**
  * A client implemenation which will calle the API which the outer application (via the RPC layer).
@@ -62,5 +97,30 @@ export class VesselPluginApi {
      */
     mutate(options: MutationOptions<{}>): Promise<ApolloExecutionResult<{}>> {
         return this.client.mutate(options)
+    }
+
+    /** Short hand to support navigation requests */
+    navigate(pluginId: string, action?: string, payload?: {}): Promise<{ success: boolean }> {
+        return this.mutate({
+            mutation: NAVIGATE_MUTATION,
+            variables: {
+                pluginId,
+                action,
+                payload: payload && JSON.stringify(payload)
+            }
+        }).then((r: ApolloQueryResult<{ success: boolean }>) => {
+            return r.data
+        })
+    }
+
+    findPlugins(action: string): Promise<PluginActionDefinition[]> {
+        return this.query({
+            query: FIND_PLUGINS_QUERY,
+            variables: {
+                action
+            }
+        }).then((r: ApolloQueryResult<FindPluginResponse>) => {
+            return r.data.vesselUi.actions.definitions
+        })
     }
 }
