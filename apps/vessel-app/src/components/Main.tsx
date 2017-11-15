@@ -2,12 +2,13 @@ import * as React from 'react'
 import Helmet from 'react-helmet'
 import { graphql, gql, ChildProps } from 'react-apollo'
 import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
-
+import { connect, Dispatch } from 'react-redux'
 import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
 import { UiPlugin, PluginWithIntent } from 'vessel-types'
 import { Layout, NavBar, Login } from 'vessel-components'
 import { searchToIntent } from 'vessel-utils'
 import AuthMenu from './AuthMenu'
+import * as RootAction from '../redux/RootAction'
 
 interface GqlResponse {
   vesselServer: {
@@ -19,7 +20,11 @@ interface OwnProps {
   globalHandler: GlobalHandler
 }
 
-type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>
+interface ConnectProps {
+  updatePlugins(plugins: UiPlugin[]): {}
+}
+
+type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}> & ConnectProps
 
 interface State {
   sidebarOpen: boolean,
@@ -75,6 +80,15 @@ class Main extends React.Component<Props, State> {
 
   getPlugins(): UiPlugin[] {
     return this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.data && !nextProps.data.loading) {
+      const data = nextProps.data
+      if (data.vesselServer && data.vesselServer.uiPlugins) {
+        this.props.updatePlugins(data.vesselServer.uiPlugins)
+      }
+    }
   }
 
   render() {
@@ -134,4 +148,13 @@ const APP_QUERY = gql`
   }
 `
 
-export default withRouter(graphql<Response, OwnProps, Props>(APP_QUERY)(Main))
+const mapDispatchtoProps = (
+  dispatch: Dispatch<{}>) => ({
+    updatePlugins: (plugins: UiPlugin[]) => dispatch(RootAction.actionCreators.plugins.setPlugins({
+      uiPlugins: plugins
+    }))
+  })
+
+const connected = connect<ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>
+  (undefined, mapDispatchtoProps)(Main)
+export default withRouter(graphql<Response, OwnProps, Props>(APP_QUERY)(connected))

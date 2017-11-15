@@ -1,18 +1,18 @@
-import { call, all, takeEvery } from 'redux-saga/effects'
+import { call, all, takeEvery, select } from 'redux-saga/effects'
 
 import { Actions } from '../RootAction'
 
 import { QueryActionInput, QueryActionOutput, NavigateInput, NavigateOutput, ResolverAction } from 'vessel-framework'
-import { PluginActionDefinition } from 'vessel-types'
+import { PluginActionDefinition, UiPlugin } from 'vessel-types'
 import history from '../../history'
 import { intentToSearch } from 'vessel-utils'
+import { RootState } from '../RootReducer'
 
 function* handleStatus(action: ResolverAction<{}, string>) {
     yield call(action.meta.promise.resolve, 'OK')
 }
 
 function* handleQuery(action: ResolverAction<QueryActionInput, QueryActionOutput>) {
-    console.log(action)
     if (action.payload == null) {
         yield call(action.meta.promise.reject, 'No payload')
         return
@@ -21,19 +21,24 @@ function* handleQuery(action: ResolverAction<QueryActionInput, QueryActionOutput
     let definitions: PluginActionDefinition[] = []
 
     const requiredAction = action.payload.action
-    if (requiredAction === 'documents.view') {
-        definitions = [{
-            action: 'documents.view',
-            title: 'Mock Say Hello',
-            description: 'Hello plugin sayer',
-            pluginId: 'HelloUiPlugin',
-            payload: {}
-        }]
 
-    } else if (requiredAction == null) {
+    if (requiredAction == null) {
         // TODO: Should we return everything here?
     } else {
-        // definition is empty... Nothing satisties that
+        const plugins: UiPlugin[] = yield select((state: RootState) => state.plugins.uiPlugins)
+
+        plugins.forEach(p => {
+            p.actions
+                .filter(a => a.action === requiredAction)
+                .map(a => ({
+                    action: a.action,
+                    payload: a.payload,
+                    title: a.title,
+                    description: a.description,
+                    pluginId: p.id
+                }))
+                .forEach(a => definitions.push(a))
+        })
     }
     yield call(action.meta.promise.resolve, {
         definitions
