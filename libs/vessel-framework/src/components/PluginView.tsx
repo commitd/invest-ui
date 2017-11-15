@@ -10,12 +10,13 @@ export interface Props {
     plugin: PluginWithIntent
     /** Handler to pass messages up to */
     globalHandler: Handler<{}>
-    /** Should this plugin view be hidden */
+    /** Signal that the plugin is hidden (this component will not hide it for you!) */
     hide?: boolean
 }
 
 // TODO The iframe stakes a http://localhost:8080 which is ok, but what ist ehv alue of it
-// window.location.hostname? That doesn;t work in dev mode with webpack . It might have to come from the server / config? And if null then fallback
+// window.location.hostname? That doesn;t work in dev mode with webpack .
+//  It might have to come from the server / config? And if null then fallback
 const baseServerPath = 'http://localhost:8080'
 
 /**
@@ -39,7 +40,7 @@ class PluginView extends React.Component<Props> {
         this.connection = connection
         this.connection.notify('onLoad')
         this.connection.notify('onShow')
-        this.sendAction()
+        this.sendAction(this.props)
 
     }
 
@@ -50,9 +51,9 @@ class PluginView extends React.Component<Props> {
         }
     }
 
-    componentDidUpdate(prevProps: Props) {
-        if (prevProps.hide !== this.props.hide && this.connection) {
-            if (this.props.hide) {
+    componentWillReceiveProps(nextProps: Props) {
+        if (nextProps.hide !== this.props.hide && this.connection) {
+            if (nextProps.hide) {
                 this.connection.notify('onHide')
             } else {
                 this.connection.notify('onShow')
@@ -60,9 +61,16 @@ class PluginView extends React.Component<Props> {
         }
 
         // If the action has changed, then we need to tell the plugin
-        if (!isEqual(prevProps.plugin.intent, this.props.plugin.intent)) {
-            this.sendAction()
+        if (!isEqual(nextProps.plugin.intent, this.props.plugin.intent)) {
+            this.sendAction(nextProps)
         }
+    }
+
+    shouldComponentUpdate() {
+        // Once rendered never call render again, all other updates are handled trhough
+        // the message interface
+        // Technically you could change src, but thats not supported!
+        return false
     }
 
     render() {
@@ -81,11 +89,9 @@ class PluginView extends React.Component<Props> {
         }
     }
 
-    private sendAction() {
-        if (this.props.plugin.intent != null) {
-            this.connection.notify('onAction', this.props.plugin.intent.action, this.props.plugin.intent.payload)
-        } else {
-            this.connection.notify('onAction', '', undefined)
+    private sendAction(props: Props) {
+        if (props.plugin.intent != null) {
+            this.connection.notify('onAction', props.plugin.intent.action, props.plugin.intent.payload)
         }
     }
 }
