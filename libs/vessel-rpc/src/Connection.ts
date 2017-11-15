@@ -13,6 +13,7 @@ import { Handler, UnfulfilledPromise } from './types'
 import { clearTimeout, setInterval } from 'timers'
 
 const logger = loggerFactory.getLogger('Connection')
+logger.setLevel('info')
 
 /** This is a partial implementation of Window, to reduce mock/test surface */
 export type SourceWindow = EventTarget & {
@@ -143,9 +144,6 @@ export default class Connection<S> {
     }
 
     private actuallyHandleMessage(e: MessageEvent) {
-
-        // console.log(!this.disableWindowChecking &&
-        console.log(!this.disableWindowChecking && e.target === this.sourceWindow)
 
         if (!e.data || !e.data.jsonrpc
             // TODO: Want some additional security like this, but it doesn't seem to work that well.
@@ -351,7 +349,6 @@ export default class Connection<S> {
     }
 
     private sendPing = () => {
-        console.log('sending ping')
         this._send({
             id: 'ping',
             jsonrpc: '2.0',
@@ -360,7 +357,6 @@ export default class Connection<S> {
     }
 
     private sendPong() {
-        console.log('sending pong')
         this._send({
             id: 'pong',
             jsonrpc: '2.0',
