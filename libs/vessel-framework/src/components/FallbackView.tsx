@@ -1,25 +1,6 @@
 import * as React from 'react'
-import Grid from 'material-ui/Grid'
-import Paper from 'material-ui/Paper'
-import { withStyles, WithStyles, Theme, StyleRulesCallback } from 'material-ui/styles'
-import Typography from 'material-ui/Typography'
-
 import { UiPlugin } from 'vessel-types'
-
-const styles: StyleRulesCallback = (theme: Theme) => ({
-    root: {
-        flexGrow: 1,
-        padding: 2 * theme.spacing.unit
-    },
-    paper: {
-        // height: '100%',
-        // width: '100%',
-        padding: 2 * theme.spacing.unit
-    },
-    control: {
-        padding: theme.spacing.unit * 2,
-    },
-})
+import { Card, Grid, Icon } from 'semantic-ui-react'
 
 export interface Props {
     /** Plugins to display */
@@ -33,21 +14,24 @@ export interface Props {
  * It could be used either a a fallback for pluginviewmanager 
  * when no plugin has been selected.
  */
-class FallbackView extends React.Component<Props & WithStyles> {
+class FallbackView extends React.Component<Props> {
 
     render() {
-        const { plugins, classes, onSelectPlugin } = this.props
+        const { plugins, onSelectPlugin } = this.props
         return (
-            <Grid container={true} className={classes.root}>
+            <Grid columns={3}>
                 {
                     plugins.map((p: UiPlugin) => (
-                        <Grid key={p.id} item={true} xs={6}>
-                            <Paper className={classes.paper} onClick={() => onSelectPlugin && onSelectPlugin(p)} >
-                                <Typography type="title">{p.name}</Typography>
-                                <Typography type="subheading">{p.description}</Typography>
-                            </Paper>
+                        <Grid.Column key={p.id}>
+                            <Card onClick={() => onSelectPlugin && onSelectPlugin(p)}>
+                                <Icon name={p.icon} size="massive" />
+                                <Card.Content>
+                                    <Card.Header>{p.name}</Card.Header>
+                                    <Card.Description>{p.description}</Card.Description>
+                                </Card.Content>
+                            </Card>
 
-                        </Grid>
+                        </Grid.Column>
 
                     ))
                 }
@@ -55,4 +39,4 @@ class FallbackView extends React.Component<Props & WithStyles> {
     }
 }
 
-export default withStyles(styles)(FallbackView) as React.ComponentType<Props>
+export default FallbackView

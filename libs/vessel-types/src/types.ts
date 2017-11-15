@@ -1,3 +1,4 @@
+import { SemanticICONS } from 'semantic-ui-react'
 
 /** A definition of an action which a UiPlugin supports */
 export interface ActionDefinition {
@@ -22,8 +23,8 @@ export interface UiPlugin {
     name: string,
     /** Short description of plugin */
     description: string,
-    /** The material ui icon for the plugin */
-    icon: string,
+    /** The  ui icon for the plugin */
+    icon: SemanticICONS,
     /** The url where thr plugin can be found (eg if you navigate here it would display the plugin) */
     url: string,
     /** A list of action definitions which this plugin supports. */

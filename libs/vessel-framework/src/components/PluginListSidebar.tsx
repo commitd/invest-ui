@@ -1,6 +1,5 @@
 import * as React from 'react'
-import List, { ListItem, ListItemText, ListItemIcon } from 'material-ui/List'
-import Icon from 'material-ui/Icon'
+import { Icon, Menu, Header } from 'semantic-ui-react'
 
 import { UiPlugin } from 'vessel-types'
 
@@ -16,23 +15,28 @@ export interface Props {
 /** Displays a list of plugins a sidebar menu */
 class PluginListSidebar extends React.Component<Props, {}> {
     render() {
-        const { plugins, onPluginSelected } = this.props
+        const { plugins, selectedPlugin, onPluginSelected } = this.props
 
         // TODO: Highlight which plugin is currently selected
 
         return (
-            <List dense={true}>
+            <Menu vertical={true} fluid={true} inverted={true} style={{ borderRadius: 0 }} >
                 {
                     plugins.map(p => (
-                        <ListItem key={p.id} button={true} onClick={() => onPluginSelected(p)}>
-                            <ListItemIcon>
-                                <Icon >{p.icon || 'add_circle'}</Icon>
-                            </ListItemIcon>
-                            <ListItemText primary={p.name} secondary={p.description} />
-                        </ListItem>
+                        <Menu.Item
+                            key={p.id}
+                            active={selectedPlugin && selectedPlugin.id === p.id}
+                            onClick={() => onPluginSelected(p)}
+                        >
+                            <Header inverted={true} as="h5">
+                                <Icon name={p.icon || 'chevron circle right'} />&nbsp;{p.name}
+                            </Header>
+                            <small>{p.description}</small>
+                        </Menu.Item>
 
-                    ))}
-            </List>
+                    ))
+                }
+            </ Menu>
         )
     }
 }

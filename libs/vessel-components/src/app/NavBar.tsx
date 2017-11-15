@@ -1,25 +1,5 @@
 import * as React from 'react'
-import AppBar from 'material-ui/AppBar'
-import Toolbar from 'material-ui/Toolbar'
-import Typography from 'material-ui/Typography'
-import IconButton from 'material-ui/IconButton'
-import MenuIcon from 'material-ui-icons/Menu'
-import { withStyles, WithStyles, StyleRules, Theme } from 'material-ui/styles'
-
-function styles(theme: Theme): StyleRules {
-  return ({
-    appBar: {
-      position: 'absolute'
-    },
-    menuButton: {
-      marginLeft: 12,
-      marginRight: 20
-    },
-    flex: {
-      flex: 1
-    }
-  })
-}
+import { Menu, Segment, Button, Icon } from 'semantic-ui-react'
 
 export interface Props {
   /** The title to place in the bar */
@@ -31,7 +11,7 @@ export interface Props {
 }
 
 /** Top navigation bar which has open/close menu button, title and optional area on the right */
-class NavBar extends React.Component<Props & WithStyles, {}> {
+class NavBar extends React.Component<Props> {
 
   handleDrawerToggle = () => {
     const onSideBarToggle = this.props.onSideBarToggle
@@ -41,28 +21,18 @@ class NavBar extends React.Component<Props & WithStyles, {}> {
   }
 
   render() {
-    const { title, classes, onSideBarToggle, rightArea } = this.props
+    const { title, onSideBarToggle, rightArea } = this.props
 
     return (
-      <AppBar className={classes.appBar}>
-        <Toolbar>
-          {onSideBarToggle && <IconButton
-            color="contrast"
-            aria-label="open drawer"
-            onClick={this.handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>}
-          <Typography type="title" color="inherit" noWrap={true}>
-            {title}
-          </Typography>
-          <div className={classes.flex}>&nbsp;</div>
+      <Menu inverted={true} basic={true} style={{ borderRadius: 0 }}>
+        {onSideBarToggle && <Menu.Item onClick={this.handleDrawerToggle} icon="bars" />}
+        <Menu.Item name={title} />
+        <Menu.Item position="right">
           {rightArea}
-        </Toolbar>
-      </AppBar>
+        </Menu.Item>
+      </Menu>
     )
   }
 }
 
-export default withStyles(styles)<Props>(NavBar) as React.ComponentType<Props>
+export default NavBar

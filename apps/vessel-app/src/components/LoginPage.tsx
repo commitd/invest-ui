@@ -6,13 +6,8 @@ import { Redirect } from 'react-router-dom'
 import { Login } from 'vessel-components'
 import * as RootAction from '../redux/RootAction'
 import { RootState } from '../types'
-import Dialog, {
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    DialogActions
-} from 'material-ui/Dialog'
-import Button from 'material-ui/Button'
+import History from '../history'
+import { Modal, Button } from 'semantic-ui-react'
 
 type State = {
     username: string,
@@ -45,6 +40,11 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
         username: '',
         password: '',
         failed: ''
+    }
+
+    handleClose = () => {
+        // TODO: THis should be an prop, or at least a route
+        History.goBack()
     }
 
     handleSend = () => {
@@ -88,7 +88,7 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
     handlePasswordChange = (password: string) => this.setState({ password: password })
 
     render() {
-        const { username, password, failed } = this.state
+        const { username, password } = this.state
         const { authenticated } = this.props
 
         const redirect = authenticated ? <Redirect to="/view" /> : undefined
@@ -96,25 +96,26 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
         return (
             <div>
                 {redirect}
-                <Dialog open={true} >
-                    <DialogTitle>Sign in</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            {failed === '' ? 'Enter your username and password' : this.state.failed}
-                        </DialogContentText>
+                <Modal open={true} >
+                    <Modal.Header>Sign in</Modal.Header>
+                    <Modal.Content>
                         <Login
                             username={username}
                             password={password}
                             onUsernameChange={this.handleUsernameChange}
                             onPasswordChange={this.handlePasswordChange}
                         />
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.handleSend} color="primary">
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button negative={true} onClick={this.handleClose}>
+                            Close
+                        </Button>
+                        <Button primary={true} onClick={this.handleSend}>
                             Sign in
                         </Button>
-                    </DialogActions>
-                </Dialog>
+                    </Modal.Actions>
+
+                </Modal>
 
             </div>
         )
@@ -123,10 +124,10 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
 
 const LOGIN_MUTATION = gql`
 mutation login($username: String!, $password: String!) {
-  login(username: $username, password: $password) {
-    username
+                    login(username:  $username, password: $password) {
+                    username
     session
-  }
+                }
 }
 `
 
@@ -136,7 +137,7 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<{}>) => ({
     setAuth:
-    (username: string, session: string) => dispatch(RootAction.actionCreators.auth.setAuth({ username, session }))
+        (username: string, session: string) => dispatch(RootAction.actionCreators.auth.setAuth({ username, session }))
 })
 
 export default graphql(LOGIN_MUTATION)(connect(mapStateToProps, mapDispatchToProps)(LoginPage))
