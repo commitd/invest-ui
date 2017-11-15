@@ -121,13 +121,13 @@ class VesselUiPlugin extends React.Component<Props, State> {
     private wrapHandler = (handler: Handler<PluginLifecycle>): Handler<PluginLifecycle> => {
         return {
             ...handler,
-            onAction: (action: string, payload?: {}) => {
+            onAction: (action: string, payload?: string) => {
                 // This is the correct way though perhaps over engineered for real world
                 const p = new Promise((resolve, reject) => {
                     this.setState(
                         {
                             action,
-                            payload
+                            payload: payload && JSON.parse(payload)
                         },
                         () => resolve()
                     )
