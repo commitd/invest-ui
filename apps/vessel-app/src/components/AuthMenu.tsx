@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { Dispatch, Action } from 'redux'
 import { connect } from 'react-redux'
-import Button from 'material-ui/Button'
-import Menu, { MenuItem } from 'material-ui/Menu'
+import { Menu, Dropdown } from 'semantic-ui-react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { RootState } from '../types'
 import * as RootAction from '../redux/RootAction'
@@ -24,25 +23,8 @@ type DispatchProps = {
 
 type Props = OwnProps & WithRouterProps & StateProps & DispatchProps
 
-type State = {
-    anchorEl?: HTMLElement,
-    open: boolean
-}
-
 // TODO: Move to -framework (abstracting dependency on state/RootActions)
-class AuthMenu extends React.Component<Props, State> {
-    state = {
-        anchorEl: undefined,
-        open: false,
-    }
-
-    handleClick = (event: React.MouseEvent<HTMLAnchorElement> | React.MouseEvent<HTMLButtonElement>) => {
-        this.setState({ open: true, anchorEl: event.currentTarget })
-    }
-
-    handleRequestClose = () => {
-        this.setState({ open: false })
-    }
+class AuthMenu extends React.Component<Props> {
 
     handleLogin = () => {
         this.props.history.push('/auth/login')
@@ -72,36 +54,17 @@ class AuthMenu extends React.Component<Props, State> {
 
     private renderAuthenticated(username: string) {
         return (
-            <div>
-                <Button
-                    aria-owns={this.state.open ? 'simple-menu' : null}
-                    aria-haspopup="true"
-                    onClick={this.handleClick}
-                >
-                    {username}
-                </Button>
-                <Menu
-                    id="simple-menu"
-                    anchorEl={this.state.anchorEl}
-                    open={this.state.open}
-                    onRequestClose={this.handleRequestClose}
-                >
-                    {/* TODO: Add change password, link to profile here... Perhaps other options if admin */}
-                    <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
-                </Menu>
-            </div>
+            <Dropdown item={true} text={username}>
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={this.handleLogout}>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
         )
     }
 
     private renderUnauthenticated() {
         return (
-            <div>
-                <Button
-                    onClick={this.handleLogin}
-                >
-                    Login
-                </Button>
-            </div>
+            <Menu.Item name="Login" onClick={this.handleLogin} />
         )
     }
 

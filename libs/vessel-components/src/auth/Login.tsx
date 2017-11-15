@@ -1,9 +1,7 @@
 import * as React from 'react'
-import FormInput from '../forms/FormInput'
-import Grid from 'material-ui/Grid'
+import { Form, InputOnChangeData } from 'semantic-ui-react'
 
 // TODO: Add validation
-// import validate from '../util/validate'
 
 export type Props = {
     /** username currently entered */
@@ -18,16 +16,19 @@ export type Props = {
 
 /** A simple username and password login form */
 class Login extends React.PureComponent<Props> {
-    onSend = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+
+    handleUsernameChange = (e: {}, data: InputOnChangeData) => {
+        this.props.onUsernameChange(data.value)
+    }
+
+    handlePasswordChange = (e: {}, data: InputOnChangeData) => {
+        this.props.onPasswordChange(data.value)
     }
 
     render() {
         const {
             username,
-            password,
-            onUsernameChange,
-            onPasswordChange,
+            password
     } = this.props
         // const valid = validate(
         //     { username, password },
@@ -35,34 +36,21 @@ class Login extends React.PureComponent<Props> {
         // )
         // const validation = valid || {}
         return (
-            <Grid
-                container={true}
-            >
-                <Grid item={true} xs={12}>
-                    <form onSubmit={this.onSend}>
-                        <FormInput
-                            key="username"
-                            id="username"
-                            type="text"
-                            value={username}
-                            placeholder="Username"
-                            label="Username"
-                            /* error={validation.username} */
-                            onChange={onUsernameChange}
-                        />
-                        <FormInput
-                            key="password"
-                            id="password"
-                            type="password"
-                            value={password}
-                            placeholder="Password"
-                            label="Password"
-                            /* error={validation.password} */
-                            onChange={onPasswordChange}
-                        />
-                    </form>
-                </Grid>
-            </Grid>
+            <Form>
+                <Form.Input
+                    label="Username"
+                    placeholder="Enter your username"
+                    value={username}
+                    onChange={this.handleUsernameChange}
+                />
+                <Form.Input
+                    label="Password"
+                    placeholder="Enter your password"
+                    value={password}
+                    type="password"
+                    onChange={this.handlePasswordChange}
+                />
+            </Form>
         )
     }
 }

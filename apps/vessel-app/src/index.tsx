@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
+import 'semantic-ui-css/semantic.min.css'
 
 import App from './App'
 
@@ -12,10 +13,6 @@ import { Store, Dispatch, combineReducers } from 'redux'
 import { rootReducer, RootState } from './redux/RootReducer'
 import { rootSaga } from './redux/RootSaga'
 
-// TODO; These sshould be in vessel-ui-componnts MaterialUi but that's a simple library (not webpacked)
-import './icons/index'
-
-import { MaterialUi } from 'vessel-components'
 import { ApolloProvider, ApolloClient, createNetworkInterface } from 'react-apollo'
 import { MiddlewareRequest } from 'apollo-client/transport/middleware'
 import { vesselUiRoot, schema } from 'vessel-framework'
@@ -63,13 +60,11 @@ httpNetworkInterface.use([{
 
 ReactDOM.render(
   <ApolloProvider store={store} client={client} >
-    <MaterialUi>
-      <Provider store={store}>
-        <Router history={history} >
-          <App />
-        </Router>
-      </Provider>
-    </MaterialUi>
+    <Provider store={store}>
+      <Router history={history} >
+        <App />
+      </Router>
+    </Provider>
   </ApolloProvider>
   ,
   document.getElementById('root') as HTMLElement

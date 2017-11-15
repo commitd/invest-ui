@@ -1,74 +1,6 @@
 import * as React from 'react'
-import { withStyles, WithStyles, Theme, StyleRulesCallback } from 'material-ui/styles'
-import Drawer from 'material-ui/Drawer'
-import Paper from 'material-ui/Paper'
 
-const drawerWidth = 240
-
-const styles: StyleRulesCallback = (theme: Theme) => ({
-  root: {
-    width: '100%',
-    height: '100vh',
-    marginTop: 0,
-    zIndex: 1,
-    overflow: 'hidden'
-  },
-  appFrame: {
-    position: 'relative',
-    display: 'flex',
-    width: '100%',
-    height: '100%'
-  },
-  hide: {
-    display: 'none'
-  },
-  drawerPaper: {
-    zIndex: 1,
-    position: 'relative',
-    marginTop: '56px',
-    height: 'calc(100% - 56px)',
-    width: drawerWidth,
-    paddingTop: theme.spacing.unit * 2,
-    [theme.breakpoints.up('sm')]: {
-      content: {
-        height: 'calc(100% - 64px)',
-        marginTop: 64
-      }
-    }
-  },
-  content: {
-    width: '100%',
-    flexGrow: 1,
-    marginLeft: 0,
-    backgroundColor: theme.palette.background.default,
-    padding: 0,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    height: 'calc(100% - 56px)',
-    marginTop: '56px',
-    [theme.breakpoints.up('sm')]: {
-      content: {
-        height: 'calc(100% - 64px)',
-        marginTop: '64px'
-      }
-    }
-  },
-  contentShift: {
-    marginLeft: 0,
-    // TODO: Transition does nothing has we aren't chaning margin that any more!
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  paper: {
-    padding: 0,
-    height: '100%',
-    width: '100%'
-  }
-})
+const drawerWidth = 200
 
 export interface Props {
   /** Navbar at the top */
@@ -83,37 +15,63 @@ export interface Props {
  * area 9which is former of the React.children). The sidebar 
  * many be open or closed 
  */
-class Layout extends React.Component<Props & WithStyles> {
+class Layout extends React.Component<Props> {
   render() {
-    const { children, classes, open, sideBar, navBar } = this.props
+    const { children, open, sideBar, navBar } = this.props
 
     const displaySideBar = open && sideBar != null
 
     return (
-      <div className={classes.root}>
-        <div className={classes.appFrame}>
+      <div
+        style={{
+          width: '100%',
+          height: '100vh',
+          margin: '0',
+          padding: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          // HACK
+          overflow: 'hidden'
+        }}
+      >
+        <div
+          style={{
+            width: '100%'
+          }}
+        >
           {navBar}
-          {displaySideBar && <Drawer
-            type="persistent"
-            classes={{
-              paper: classes.drawerPaper
+        </div>
+        <div
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'row'
+          }}
+        >
+          {displaySideBar && <div
+            style={{
+              height: '100%',
+              flex: `0 0 ${drawerWidth}px`,
+              overflow: 'auto'
             }}
-            open={displaySideBar}
           >
-            <div>
-              {sideBar}
-            </div>
-          </Drawer>
-          }
-          <main
-            className={`${classes.content} ${displaySideBar ? classes.contentShift : ''}`}
+            {sideBar}
+          </div>}
+          <div
+            style={{
+              flex: 1,
+              height: '100%',
+              margin: 0,
+              padding: 0,
+              border: 0
+            }}
           >
-            <Paper className={classes.paper}>{children}</Paper>
-          </main>
+            {children}
+          </div>
         </div>
       </div>
     )
   }
 }
 
-export default withStyles(styles, { withTheme: true })<Props>(Layout) as React.ComponentType<Props>
+export default Layout as React.ComponentType<Props>
