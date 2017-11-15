@@ -66,7 +66,6 @@ function* handleNavigate(action: ResolverAction<NavigateInput, NavigateOutput>) 
 }
 
 export default function* example() {
-    console.log('from saga')
     yield (all([
         yield takeEvery(Actions.vesselUi.RESOLVER_QUERY_STATUS, handleStatus),
         yield takeEvery(Actions.vesselUi.RESOLVER_QUERY_ACTIONS, handleQuery),
