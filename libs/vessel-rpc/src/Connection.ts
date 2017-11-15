@@ -145,14 +145,16 @@ export default class Connection<S> {
 
     private actuallyHandleMessage(e: MessageEvent) {
 
-        if (!e.data || !e.data.jsonrpc
-            // TODO: Want some additional security like this, but it doesn't seem to work that well.
-            // || !(!this.disableWindowChecking ||
-            //     (e.target === this.sourceWindow
-            //         // TODO: This fails, but the idea of the check is right
-            //         // && (<{}>e.source) === (<{}>this.targetWindow)
-            //     ))
-        ) {
+        // Is JSONRPC?
+        if (!e.data || !e.data.jsonrpc) {
+            return
+        }
+
+        // If it for us, and from our child window?
+        if (!this.disableWindowChecking
+            && !(e.target === this.sourceWindow
+                && (<{}>e.source) === (<{}>this.targetWindow)
+            )) {
             return
         }
 
@@ -178,6 +180,7 @@ export default class Connection<S> {
         logger.trace('Connection._handleResponse', response)
 
         // Is this a response to our message? 
+
         const dispatch = this._dispatches.get(response.id)
         this._dispatches.delete(response.id)
         if (dispatch && dispatch.resolve && dispatch.reject) {
