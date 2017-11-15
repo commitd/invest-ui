@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Menu, Segment, Button, Icon } from 'semantic-ui-react'
+import { Menu, Header } from 'semantic-ui-react'
 
 export interface Props {
   /** The title to place in the bar */
@@ -26,7 +26,7 @@ class NavBar extends React.Component<Props> {
     return (
       <Menu inverted={true} style={{ borderRadius: 0 }}>
         {onSideBarToggle && <Menu.Item onClick={this.handleDrawerToggle} icon="bars" />}
-        <Menu.Item name={title} />
+        <Menu.Item><Header inverted={true} as="h3">{title}</Header></Menu.Item>
         <Menu.Item position="right">
           {rightArea}
         </Menu.Item>
