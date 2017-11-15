@@ -1,4 +1,4 @@
-import { ApolloClient } from 'react-apollo'
+import { ApolloClient } from 'apollo-client'
 import { ExecutionResult } from 'graphql'
 import { Handler, HandlerFunction } from 'invest-rpc'
 import { createGraphQLHandlerForClient } from 'invest-graphql'
@@ -56,7 +56,7 @@ function createFetchHandler(sessionProvider: () => string | undefined): Fetch {
  * @param client the graph client 
  * @param sessionProvider callback to provide the current session (for auth in HTTP calls)
  */
-export function newGlobalHandler(client: ApolloClient, sessionProvider: () => string | undefined): GlobalHandler {
+export function newGlobalHandler(client: ApolloClient<{}>, sessionProvider: () => string | undefined): GlobalHandler {
     const h = new GlobalHandler()
     h.graphql = createGraphQLHandlerForClient(client)
     h.fetch = createFetchHandler(sessionProvider)

@@ -212,6 +212,10 @@
     react-treebeard "^2.1.0"
     redux "^3.7.2"
 
+"@types/async@2.0.45":
+  version "2.0.45"
+  resolved "http://localhost:4873/@types%2fasync/-/async-2.0.45.tgz#0cfe971d7ed5542695740338e0455c91078a0e83"
+
 "@types/cheerio@*":
   version "0.22.6"
   resolved "http://localhost:4873/@types%2fcheerio/-/cheerio-0.22.6.tgz#ad8c630a942efe3fc59165857851b55f95de2d50"
@@ -395,7 +399,7 @@
   version "1.13.3"
   resolved "http://localhost:4873/@types%2fwebpack-env/-/webpack-env-1.13.3.tgz#0ecbe70f87341767793774d3683b51aa3246434c"
 
-"@types/zen-observable@0.5.3":
+"@types/zen-observable@0.5.3", "@types/zen-observable@^0.5.3":
   version "0.5.3"
   resolved "http://localhost:4873/@types%2fzen-observable/-/zen-observable-0.5.3.tgz#91b728599544efbb7386d8b6633693a3c2e7ade5"
 
@@ -559,6 +563,41 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
+apollo-cache@^1.0.0:
+  version "1.0.0"
+  resolved "http://localhost:4873/apollo-cache/-/apollo-cache-1.0.0.tgz#8579cf70073410b3594164a21c5afb847a8eed1f"
+  dependencies:
+    apollo-utilities "^1.0.0"
+
+apollo-client@^2.0.2:
+  version "2.0.2"
+  resolved "http://localhost:4873/apollo-client/-/apollo-client-2.0.2.tgz#f2b01898c404c867fc2bd8edf7c3ccded2b96fc6"
+  dependencies:
+    "@types/zen-observable" "^0.5.3"
+    apollo-cache "^1.0.0"
+    apollo-link "1.0.0"
+    apollo-link-dedup "1.0.0"
+    apollo-utilities "^1.0.0"
+    symbol-observable "^1.0.2"
+    zen-observable "^0.6.0"
+  optionalDependencies:
+    "@types/async" "2.0.45"
+
+apollo-link-dedup@1.0.0:
+  version "1.0.0"
+  resolved "http://localhost:4873/apollo-link-dedup/-/apollo-link-dedup-1.0.0.tgz#f0134ac495cc42e7e43dfafe7126645baa1e03bc"
+
+apollo-link-http@^1.2.0:
+  version "1.2.0"
+  resolved "http://localhost:4873/apollo-link-http/-/apollo-link-http-1.2.0.tgz#48464c2ebfa6474f7a89908696827d66b2deb5cc"
+
+apollo-link@1.0.0:
+  version "1.0.0"
+  resolved "http://localhost:4873/apollo-link/-/apollo-link-1.0.0.tgz#3d334285789c217f95712ebce434d56ce7f3e991"
+  dependencies:
+    apollo-utilities "^0.2.0-beta.0"
+    zen-observable "^0.6.0"
+
 apollo-link@^1.0.0:
   version "1.0.3"
   resolved "http://localhost:4873/apollo-link/-/apollo-link-1.0.3.tgz#759c36abeeb99e227eca45f919ee07fb8fee911e"
@@ -575,7 +614,11 @@ apollo-test-utils@0:
     graphql-tag "^2.0.0"
     graphql-tools "^1.0.0"
 
-apollo-utilities@^1.0.0:
+apollo-utilities@^0.2.0-beta.0:
+  version "0.2.0-rc.3"
+  resolved "http://localhost:4873/apollo-utilities/-/apollo-utilities-0.2.0-rc.3.tgz#7bd93be0f587f20c5b46e21880272e305759fdc2"
+
+apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   version "1.0.1"
   resolved "http://localhost:4873/apollo-utilities/-/apollo-utilities-1.0.1.tgz#34b4df0bd6ed71d0afaa7c62489173dca5d07e92"
 
@@ -4443,15 +4486,29 @@ graphql-tools@^1.0.0:
   optionalDependencies:
     "@types/graphql" "^0.9.0"
 
+graphql-tools@^2.7.2:
+  version "2.7.2"
+  resolved "http://localhost:4873/graphql-tools/-/graphql-tools-2.7.2.tgz#03104a155b15f8441b0e5a7113b12b9512341a9e"
+  dependencies:
+    apollo-utilities "^1.0.1"
+    deprecated-decorator "^0.1.6"
+    uuid "^3.1.0"
+
 graphql@^0.10.0:
   version "0.10.5"
   resolved "http://localhost:4873/graphql/-/graphql-0.10.5.tgz#c9be17ca2bdfdbd134077ffd9bbaa48b8becd298"
   dependencies:
     iterall "^1.1.0"
 
+<<<<<<< HEAD
 graphql@^0.11.0:
   version "0.11.7"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.11.7.tgz#e5abaa9cb7b7cccb84e9f0836bf4370d268750c6"
+=======
+graphql@^0.11.7:
+  version "0.11.7"
+  resolved "http://localhost:4873/graphql/-/graphql-0.11.7.tgz#e5abaa9cb7b7cccb84e9f0836bf4370d268750c6"
+>>>>>>> Converted network interfaces to links
   dependencies:
     iterall "1.1.3"
 
@@ -9104,11 +9161,15 @@ sw-toolbox@^3.4.0:
     serviceworker-cache-polyfill "^4.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 symbol-observable@^1.0.2, symbol-observable@^1.0.3:
   version "1.1.0"
   resolved "http://localhost:4873/symbol-observable/-/symbol-observable-1.1.0.tgz#5c68fd8d54115d9dfb72a84720549222e8db9b32"
 =======
 symbol-observable@^1.0.3:
+=======
+symbol-observable@^1.0.2, symbol-observable@^1.0.3:
+>>>>>>> Converted network interfaces to links
   version "1.0.4"
   resolved "http://localhost:4873/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"
 >>>>>>> Bump react apollo to v2

@@ -1,10 +1,9 @@
 import {
-    GraphQLSchema,
-    buildSchema,
     GraphQLResolveInfo
 } from 'graphql'
-
+import { makeExecutableSchema } from 'graphql-tools'
 import { PluginActionDefinition } from 'invest-types'
+import { GraphQLSchema } from 'graphql/type/schema'
 
 /** Route object in the graphql schema for Invest UI  */
 export const investUiRoot = 'investUi'
@@ -25,8 +24,7 @@ export type MutationResolverCallback<Result, Arguments, Context>
 export type MutationResolver<Result, Arguments = {}, Context = {}> = Result | Promise<Result>
     | MutationResolverCallback<Result, Arguments, Context>
 
-export const schema: GraphQLSchema = buildSchema(`
-
+const typeDefinition = `
     type Plugin {
         id: String!,
         name: String!,
@@ -50,7 +48,7 @@ export const schema: GraphQLSchema = buildSchema(`
         definitions: [PluginActionDefinition!]!
     }
 
-    type InvestUiQuery {
+    type VesselUiQuery {
         status: String!,
         actions(input: QueryActionInput): QueryActionOutput!
     }
@@ -67,7 +65,7 @@ export const schema: GraphQLSchema = buildSchema(`
         success: Boolean!
     }
 
-    type InvestUiMutation {
+    type VesselUiMutation {
         # TODO: For the moment paylload is a JSOn.strinfify()... 
         # but it can be better maanged with a customer JSONScalar type 
         # see https://stackoverflow.com/questions/45842544/graphql-objecttype-with-dynamic-fields-based-on-arguments
@@ -78,11 +76,11 @@ export const schema: GraphQLSchema = buildSchema(`
     # Schema (likely no need to amend)
 
     type Query {
-        ${investUiRoot}: InvestUiQuery
+        ${investUiRoot}: VesselUiQuery
     }
 
     type Mutation {
-        ${investUiRoot}: InvestUiMutation
+        ${investUiRoot}: VesselUiMutation
     }
 
     schema {
@@ -126,4 +124,18 @@ export interface InvestUiGraphQLRoot {
             navigate: MutationResolver<NavigateOutput, { input: NavigateInput }>
         }
     }
+}
+
+export function createLocalSchema(resolver: InvestUiGraphQLRoot): GraphQLSchema {
+    return makeExecutableSchema({
+        typeDefs: [typeDefinition],
+        resolvers: {
+            Query: {
+                investUi: () => resolver.query.investUi
+            },
+            Mutation: {
+                investUi: () => resolver.mutation.investUi
+            }
+        }
+    })
 }
