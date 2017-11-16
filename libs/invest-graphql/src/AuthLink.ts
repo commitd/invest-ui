@@ -9,7 +9,7 @@ export interface InvestAuthLinkOptions {
     sessionProvider(): string | undefined
 }
 
-class InvestAuthLink extends ApolloLink {
+export class InvestAuthLink extends ApolloLink {
 
     private sessionProvider: () => string | undefined
     private sessionheader: string
@@ -35,5 +35,3 @@ class InvestAuthLink extends ApolloLink {
         }
     }
 }
-
-export default InvestAuthLink

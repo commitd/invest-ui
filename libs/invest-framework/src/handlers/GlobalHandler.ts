@@ -1,8 +1,8 @@
 import { ApolloClient } from 'apollo-client'
 import { ExecutionResult } from 'graphql'
 import { Handler, HandlerFunction } from 'invest-rpc'
-import { createGraphQLHandlerForClient } from 'invest-graphql'
 import { simplifyResponse, SimpleResponse } from 'invest-utils'
+import { createGraphQLHandler } from './GraphQlRpcHander'
 
 export class GlobalHandler implements Handler<GlobalHandler> {
 
@@ -56,9 +56,9 @@ function createFetchHandler(sessionProvider: () => string | undefined): Fetch {
  * @param client the graph client 
  * @param sessionProvider callback to provide the current session (for auth in HTTP calls)
  */
-export function newGlobalHandler(client: ApolloClient<{}>, sessionProvider: () => string | undefined): GlobalHandler {
+export function newGlobalHandler(link: ApolloLink, sessionProvider: () => string | undefined): GlobalHandler {
     const h = new GlobalHandler()
-    h.graphql = createGraphQLHandlerForClient(client)
+    h.graphql = createGraphQLHandler(link)
     h.fetch = createFetchHandler(sessionProvider)
     return h
 }

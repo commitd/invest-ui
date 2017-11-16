@@ -1,13 +1,7 @@
 
-<<<<<<< HEAD:libs/invest-graphql/src/GraphQlRpcHander.ts
-import { HandlerFunction, JsonRpcParameter } from 'invest-rpc'
-import { NetworkInterface, ApolloClient } from 'react-apollo'
-import { ExecutionResult } from 'graphql'
-=======
-// import { HandlerFunction, JsonRpcParameter } from 'vessel-rpc'
+// import { HandlerFunction, JsonRpcParameter } from 'invest-rpc'
 // import { ApolloClient } from 'apollo-client'
 // import { ExecutionResult } from 'graphql'
->>>>>>> Converted network interfaces to links:libs/vessel-graphql/src/GraphQlRpcHander.ts
 
 // // We are intercepting at the network interface level... not at the client level. This is repeating the work..
 // TODO: but perhaps we shoud be doing it this way? Then we only have a redux store in the parent.

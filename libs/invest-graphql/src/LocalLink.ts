@@ -9,7 +9,7 @@ export interface InvestSchemaLinkOptions {
     schema: GraphQLSchema
 }
 
-class InvestSchemaLink extends ApolloLink {
+export class InvestSchemaLink extends ApolloLink {
 
     private schema: GraphQLSchema
 
@@ -37,5 +37,3 @@ class InvestSchemaLink extends ApolloLink {
         })
     }
 }
-
-export default InvestSchemaLink

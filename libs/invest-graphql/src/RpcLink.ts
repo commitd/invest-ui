@@ -10,7 +10,7 @@ export interface InvestRpcLinkOptions {
     method?: string
 }
 
-class VesselRpcLink extends ApolloLink {
+export class InvestRpcLink extends ApolloLink {
 
     private connection: Connection<{}>
     private method: string
@@ -35,5 +35,3 @@ class VesselRpcLink extends ApolloLink {
 
     }
 }
-
-export default VesselRpcLink
