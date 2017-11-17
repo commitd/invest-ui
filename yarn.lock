@@ -563,40 +563,41 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
-apollo-cache@^1.0.0:
-  version "1.0.0"
-  resolved "http://localhost:4873/apollo-cache/-/apollo-cache-1.0.0.tgz#8579cf70073410b3594164a21c5afb847a8eed1f"
+apollo-cache-inmemory@^1.1.1:
+  version "1.1.1"
+  resolved "http://localhost:4873/apollo-cache-inmemory/-/apollo-cache-inmemory-1.1.1.tgz#1511f00eb845da88504abf867f408c3026a909ba"
   dependencies:
-    apollo-utilities "^1.0.0"
+    apollo-cache "^1.0.1"
+    apollo-utilities "^1.0.2"
+    graphql-anywhere "^4.0.1"
 
-apollo-client@^2.0.2:
-  version "2.0.2"
-  resolved "http://localhost:4873/apollo-client/-/apollo-client-2.0.2.tgz#f2b01898c404c867fc2bd8edf7c3ccded2b96fc6"
+apollo-cache@^1.0.1:
+  version "1.0.1"
+  resolved "http://localhost:4873/apollo-cache/-/apollo-cache-1.0.1.tgz#66c16141173bc752d3ad3dce990310c10dfc4076"
+  dependencies:
+    apollo-utilities "^1.0.2"
+
+apollo-client@^2.0.3:
+  version "2.0.3"
+  resolved "http://localhost:4873/apollo-client/-/apollo-client-2.0.3.tgz#f99f32e2c851bbd52da1e1b113ce8f6a0cf94945"
   dependencies:
     "@types/zen-observable" "^0.5.3"
-    apollo-cache "^1.0.0"
-    apollo-link "1.0.0"
-    apollo-link-dedup "1.0.0"
-    apollo-utilities "^1.0.0"
+    apollo-cache "^1.0.1"
+    apollo-link "^1.0.0"
+    apollo-link-dedup "^1.0.0"
+    apollo-utilities "^1.0.2"
     symbol-observable "^1.0.2"
     zen-observable "^0.6.0"
   optionalDependencies:
     "@types/async" "2.0.45"
 
-apollo-link-dedup@1.0.0:
-  version "1.0.0"
-  resolved "http://localhost:4873/apollo-link-dedup/-/apollo-link-dedup-1.0.0.tgz#f0134ac495cc42e7e43dfafe7126645baa1e03bc"
+apollo-link-dedup@^1.0.0:
+  version "1.0.2"
+  resolved "http://localhost:4873/apollo-link-dedup/-/apollo-link-dedup-1.0.2.tgz#bab659dde41f8dd627839142d4dad90e55251110"
 
 apollo-link-http@^1.2.0:
   version "1.2.0"
   resolved "http://localhost:4873/apollo-link-http/-/apollo-link-http-1.2.0.tgz#48464c2ebfa6474f7a89908696827d66b2deb5cc"
-
-apollo-link@1.0.0:
-  version "1.0.0"
-  resolved "http://localhost:4873/apollo-link/-/apollo-link-1.0.0.tgz#3d334285789c217f95712ebce434d56ce7f3e991"
-  dependencies:
-    apollo-utilities "^0.2.0-beta.0"
-    zen-observable "^0.6.0"
 
 apollo-link@^1.0.0:
   version "1.0.3"
@@ -614,13 +615,13 @@ apollo-test-utils@0:
     graphql-tag "^2.0.0"
     graphql-tools "^1.0.0"
 
-apollo-utilities@^0.2.0-beta.0:
-  version "0.2.0-rc.3"
-  resolved "http://localhost:4873/apollo-utilities/-/apollo-utilities-0.2.0-rc.3.tgz#7bd93be0f587f20c5b46e21880272e305759fdc2"
-
 apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   version "1.0.1"
   resolved "http://localhost:4873/apollo-utilities/-/apollo-utilities-1.0.1.tgz#34b4df0bd6ed71d0afaa7c62489173dca5d07e92"
+
+apollo-utilities@^1.0.2:
+  version "1.0.2"
+  resolved "http://localhost:4873/apollo-utilities/-/apollo-utilities-1.0.2.tgz#bcf348a7e613e82e2624ddb5be2b9f6bf1259c6d"
 
 append-transform@^0.4.0:
   version "0.4.0"
@@ -4464,6 +4465,7 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
   resolved "http://localhost:4873/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 graphql-anywhere@^3.0.1:
   version "3.1.0"
   resolved "http://localhost:4873/graphql-anywhere/-/graphql-anywhere-3.1.0.tgz#3ea0d8e8646b5cee68035016a9a7557c15c21e96"
@@ -4472,6 +4474,14 @@ graphql-tag@^2.0.0, graphql-tag@^2.4.2:
   version "2.6.1"
   resolved "http://localhost:4873/graphql-tag/-/graphql-tag-2.6.1.tgz#4788d509f6e29607d947fc47a40c4e18f736d34a"
 =======
+=======
+graphql-anywhere@^4.0.1:
+  version "4.0.1"
+  resolved "http://localhost:4873/graphql-anywhere/-/graphql-anywhere-4.0.1.tgz#eb53ed5c56ef42e21d34dc22951e3da38f88a342"
+  dependencies:
+    apollo-utilities "^1.0.2"
+
+>>>>>>> Add in cache - bug in apollo cache types prevents compilation
 graphql-tag@^2.0.0:
   version "2.5.0"
   resolved "http://localhost:4873/graphql-tag/-/graphql-tag-2.5.0.tgz#b43bfd8b5babcd2c205ad680c03e98b238934e0f"

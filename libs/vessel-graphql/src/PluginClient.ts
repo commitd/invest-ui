@@ -1,4 +1,7 @@
 import { ApolloClient } from 'apollo-client'
+import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory'
+import { ApolloCache } from 'apollo-cache'
+
 import { Connection } from 'vessel-rpc'
 import { VesselRpcLink, VesselRpcLinkOptions } from './RpcLink'
 
@@ -17,7 +20,8 @@ export class PluginClient {
         }
 
         this.client = new ApolloClient({
-            link: new VesselRpcLink(rpcLinkOptions)
+            link: new VesselRpcLink(rpcLinkOptions),
+            cache: new InMemoryCache() as ApolloCache<NormalizedCacheObject>
         })
 
         return this.client

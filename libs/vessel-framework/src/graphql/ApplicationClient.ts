@@ -1,4 +1,6 @@
 import { ApolloClient } from 'apollo-client'
+import { ApolloCache } from 'apollo-cache'
+import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory'
 import { GraphQLSchema } from 'graphql'
 import { createLocalSchema, VesselUiGraphQLRoot } from './LocalSchema'
 import { createRemoteSchema } from './RemoteSchema'
@@ -51,7 +53,9 @@ class ApplicationClient {
         // TODO: Should the application be able to access the local schema? 
         // If not (as here)... it could just be a simple http link (rather than the createRemoteSchema)
         this.client = new ApolloClient({
-            link: this.authLink.concat(this.httpLink)
+            link: this.authLink.concat(this.httpLink),
+            cache: new InMemoryCache() as ApolloCache<NormalizedCacheObject>
+
         })
     }
 
