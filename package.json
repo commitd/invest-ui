@@ -3,7 +3,8 @@
     "workspaces": [
         "apps/*",
         "libs/*",
-        "examples/*"
+        "examples/*",
+        "bundles/*"
     ],
     "devDependencies": {
         "lerna": "^2.4.0"

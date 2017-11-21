@@ -6,7 +6,7 @@ export const plugins: UiPlugin[] = [
         actions: [],
         description: 'My example',
         name: 'Example',
-        icon: 'add-circle',
+        icon: 'search',
         url: 'http://localhost:6006/'
     },
     {
@@ -14,7 +14,7 @@ export const plugins: UiPlugin[] = [
         actions: [],
         description: 'Another example',
         name: 'Tester',
-        icon: 'add-circle',
+        icon: 'search',
         url: 'http://localhost:6006/'
     }
 ]

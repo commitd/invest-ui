@@ -1,15 +1,12 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { Connection } from 'vessel-rpc'
-import { createApolloRpcClient } from 'vessel-graphql'
-import { ApolloProvider, ApolloClient } from 'react-apollo'
+import { ApolloProvider } from 'react-apollo'
 import { Handler } from 'vessel-rpc'
 
 import { VesselPluginApi } from './VesselPluginApi'
 import { PluginLifecycle } from 'vessel-common'
-import { loggerFactory } from 'vessel-utils'
 
-const logger = loggerFactory.getLogger('VesselUiPlugin')
+import { createVesselPluginApi } from './Connect'
 
 /** Our child can receive action and payload via props */
 export type ChildProps = {
@@ -64,8 +61,6 @@ class VesselUiPlugin extends React.Component<Props, State> {
         pluginApi: PropTypes.instanceOf(VesselPluginApi)
     }
 
-    client: ApolloClient
-    connection: Connection<{}>
     pluginApi: VesselPluginApi
 
     state = {
@@ -77,20 +72,7 @@ class VesselUiPlugin extends React.Component<Props, State> {
         super(props)
 
         const handler = this.wrapHandler(this.props.handler || {})
-        if (!this.isInIFrame()) {
-            logger.info('Running standalone')
-            // TODO: We need to discard the vesselUI stuff when passed to this. Messy
-            this.client = new ApolloClient()
-        } else {
-            logger.info('Running inside vessel')
-            this.connection = new Connection(window, window.parent, handler)
-            this.connection.start()
-            this.client = createApolloRpcClient({
-                connection: this.connection
-            })
-        }
-
-        this.pluginApi = new VesselPluginApi(this.client, this.connection)
+        this.pluginApi = createVesselPluginApi(handler)
     }
 
     getChildContext(): Context {
@@ -104,18 +86,10 @@ class VesselUiPlugin extends React.Component<Props, State> {
         const child = React.Children.only(this.props.children)
 
         return (
-            <ApolloProvider client={this.client} >
+            <ApolloProvider client={this.pluginApi.client} >
                 {React.cloneElement(child, { action: this.state.action, payload: this.state.payload })}
             </ApolloProvider>
         )
-    }
-
-    private isInIFrame() {
-        try {
-            return window.self !== window.top
-        } catch (e) {
-            return true
-        }
     }
 
     private wrapHandler = (handler: Handler<PluginLifecycle>): Handler<PluginLifecycle> => {
