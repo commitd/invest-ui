@@ -2,22 +2,22 @@ import { ApolloClient } from 'react-apollo'
 import { ExecutionResult } from 'graphql'
 import { Handler, HandlerFunction } from 'vessel-rpc'
 import { createGraphQLHandlerForClient } from 'vessel-graphql'
+import { simplifyResponse, SimpleResponse } from 'vessel-utils'
 
 export class GlobalHandler implements Handler<GlobalHandler> {
 
     graphql: HandlerFunction<ExecutionResult>
 
-    fetch: HandlerFunction<{}>
-
+    fetch: HandlerFunction<SimpleResponse>
 }
 
-export type Fetch = (input: RequestInfo, init?: RequestInit) => Promise<Response>
+export type Fetch = (input: RequestInfo, init?: RequestInit) => Promise<SimpleResponse>
 
 function createFetchHandler(sessionProvider: () => string | undefined): Fetch {
     // TODO: We should perhaps clone the init, before we modify to avoid leaking session back into the caller
     // TODO: Check if the input is for our server or another. Otherwise we are sending our session to other people
 
-    return function (input: RequestInfo, init?: RequestInit): Promise<Response> {
+    return function (input: RequestInfo, init?: RequestInit): Promise<SimpleResponse> {
         if (init == null) {
             init = {}
         }
@@ -28,11 +28,20 @@ function createFetchHandler(sessionProvider: () => string | undefined): Fetch {
 
         const session = sessionProvider()
         if (session != null) {
-            init.headers.set('SESSION', session)
+            if (init.headers instanceof Headers) {
+                init.headers.set('SESSION', session)
+            } else {
+                // TODO
+                // TODO: is string[][]
+            }
         } else {
-            init.headers.delete('SESSION')
+            if (init.headers instanceof Headers) {
+                init.headers.delete('SESSION')
+            } else {
+                // TODO: is string[][]
+            }
         }
-        return fetch(input, init)
+        return fetch(input, init).then(simplifyResponse)
     }
 }
 

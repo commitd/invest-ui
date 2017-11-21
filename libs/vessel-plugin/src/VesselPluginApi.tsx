@@ -5,6 +5,7 @@ import {
 
 import { Connection } from 'vessel-rpc'
 import { PluginActionDefinition } from 'vessel-types'
+import { hydrateSimpleResponse } from 'vessel-utils'
 
 const NAVIGATE_MUTATION = gql`
 mutation navigate($pluginId: String!, $action: String, $payload: String) {
@@ -71,7 +72,7 @@ export class VesselPluginApi {
      */
     fetch(request: RequestInfo, init?: RequestInit): Promise<Response> {
         if (this.connection) {
-            return this.connection.request('fetch', request, init)
+            return this.connection.request('fetch', request, init).then(hydrateSimpleResponse)
         } else {
             return fetch(request, init)
         }
