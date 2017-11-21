@@ -9,7 +9,7 @@ export default () => (
             path: path.resolve(__dirname, './build'),
             filename: 'vessel.js',
             libraryTarget: 'umd',
-            library: 'vessel'
+            library: 'Vessel'
         },
         plugins: [new Visualizer()],
         externals: {
