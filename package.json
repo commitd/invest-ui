@@ -16,7 +16,7 @@
         "cache:clear": "rm -rf $(yarn cache dir)/npm-vessel-*",
         "link:libs": "lerna exec yarn link",
         "build": "lerna run build",
-        "build:systemjs": "lerna run build:systemjs",
+        "build:systemjs": "mkdir -p build; lerna run build:systemjs && lerna run copy:systemjs",
         "test": "lerna run test"
     }
 }

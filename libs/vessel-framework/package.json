@@ -48,6 +48,7 @@
   "scripts": {
     "build": "tsc",
     "build:systemjs": "tsc -p tsconfig.systemjs.json",
+    "copy:systemjs": "cp -a lib/. ../../build/.",
     "watch": "tsc -w",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
