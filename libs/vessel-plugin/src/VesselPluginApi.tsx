@@ -84,8 +84,15 @@ export class VesselPluginApi {
      * 
      * @param options as per Apollo
      */
-    query(options: WatchQueryOptions): Promise<ApolloQueryResult<{}>> {
-        return this.client.query(options)
+    query(options: WatchQueryOptions | string, variables?: {}): Promise<ApolloQueryResult<{}>> {
+        if (typeof options === 'string') {
+            return this.client.query({
+                query: gql(options),
+                variables: variables
+            })
+        } else {
+            return this.client.query(options)
+        }
     }
 
     /** 
@@ -95,8 +102,15 @@ export class VesselPluginApi {
      * 
      * @param options as per Apollo
      */
-    mutate(options: MutationOptions<{}>): Promise<ApolloExecutionResult<{}>> {
-        return this.client.mutate(options)
+    mutate(options: MutationOptions<{}> | string, variables?: {}): Promise<ApolloExecutionResult<{}>> {
+        if (typeof options === 'string') {
+            return this.client.mutate({
+                mutation: gql(options),
+                variables: variables
+            })
+        } else {
+            return this.client.mutate(options)
+        }
     }
 
     /** Short hand to support navigation requests */

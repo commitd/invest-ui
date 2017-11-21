@@ -1,5 +1,6 @@
 
 const path = require('path');
+const Visualizer = require('webpack-visualizer-plugin');
 
 export default () => (
     {
@@ -10,14 +11,23 @@ export default () => (
             libraryTarget: 'umd',
             library: 'vessel'
         },
-        // externals: {
-        //     'lodash': {
-        //         commonjs: 'lodash',
-        //         commonjs2: 'lodash',
-        //         amd: 'lodash',
-        //         root: '_'
-        //     }
-        // },
+        plugins: [new Visualizer()],
+        externals: {
+            react: {
+                root: 'React',
+                commonjs2: 'react',
+                commonjs: 'react',
+                amd: 'react',
+                umd: 'react',
+            },
+            'react-dom': {
+                root: 'ReactDOM',
+                commonjs2: 'react-dom',
+                commonjs: 'react-dom',
+                amd: 'react-dom',
+                umd: 'react-dom',
+            },
+        },
         module: {
             rules: [
                 { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }

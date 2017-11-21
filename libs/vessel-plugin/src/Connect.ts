@@ -15,12 +15,14 @@ export function createVesselPluginApi(handler: Handler<PluginLifecycle>) {
     let client: ApolloClient
     let connection: Connection<{}> | undefined = undefined
 
+    let safeHandler = handler == null ? {} : handler
+
     if (!isInIFrame()) {
         logger.info('Running standalone')
         client = new ApolloClient()
     } else {
         logger.info('Running inside vessel')
-        connection = new Connection(window, window.parent, handler)
+        connection = new Connection(window, window.parent, safeHandler)
         connection.start()
         client = createApolloRpcClient({
             connection: connection

@@ -2,8 +2,8 @@ import { VesselPluginApi, createVesselPluginApi } from 'vessel-plugin'
 import { loggerFactory } from 'vessel-utils'
 
 module.exports = {
+    connect: createVesselPluginApi,
     plugin: {
-        create: createVesselPluginApi,
         Api: VesselPluginApi
     },
     utils: {

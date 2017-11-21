@@ -4,12 +4,11 @@
     "description": "A Vessel Library you can import with script tagscd",
     "main": "build/vessel.js",
     "scripts": {
-        "build": "webpack"
+        "dev": "webpack",
+        "build": "webpack --optimize-minimize"
     },
     "keywords": [
         "vessel",
-        "webpack-library",
-        "bundling",
         "library"
     ],
     "license": "Apache-2.0",
@@ -21,12 +20,14 @@
         "eslint": "^3.9.1",
         "eslint-loader": "^1.6.1",
         "vessel-plugin": "*",
-        "webpack": "^2.2.1"
+        "webpack": "^2.2.1",
+        "webpack-visualizer-plugin": "^0.1.11"
     },
     "dependencies": {
-        "vessel-graphql": "^0.1.0",
-        "vessel-rpc": "^0.1.0",
-        "vessel-types": "^0.1.0",
-        "vessel-utils": "^0.1.0"
+        "semantic-ui-css": "^2.2.12",
+        "vessel-graphql": "*",
+        "vessel-rpc": "*",
+        "vessel-types": "*",
+        "vessel-utils": "*"
     }
 }
