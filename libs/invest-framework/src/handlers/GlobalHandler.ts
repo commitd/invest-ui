@@ -1,4 +1,4 @@
-import { ApolloClient } from 'apollo-client'
+import { ApolloLink } from 'apollo-link'
 import { ExecutionResult } from 'graphql'
 import { Handler, HandlerFunction } from 'invest-rpc'
 import { simplifyResponse, SimpleResponse } from 'invest-utils'

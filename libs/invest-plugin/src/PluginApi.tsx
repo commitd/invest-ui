@@ -1,11 +1,12 @@
 import {
-    ApolloClient, WatchQueryOptions, ApolloQueryResult,
-    ApolloExecutionResult, MutationOptions, gql
-} from 'react-apollo'
+    ApolloClient, WatchQueryOptions, ApolloQueryResult, MutationOptions
+} from 'apollo-client'
+import { FetchResult } from 'apollo-link'
 
 import { Connection } from 'invest-rpc'
 import { PluginActionDefinition } from 'invest-types'
 import { hydrateSimpleResponse } from 'invest-utils'
+import gql from 'graphql-tag'
 
 const NAVIGATE_MUTATION = gql`
 mutation navigate($pluginId: String!, $action: String, $payload: String) {
@@ -47,7 +48,7 @@ query findPlugins($action: String!){
 export class PluginApi {
 
     connection?: Connection<{}>
-    client: ApolloClient
+    client: ApolloClient<{}>
 
     /**
      * Create a new API client.
@@ -55,7 +56,7 @@ export class PluginApi {
      * @param client apollo client
      * @param connection connection 
      */
-    constructor(client: ApolloClient, connection?: Connection<{}>, ) {
+    constructor(client: ApolloClient<{}>, connection?: Connection<{}>, ) {
         this.client = client
         this.connection = connection
     }
@@ -103,7 +104,7 @@ export class PluginApi {
      * 
      * @param options as per Apollo
      */
-    mutate(options: MutationOptions<{}> | string, variables?: {}): Promise<ApolloExecutionResult<{}>> {
+    mutate(options: MutationOptions<{}> | string, variables?: {}): Promise<FetchResult<{}>> {
         if (typeof options === 'string') {
             return this.client.mutate({
                 mutation: gql(options),

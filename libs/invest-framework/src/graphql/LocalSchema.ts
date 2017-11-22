@@ -87,7 +87,7 @@ const typeDefinition = `
         query: Query,
         mutation: Mutation
     }
-`)
+`
 
 /**  Arguments of query action */
 export type QueryActionInput = {

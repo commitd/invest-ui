@@ -2,10 +2,10 @@ import { ApolloClient } from 'apollo-client'
 import { ApolloCache } from 'apollo-cache'
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory'
 import { GraphQLSchema } from 'graphql'
-import { createLocalSchema, VesselUiGraphQLRoot } from './LocalSchema'
+import { createLocalSchema, InvestUiGraphQLRoot } from './LocalSchema'
 import { createRemoteSchema } from './RemoteSchema'
 import { combineLocalAndRemoteeSchema } from './CombinedSchema'
-import { VesselSchemaLink, VesselAuthLink } from 'vessel-graphql'
+import { InvestSchemaLink, InvestAuthLink } from 'invest-graphql'
 import { newGlobalHandler, GlobalHandler } from '../index'
 import { HttpLink } from 'apollo-link-http'
 
@@ -13,7 +13,7 @@ class ApplicationClient {
 
     private graphQlUri: string
 
-    private resolver: VesselUiGraphQLRoot
+    private resolver: InvestUiGraphQLRoot
 
     private sessionProvider: () => string | undefined
 
@@ -23,17 +23,17 @@ class ApplicationClient {
 
     private combinedSchema: GraphQLSchema
 
-    private authLink: VesselAuthLink
+    private authLink: InvestAuthLink
 
     private httpLink: HttpLink
 
-    private combinedSchemaLink: VesselSchemaLink
+    private combinedSchemaLink: InvestSchemaLink
 
     private client: ApolloClient<{}>
 
     private globalHandler: GlobalHandler
 
-    constructor(graphQlUri: string, resolver: VesselUiGraphQLRoot, sessionProvider: () => string | undefined) {
+    constructor(graphQlUri: string, resolver: InvestUiGraphQLRoot, sessionProvider: () => string | undefined) {
         this.graphQlUri = graphQlUri
         this.resolver = resolver
         this.sessionProvider = sessionProvider
@@ -65,7 +65,7 @@ class ApplicationClient {
         this.localSchema = createLocalSchema(this.resolver)
         this.remoteSchema = await createRemoteSchema(this.graphQlUri, this.authLink)
         this.combinedSchema = combineLocalAndRemoteeSchema(this.localSchema, this.remoteSchema)
-        this.combinedSchemaLink = new VesselSchemaLink({
+        this.combinedSchemaLink = new InvestSchemaLink({
             schema: this.combinedSchema
         })
 
