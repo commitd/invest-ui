@@ -21,7 +21,9 @@ export interface Props {
     /** Handler to pass any plugin lifecycle notification too.  */
     handler?: Handler<PluginLifecycle>
     /** A single child. THis will have the action and payload push to as props (when they change). */
-    children: React.ReactElement<{} & ChildProps>
+    children: React.ReactElement<{} & ChildProps>,
+    /** Full screen, no padding, etc */
+    fullscreen?: boolean
 }
 
 /** The Context will will provide  */
@@ -82,13 +84,31 @@ class VesselUiPlugin extends React.Component<Props, State> {
     }
 
     render() {
+        const { fullscreen } = this.props
+
         // For simplicity we assume a single child
         const child = React.Children.only(this.props.children)
 
+        let style: {} | undefined = undefined
+        if (fullscreen) {
+            style = {
+                margin: 0,
+                padding: 0,
+                width: '100%',
+                height: '100%'
+            }
+        } else {
+            style = {
+                padding: '15px'
+            }
+        }
+
         return (
             <ApolloProvider client={this.pluginApi.client} >
-                {React.cloneElement(child, { action: this.state.action, payload: this.state.payload })}
-            </ApolloProvider>
+                <div style={style}>
+                    {React.cloneElement(child, { action: this.state.action, payload: this.state.payload })}
+                </div>
+            </ApolloProvider >
         )
     }
 
