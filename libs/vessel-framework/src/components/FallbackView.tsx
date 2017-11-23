@@ -19,7 +19,7 @@ class FallbackView extends React.Component<Props> {
     render() {
         const { plugins, onSelectPlugin } = this.props
         return (
-            <Grid columns={4}>
+            <Grid columns={4} padded={true}>
                 {
                     plugins.map((p: UiPlugin) => (
                         <Grid.Column key={p.id}>
