@@ -13,6 +13,10 @@ export class GlobalHandler implements Handler<GlobalHandler> {
 
 export type Fetch = (input: RequestInfo, init?: RequestInit) => Promise<SimpleResponse>
 
+type StringHeaderWithSession = {
+    SESSION?: string
+}
+
 function createFetchHandler(sessionProvider: () => string | undefined): Fetch {
     // TODO: We should perhaps clone the init, before we modify to avoid leaking session back into the caller
     // TODO: Check if the input is for our server or another. Otherwise we are sending our session to other people
@@ -31,16 +35,18 @@ function createFetchHandler(sessionProvider: () => string | undefined): Fetch {
             if (init.headers instanceof Headers) {
                 init.headers.set('SESSION', session)
             } else {
-                // TODO
-                // TODO: is string[][]
+                const headers = init.headers as StringHeaderWithSession
+                headers.SESSION = session
             }
         } else {
             if (init.headers instanceof Headers) {
                 init.headers.delete('SESSION')
             } else {
-                // TODO: is string[][]
+                const headers = init.headers as StringHeaderWithSession
+                delete headers.SESSION
             }
         }
+        console.log(init.headers)
         return fetch(input, init).then(simplifyResponse)
     }
 }
