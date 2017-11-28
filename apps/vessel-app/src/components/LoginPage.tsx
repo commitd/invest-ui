@@ -96,7 +96,7 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
         return (
             <div>
                 {redirect}
-                <Modal open={true} >
+                <Modal open={!authenticated} >
                     <Modal.Header>Sign in</Modal.Header>
                     <Modal.Content>
                         <Login
