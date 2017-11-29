@@ -4,7 +4,8 @@
         "apps/*",
         "libs/*",
         "examples/*",
-        "bundles/*"
+        "bundles/*",
+        "plugins/*"
     ],
     "devDependencies": {
         "lerna": "^2.4.0"
