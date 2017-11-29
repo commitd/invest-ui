@@ -68,10 +68,15 @@ class IFrame<S> extends React.Component<Props<S>, {}>  {
       style = { display: 'none' }
     }
 
+    // Note we allow:
+    // - scripts as we are assume you'll be writing a JS application
+    // - forms because they are fundamental to most applications (but think about cross domain issues)
+    // - popups because although they are annoying they are good for major error / debugging
+
     return (
       <iframe
         title="View"
-        sandbox="allow-scripts"
+        sandbox="allow-scripts allow-forms allow-popups"
         src={src}
         style={style}
         ref={e => {
