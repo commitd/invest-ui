@@ -1,8 +1,10 @@
 import { createAction } from 'redux-actions'
 
 export interface SetAuthPayload {
+    name: string,
     username: string,
-    session: string
+    session: string,
+    roles: string[],
 }
 
 export enum Actions {

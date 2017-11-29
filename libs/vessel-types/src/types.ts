@@ -29,6 +29,8 @@ export interface UiPlugin {
     url: string,
     /** A list of action definitions which this plugin supports. */
     actions: ActionDefinition[]
+    /** A list of roles the user needs before this plugin can be used. */
+    roles: string[]
 }
 
 /** An action definition which is tied to its supported plugin */

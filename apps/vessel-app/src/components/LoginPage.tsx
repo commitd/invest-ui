@@ -20,13 +20,15 @@ type GraphQLProps = {
         login: {
             username: string
             session: string
+            roles: string[]
+            name: string
         }
     }>,
 }
 
 type ConnectProps = {
     authenticated: boolean,
-    setAuth(username: string, session: string): Action
+    setAuth(username: string, session: string, name: string, roles: string[]): Action
 }
 
 type OwnProps = {
@@ -79,7 +81,8 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
 
                 // Dispatch action to put token in the store
 
-                this.props.setAuth(value.data.login.username, value.data.login.session)
+                const auth = value.data.login
+                this.props.setAuth(auth.username, auth.session, auth.name, auth.roles)
             }
         })
     }
@@ -124,10 +127,12 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
 
 const LOGIN_MUTATION = gql`
 mutation login($username: String!, $password: String!) {
-                    login(username:  $username, password: $password) {
-                    username
-    session
-                }
+    login(username:  $username, password: $password) {
+        name
+        username
+        roles
+        session
+    }
 }
 `
 
@@ -137,7 +142,8 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<{}>) => ({
     setAuth:
-        (username: string, session: string) => dispatch(RootAction.actionCreators.auth.setAuth({ username, session }))
+        (username: string, session: string, name: string, roles: string[]) =>
+            dispatch(RootAction.actionCreators.auth.setAuth({ name, roles, username, session }))
 })
 
 export default graphql(LOGIN_MUTATION)(connect(mapStateToProps, mapDispatchToProps)(LoginPage))

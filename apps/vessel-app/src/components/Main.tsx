@@ -9,6 +9,8 @@ import { Layout, NavBar, Login } from 'vessel-components'
 import { searchToIntent } from 'vessel-utils'
 import AuthMenu from './AuthMenu'
 import * as RootAction from '../redux/RootAction'
+import { RootState } from '../redux/RootReducer'
+import { State as AuthState } from '../redux/reducers/auth'
 
 interface GqlResponse {
   vesselServer: {
@@ -20,11 +22,15 @@ interface OwnProps {
   globalHandler: GlobalHandler
 }
 
-interface ConnectProps {
+interface MapStateProps {
+  auth: AuthState,
+}
+
+interface DispatchProps {
   updatePlugins(plugins: UiPlugin[]): {}
 }
 
-type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}> & ConnectProps
+type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}> & MapStateProps & DispatchProps
 
 interface State {
   sidebarOpen: boolean,
@@ -79,7 +85,19 @@ class Main extends React.Component<Props, State> {
   }
 
   getPlugins(): UiPlugin[] {
-    return this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
+    const allPlugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
+
+    const roles = this.props.auth.roles
+
+    return allPlugins.filter(p => {
+      if (p.roles) {
+        // Does the user have all of the plugins roles?
+        return p.roles.every(r => roles.includes(r))
+      } else {
+        // If the plugin has no roles, then anyone can use it 
+        return true
+      }
+    })
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -138,6 +156,7 @@ const APP_QUERY = gql`
         description
         url
         icon
+        roles
         actions {
           action
           title
@@ -148,6 +167,10 @@ const APP_QUERY = gql`
   }
 `
 
+const mapStateToProps = (state: RootState) => ({
+  auth: state.auth
+})
+
 const mapDispatchtoProps = (
   dispatch: Dispatch<{}>) => ({
     updatePlugins: (plugins: UiPlugin[]) => dispatch(RootAction.actionCreators.plugins.setPlugins({
@@ -155,6 +178,7 @@ const mapDispatchtoProps = (
     }))
   })
 
-const connected = connect<ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>
-  (undefined, mapDispatchtoProps)(Main)
-export default withRouter(graphql<Response, OwnProps, Props>(APP_QUERY)(connected))
+const connected = connect<MapStateProps, DispatchProps, ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>
+  (mapStateToProps, mapDispatchtoProps)(Main)
+const graphqled = graphql<GqlResponse, OwnProps>(APP_QUERY)(connected)
+export default withRouter(graphqled)
