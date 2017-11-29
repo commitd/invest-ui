@@ -11,6 +11,7 @@ import AuthMenu from './AuthMenu'
 import * as RootAction from '../redux/RootAction'
 import { RootState } from '../redux/RootReducer'
 import { State as AuthState } from '../redux/reducers/auth'
+import { canUserSeePlugin } from '../utils/RoleUtils'
 
 interface GqlResponse {
   vesselServer: {
@@ -87,17 +88,7 @@ class Main extends React.Component<Props, State> {
   getPlugins(): UiPlugin[] {
     const allPlugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
 
-    const roles = this.props.auth.roles
-
-    return allPlugins.filter(p => {
-      if (p.roles) {
-        // Does the user have all of the plugins roles?
-        return p.roles.every(r => roles.includes(r))
-      } else {
-        // If the plugin has no roles, then anyone can use it 
-        return true
-      }
-    })
+    return allPlugins.filter(p => canUserSeePlugin(this.props.auth, p))
   }
 
   componentWillReceiveProps(nextProps: Props) {

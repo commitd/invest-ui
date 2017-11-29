@@ -7,6 +7,9 @@ import { PluginActionDefinition, UiPlugin } from 'vessel-types'
 import history from '../../history'
 import { intentToSearch } from 'vessel-utils'
 import { RootState } from '../RootReducer'
+import { State as AuthState } from '../reducers/auth'
+
+import { canUserSeePlugin } from '../../utils/RoleUtils'
 
 function* handleStatus(action: ResolverAction<{}, string>) {
     yield call(action.meta.promise.resolve, 'OK')
@@ -26,19 +29,22 @@ function* handleQuery(action: ResolverAction<QueryActionInput, QueryActionOutput
         // TODO: Should we return everything here?
     } else {
         const plugins: UiPlugin[] = yield select((state: RootState) => state.plugins.uiPlugins)
+        const auth: AuthState = yield select((state: RootState) => state.auth)
 
-        plugins.forEach(p => {
-            p.actions
-                .filter(a => a.action === requiredAction)
-                .map(a => ({
-                    action: a.action,
-                    payload: a.payload,
-                    title: a.title,
-                    description: a.description,
-                    pluginId: p.id
-                }))
-                .forEach(a => definitions.push(a))
-        })
+        plugins
+            .filter(p => canUserSeePlugin(auth, p))
+            .forEach(p => {
+                p.actions
+                    .filter(a => a.action === requiredAction)
+                    .map(a => ({
+                        action: a.action,
+                        payload: a.payload,
+                        title: a.title,
+                        description: a.description,
+                        pluginId: p.id
+                    }))
+                    .forEach(a => definitions.push(a))
+            })
     }
     yield call(action.meta.promise.resolve, {
         definitions
