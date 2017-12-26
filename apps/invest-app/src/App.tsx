@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
-import { Route, Redirect, Switch, withRouter } from 'react-router-dom'
+import { Route, Redirect, Switch, withRouter, RouteComponentProps } from 'react-router-dom'
 import { ApolloClient, withApollo } from 'react-apollo'
 import { GlobalHandler, newGlobalHandler } from 'invest-framework'
 
@@ -23,7 +23,7 @@ interface WithApolloProps {
   client: ApolloClient
 }
 
-type Props = WithApolloProps & ConnectProps & OwnProps
+type Props = WithApolloProps & ConnectProps & OwnProps & RouteComponentProps<{}>
 
 class App extends React.Component<Props> {
 
@@ -66,9 +66,11 @@ class App extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: RootState, props: OwnProps) => ({
+const mapStateToProps = (state: RootState, props: OwnProps & RouteComponentProps<{}>) => ({
   authenticated: state.auth.authenticated,
   session: state.auth.session
 })
 
-export default withRouter(connect(mapStateToProps)(withApollo(App)))
+const apolloed = withApollo(App)
+const connected = connect(mapStateToProps)(apolloed)
+export default withRouter(connected)

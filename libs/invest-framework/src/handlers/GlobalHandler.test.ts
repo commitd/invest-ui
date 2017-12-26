@@ -35,7 +35,10 @@ describe('GlobaleHandler', () => {
     let fetchMock: jest.Mock
     beforeEach(() => {
         fetchMock = jest.fn()
-        fetchingGlobal.fetch = fetchMock
+        fetchingGlobal.fetch = (a, b) => {
+            fetchMock(a, b)
+            return Promise.reject('just a test')
+        }
     })
 
     it('handles fetch', () => {

@@ -10,11 +10,11 @@
     "eject": "react-scripts-ts eject"
   },
   "dependencies": {
+    "invest-plugin": "*",
     "react": "^16.0.0",
     "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0",
-    "react-scripts-ts": "2.8.0",
-    "invest-plugin": "*"
+    "react-scripts-ts": "2.8.0"
   },
   "devDependencies": {
     "@types/jest": "^21.1.4",

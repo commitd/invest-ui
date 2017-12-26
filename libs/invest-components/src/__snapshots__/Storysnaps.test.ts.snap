@@ -1,27 +1,356 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Layout TODO 1`] = `
-<p>
-  TODO
-</p>
+exports[`Storyshots Layout Sidebar and Navbar 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column",
+      "height": "100vh",
+      "margin": "0",
+      "overflow": "hidden",
+      "padding": 0,
+      "width": "100%",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <p>
+      NavBar
+    </p>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "flex": "0 0 200px",
+          "height": "100%",
+          "overflow": "auto",
+        }
+      }
+    >
+      <p>
+        SideBar
+      </p>
+    </div>
+    <div
+      style={
+        Object {
+          "border": 0,
+          "flex": 1,
+          "height": "100%",
+          "margin": 0,
+          "padding": 0,
+        }
+      }
+    >
+      <p>
+        Content
+      </p>
+    </div>
+  </div>
+</div>
 `;
 
-exports[`Storyshots Login TODO 1`] = `
-<p>
-  TODO
-</p>
+exports[`Storyshots Layout Sidebar, no navbar 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column",
+      "height": "100vh",
+      "margin": "0",
+      "overflow": "hidden",
+      "padding": 0,
+      "width": "100%",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "flex": "0 0 200px",
+          "height": "100%",
+          "overflow": "auto",
+        }
+      }
+    >
+      <p>
+        SideBar
+      </p>
+    </div>
+    <div
+      style={
+        Object {
+          "border": 0,
+          "flex": 1,
+          "height": "100%",
+          "margin": 0,
+          "padding": 0,
+        }
+      }
+    >
+       
+      <p>
+        Content
+      </p>
+    </div>
+  </div>
+</div>
 `;
 
-exports[`Storyshots Navbar TODO 1`] = `
-<p>
-  TODO
-</p>
+exports[`Storyshots Layout no sidebar, no navbar 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column",
+      "height": "100vh",
+      "margin": "0",
+      "overflow": "hidden",
+      "padding": 0,
+      "width": "100%",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "border": 0,
+          "flex": 1,
+          "height": "100%",
+          "margin": 0,
+          "padding": 0,
+        }
+      }
+    >
+       
+      <p>
+        Content
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Login Live 1`] = `
+<form
+  action={undefined}
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <div
+    className="field"
+  >
+    <label
+      htmlFor={undefined}
+    >
+      Username
+    </label>
+    <div
+      className="ui input"
+      content={undefined}
+    >
+      <input
+        disabled={undefined}
+        onChange={[Function]}
+        placeholder="Enter your username"
+        required={undefined}
+        tabIndex={undefined}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <label
+      htmlFor={undefined}
+    >
+      Password
+    </label>
+    <div
+      className="ui input"
+      content={undefined}
+    >
+      <input
+        disabled={undefined}
+        onChange={[Function]}
+        placeholder="Enter your password"
+        required={undefined}
+        tabIndex={undefined}
+        type="password"
+        value=""
+      />
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Storyshots Login as actions 1`] = `
+<form
+  action={undefined}
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <div
+    className="field"
+  >
+    <label
+      htmlFor={undefined}
+    >
+      Username
+    </label>
+    <div
+      className="ui input"
+      content={undefined}
+    >
+      <input
+        disabled={undefined}
+        onChange={[Function]}
+        placeholder="Enter your username"
+        required={undefined}
+        tabIndex={undefined}
+        type="text"
+        value="partial"
+      />
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <label
+      htmlFor={undefined}
+    >
+      Password
+    </label>
+    <div
+      className="ui input"
+      content={undefined}
+    >
+      <input
+        disabled={undefined}
+        onChange={[Function]}
+        placeholder="Enter your password"
+        required={undefined}
+        tabIndex={undefined}
+        type="password"
+        value="part"
+      />
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Storyshots Navbar no right  1`] = `
+<div
+  className="ui inverted menu"
+  style={
+    Object {
+      "borderRadius": 0,
+    }
+  }
+>
+  <div
+    className="item"
+    onClick={[Function]}
+  >
+    <h3
+      className="ui inverted header"
+    >
+      Nav title
+    </h3>
+  </div>
+  <div
+    className="right item"
+    onClick={[Function]}
+  >
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Navbar with right 1`] = `
+<div
+  className="ui inverted menu"
+  style={
+    Object {
+      "borderRadius": 0,
+    }
+  }
+>
+  <div
+    className="item"
+    onClick={[Function]}
+  >
+    <h3
+      className="ui inverted header"
+    >
+      Nav title
+    </h3>
+  </div>
+  <div
+    className="right item"
+    onClick={[Function]}
+  >
+    <span>
+      Right
+    </span>
+  </div>
+</div>
 `;
 
 exports[`Storyshots Welcome to Invest Components 1`] = `
 <div>
   <p>
-    Vessel Components contains reusable react components which are not tried to any particular plugin or the application framework.
+    Invest Components contains reusable react components which are not tried to any particular plugin or the application framework.
   </p>
 </div>
 `;

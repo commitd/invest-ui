@@ -171,5 +171,5 @@ const mapDispatchtoProps = (
 
 const connected = connect<MapStateProps, DispatchProps, ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>
   (mapStateToProps, mapDispatchtoProps)(Main)
-const graphqled = graphql<GqlResponse, OwnProps>(APP_QUERY)(connected)
+const graphqled = graphql<GqlResponse, OwnProps &  RouteComponentProps<{}>>(APP_QUERY)(connected)
 export default withRouter(graphqled)

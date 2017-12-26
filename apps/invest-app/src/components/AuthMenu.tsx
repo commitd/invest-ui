@@ -80,5 +80,5 @@ const mapDispatchToProps = (dispatch: Dispatch<{}>): DispatchProps => ({
 })
 
 const connected = connect(mapStateToProps, mapDispatchToProps)(AuthMenu)
-const routed = withRouter<{}>(connected)
+const routed = withRouter(connected)
 export default routed

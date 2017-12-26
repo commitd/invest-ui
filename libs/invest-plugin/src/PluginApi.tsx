@@ -9,7 +9,7 @@ import { hydrateSimpleResponse } from 'invest-utils'
 
 const NAVIGATE_MUTATION = gql`
 mutation navigate($pluginId: String!, $action: String, $payload: String) {
-  vesselUi {
+    investUi {
     navigate(input: {pluginId: $pluginId, action: $action, payload: $payload}) {
       success
     }
@@ -18,7 +18,7 @@ mutation navigate($pluginId: String!, $action: String, $payload: String) {
 `
 
 interface FindPluginResponse {
-    vesselUi: {
+    investUi: {
         actions: {
             definitions: PluginActionDefinition[]
         }
@@ -27,7 +27,7 @@ interface FindPluginResponse {
 
 const FIND_PLUGINS_QUERY = gql`
 query findPlugins($action: String!){
-  vesselUi {
+    investUi {
     actions(input: { action: $action }) {
       definitions {
         pluginId
@@ -135,7 +135,7 @@ export class PluginApi {
                 action
             }
         }).then((r: ApolloQueryResult<FindPluginResponse>) => {
-            return r.data.vesselUi.actions.definitions
+            return r.data.investUi.actions.definitions
         })
     }
 }

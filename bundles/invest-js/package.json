@@ -1,11 +1,12 @@
 {
-    "name": "invest-js",
+    "name": "invest",
     "version": "0.1.0",
     "description": "A Ivnest Library you can import with script tags",
     "main": "build/invest.js",
     "scripts": {
         "dev": "webpack",
-        "build": "webpack --optimize-minimize"
+        "build": "webpack --optimize-minimize",
+        "test": "echo 'No tests'"
     },
     "keywords": [
         "invest",

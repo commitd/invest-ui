@@ -31,19 +31,20 @@ const client = new ApolloClient({
     networkInterface: mockNetworkInterfaceWithSchema({ schema })
 })
 
-describe('VesselPluginApi', () => {
+describe('InvestPluginApi', () => {
 
     it('fetch is called', () => {
+        const requestMock = jest.fn()
         const mockConnection = jest.fn<Connection<State>>(() => ({
-            request: jest.fn()
+            request: (a, b, c) => { requestMock(a, b, c); return Promise.reject('test') }
         }))
         const conn = mockConnection()
 
-        const api = new VesselPluginApi(client, conn)
+        const api = new PluginApi(client, conn)
 
         api.fetch('/api/hello')
 
-        expect(conn.request).toBeCalledWith('fetch', '/api/hello', undefined)
+        expect(requestMock).toBeCalledWith('fetch', '/api/hello', undefined)
     })
 
     it('client query is called', () => {
@@ -52,7 +53,7 @@ describe('VesselPluginApi', () => {
         }))
         const conn = mockConnection()
 
-        const api = new VesselPluginApi(client, conn)
+        const api = new PluginApi(client, conn)
 
         api.query({
             query: gql`{ user { name } }`,
@@ -68,7 +69,7 @@ describe('VesselPluginApi', () => {
     //     }))
     //     const conn = mockConnection()
 
-    //     const api = new VesselPluginApi(client, conn)
+    //     const api = new PluginApi(client, conn)
 
     //     api.mutate({
     //         mutation: gql`{ mutation { deleteUser(name: "example") { id } } }`,
