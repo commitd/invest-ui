@@ -1,6 +1,6 @@
 {
   "name": "example-ui",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "eject": "react-scripts-ts eject"
   },
   "dependencies": {
-    "invest-plugin": "^0.1.0",
+    "invest-plugin": "^0.0.1",
     "react": "^16.0.0",
     "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0",
