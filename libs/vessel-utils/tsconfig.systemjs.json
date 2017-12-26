@@ -1,9 +1,0 @@
-{
-    "extends": "../../config/tsconfig.json",
-    "compilerOptions": {
-        "module": "system",
-        "declaration": false,
-        "outFile": "./lib/vessel-utils.js",
-        "rootDir": "./src"
-    }
-}

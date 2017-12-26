@@ -11,17 +11,17 @@
         "lerna": "^2.4.0"
     },
     "scripts": {
-        "dev:app": "lerna run --stream --scope vessel-app start",
+        "dev:app": "lerna run --stream --scope invest-app start",
         "dev:examples": "lerna run --parallel --scope example-* start",
         "dev:libs": "lerna run --parallel watch",
-        "publish:local": "lerna run publish:local",
-        "cache:clear": "rm -rf $(yarn cache dir)/npm-vessel-*",
+        "local:publish": "lerna run publish:local",
+        "local:clearcache": "rm -rf $(yarn cache dir)/npm-invest-*",
         "link:libs": "lerna exec yarn link",
         "build": "lerna run build",
         "build:systemjs": "mkdir -p build; lerna run build:systemjs && lerna run copy:systemjs",
         "test": "lerna run test"
     },
     "resolutions": {
-        "@types/react": "16.0.23"
+        "@types/react": "16.0.31"
     }
 }

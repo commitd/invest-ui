@@ -1,0 +1,63 @@
+{
+  "name": "invest-plugin",
+  "description": "Base library package containing plugin specific implementations",
+  "version": "0.1.0",
+  "module": "src/index.ts",
+  "main": "build/index.js",
+  "browser": "build/index.js",
+  "types": "build/index.d.ts",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "invest-common": "*",
+    "invest-graphql": "*",
+    "invest-rpc": "*",
+    "invest-types": "*",
+    "invest-utils": "*",
+    "prop-types": "^15.6.0"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-apollo": "^1.4.16",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/prop-types": "^15.5.2",
+    "@types/react": "^16.0.10",
+    "@types/react-dom": "^16.0.2",
+    "apollo-test-utils": "^0.3.2",
+    "enzyme": "^3.1.0",
+    "jest": "^21.2.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "ts-jest": "^21.1.4",
+    "tslint": "^5.7.0",
+    "typescript": "~2.5.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:systemjs": "tsc -p tsconfig.systemjs.json",
+    "copy:systemjs": "cp -a lib/. ../../build/.",
+    "watch": "tsc -w",
+    "test": "jest",
+    "publish:local": "npm unpublish --registry http://localhost:4873 $npm_package_name@$npm_package_version && yarn publish --registry http://localhost:4873 --new-version $npm_package_version"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "../../node_modules/ts-jest/preprocessor.js"
+    },
+    "mapCoverage": true,
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "build/",
+      "lib/"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  }
+}
