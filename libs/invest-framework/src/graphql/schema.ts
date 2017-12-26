@@ -4,10 +4,10 @@ import {
     GraphQLResolveInfo
 } from 'graphql'
 
-import { PluginActionDefinition } from 'vessel-types'
+import { PluginActionDefinition } from 'invest-types'
 
-/** Route object in the graphql schema for Vessel UI  */
-export const vesselUiRoot = 'vesselUi'
+/** Route object in the graphql schema for Invest UI  */
+export const investUiRoot = 'investUi'
 
 /** Type of a callback which will statify a query */
 export type QueryResolverCallback<Result, Arguments, Source, Context>
@@ -50,7 +50,7 @@ export const schema: GraphQLSchema = buildSchema(`
         definitions: [PluginActionDefinition!]!
     }
 
-    type VesselUiQuery {
+    type InvestUiQuery {
         status: String!,
         actions(input: QueryActionInput): QueryActionOutput!
     }
@@ -67,7 +67,7 @@ export const schema: GraphQLSchema = buildSchema(`
         success: Boolean!
     }
 
-    type VesselUiMutation {
+    type InvestUiMutation {
         # TODO: For the moment paylload is a JSOn.strinfify()... 
         # but it can be better maanged with a customer JSONScalar type 
         # see https://stackoverflow.com/questions/45842544/graphql-objecttype-with-dynamic-fields-based-on-arguments
@@ -78,11 +78,11 @@ export const schema: GraphQLSchema = buildSchema(`
     # Schema (likely no need to amend)
 
     type Query {
-        ${vesselUiRoot}: VesselUiQuery
+        ${investUiRoot}: InvestUiQuery
     }
 
     type Mutation {
-        ${vesselUiRoot}: VesselUiMutation
+        ${investUiRoot}: InvestUiMutation
     }
 
     schema {
@@ -114,15 +114,15 @@ export type NavigateOutput = {
 }
 
 /** JS representation of the GraphQL schema */
-export interface VesselUiGraphQLRoot {
+export interface InvestUiGraphQLRoot {
     query: {
-        vesselUi: {
+        investUi: {
             status: QueryResolver<string>,
             actions: QueryResolver<QueryActionOutput, { input: QueryActionInput }>
         },
     }
     mutation: {
-        vesselUi: {
+        investUi: {
             navigate: MutationResolver<NavigateOutput, { input: NavigateInput }>
         }
     }

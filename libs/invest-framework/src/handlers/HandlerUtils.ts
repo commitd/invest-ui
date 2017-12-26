@@ -1,4 +1,4 @@
-import { Handler } from 'vessel-rpc'
+import { Handler } from 'invest-rpc'
 
 /**
  * Merge two handlers together to create another handler.

@@ -4,9 +4,9 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 
-import { VesselUiPlugin } from 'vessel-plugin'
-import { PluginLifecycle } from 'vessel-common'
-import { Handler } from 'vessel-rpc'
+import { InvestUiPlugin } from 'invest-plugin'
+import { PluginLifecycle } from 'invest-common'
+import { Handler } from 'invest-rpc'
 
 const handler: Handler<PluginLifecycle> = {
   onLoad: () => {
@@ -33,9 +33,9 @@ const handler: Handler<PluginLifecycle> = {
 }
 
 ReactDOM.render(
-  <VesselUiPlugin handler={handler}>
+  <InvestUiPlugin handler={handler}>
     <App />
-  </VesselUiPlugin>,
+  </InvestUiPlugin>,
   document.getElementById('root') as HTMLElement
 )
 registerServiceWorker()

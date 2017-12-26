@@ -4,7 +4,7 @@ import { Action } from 'redux-actions'
 import { Actions } from '../RootAction'
 import { SetPluginPayload } from '../actions/plugins'
 import * as Immutable from 'seamless-immutable'
-import { UiPlugin } from 'vessel-types'
+import { UiPlugin } from 'invest-types'
 
 export interface State {
     readonly uiPlugins: UiPlugin[]

@@ -1,5 +1,5 @@
 {
-  "name": "vessel-redux",
+  "name": "invest-redux",
   "version": "0.1.0",
   "module": "src/index.ts",
   "main": "build/index.js",

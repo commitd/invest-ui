@@ -1,5 +1,5 @@
 
-import { HandlerFunction, JsonRpcParameter } from 'vessel-rpc'
+import { HandlerFunction, JsonRpcParameter } from 'invest-rpc'
 import { NetworkInterface, ApolloClient } from 'react-apollo'
 import { ExecutionResult } from 'graphql'
 

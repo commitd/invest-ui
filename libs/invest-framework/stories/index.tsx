@@ -8,10 +8,10 @@ import './components/PluginListSidebar'
 import './components/PluginViewManager'
 import './components/PluginView'
 
-storiesOf('Welcome', module).add('Vessel Framework', () => (
+storiesOf('Welcome', module).add('Invest Framework', () => (
     <div>
         <p>
-            Vessel framework holds components which are useful for building the the outer Vessel application
+            Invest Framework holds components which are useful for building the the outer frame application
             rather than than for plugins.
         </p>
     </div>

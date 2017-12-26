@@ -1,5 +1,5 @@
 {
-  "name": "vessel-utils",
+  "name": "invest-utils",
   "version": "0.1.0",
   "module": "src/index.ts",
   "main": "build/index.js",
@@ -20,7 +20,7 @@
     "typescript": "~2.5.0"
   },
   "peerDependencies": {
-    "vessel-types": "0.1.0"
+    "invest-types": "*"
   },
   "scripts": {
     "build": "tsc",

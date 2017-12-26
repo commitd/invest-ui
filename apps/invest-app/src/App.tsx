@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom'
 import { ApolloClient, withApollo } from 'react-apollo'
-import { GlobalHandler, newGlobalHandler } from 'vessel-framework'
+import { GlobalHandler, newGlobalHandler } from 'invest-framework'
 
 import LoginPage from './components/LoginPage'
 import Main from './components/Main'
@@ -37,8 +37,8 @@ class App extends React.Component<Props> {
   renderMain = () => <Main globalHandler={this.globalHandler} />
 
   render() {
-    // Should come from settings
-    const title = 'Vessel'
+    // TODO: Should come from settings
+    const title = 'Invest'
     const requireAuthentication = false
 
     const { authenticated } = this.props

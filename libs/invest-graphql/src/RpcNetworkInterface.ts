@@ -4,17 +4,17 @@ import {
     ApolloClient
 } from 'apollo-client'
 import { ExecutionResult } from 'graphql'
-import { Connection } from 'vessel-rpc'
+import { Connection } from 'invest-rpc'
 
-import { loggerFactory } from 'vessel-utils'
-const logger = loggerFactory.getLogger('VesselRpcNetworkInterface')
+import { loggerFactory } from 'invest-utils'
+const logger = loggerFactory.getLogger('InvestRpcNetworkInterface')
 
 export interface Options {
     connection: Connection<{}>,
     method?: string
 }
 
-export class VesselRpcNetworkInterface implements NetworkInterface {
+export class InvestRpcNetworkInterface implements NetworkInterface {
     private connection: Connection<{}>
     private method: string
 
@@ -24,19 +24,19 @@ export class VesselRpcNetworkInterface implements NetworkInterface {
     }
 
     query(request: Request): Promise<ExecutionResult> {
-        logger.trace('VesselRpcNetworkInterface.query', request)
+        logger.trace('InvestRpcNetworkInterface.query', request)
         return this.connection.request<ExecutionResult>(this.method, request)
     }
 
     // TODO add use / useAfter?
 }
 
-export function createVesselRpcNetworkInterface(options: Options): VesselRpcNetworkInterface {
-    return new VesselRpcNetworkInterface(options)
+export function createInvestRpcNetworkInterface(options: Options): InvestRpcNetworkInterface {
+    return new InvestRpcNetworkInterface(options)
 }
 
 export function createApolloRpcClient(options: Options): ApolloClient {
     return new ApolloClient({
-        networkInterface: createVesselRpcNetworkInterface(options)
+        networkInterface: createInvestRpcNetworkInterface(options)
     })
 }

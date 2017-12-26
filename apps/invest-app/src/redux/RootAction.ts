@@ -1,15 +1,15 @@
-import * as VesselUiResolver from './actions/vesselUi'
+import * as InvestUiResolver from './actions/investUi'
 import * as Auth from './actions/auth'
 import * as Plugins from './actions/plugins'
 
 export const Actions = {
-    vesselUi: VesselUiResolver.Actions,
+    investUi: InvestUiResolver.Actions,
     auth: Auth.Actions,
     plugins: Plugins.Actions
 }
 
 export const actionCreators = {
-    vesselUi: VesselUiResolver.actionCreators,
+    investUi: InvestUiResolver.actionCreators,
     auth: Auth.actionCreators,
     plugins: Plugins.actionCreators
 }

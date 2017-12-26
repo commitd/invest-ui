@@ -14,7 +14,7 @@
     "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0",
     "react-scripts-ts": "2.8.0",
-    "vessel-plugin": "0.1.0"
+    "invest-plugin": "*"
   },
   "devDependencies": {
     "@types/jest": "^21.1.4",

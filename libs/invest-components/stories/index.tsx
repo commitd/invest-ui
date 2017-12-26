@@ -8,10 +8,10 @@ import './app/Layout'
 import './app/NavBar'
 import './auth/Login'
 
-storiesOf('Welcome', module).add('to Vessel Components', () =>
+storiesOf('Welcome', module).add('to Invest Components', () =>
     (
         <div>
-            <p>Vessel Components contains reusable react components which are not
+            <p>Invest Components contains reusable react components which are not
                 tried to any particular plugin or the application framework.</p>
         </div>
     )

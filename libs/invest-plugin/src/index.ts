@@ -1,4 +1,4 @@
 
 export * from './Connect'
-export * from './VesselUiPlugin'
-export * from './VesselPluginApi'
+export * from './InvestUiPlugin'
+export * from './PluginApi'

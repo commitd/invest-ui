@@ -8,15 +8,15 @@ import 'semantic-ui-css/semantic.min.css'
 
 import App from './App'
 
-import { newStore } from 'vessel-redux'
+import { newStore } from 'invest-redux'
 import { Store, Dispatch, combineReducers } from 'redux'
 import { rootReducer, RootState } from './redux/RootReducer'
 import { rootSaga } from './redux/RootSaga'
 
 import { ApolloProvider, ApolloClient, createNetworkInterface } from 'react-apollo'
 import { MiddlewareRequest } from 'apollo-client/transport/middleware'
-import { vesselUiRoot, schema } from 'vessel-framework'
-import { SpiltNetworkInterface, LocalNetworkInterface } from 'vessel-graphql'
+import { investUiRoot, schema } from 'invest-framework'
+import { SpiltNetworkInterface, LocalNetworkInterface } from 'invest-graphql'
 import { createGraphQLResolver } from './graphql/Resolver'
 
 import history from './history'
@@ -33,7 +33,7 @@ const httpNetworkInterface = createNetworkInterface({
 const client = new ApolloClient({
   networkInterface: new SpiltNetworkInterface({
     interfaces: {
-      [vesselUiRoot]: new LocalNetworkInterface(schema, graphQlResolver)
+      [investUiRoot]: new LocalNetworkInterface(schema, graphQlResolver)
     },
     defaultInterface: httpNetworkInterface
   })

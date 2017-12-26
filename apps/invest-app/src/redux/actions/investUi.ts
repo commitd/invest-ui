@@ -1,7 +1,7 @@
 import {
   QueryActionInput, QueryActionOutput, NavigateInput, NavigateOutput,
   createResolverAction
-} from 'vessel-framework'
+} from 'invest-framework'
 
 export enum Actions {
   RESOLVER_QUERY_STATUS = 'HANDLER_QUERY_STATUS',

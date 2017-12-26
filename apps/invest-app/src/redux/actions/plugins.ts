@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { UiPlugin } from 'vessel-types'
+import { UiPlugin } from 'invest-types'
 
 export interface SetPluginPayload {
     uiPlugins: UiPlugin[]

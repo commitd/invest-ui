@@ -1,12 +1,12 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
 import { ApolloProvider } from 'react-apollo'
-import { Handler } from 'vessel-rpc'
+import { Handler } from 'invest-rpc'
 
-import { VesselPluginApi } from './VesselPluginApi'
-import { PluginLifecycle } from 'vessel-common'
+import { PluginApi } from './PluginApi'
+import { PluginLifecycle } from 'invest-common'
 
-import { createVesselPluginApi } from './Connect'
+import { createPluginApi } from './Connect'
 
 /** Our child can receive action and payload via props */
 export type ChildProps = {
@@ -28,7 +28,7 @@ export interface Props {
 
 /** The Context will will provide  */
 export interface Context {
-    pluginApi: VesselPluginApi
+    pluginApi: PluginApi
 }
 
 interface State {
@@ -43,27 +43,27 @@ interface State {
  * 
  * ```
  * ReactDOM.render(
- * <VesselUiPlugin handler={handler}>
+ * <InvestUiPlugin handler={handler}>
  *   <App />
- * </VesselUiPlugin>,
+ * </InvestUiPlugin>,
  * document.getElementById('root') as HTMLElement
  * ```
  * 
- * It will set up Apollo, the RPC connection and provide the VesselPluginAPI via context.
+ * It will set up Apollo, the RPC connection and provide the PluginAPI via context.
  * 
- * You can provide a handler via props which will receive PLuginLifecycle notifications.
+ * You can provide a handler via props which will receive PluginLifecycle notifications.
  * 
  * Any recieved actions and payloads will be placed on this components React.Child via 
  * the props mechanism. As such you can listen to shouldWillRecieveProps in order to 
  * response to changes. 
  * 
  */
-class VesselUiPlugin extends React.Component<Props, State> {
+class InvestUiPlugin extends React.Component<Props, State> {
     static childContextTypes = {
-        pluginApi: PropTypes.instanceOf(VesselPluginApi)
+        pluginApi: PropTypes.instanceOf(PluginApi)
     }
 
-    pluginApi: VesselPluginApi
+    pluginApi: PluginApi
 
     state = {
         action: undefined,
@@ -74,7 +74,7 @@ class VesselUiPlugin extends React.Component<Props, State> {
         super(props)
 
         const handler = this.wrapHandler(this.props.handler || {})
-        this.pluginApi = createVesselPluginApi(handler)
+        this.pluginApi = createPluginApi(handler)
     }
 
     getChildContext(): Context {
@@ -137,7 +137,7 @@ class VesselUiPlugin extends React.Component<Props, State> {
 }
 
 // Typescript dance to loose the State
-const Component = VesselUiPlugin as React.ComponentType<Props>
+const Component = InvestUiPlugin as React.ComponentType<Props>
 export {
-    Component as VesselUiPlugin
+    Component as InvestUiPlugin
 }

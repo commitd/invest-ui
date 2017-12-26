@@ -1,15 +1,16 @@
 {
-    "name": "vessel-js",
+    "name": "invest-js",
     "version": "0.1.0",
-    "description": "A Vessel Library you can import with script tagscd",
-    "main": "build/vessel.js",
+    "description": "A Ivnest Library you can import with script tags",
+    "main": "build/invest.js",
     "scripts": {
         "dev": "webpack",
         "build": "webpack --optimize-minimize"
     },
     "keywords": [
-        "vessel",
-        "library"
+        "invest",
+        "library",
+        "umd"
     ],
     "license": "Apache-2.0",
     "devDependencies": {
@@ -19,15 +20,15 @@
         "babel-preset-es2015-webpack": "^6.4.3",
         "eslint": "^3.9.1",
         "eslint-loader": "^1.6.1",
-        "vessel-plugin": "*",
+        "invest-plugin": "*",
         "webpack": "^2.2.1",
         "webpack-visualizer-plugin": "^0.1.11"
     },
     "dependencies": {
         "semantic-ui-css": "^2.2.12",
-        "vessel-graphql": "*",
-        "vessel-rpc": "*",
-        "vessel-types": "*",
-        "vessel-utils": "*"
+        "invest-graphql": "*",
+        "invest-rpc": "*",
+        "invest-types": "*",
+        "invest-utils": "*"
     }
 }

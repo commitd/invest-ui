@@ -3,10 +3,10 @@ import Helmet from 'react-helmet'
 import { graphql, gql, ChildProps } from 'react-apollo'
 import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
 import { connect, Dispatch } from 'react-redux'
-import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'vessel-framework'
-import { UiPlugin, PluginWithIntent } from 'vessel-types'
-import { Layout, NavBar, Login } from 'vessel-components'
-import { searchToIntent } from 'vessel-utils'
+import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'invest-framework'
+import { UiPlugin, PluginWithIntent } from 'invest-types'
+import { Layout, NavBar, Login } from 'invest-components'
+import { searchToIntent } from 'invest-utils'
 import AuthMenu from './AuthMenu'
 import * as RootAction from '../redux/RootAction'
 import { RootState } from '../redux/RootReducer'
@@ -14,7 +14,7 @@ import { State as AuthState } from '../redux/reducers/auth'
 import { canUserSeePlugin } from '../utils/RoleUtils'
 
 interface GqlResponse {
-  vesselServer: {
+  investServer: {
     uiPlugins: UiPlugin[]
   }
 }
@@ -86,7 +86,7 @@ class Main extends React.Component<Props, State> {
   }
 
   getPlugins(): UiPlugin[] {
-    const allPlugins = this.props.data && this.props.data.vesselServer ? this.props.data.vesselServer.uiPlugins : []
+    const allPlugins = this.props.data && this.props.data.investServer ? this.props.data.investServer.uiPlugins : []
 
     return allPlugins.filter(p => canUserSeePlugin(this.props.auth, p))
   }
@@ -94,15 +94,15 @@ class Main extends React.Component<Props, State> {
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.data && !nextProps.data.loading) {
       const data = nextProps.data
-      if (data.vesselServer && data.vesselServer.uiPlugins) {
-        this.props.updatePlugins(data.vesselServer.uiPlugins)
+      if (data.investServer && data.investServer.uiPlugins) {
+        this.props.updatePlugins(data.investServer.uiPlugins)
       }
     }
   }
 
   render() {
     let plugins = this.getPlugins()
-    const title = 'Vessel'
+    const title = 'Invest'
 
     const selectedPlugin = this.findSelectedPlugin()
 
@@ -140,7 +140,7 @@ class Main extends React.Component<Props, State> {
 
 const APP_QUERY = gql`
   query {
-    vesselServer {
+    investServer {
       uiPlugins {
         id
         name

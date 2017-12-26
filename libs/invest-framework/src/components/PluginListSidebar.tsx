@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Icon, Menu, Header } from 'semantic-ui-react'
 
-import { UiPlugin } from 'vessel-types'
+import { UiPlugin } from 'invest-types'
 
 export interface Props {
     /** PLugins to dispay on the menu */

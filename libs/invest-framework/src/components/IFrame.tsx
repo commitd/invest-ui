@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Connection, Handler } from 'vessel-rpc'
+import { Connection, Handler } from 'invest-rpc'
 
 export interface Props<S> {
   /** The src url for the iframe */

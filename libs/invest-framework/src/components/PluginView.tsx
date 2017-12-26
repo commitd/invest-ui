@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { Handler, Connection } from 'vessel-rpc'
-import { PluginWithIntent } from 'vessel-types'
+import { Handler, Connection } from 'invest-rpc'
+import { PluginWithIntent } from 'invest-types'
 import IFrame from './IFrame'
 const isEqual = require('lodash.isequal')
 

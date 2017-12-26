@@ -1,5 +1,5 @@
 {
-  "name": "vessel-framework",
+  "name": "invest-framework",
   "version": "0.1.0",
   "module": "src/index.ts",
   "main": "build/index.js",
@@ -13,9 +13,9 @@
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "vessel-components": "0.1.0",
-    "vessel-rpc": "0.1.0",
-    "vessel-types": "0.1.0"
+    "invest-components": "*",
+    "invest-rpc": "*",
+    "invest-types": "*"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.14",
@@ -43,7 +43,7 @@
     "ts-jest": "^21.1.4",
     "tslint": "^5.7.0",
     "typescript": "~2.5.0",
-    "vessel-components": "0.1.0"
+    "invest-components": "*"
   },
   "scripts": {
     "build": "tsc",

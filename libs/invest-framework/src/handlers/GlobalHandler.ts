@@ -1,8 +1,8 @@
 import { ApolloClient } from 'react-apollo'
 import { ExecutionResult } from 'graphql'
-import { Handler, HandlerFunction } from 'vessel-rpc'
-import { createGraphQLHandlerForClient } from 'vessel-graphql'
-import { simplifyResponse, SimpleResponse } from 'vessel-utils'
+import { Handler, HandlerFunction } from 'invest-rpc'
+import { createGraphQLHandlerForClient } from 'invest-graphql'
+import { simplifyResponse, SimpleResponse } from 'invest-utils'
 
 export class GlobalHandler implements Handler<GlobalHandler> {
 

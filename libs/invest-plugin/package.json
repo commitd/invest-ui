@@ -1,5 +1,5 @@
 {
-  "name": "vessel-plugin",
+  "name": "invest-plugin",
   "description": "Base library package containing plugin specific implementations",
   "version": "0.1.0",
   "module": "src/index.ts",
@@ -9,11 +9,11 @@
   "license": "Apache-2.0",
   "dependencies": {
     "prop-types": "^15.6.0",
-    "vessel-common": "*",
-    "vessel-graphql": "*",
-    "vessel-rpc": "*",
-    "vessel-types": "*",
-    "vessel-utils": "*"
+    "invest-common": "*",
+    "invest-graphql": "*",
+    "invest-rpc": "*",
+    "invest-types": "*",
+    "invest-utils": "*"
   },
   "peerDependencies": {
     "react": "^16.0.0",

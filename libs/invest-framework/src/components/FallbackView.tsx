@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { UiPlugin } from 'vessel-types'
+import { UiPlugin } from 'invest-types'
 import { Card, Grid, Icon } from 'semantic-ui-react'
 
 export interface Props {

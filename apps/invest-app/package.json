@@ -1,5 +1,5 @@
 {
-  "name": "vessel-app",
+  "name": "invest-app",
   "version": "0.1.0",
   "private": true,
   "license": "Apache-2.0",
@@ -13,13 +13,13 @@
     "react-scripts-ts": "2.8.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.76.0",
-    "vessel-components": "0.1.0",
-    "vessel-framework": "0.1.0",
-    "vessel-graphql": "0.1.0",
-    "vessel-redux": "0.1.0",
-    "vessel-rpc": "0.1.0",
-    "vessel-types": "0.1.0",
-    "vessel-utils": "0.1.0"
+    "invest-components": "*",
+    "invest-framework": "*",
+    "invest-graphql": "*",
+    "invest-redux": "*",
+    "invest-rpc": "*",
+    "invest-types": "*",
+    "invest-utils": "*"
   },
   "scripts": {
     "start": "react-scripts-ts start",

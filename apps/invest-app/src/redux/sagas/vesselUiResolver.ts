@@ -2,10 +2,10 @@ import { call, all, takeEvery, select } from 'redux-saga/effects'
 
 import { Actions } from '../RootAction'
 
-import { QueryActionInput, QueryActionOutput, NavigateInput, NavigateOutput, ResolverAction } from 'vessel-framework'
-import { PluginActionDefinition, UiPlugin } from 'vessel-types'
+import { QueryActionInput, QueryActionOutput, NavigateInput, NavigateOutput, ResolverAction } from 'invest-framework'
+import { PluginActionDefinition, UiPlugin } from 'invest-types'
 import history from '../../history'
-import { intentToSearch } from 'vessel-utils'
+import { intentToSearch } from 'invest-utils'
 import { RootState } from '../RootReducer'
 import { State as AuthState } from '../reducers/auth'
 
@@ -73,8 +73,8 @@ function* handleNavigate(action: ResolverAction<NavigateInput, NavigateOutput>) 
 
 export default function* example() {
     yield (all([
-        yield takeEvery(Actions.vesselUi.RESOLVER_QUERY_STATUS, handleStatus),
-        yield takeEvery(Actions.vesselUi.RESOLVER_QUERY_ACTIONS, handleQuery),
-        yield takeEvery(Actions.vesselUi.RESOLVER_MUTATION_NAVIGATE, handleNavigate)
+        yield takeEvery(Actions.investUi.RESOLVER_QUERY_STATUS, handleStatus),
+        yield takeEvery(Actions.investUi.RESOLVER_QUERY_ACTIONS, handleQuery),
+        yield takeEvery(Actions.investUi.RESOLVER_MUTATION_NAVIGATE, handleNavigate)
     ]))
 }

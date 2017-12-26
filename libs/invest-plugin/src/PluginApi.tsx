@@ -3,9 +3,9 @@ import {
     ApolloExecutionResult, MutationOptions, gql
 } from 'react-apollo'
 
-import { Connection } from 'vessel-rpc'
-import { PluginActionDefinition } from 'vessel-types'
-import { hydrateSimpleResponse } from 'vessel-utils'
+import { Connection } from 'invest-rpc'
+import { PluginActionDefinition } from 'invest-types'
+import { hydrateSimpleResponse } from 'invest-utils'
 
 const NAVIGATE_MUTATION = gql`
 mutation navigate($pluginId: String!, $action: String, $payload: String) {
@@ -44,7 +44,7 @@ query findPlugins($action: String!){
  * A client implemenation which will calle the API which the outer application (via the RPC layer).
  * 
  */
-export class VesselPluginApi {
+export class PluginApi {
 
     connection?: Connection<{}>
     client: ApolloClient

@@ -1,4 +1,4 @@
-import { UiPlugin, PluginWithIntent } from 'vessel-types'
+import { UiPlugin, PluginWithIntent } from 'invest-types'
 
 export const plugins: UiPlugin[] = [
     {

@@ -1,5 +1,5 @@
-import { VesselPluginApi } from './VesselPluginApi'
-import { Connection } from 'vessel-rpc'
+import { PluginApi } from './PluginApi'
+import { Connection } from 'invest-rpc'
 
 import ApolloClient from 'apollo-client'
 import gql from 'graphql-tag'

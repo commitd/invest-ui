@@ -7,9 +7,9 @@ export default () => (
         entry: './src/index.js',
         output: {
             path: path.resolve(__dirname, './build'),
-            filename: 'vessel.js',
+            filename: 'invest.js',
             libraryTarget: 'umd',
-            library: 'Vessel'
+            library: 'Invest'
         },
         plugins: [new Visualizer()],
         externals: {

@@ -1,5 +1,5 @@
 import * as qs from 'qs'
-import { Intent } from 'vessel-types'
+import { Intent } from 'invest-types'
 
 /**
  * Convert from an search (query param string) to a an Intent

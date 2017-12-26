@@ -1,6 +1,6 @@
 const uniqueId = require('uniqueid')
 import * as shortid from 'shortid'
-import { loggerFactory } from 'vessel-utils'
+import { loggerFactory } from 'invest-utils'
 
 import {
     JsonRpcId, JsonRpcRequest, JsonRpcMethod, JsonRpcParameter,

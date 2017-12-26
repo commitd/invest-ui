@@ -1,5 +1,5 @@
 import { mergeHandler } from './HandlerUtils'
-import { Handler } from 'vessel-rpc'
+import { Handler } from 'invest-rpc'
 interface A {
     fromA(): string
 }

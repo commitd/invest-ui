@@ -3,7 +3,7 @@
     "compilerOptions": {
         "module": "system",
         "declaration": false,
-        "outFile": "./lib/vessel-types.js",
+        "outFile": "./lib/invest-types.js",
         "rootDir": "./src"
     }
 }

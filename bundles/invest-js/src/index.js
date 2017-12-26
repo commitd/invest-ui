@@ -1,10 +1,10 @@
-import { VesselPluginApi, createVesselPluginApi } from 'vessel-plugin'
-import { loggerFactory } from 'vessel-utils'
+import { PluginApi, createPluginApi } from 'invest-plugin'
+import { loggerFactory } from 'invest-utils'
 
 module.exports = {
-    connect: createVesselPluginApi,
+    connect: createPluginApi,
     plugin: {
-        Api: VesselPluginApi
+        Api: PluginApi
     },
     utils: {
         loggerFactory

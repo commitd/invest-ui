@@ -10,6 +10,6 @@ export * from './LocalNetworkInterface'
 // manage this. 
 // This would likely remove the need for SpiltNetworkInterface. 
 // Perhaps that would move the spiltting from the application the plugin? 
-// (perhaps - if it where moved it would allow the plugin to be smarter about what it did if not vessel parent app
+// (perhaps - if it where moved it would allow the plugin to be smarter about what it did if not outer app
 // was available, but it also complicates the plugin). 
 // http://dev.apollodata.com/tools/graphql-tools/schema-stitching.html#remote-schemas

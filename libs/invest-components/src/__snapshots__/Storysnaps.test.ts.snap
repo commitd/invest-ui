@@ -18,7 +18,7 @@ exports[`Storyshots Navbar TODO 1`] = `
 </p>
 `;
 
-exports[`Storyshots Welcome to Vessel Components 1`] = `
+exports[`Storyshots Welcome to Invest Components 1`] = `
 <div>
   <p>
     Vessel Components contains reusable react components which are not tried to any particular plugin or the application framework.

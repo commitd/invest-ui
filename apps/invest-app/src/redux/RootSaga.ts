@@ -1,9 +1,9 @@
 import { all } from 'redux-saga/effects'
 
-import vesselUiResolver from './sagas/vesselUiResolver'
+import investUiResolver from './sagas/investUiResolver'
 
 export function* rootSaga() {
     yield all([
-        vesselUiResolver()
+        investUiResolver()
     ])
 }

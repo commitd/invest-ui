@@ -1,4 +1,4 @@
-import { UiPlugin } from 'vessel-types'
+import { UiPlugin } from 'invest-types'
 import { State as AuthState } from '../redux/reducers/auth'
 
 export function canUserSeePlugin(auth: AuthState, plugin: UiPlugin) {

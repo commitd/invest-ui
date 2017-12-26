@@ -3,25 +3,25 @@ import {
     ApolloClient
 } from 'react-apollo'
 
-import { createApolloRpcClient } from 'vessel-graphql'
-import { loggerFactory } from 'vessel-utils'
-import { Connection, Handler } from 'vessel-rpc'
-import { VesselPluginApi } from './VesselPluginApi'
-import { PluginLifecycle } from 'vessel-common'
+import { createApolloRpcClient } from 'invest-graphql'
+import { loggerFactory } from 'invest-utils'
+import { Connection, Handler } from 'invest-rpc'
+import { PluginApi } from './PluginApi'
+import { PluginLifecycle } from 'invest-common'
 
-const logger = loggerFactory.getLogger('VesselUiPlugin')
+const logger = loggerFactory.getLogger('InvestUiPlugin')
 
-export function createVesselPluginApi(handler: Handler<PluginLifecycle>) {
+export function createPluginApi(handler: Handler<PluginLifecycle>) {
     let client: ApolloClient
     let connection: Connection<{}> | undefined = undefined
 
     let safeHandler = handler == null ? {} : handler
 
     if (!isInIFrame()) {
-        logger.info('Running standalone')
+        logger.info('Running Standalone')
         client = new ApolloClient()
     } else {
-        logger.info('Running inside vessel')
+        logger.info('Running inside Invest')
         connection = new Connection(window, window.parent, safeHandler)
         connection.start()
         client = createApolloRpcClient({
@@ -29,7 +29,7 @@ export function createVesselPluginApi(handler: Handler<PluginLifecycle>) {
         })
     }
 
-    return new VesselPluginApi(client, connection)
+    return new PluginApi(client, connection)
 }
 
 function isInIFrame() {

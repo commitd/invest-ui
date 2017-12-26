@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { UiPlugin, PluginWithIntent } from 'vessel-types'
-import { Handler } from 'vessel-rpc'
+import { UiPlugin, PluginWithIntent } from 'invest-types'
+import { Handler } from 'invest-rpc'
 import PluginView from './PluginView'
 const isEqual = require('lodash.isequal')
 
