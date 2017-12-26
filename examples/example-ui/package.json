@@ -10,7 +10,7 @@
     "eject": "react-scripts-ts eject"
   },
   "dependencies": {
-    "invest-plugin": "*",
+    "invest-plugin": "^0.1.0",
     "react": "^16.0.0",
     "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0",
