@@ -1,7 +1,7 @@
 
 import { HandlerFunction, JsonRpcParameter } from 'invest-rpc'
 import { ExecutionResult } from 'graphql'
-import { ApolloLink, Operation, FetchResult } from 'apollo-link'
+import { ApolloLink, FetchResult, GraphQLRequest, createOperation } from 'apollo-link'
 
 // // We are intercepting at the network interface level... not at the client level. This is repeating the work..
 // TODO: but perhaps we shoud be doing it this way? Then we only have a redux store in the parent.
@@ -45,10 +45,12 @@ export function createGraphQLHandler(link: ApolloLink): HandlerFunction<Executio
         if (params.length !== 1) {
             return Promise.reject('Invalid number of arguments')
         }
-        const request = params[0] as Operation
+        const request = params[0] as GraphQLRequest
         if (request != null) {
-            // TODO: Is this ok for concatenated links?
-            const o = link.request(request)
+
+            const operation = createOperation(request.context, request)
+
+            const o = link.request(operation)
             if (o == null) {
                 return Promise.reject('Link did not handle the result')
             } else {
