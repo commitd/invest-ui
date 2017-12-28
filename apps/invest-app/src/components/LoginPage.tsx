@@ -1,13 +1,16 @@
 import * as React from 'react'
 import { Action } from 'redux'
 import { Dispatch, connect } from 'react-redux'
-import { graphql, gql, MutationFunc } from 'react-apollo'
+import { graphql, MutationFunc } from 'react-apollo'
+import gql from 'graphql-tag'
+import { Modal, Button } from 'semantic-ui-react'
 import { Redirect } from 'react-router-dom'
+
 import { Login } from 'invest-components'
+
 import * as RootAction from '../redux/RootAction'
 import { RootState } from '../types'
 import History from '../history'
-import { Modal, Button } from 'semantic-ui-react'
 
 type State = {
     username: string,

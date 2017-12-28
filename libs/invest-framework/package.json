@@ -11,7 +11,7 @@
     "semantic-ui-react": "^0.76.0"
   },
   "peerDependencies": {
-    "invest-components": "^0.0.1",
+    "invest-components": "*",
     "invest-rpc": "*",
     "invest-types": "*",
     "react": "^16.0.0",

@@ -1,12 +1,15 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { graphql, gql, ChildProps } from 'react-apollo'
+import { graphql, ChildProps } from 'react-apollo'
+import gql from 'graphql-tag'
 import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
 import { connect, Dispatch } from 'react-redux'
+
 import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'invest-framework'
 import { UiPlugin, PluginWithIntent } from 'invest-types'
 import { Layout, NavBar, Login } from 'invest-components'
 import { searchToIntent } from 'invest-utils'
+
 import AuthMenu from './AuthMenu'
 import * as RootAction from '../redux/RootAction'
 import { RootState } from '../redux/RootReducer'
@@ -171,5 +174,5 @@ const mapDispatchtoProps = (
 
 const connected = connect<MapStateProps, DispatchProps, ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>
   (mapStateToProps, mapDispatchtoProps)(Main)
-const graphqled = graphql<GqlResponse, OwnProps &  RouteComponentProps<{}>>(APP_QUERY)(connected)
+const graphqled = graphql<GqlResponse, OwnProps & RouteComponentProps<{}>>(APP_QUERY)(connected)
 export default withRouter(graphqled)

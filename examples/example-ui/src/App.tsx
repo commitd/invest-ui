@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { compose, graphql, gql, MutationFunc } from 'react-apollo'
+import { compose, graphql, MutationFunc } from 'react-apollo'
+import gql from 'graphql-tag'
 import { PluginApi } from 'invest-plugin'
 
 interface Response {

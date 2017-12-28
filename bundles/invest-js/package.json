@@ -26,10 +26,10 @@
         "webpack-visualizer-plugin": "^0.1.11"
     },
     "dependencies": {
-        "invest-graphql": "^0.0.1",
-        "invest-rpc": "^0.0.1",
-        "invest-types": "^0.0.1",
-        "invest-utils": "^0.0.1",
+        "invest-graphql": "*",
+        "invest-rpc": "*",
+        "invest-types": "*",
+        "invest-utils": "*",
         "semantic-ui-css": "^2.2.12"
     }
 }

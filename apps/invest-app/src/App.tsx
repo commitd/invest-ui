@@ -2,39 +2,32 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import { Route, Redirect, Switch, withRouter, RouteComponentProps } from 'react-router-dom'
-import { ApolloClient, withApollo } from 'react-apollo'
-import { GlobalHandler, newGlobalHandler } from 'invest-framework'
+import { ApolloClient } from 'apollo-client'
+import { withApollo } from 'react-apollo'
+
+import { GlobalHandler } from 'invest-framework'
 
 import LoginPage from './components/LoginPage'
 import Main from './components/Main'
-
 import { RootState } from './types'
 
 interface OwnProps {
-
+  globalHandler: GlobalHandler
 }
 
 interface ConnectProps {
   authenticated: boolean,
-  session?: string
 }
 
 interface WithApolloProps {
-  client: ApolloClient
+  client: ApolloClient<{}>
 }
 
 type Props = WithApolloProps & ConnectProps & OwnProps & RouteComponentProps<{}>
 
 class App extends React.Component<Props> {
 
-  globalHandler: GlobalHandler
-
-  constructor(props: Props) {
-    super(props)
-    this.globalHandler = newGlobalHandler(props.client, () => this.props.session)
-  }
-
-  renderMain = () => <Main globalHandler={this.globalHandler} />
+  renderMain = () => <Main globalHandler={this.props.globalHandler} />
 
   render() {
     // TODO: Should come from settings
@@ -68,7 +61,6 @@ class App extends React.Component<Props> {
 
 const mapStateToProps = (state: RootState, props: OwnProps & RouteComponentProps<{}>) => ({
   authenticated: state.auth.authenticated,
-  session: state.auth.session
 })
 
 const apolloed = withApollo(App)
