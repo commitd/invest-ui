@@ -42,7 +42,7 @@ class ApplicationClient {
     createClient() {
 
         // Setup the application's client
-        this.authLink = new VesselAuthLink({
+        this.authLink = new InvestAuthLink({
             sessionProvider: this.sessionProvider
         })
 
