@@ -46,7 +46,6 @@ function createFetchHandler(sessionProvider: () => string | undefined): Fetch {
                 delete headers.SESSION
             }
         }
-        console.log(init.headers)
         return fetch(input, init).then(simplifyResponse)
     }
 }

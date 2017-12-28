@@ -31,14 +31,14 @@ export class InvestRpcLink extends ApolloLink {
             operationName: operation.operationName,
             query: operation.query,
             variables: operation.variables,
-            context: {}, // operation.getContext(),
+            // TODO: operation.getContext() could be used here but:
+            // 1. we aren't really executing in 'this context' we are going somewhere else
+            // 2. it contains stuff like cache, which isn't possible to pass
+            // So we are just clearning the context
+            context: {},
             // This is not in GraphQLRequest... not sure if it has any use
             // key: operation.toKey()
         }
-
-        console.log('hello')
-        console.log(graphQlRequest)
-
         return new Observable(observer => {
             this.connection.request<FetchResult>(this.method, graphQlRequest)
                 .then(v => {
