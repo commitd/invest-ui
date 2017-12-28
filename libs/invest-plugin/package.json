@@ -8,11 +8,11 @@
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "invest-common": "^0.0.1",
-    "invest-graphql": "^0.0.1",
-    "invest-rpc": "^0.0.1",
-    "invest-types": "^0.0.1",
-    "invest-utils": "^0.0.1",
+    "invest-common": "*",
+    "invest-graphql": "*",
+    "invest-rpc": "*",
+    "invest-types": "*",
+    "invest-utils": "*",
     "graphql-tag": "^2.5.0"
   },
   "peerDependencies": {

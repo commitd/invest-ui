@@ -13,7 +13,7 @@
     "graphql": "^0.11.7",
     "graphql-tools": "^2.7.2",
     "lodash.merge": "^4.6.0",
-    "react-apollo": "2"
+    "react-apollo": "^2"
   },
   "devDependencies": {
     "@types/lodash.merge": "^4.6.3",
