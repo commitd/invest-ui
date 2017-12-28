@@ -1,12 +1,12 @@
 {
   "name": "invest-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "license": "Apache-2.0",
   "dependencies": {
     "invest-components": "*",
-    "invest-framework": "*",
-    "invest-graphql": "*",
+    "invest-framework": "^0.0.2",
+    "invest-graphql": "^0.0.2",
     "invest-redux": "*",
     "invest-rpc": "*",
     "invest-types": "*",

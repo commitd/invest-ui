@@ -1,19 +1,19 @@
 {
   "name": "invest-plugin",
   "description": "Base library package containing plugin specific implementations",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
+    "graphql-tag": "^2.5.0",
     "invest-common": "*",
-    "invest-graphql": "*",
+    "invest-graphql": "^0.0.2",
     "invest-rpc": "*",
     "invest-types": "*",
-    "invest-utils": "*",
-    "graphql-tag": "^2.5.0"
+    "invest-utils": "*"
   },
   "peerDependencies": {
     "react": "16",

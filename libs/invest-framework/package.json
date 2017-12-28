@@ -1,6 +1,6 @@
 {
   "name": "invest-framework",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
