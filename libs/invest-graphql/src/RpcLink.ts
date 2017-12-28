@@ -1,4 +1,4 @@
-import { ApolloLink, Operation, NextLink, FetchResult } from 'apollo-link'
+import { ApolloLink, Operation, NextLink, FetchResult, GraphQLRequest } from 'apollo-link'
 import * as Observable from 'zen-observable'
 import { Connection } from 'invest-rpc'
 
@@ -23,8 +23,24 @@ export class InvestRpcLink extends ApolloLink {
 
     request(operation: Operation, forward?: NextLink): Observable<FetchResult> | null {
         logger.trace('InvestRpcLinkOptions.request', operation)
+
+        // Operation has settings and getter... we need to drop those...
+
+        const graphQlRequest: GraphQLRequest = {
+            extensions: operation.extensions,
+            operationName: operation.operationName,
+            query: operation.query,
+            variables: operation.variables,
+            context: {}, // operation.getContext(),
+            // This is not in GraphQLRequest... not sure if it has any use
+            // key: operation.toKey()
+        }
+
+        console.log('hello')
+        console.log(graphQlRequest)
+
         return new Observable(observer => {
-            this.connection.request<FetchResult>(this.method, operation)
+            this.connection.request<FetchResult>(this.method, graphQlRequest)
                 .then(v => {
                     observer.next(v)
                     observer.complete()

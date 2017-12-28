@@ -9,7 +9,7 @@ import { InvestSchemaLink, InvestAuthLink } from 'invest-graphql'
 import { newGlobalHandler, GlobalHandler } from '../index'
 import { HttpLink } from 'apollo-link-http'
 
-class ApplicationClient {
+export class ApplicationClient {
 
     private graphQlUri: string
 
@@ -37,6 +37,11 @@ class ApplicationClient {
         this.graphQlUri = graphQlUri
         this.resolver = resolver
         this.sessionProvider = sessionProvider
+    }
+
+    async setup() {
+        this.createClient()
+        return this.createHandler()
     }
 
     createClient() {
@@ -76,9 +81,7 @@ class ApplicationClient {
         return this.client
     }
 
-    getGlobalGandler(): GlobalHandler {
+    getGlobalHandler(): GlobalHandler {
         return this.globalHandler
     }
 }
-
-export default ApplicationClient
