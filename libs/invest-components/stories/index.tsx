@@ -8,6 +8,12 @@ import './app/Layout'
 import './app/NavBar'
 import './auth/Login'
 
+import './general/charts/Counter'
+import './general/charts/TimelineChart'
+import './general/charts/PieChart'
+
+import './data/DatasetSelector'
+
 storiesOf('Welcome', module).add('to Invest Components', () =>
     (
         <div>
