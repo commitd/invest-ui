@@ -65,14 +65,6 @@ const typeDefinition = `
         success: Boolean!
     }
 
-    type VesselUiMutation {
-        # TODO: For the moment paylload is a JSOn.strinfify()... 
-        # but it can be better maanged with a customer JSONScalar type 
-        # see https://stackoverflow.com/questions/45842544/graphql-objecttype-with-dynamic-fields-based-on-arguments
-        navigate(input: NavigateInput): NavigateOutput!
-        
-    }
-
     # Schema (likely no need to amend)
 
     type Query {
@@ -80,8 +72,10 @@ const typeDefinition = `
     }
 
     type Mutation {
-        ${investUiRoot}: VesselUiMutation
-    }
+        # TODO: For the moment paylload is a JSOn.strinfify()... 
+        # but it can be better maanged with a customer JSONScalar type 
+        # see https://stackoverflow.com/questions/45842544/graphql-objecttype-with-dynamic-fields-based-on-arguments
+        navigateToPlugin(input: NavigateInput): NavigateOutput!    }
 
     schema {
         query: Query,
@@ -134,7 +128,7 @@ export function createLocalSchema(resolver: InvestUiGraphQLRoot): GraphQLSchema 
                 investUi: () => resolver.query.investUi
             },
             Mutation: {
-                investUi: () => resolver.mutation.investUi
+                navigateToPlugin: () => resolver.mutation.investUi.navigate
             }
         }
     })

@@ -11,7 +11,7 @@ import gql from 'graphql-tag'
 const NAVIGATE_MUTATION = gql`
 mutation navigate($pluginId: String!, $action: String, $payload: String) {
     investUi {
-    navigate(input: {pluginId: $pluginId, action: $action, payload: $payload}) {
+      navigateToPlugin(input: {pluginId: $pluginId, action: $action, payload: $payload}) {
       success
     }
   }
