@@ -1,10 +1,12 @@
 import {
     mergeSchemas
 } from 'graphql-tools'
-import { GraphQLSchema } from 'graphql'
+import { GraphQLSchema, printSchema } from 'graphql'
 
 export function combineLocalAndRemoteeSchema(localSchema: GraphQLSchema, remoteSchema: GraphQLSchema): GraphQLSchema {
-    return mergeSchemas({
-        schemas: [localSchema, remoteSchema]
+    const combined = mergeSchemas({
+        schemas: [localSchema, remoteSchema],
     })
+    // To debug: console.log(printSchema(combined))
+    return combined
 }

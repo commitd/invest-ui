@@ -20,7 +20,9 @@ export function createPluginApi(handler: Handler<PluginLifecycle>) {
 
     let safeHandler = handler == null ? {} : handler
 
-    if (!isInIFrame()) {
+    const localMode = isInIFrame()
+
+    if (!localMode) {
         logger.info('Running Standalone')
         client = new ApolloClient({
             link: createHttpLink(),
@@ -38,7 +40,7 @@ export function createPluginApi(handler: Handler<PluginLifecycle>) {
         })
     }
 
-    return new PluginApi(client, connection)
+    return new PluginApi(localMode, client, connection)
 }
 
 function isInIFrame() {
