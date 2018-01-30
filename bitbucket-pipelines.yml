@@ -1,5 +1,7 @@
 image: node:8.9
 
+# https://community.atlassian.com/t5/Bitbucket-questions/Is-Yarn-supported-for-bitbucket-pipelines-caching/qaq-p/650816
+
 pipelines:
   default:
     - step:
