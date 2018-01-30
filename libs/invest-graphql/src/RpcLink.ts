@@ -41,10 +41,10 @@ export class InvestRpcLink extends ApolloLink {
         }
         return new Observable(observer => {
             this.connection.request<FetchResult>(this.method, graphQlRequest)
-                .then(v => {
+                .then((v: {}) => {
                     observer.next(v)
                     observer.complete()
-                }).catch(e => {
+                }).catch((e: {}) => {
                     observer.error(e)
                 })
         })
