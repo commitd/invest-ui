@@ -14,7 +14,7 @@ export type QueryResolverCallback<Result, Arguments, Source, Context>
 /** Type for a graphql resolver which will statify a query */
 export type QueryResolver<Result, Arguments = {}, Source = {}, Context = {}> = Result
     | Promise<Result>
-    // This is a generaalisation of th GraphQLTypeResolver in graphql
+    // This is a generalisation of th GraphQLTypeResolver in graphql
     | QueryResolverCallback<Result, Arguments, Source, Context>
 
 /** Type of a callback which will statify a mutation */
@@ -65,14 +65,6 @@ const typeDefinition = `
         success: Boolean!
     }
 
-    type VesselUiMutation {
-        # TODO: For the moment paylload is a JSOn.strinfify()... 
-        # but it can be better maanged with a customer JSONScalar type 
-        # see https://stackoverflow.com/questions/45842544/graphql-objecttype-with-dynamic-fields-based-on-arguments
-        navigate(input: NavigateInput): NavigateOutput!
-        
-    }
-
     # Schema (likely no need to amend)
 
     type Query {
@@ -80,8 +72,10 @@ const typeDefinition = `
     }
 
     type Mutation {
-        ${investUiRoot}: VesselUiMutation
-    }
+        # TODO: For the moment paylload is a JSOn.strinfify()... 
+        # but it can be better maanged with a customer JSONScalar type 
+        # see https://stackoverflow.com/questions/45842544/graphql-objecttype-with-dynamic-fields-based-on-arguments
+        navigateToPlugin(input: NavigateInput): NavigateOutput!    }
 
     schema {
         query: Query,
@@ -121,7 +115,7 @@ export interface InvestUiGraphQLRoot {
     }
     mutation: {
         investUi: {
-            navigate: MutationResolver<NavigateOutput, { input: NavigateInput }>
+            navigate: MutationResolverCallback<NavigateOutput, { input: NavigateInput }, {}>
         }
     }
 }
@@ -134,7 +128,9 @@ export function createLocalSchema(resolver: InvestUiGraphQLRoot): GraphQLSchema 
                 investUi: () => resolver.query.investUi
             },
             Mutation: {
-                investUi: () => resolver.mutation.investUi
+                navigateToPlugin: (obj, args: { input: NavigateInput }, context, info) => {
+                    return resolver.mutation.investUi.navigate(args, context, info)
+                }
             }
         }
     })

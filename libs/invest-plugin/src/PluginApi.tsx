@@ -8,12 +8,18 @@ import { PluginActionDefinition } from 'invest-types'
 import { hydrateSimpleResponse } from 'invest-utils'
 import gql from 'graphql-tag'
 
-const NAVIGATE_MUTATION = gql`
+const LOCAL_NAVIGATE_MUTATION = gql`
 mutation navigate($pluginId: String!, $action: String, $payload: String) {
-    investUi {
-    navigate(input: {pluginId: $pluginId, action: $action, payload: $payload}) {
-      success
-    }
+    navigateToPlugin(input: {pluginId: $pluginId, action: $action, payload: $payload}) {
+    success
+  }
+}
+`
+
+const REMOTE_NAVIGATE_MUTATION = gql`
+mutation navigate($pluginId: String!, $action: String, $payload: String) {
+    navigateToPlugin: remoteNavigateToPlugin(input: {pluginId: $pluginId, action: $action, payload: $payload}) {
+    success
   }
 }
 `
@@ -26,9 +32,24 @@ interface FindPluginResponse {
     }
 }
 
-const FIND_PLUGINS_QUERY = gql`
+const LOCAL_FIND_PLUGINS_QUERY = gql`
 query findPlugins($action: String!){
     investUi {
+    actions(input: { action: $action }) {
+      definitions {
+        pluginId
+        action
+        title
+        description
+      }
+    }
+  }
+}
+`
+
+const REMOTE_FIND_PLUGINS_QUERY = gql`
+query findPlugins($action: String!){
+    investUi: remoteInvestUi {
     actions(input: { action: $action }) {
       definitions {
         pluginId
@@ -49,6 +70,7 @@ export class PluginApi {
 
     connection?: Connection<{}>
     client: ApolloClient<{}>
+    localMode: boolean
 
     /**
      * Create a new API client.
@@ -56,9 +78,10 @@ export class PluginApi {
      * @param client apollo client
      * @param connection connection 
      */
-    constructor(client: ApolloClient<{}>, connection?: Connection<{}>, ) {
+    constructor(localMode: boolean, client: ApolloClient<{}>, connection?: Connection<{}>) {
         this.client = client
         this.connection = connection
+        this.localMode = localMode
     }
 
     /**
@@ -118,7 +141,7 @@ export class PluginApi {
     /** Short hand to support navigation requests */
     navigate(pluginId: string, action?: string, payload?: {}): Promise<{ success: boolean }> {
         return this.mutate({
-            mutation: NAVIGATE_MUTATION,
+            mutation: this.localMode ? LOCAL_NAVIGATE_MUTATION : REMOTE_NAVIGATE_MUTATION,
             variables: {
                 pluginId,
                 action,
@@ -131,7 +154,7 @@ export class PluginApi {
 
     findPlugins(action: string): Promise<PluginActionDefinition[]> {
         return this.query({
-            query: FIND_PLUGINS_QUERY,
+            query: this.localMode ? LOCAL_FIND_PLUGINS_QUERY : REMOTE_FIND_PLUGINS_QUERY,
             variables: {
                 action
             }

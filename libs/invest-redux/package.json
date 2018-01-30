@@ -21,7 +21,7 @@
   "devDependencies": {
     "@types/jest": "^21.1.5",
     "@types/loglevel": "^1.5.1",
-    "@types/react": "^16.0.10",
+    "@types/react": "^16",
     "@types/react-dom": "^16.0.1",
     "@types/react-redux": "^5.0.10",
     "@types/redux-actions": "^2.2.2",
