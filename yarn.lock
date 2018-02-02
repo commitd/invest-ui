@@ -353,6 +353,10 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/shortid/-/shortid-0.0.29.tgz#8093ee0416a6e2bf2aa6338109114b3fbffa0e9b"
 
+"@types/sigmajs@^1.0.27":
+  version "1.0.27"
+  resolved "https://registry.yarnpkg.com/@types/sigmajs/-/sigmajs-1.0.27.tgz#368035fc84b9f2954da932ee68cac6e74b4477ac"
+
 "@types/storybook__addon-actions@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@types/storybook__addon-actions/-/storybook__addon-actions-3.0.1.tgz#e76b6cc3e6221d6578962a2ae59c3c33b6762453"
@@ -9065,6 +9069,10 @@ shellwords@^0.1.0:
 shortid@^2.2.8:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.8.tgz#033b117d6a2e975804f6f0969dbe7d3d0b355131"
+
+sigma@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/sigma/-/sigma-1.2.1.tgz#2ebf3df2971715afe49ad0c08945c574bb6c5771"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
