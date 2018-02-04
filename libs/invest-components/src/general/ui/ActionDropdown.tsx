@@ -5,9 +5,11 @@ import { Context as PluginContext } from 'invest-plugin'
 import { PluginActionDefinition } from 'invest-types'
 
 export interface OwnProps {
-    action: string
+    // Provide one of action or actions
+    action?: string,
+    actions?: string[]
     text: string
-    onSelect(act: (payload?: {}) => void, pad: PluginActionDefinition): void
+    onSelect(act: (payload?: {}) => void, action: string, pad: PluginActionDefinition): void
 }
 
 export type Context = PluginContext
@@ -31,11 +33,17 @@ class ActionDropdown extends React.Component<Props, State> {
     context: Context
 
     componentDidMount() {
-        this.context.pluginApi
-            .findPlugins(this.props.action)
-            .then((actions: PluginActionDefinition[]) => this.setState({
-                actions
-            }))
+
+        const actions = this.props.actions != null ? this.props.actions :
+            this.props.action != null ? [this.props.action] : []
+
+        actions.forEach(action => {
+            this.context.pluginApi
+                .findPlugins(action)
+                .then((pads: PluginActionDefinition[]) => this.setState(state => ({
+                    actions: (state.actions == null ? pads : [...state.actions].concat(pads))
+                })))
+        })
     }
 
     handleSelect = (pad: PluginActionDefinition) => () => {
@@ -43,6 +51,7 @@ class ActionDropdown extends React.Component<Props, State> {
             (payload?: {}) => {
                 this.context.pluginApi.navigate(pad.pluginId, pad.action, payload)
             },
+            pad.action,
             pad)
     }
 
