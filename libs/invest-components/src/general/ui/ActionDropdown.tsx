@@ -51,7 +51,10 @@ class ActionDropdown extends React.Component<Props, State> {
         const { actions } = this.state
 
         if (actions == null || actions.length === 0) {
-            return <Button disabled={true}>{text}</Button>
+            // We could returned a disable button
+            // return <Button disabled={true}>{text}</Button>
+            // but I think it's nicer to just remove it totally
+            return <span />
         }
 
         return (
