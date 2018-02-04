@@ -31,9 +31,9 @@ class DatasetSelector extends React.Component<Props> {
     }
 
     checkIfSingle(props: Props) {
-        // If we only have one dataset we auto select that
+        // If we only have at least one dataset we auto select that
         if (props.selectedDataset == null
-            && (props.datasets != null && props.datasets.length === 1)
+            && (props.datasets != null && props.datasets.length >= 1)
             && props.onDatasetSelected != null) {
             props.onDatasetSelected(props.datasets[0].id)
         }
