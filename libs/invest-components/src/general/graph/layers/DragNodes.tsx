@@ -30,7 +30,8 @@ class DragNodes extends React.Component<GraphChild> {
             })
             this.dragListener.bind('dragend', function (even: {}) {
                 // console.log(event)
-                graph.layout()
+                // graph.layout()
+                // NOTE: Don't layout
             })
 
             console.log('drag enabled')
