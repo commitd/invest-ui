@@ -1,0 +1,50 @@
+{
+  "name": "invest-plugin-actiondev",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "dependencies": {
+    "graphql": "^0.11.0",
+    "invest-components": "^0.1.0",
+    "invest-plugin": "^0.1.0",
+    "invest-types": "^0.1.0",
+    "lodash.isequal": "^4.5.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-apollo": "^2",
+    "react-dom": "^16.0.0",
+    "react-scripts-ts": "2.8.0"
+  },
+  "scripts": {
+    "start": "PORT=3001 react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "test:maven": "CI=true react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "devDependencies": {
+    "@storybook/addon-info": "^3.2.14",
+    "@storybook/addon-knobs": "^3.2.14",
+    "@storybook/addon-storyshots": "^3.2.14",
+    "@storybook/react": "^3.2.14",
+    "@types/jest": "^21.1.5",
+    "@types/lodash.isequal": "^4.5.2",
+    "@types/loglevel": "^1.5.3",
+    "@types/node": "^8.0.48",
+    "@types/react": "^16",
+    "@types/react-dom": "^16.0.2",
+    "@types/storybook__addon-actions": "^3.0.1",
+    "@types/storybook__addon-info": "^3.2.0",
+    "@types/storybook__addon-knobs": "^3.2.1",
+    "@types/storybook__addon-links": "^3.0.2",
+    "@types/storybook__react": "^3.0.5",
+    "awesome-typescript-loader": "^3.3.0",
+    "raw-loader": "^0.5.1",
+    "react-test-renderer": "*",
+    "storybook-readme": "^3.1.1"
+  },
+  "proxy": "http://localhost:8080/",
+  "homepage": "."
+}

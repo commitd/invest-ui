@@ -1,0 +1,76 @@
+{
+  "name": "invest-components",
+  "version": "0.1.0",
+  "module": "src/index.ts",
+  "main": "build/index.js",
+  "browser": "build/index.js",
+  "types": "build/index.d.ts",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@types/sigmajs": "^1.0.27",
+    "@types/victory": "^0.9.14",
+    "numeral": "^2.0.6",
+    "react-sizeme": "^2.3.6",
+    "semantic-ui-react": "^0.76.0",
+    "sigma": "^1.2.1",
+    "validate.js": "^0.12.0",
+    "victory": "^0.24.1"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-info": "^3.2.14",
+    "@storybook/addon-knobs": "^3.2.14",
+    "@storybook/addon-storyshots": "^3.2.14",
+    "@storybook/react": "^3.2.14",
+    "@types/loglevel": "^1.5.1",
+    "@types/react": "^16",
+    "@types/react-dom": "^16.0.1",
+    "@types/storybook__addon-actions": "^3.0.1",
+    "@types/storybook__addon-info": "^3.2.0",
+    "@types/storybook__addon-knobs": "^3.2.1",
+    "@types/storybook__addon-links": "^3.0.2",
+    "@types/storybook__react": "^3.0.5",
+    "@types/validate.js": "^0.0.2",
+    "awesome-typescript-loader": "^3.3.0",
+    "jest": "^21.2.1",
+    "raw-loader": "^0.5.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "storybook-readme": "^3.1.1",
+    "ts-jest": "^21.1.4",
+    "tslint": "^5.7.0",
+    "typescript": "~2.5.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:systemjs": "tsc -p tsconfig.systemjs.json",
+    "copy:systemjs": "cp -a lib/. ../../build/.",
+    "watch": "tsc -w",
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "publish:local": "npm unpublish --registry http://localhost:4873 $npm_package_name@$npm_package_version && yarn publish --registry http://localhost:4873 --new-version $npm_package_version"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "../../node_modules/ts-jest/preprocessor.js"
+    },
+    "mapCoverage": true,
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "build/",
+      "lib/"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  }
+}

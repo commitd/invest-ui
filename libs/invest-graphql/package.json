@@ -1,0 +1,58 @@
+{
+  "name": "invest-graphql",
+  "version": "0.1.0",
+  "module": "src/index.ts",
+  "main": "build/index.js",
+  "browser": "build/index.js",
+  "types": "build/index.d.ts",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "apollo-cache-inmemory": "1.1.5",
+    "apollo-client": "^2.0.3",
+    "apollo-link-http": "^1.2.0",
+    "graphql": "^0.11.7",
+    "graphql-tools": "^2.7.2",
+    "lodash.merge": "^4.6.0",
+    "react-apollo": "^2"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "^4.6.3",
+    "@types/loglevel": "^1.5.1",
+    "@types/react": "^16",
+    "@types/react-dom": "^16.0.2",
+    "jest": "^21.2.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "redux": "^3.7.2",
+    "ts-jest": "^21.1.4",
+    "tslint": "^5.7.0",
+    "typescript": "~2.5.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:systemjs": "tsc -p tsconfig.systemjs.json",
+    "copy:systemjs": "cp -a lib/. ../../build/.",
+    "watch": "tsc -w",
+    "test": "jest",
+    "publish:local": "npm unpublish --registry http://localhost:4873 $npm_package_name@$npm_package_version && yarn publish --registry http://localhost:4873 --new-version $npm_package_version"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "../../node_modules/ts-jest/preprocessor.js"
+    },
+    "mapCoverage": true,
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "build/",
+      "lib/"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+    "extends": "../../config/tsconfig",
+    "compilerOptions": {
+        "rootDirs": [
+            "src/",
+            "stories/"
+        ],
+        "outDir": "build/dist"
+    }
+}
