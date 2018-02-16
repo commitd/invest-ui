@@ -26,12 +26,13 @@ class Layout extends React.Component<Props> {
         style={{
           width: '100%',
           height: '100vh',
-          margin: '0',
+          margin: 0,
           padding: 0,
           display: 'flex',
           flexDirection: 'column',
-          // HACK
-          overflow: 'hidden'
+          overflow: 'hidden',
+          boxSizing: 'border-box',
+          minHeight: 0
         }}
       >
         <div
@@ -45,7 +46,8 @@ class Layout extends React.Component<Props> {
           style={{
             flex: 1,
             display: 'flex',
-            flexDirection: 'row'
+            flexDirection: 'row',
+            minHeight: 0
           }}
         >
           {displaySideBar && <div
