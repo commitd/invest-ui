@@ -15,6 +15,11 @@ class Ellipsis extends React.Component<Props> {
         const maxSize = size == null ? 32 : size
         const postfix = ellipsis == null ? '...' : ellipsis
 
+        // Though by typescript this should never happen, its only as good as the typing...
+        if (text == null) {
+            return <span />
+        }
+
         if (text.length > maxSize) {
             const content = text.substring(0, maxSize - postfix.length) + postfix
 
