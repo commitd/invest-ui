@@ -17,6 +17,9 @@ class TimelineChart extends React.Component<Props> {
         const { data } = this.props
         return (
             <VictoryChart
+                width={1500}
+                height={500}
+                domainPadding={100}
                 scale={{ x: 'time' }}
             >
                 <VictoryLine data={data} />
