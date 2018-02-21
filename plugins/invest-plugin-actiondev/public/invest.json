@@ -3,6 +3,8 @@
     "name": "Action Development",
     "description": "Send actions to plugins",
     "icon": "code",
-    "roles": [],
+    "roles": [
+        "DEV"
+    ],
     "actions": []
 }
