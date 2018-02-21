@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
-import 'semantic-ui-css/semantic.min.css'
+import 'semantic-ui-offline/semantic.min.css'
 
 import App from './App'
 

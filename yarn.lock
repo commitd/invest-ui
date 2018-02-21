@@ -8888,10 +8888,11 @@ selfsigned@^1.9.1:
   dependencies:
     node-forge "0.6.33"
 
-semantic-ui-css@^2.2.12:
-  version "2.2.14"
-  resolved "https://registry.yarnpkg.com/semantic-ui-css/-/semantic-ui-css-2.2.14.tgz#1888c386c74e5c0abfa00508a94940e93a55465b"
+semantic-ui-offline@^2.2.1-3.4:
+  version "2.2.1-3.4"
+  resolved "https://registry.yarnpkg.com/semantic-ui-offline/-/semantic-ui-offline-2.2.1-3.4.tgz#05ebfe0fe808094a3fb318d004816e933ba62a8d"
   dependencies:
+    fs-extra "^4.0.2"
     jquery x.*
 
 semantic-ui-react@^0.76.0:
