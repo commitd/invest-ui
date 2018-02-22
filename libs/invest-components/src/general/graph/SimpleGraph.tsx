@@ -6,12 +6,17 @@ import GraphModel from './layers/GraphModel'
 import GraphNode from './layers/GraphNode'
 import GraphEdge from './layers/GraphEdge'
 import DragNodes from './layers/DragNodes'
+import GraphProvider from './layers/GraphProvider'
+import SelectionProvider from './layers/SelectionProvider'
 
 export type OwnProps = {
     graph: SigmaJs.GraphData
     settings?: SigmaJs.Settings
     onNodeExpand?(node: SigmaJs.Node, helper: GraphHelper): void
     onEdgeExpand?(edge: SigmaJs.Edge, helper: GraphHelper): void
+    onNodeSelect?(node: SigmaJs.Node): void
+    onEdgeSelect?(edge: SigmaJs.Edge): void
+    onSigma?(sigma: SigmaJs.Sigma): void
 }
 
 export type Props = OwnProps
@@ -42,7 +47,13 @@ class SigmaGraph extends React.Component<Props, State> {
         // }
     }
 
+    shouldComponentUpdate(nextProps: Props) {
+        return nextProps.graph !== this.props.graph
+    }
+
     render() {
+        const { onSigma } = this.props
+
         return (
             <Graph
                 key={this.state.graphKey}
@@ -64,7 +75,8 @@ class SigmaGraph extends React.Component<Props, State> {
                     onEdgeExpand={this.props.onEdgeExpand}
                     onNodeExpand={this.props.onNodeExpand}
                 />
-                {/* <SigmaDragNodes /> */}
+                <GraphProvider onSigma={onSigma} />
+                <SelectionProvider onEdgeSelected={this.props.onEdgeSelect} onNodeSelected={this.props.onNodeSelect} />
                 <GraphModel>
                     {this.props.graph.nodes.map(n =>
                         <GraphNode key={n.id} {...n} />

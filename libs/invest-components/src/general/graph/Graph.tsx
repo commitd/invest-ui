@@ -32,6 +32,7 @@ class Graph extends React.Component<GraphProps> {
     sigma: SigmaJs.Sigma
     renderer?: SigmaJs.Renderer
     helper: GraphHelper
+    container?: HTMLDivElement
 
     constructor(props: GraphProps) {
         super(props)
@@ -43,17 +44,23 @@ class Graph extends React.Component<GraphProps> {
     }
 
     handleRef = (container: HTMLDivElement) => {
+
+        console.log('hmm')
         if (this.renderer) {
-            console.log(this.renderer)
             this.sigma.killRenderer(this.renderer)
             this.renderer = undefined
         }
 
-        if (container) {
+        if (container && this.container !== container) {
+            this.container = container
+
             this.renderer = this.sigma.addRenderer({
                 type: this.props.renderer,
                 container: container
             })
+
+            // We tell react to rerender us (we can do something with our children now)
+            this.forceUpdate()
         }
     }
 
@@ -64,10 +71,13 @@ class Graph extends React.Component<GraphProps> {
     render() {
 
         const { children } = this.props
-
         const withSigmaChildren = this.renderer ?
-            React.Children.map(children, (child: React.ReactElement<GraphChildSet>) =>
-                React.cloneElement(child, { sigma: this.sigma, graph: this.helper }))
+            React.Children.map(children, (child: React.ReactElement<GraphChildSet>) => {
+                if (child == null) {
+                    return null
+                }
+                return React.cloneElement(child, { sigma: this.sigma, graph: this.helper })
+            })
             : []
 
         return (

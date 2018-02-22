@@ -14,8 +14,13 @@ export interface GraphHelper {
 
     nodes(): SigmaJs.Node[]
 
-    edges(): SigmaJs.Node[]
+    edges(): SigmaJs.Edge[]
 
+    clear(): void
+
+    findNode(id: string): SigmaJs.Node | undefined
+
+    findEdge(id: string): SigmaJs.Edge | undefined
 }
 
 export class SigmaGraphHelper implements GraphHelper {
@@ -25,6 +30,10 @@ export class SigmaGraphHelper implements GraphHelper {
     constructor(sigma: SigmaJs.Sigma) {
         this.sigma = sigma
         this.graph = sigma.graph
+    }
+
+    clear = () => {
+        this.graph.clear()
     }
 
     addNode = (n: SigmaJs.Node) => {
@@ -74,5 +83,13 @@ export class SigmaGraphHelper implements GraphHelper {
                 setTimeout(() => this.sigma.stopForceAtlas2(), runtime)
             }
         }
+    }
+
+    findNode = (id: string): SigmaJs.Node | undefined => {
+        return this.nodes().find(n => n.id === id)
+    }
+
+    findEdge = (id: string): SigmaJs.Edge | undefined => {
+        return this.edges().find(e => e.id === id)
     }
 }

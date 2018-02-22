@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { GraphChild } from '../Graph'
 
-// TODo: Doesn't seem to work... the bind eventHanlders are never called
-
 class DragNodes extends React.Component<GraphChild> {
 
     dragListener: {
@@ -14,8 +12,6 @@ class DragNodes extends React.Component<GraphChild> {
         const s = this.props.sigma
 
         if (s != null && graph != null && sigma.plugins.dragNodes) {
-
-            console.log(s)
 
             this.dragListener = sigma.plugins.dragNodes(s, s.renderers[0])
             this.dragListener.bind('startdrag', function (event: {}) {
@@ -34,8 +30,8 @@ class DragNodes extends React.Component<GraphChild> {
                 // NOTE: Don't layout
             })
 
-            console.log('drag enabled')
-            console.log(this.dragListener)
+            // console.log('drag enabled')
+            // console.log(this.dragListener)
         } else {
             console.error('Unable to initialise dragNodes, plugin missing?')
         }
