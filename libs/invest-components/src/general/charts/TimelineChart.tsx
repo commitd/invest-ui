@@ -10,8 +10,6 @@ export interface OwnProps {
 
 export type Props = OwnProps
 
-// TODO: Max height... ? the component keeps growing!! by +4 pixels each time
-
 class TimelineChart extends React.Component<Props> {
     render() {
         const { data } = this.props
@@ -27,7 +25,5 @@ class TimelineChart extends React.Component<Props> {
         )
     }
 }
-
-// TODO: Could add brushing here. See the Victory example.
 
 export default TimelineChart

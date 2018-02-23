@@ -17,8 +17,6 @@ export interface Props {
 }
 
 interface State {
-    // TODO: The idea would be to have non running plugins to be hidden, after they've first been loaded
-    // This we'll need more state than just the props
     views: {
         plugin: PluginWithIntent
     }[]

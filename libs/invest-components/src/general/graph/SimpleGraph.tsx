@@ -38,13 +38,13 @@ class SigmaGraph extends React.Component<Props, State> {
     }
 
     componentWillReceiveProps(nextProps: Props) {
-        // if (nextProps.graph !== this.props.graph) {
+        if (nextProps.graph !== this.props.graph) {
 
-        //     this.setState({
-        //         graphKey: JSON.stringify(nextProps.graph)
-        //     })
+            this.setState({
+                graphKey: JSON.stringify(nextProps.graph)
+            })
 
-        // }
+        }
     }
 
     shouldComponentUpdate(nextProps: Props) {
@@ -61,16 +61,6 @@ class SigmaGraph extends React.Component<Props, State> {
                 // TODO: Perhaps pick renderer based on the number of nodes?
                 renderer="canvas"
             >
-                {/* <RelativeSize initialSize={15} />
-                <RandomizeNodePositions />*/}
-                {/* <ForceAtlas2
-                    worker={false}
-                    barnesHutOptimize={true}
-                    barnesHutTheta={0.6}
-                    iterationsPerRender={10}
-                    linLogMode={true}
-                    timeout={3000}
-                /> */}
                 <SigmaGraphExpander
                     onEdgeExpand={this.props.onEdgeExpand}
                     onNodeExpand={this.props.onNodeExpand}
@@ -90,10 +80,6 @@ class SigmaGraph extends React.Component<Props, State> {
 
         )
     }
-
-    // TODO: SigmaNodes react component... with <Node key={} id={} ... etc /> ...
-    // if the children change you need to update the underlying graph 
-
 }
 
 export default SigmaGraph as React.ComponentType<Props>

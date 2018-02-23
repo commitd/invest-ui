@@ -26,7 +26,7 @@ function* handleQuery(action: ResolverAction<QueryActionInput, QueryActionOutput
     const requiredAction = action.payload.action
 
     if (requiredAction == null) {
-        // TODO: Should we return everything here?
+        // return nothing if you asked for nothing
     } else {
         const plugins: UiPlugin[] = yield select((state: RootState) => state.plugins.uiPlugins)
         const auth: AuthState = yield select((state: RootState) => state.auth)

@@ -23,7 +23,6 @@ type DispatchProps = {
 
 type Props = OwnProps & WithRouterProps & StateProps & DispatchProps
 
-// TODO: Move to -framework (abstracting dependency on state/RootActions)
 class AuthMenu extends React.Component<Props> {
 
     handleLogin = () => {

@@ -38,7 +38,6 @@ type OwnProps = {
 
 }
 
-// TODO: Move to -framework (abstracting dependency on state/RootActions)
 class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, State> {
 
     state = {

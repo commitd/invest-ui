@@ -31,7 +31,7 @@ export class InvestRpcLink extends ApolloLink {
             operationName: operation.operationName,
             query: operation.query,
             variables: operation.variables,
-            // TODO: operation.getContext() could be used here but:
+            // NOTE: operation.getContext() could be used here but:
             // 1. we aren't really executing in 'this context' we are going somewhere else
             // 2. it contains stuff like cache, which isn't possible to pass
             // So we are just clearning the context

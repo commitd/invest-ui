@@ -72,8 +72,7 @@ const typeDefinition = `
     }
 
     type Mutation {
-        # TODO: For the moment paylload is a JSOn.strinfify()... 
-        # but it can be better maanged with a customer JSONScalar type 
+        # See issue tracker better maanged with a customer JSONScalar type 
         # see https://stackoverflow.com/questions/45842544/graphql-objecttype-with-dynamic-fields-based-on-arguments
         navigateToPlugin(input: NavigateInput): NavigateOutput!    }
 

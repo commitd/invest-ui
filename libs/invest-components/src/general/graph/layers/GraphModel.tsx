@@ -90,8 +90,7 @@ class GraphModel extends React.Component<GraphChild> {
         if (changes > 0) {
             sigma.refresh()
 
-            // TODO: scale the layout run time vs the number of changes made, but it needs to reasonable
-            graph.layout(Math.min(5000, changes * 50))
+            graph.layout(Math.max(2000, changes * 50))
         }
 
         return null

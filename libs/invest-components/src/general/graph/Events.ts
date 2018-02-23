@@ -19,4 +19,4 @@ export type SigmaClickEdgesEvent = SigmaEvent<{
     edges: SigmaJs.Edge[]
 }>
 
-// TODO...
+// TODO: There are more Sigma events to be exposed as needed
