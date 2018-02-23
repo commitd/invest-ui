@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Icon, Menu, Header } from 'semantic-ui-react'
+import { Icon, Menu, Header, Input, InputOnChangeData, Button } from 'semantic-ui-react'
 
 import { UiPlugin } from 'invest-types'
 
@@ -12,17 +12,44 @@ export interface Props {
     onPluginSelected(plugin: UiPlugin): void
 }
 
+export type State = {
+    query: string
+}
+
 /** Displays a list of plugins a sidebar menu */
-class PluginListSidebar extends React.Component<Props, {}> {
+class PluginListSidebar extends React.Component<Props, State> {
+
+    state: State = {
+        query: ''
+    }
+
     render() {
         const { plugins, selectedPlugin, onPluginSelected } = this.props
+        const { query } = this.state
 
-        // TODO: Highlight which plugin is currently selected
+        const normalizedQuery = query.trim().toLowerCase()
+        const hasQuery = normalizedQuery !== ''
+        const filteredPlugins = !hasQuery ? plugins : plugins.filter(p =>
+            p.name.toLowerCase().includes(normalizedQuery) || p.description.toLowerCase().includes(normalizedQuery)
+        )
+
+        const searchAction = !hasQuery ? undefined
+            : <Button icon="remove" onClick={this.handleClearSearch} />
 
         return (
             <Menu vertical={true} fluid={true} inverted={true} style={{ borderRadius: 0 }} >
+                <Menu.Item>
+                    <Input
+                        fluid={true}
+                        inverted={true}
+                        placeholder="Filter..."
+                        onChange={this.handleSearchChange}
+                        action={searchAction}
+                        value={query}
+                    />
+                </Menu.Item>
                 {
-                    plugins.map(p => (
+                    filteredPlugins.map(p => (
                         <Menu.Item
                             key={p.id}
                             active={selectedPlugin && selectedPlugin.id === p.id}
@@ -38,6 +65,18 @@ class PluginListSidebar extends React.Component<Props, {}> {
                 }
             </ Menu>
         )
+    }
+
+    private handleSearchChange = (event: {}, data: InputOnChangeData) => {
+        this.setState({
+            query: data.value
+        })
+    }
+
+    private handleClearSearch = () => {
+        this.setState({
+            query: ''
+        })
     }
 }
 
