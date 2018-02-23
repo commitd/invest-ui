@@ -51,7 +51,7 @@ class ApplicationSettingsContainer extends React.Component<Props> {
 }
 
 const QUERY = gql`
-query GetSettings(){
+query  {
     investServer{
       configuration {
         settings {

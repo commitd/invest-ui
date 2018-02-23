@@ -46,3 +46,5 @@ export { default as createDataContainer } from './data/DataContainer'
 
 export { default as ApplicationSettings } from './settings/ApplicationSettings'
 export { default as PluginSettings } from './settings/PluginSettings'
+
+export * from './utils/ChartUtils'
