@@ -17,6 +17,7 @@ interface OwnProps {
 
 interface ConnectProps {
   authenticated: boolean,
+  title: string
 }
 
 interface WithApolloProps {
@@ -30,8 +31,7 @@ class App extends React.Component<Props> {
   renderMain = () => <Main globalHandler={this.props.globalHandler} />
 
   render() {
-    // TODO: Should come from settings
-    const title = 'Invest'
+    const title = this.props.title
     const requireAuthentication = false
 
     const { authenticated } = this.props
@@ -61,6 +61,7 @@ class App extends React.Component<Props> {
 
 const mapStateToProps = (state: RootState, props: OwnProps & RouteComponentProps<{}>) => ({
   authenticated: state.auth.authenticated,
+  title: state.configuration.configuration.title
 })
 
 const apolloed = withApollo(App)

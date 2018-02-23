@@ -19,6 +19,9 @@ import { canUserSeePlugin } from '../utils/RoleUtils'
 interface GqlResponse {
   investServer: {
     configuration: InvestConfiguration
+    authentication: {
+      enabled: boolean
+    }
     uiPlugins: UiPlugin[]
   }
 }
@@ -34,7 +37,7 @@ interface MapStateProps {
 interface DispatchProps {
   updatePlugins(plugins: UiPlugin[]): {}
   updateConfiguration(configuration: InvestConfiguration): {}
-
+  setAuthenticationMode(enabled: boolean): {}
 }
 
 type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}> & MapStateProps & DispatchProps
@@ -106,6 +109,9 @@ class Main extends React.Component<Props, State> {
       if (data.investServer && data.investServer.configuration) {
         this.props.updateConfiguration(data.investServer.configuration)
       }
+      if (data.investServer && data.investServer.authentication) {
+        this.props.setAuthenticationMode(data.investServer.authentication.enabled)
+      }
     }
   }
 
@@ -116,6 +122,9 @@ class Main extends React.Component<Props, State> {
       && this.props.data.investServer
       && this.props.data.investServer.configuration.title)
       || 'Invest'
+    const authenticationMode = (this.props.data
+      && this.props.data.investServer
+      && this.props.data.investServer.authentication.enabled)
 
     const selectedPlugin = this.findSelectedPlugin()
 
@@ -124,7 +133,7 @@ class Main extends React.Component<Props, State> {
       intent: searchToIntent(this.props.location.search)
     } : undefined
 
-    const rightMenu = <AuthMenu />
+    const rightMenu = authenticationMode ? <AuthMenu /> : undefined
     const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} rightArea={rightMenu} />
     const sideBar = (
       <PluginListSidebar
@@ -161,6 +170,9 @@ const APP_QUERY = gql`
           value
         }
       }
+      authentication {
+        enabled
+      }
       uiPlugins {
         id
         name
@@ -182,7 +194,7 @@ const mapStateToProps = (state: RootState) => ({
   auth: state.auth
 })
 
-const mapDispatchtoProps = (
+const mapDispatchToProps = (
   dispatch: Dispatch<{}>) => ({
     updatePlugins: (plugins: UiPlugin[]) => dispatch(RootAction.actionCreators.plugins.setPlugins({
       uiPlugins: plugins
@@ -190,10 +202,14 @@ const mapDispatchtoProps = (
     updateConfiguration: (configuration: InvestConfiguration) =>
       dispatch(RootAction.actionCreators.configuration.setConfiguration({
         configuration: configuration
+      })),
+    setAuthenticationMode: (enabled: boolean) =>
+      dispatch(RootAction.actionCreators.auth.setAuthenticationMode({
+        enabled
       }))
   })
 
 const connected = connect<MapStateProps, DispatchProps, ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>
-  (mapStateToProps, mapDispatchtoProps)(Main)
+  (mapStateToProps, mapDispatchToProps)(Main)
 const graphqled = graphql<GqlResponse, OwnProps & RouteComponentProps<{}>>(APP_QUERY)(connected)
 export default withRouter(graphqled)

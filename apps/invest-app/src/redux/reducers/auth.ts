@@ -2,7 +2,7 @@ import { Reducer } from 'redux'
 import { Action } from 'redux-actions'
 
 import { Actions } from '../RootAction'
-import { SetAuthPayload } from '../actions/auth'
+import { SetAuthPayload, SetAuthenticationModePayload } from '../actions/auth'
 import * as Immutable from 'seamless-immutable'
 
 export interface State {
@@ -11,6 +11,9 @@ export interface State {
     readonly authenticated: boolean
     readonly name: string,
     readonly roles: string[],
+
+    // Should we use authtnication at at ll?
+    readonly authentication: boolean
 }
 
 export const initialState = Immutable.from({
@@ -18,7 +21,11 @@ export const initialState = Immutable.from({
     username: undefined,
     session: undefined,
     authenticated: false,
-    roles: []
+    roles: [],
+
+    // assume authentication until we know otherwise
+    authentication: true
+
 })
 
 export const reducer: Reducer<Immutable.ImmutableObject<State>> = (state = initialState, action: Action<{}>) => {
@@ -36,6 +43,10 @@ export const reducer: Reducer<Immutable.ImmutableObject<State>> = (state = initi
                 .set('authenticated', false)
                 .set('name', 'Guest')
                 .set('roles', [])
+
+        case Actions.auth.SET_AUTHENTICATION_MODE:
+            const samp = action.payload as SetAuthenticationModePayload
+            return state.set('authentication', samp.enabled)
         default:
             break
     }

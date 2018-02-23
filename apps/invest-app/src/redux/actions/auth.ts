@@ -7,12 +7,20 @@ export interface SetAuthPayload {
     roles: string[],
 }
 
+export interface SetAuthenticationModePayload {
+    enabled: boolean
+}
+
 export enum Actions {
     SET_AUTH = 'AUTH_SET',
-    CLEAR_AUTH = 'AUTH_CLEAR'
+    CLEAR_AUTH = 'AUTH_CLEAR',
+    SET_AUTHENTICATION_MODE = 'AUTHENTICATION_MODE_SET',
+
 }
 
 export const actionCreators = {
     setAuth: createAction<SetAuthPayload>(Actions.SET_AUTH),
-    clearAuth: createAction(Actions.CLEAR_AUTH)
+    clearAuth: createAction(Actions.CLEAR_AUTH),
+    setAuthenticationMode: createAction<SetAuthenticationModePayload>(Actions.SET_AUTHENTICATION_MODE),
+
 }
