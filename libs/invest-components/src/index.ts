@@ -35,3 +35,8 @@ export { default as SearchQuery } from './general/search/SearchQuery'
 // Invest data
 
 export { default as DatasetSelector } from './data/dataselector/DatasetSelectorContainer'
+
+// Invest settings
+
+export { default as ApplicationSettings } from './data/settings/ApplicationSettings'
+export { default as PluginSettings } from './data/settings/PluginSettings'
