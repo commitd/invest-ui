@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { ChildProps } from 'invest-plugin'
+import { PluginProps } from 'invest-plugin'
 import { Container } from 'semantic-ui-react'
 import ViewContainer from './ViewContainer'
 
 type OwnProps = {}
 
-type Props = OwnProps & ChildProps
+type Props = OwnProps & PluginProps
 
 class App extends React.Component<Props> {
 

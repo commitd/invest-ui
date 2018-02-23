@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { Context as PluginContext } from 'invest-plugin'
+import { PluginContext } from 'invest-plugin'
 import { Dropdown, Button, Form, TextArea, Message } from 'semantic-ui-react'
 import { Plugin } from './Types'
 

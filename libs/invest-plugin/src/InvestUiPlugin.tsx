@@ -9,7 +9,7 @@ import { PluginLifecycle } from 'invest-common'
 import { createPluginApi } from './Connect'
 
 /** Our child can receive action and payload via props */
-export type ChildProps = {
+export type PluginProps = {
     /** The action (if any) */
     action?: string,
     /** the payload (if any) */
@@ -21,13 +21,13 @@ export interface Props {
     /** Handler to pass any plugin lifecycle notification too.  */
     handler?: Handler<PluginLifecycle>
     /** A single child. THis will have the action and payload push to as props (when they change). */
-    children: React.ReactElement<{} & ChildProps>,
+    children: React.ReactElement<{} & PluginProps>,
     /** Full screen, no padding, etc */
     fullscreen?: boolean
 }
 
 /** The Context will will provide  */
-export interface Context {
+export interface PluginContext {
     pluginApi: PluginApi
 }
 
@@ -77,7 +77,7 @@ class InvestUiPlugin extends React.Component<Props, State> {
         this.pluginApi = createPluginApi(handler)
     }
 
-    getChildContext(): Context {
+    getChildContext(): PluginContext {
         return {
             pluginApi: this.pluginApi
         }
