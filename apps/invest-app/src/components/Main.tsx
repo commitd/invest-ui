@@ -6,7 +6,7 @@ import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-
 import { connect, Dispatch } from 'react-redux'
 
 import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'invest-framework'
-import { UiPlugin, PluginWithIntent } from 'invest-types'
+import { UiPlugin, PluginWithIntent, InvestConfiguration } from 'invest-types'
 import { Layout, NavBar, Login } from 'invest-components'
 import { searchToIntent } from 'invest-utils'
 
@@ -18,6 +18,7 @@ import { canUserSeePlugin } from '../utils/RoleUtils'
 
 interface GqlResponse {
   investServer: {
+    configuration: InvestConfiguration
     uiPlugins: UiPlugin[]
   }
 }
@@ -32,6 +33,8 @@ interface MapStateProps {
 
 interface DispatchProps {
   updatePlugins(plugins: UiPlugin[]): {}
+  updateConfiguration(configuration: InvestConfiguration): {}
+
 }
 
 type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}> & MapStateProps & DispatchProps
@@ -100,12 +103,19 @@ class Main extends React.Component<Props, State> {
       if (data.investServer && data.investServer.uiPlugins) {
         this.props.updatePlugins(data.investServer.uiPlugins)
       }
+      if (data.investServer && data.investServer.configuration) {
+        this.props.updateConfiguration(data.investServer.configuration)
+      }
     }
   }
 
   render() {
+
     let plugins = this.getPlugins()
-    const title = 'Invest'
+    const title = (this.props.data
+      && this.props.data.investServer
+      && this.props.data.investServer.configuration.title)
+      || 'Invest'
 
     const selectedPlugin = this.findSelectedPlugin()
 
@@ -144,6 +154,13 @@ class Main extends React.Component<Props, State> {
 const APP_QUERY = gql`
   query {
     investServer {
+      configuration {
+        title
+        settings {
+          key
+          value
+        }
+      }
       uiPlugins {
         id
         name
@@ -169,7 +186,11 @@ const mapDispatchtoProps = (
   dispatch: Dispatch<{}>) => ({
     updatePlugins: (plugins: UiPlugin[]) => dispatch(RootAction.actionCreators.plugins.setPlugins({
       uiPlugins: plugins
-    }))
+    })),
+    updateConfiguration: (configuration: InvestConfiguration) =>
+      dispatch(RootAction.actionCreators.configuration.setConfiguration({
+        configuration: configuration
+      }))
   })
 
 const connected = connect<MapStateProps, DispatchProps, ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>
