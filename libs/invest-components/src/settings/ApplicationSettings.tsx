@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { graphql, QueryProps } from 'react-apollo'
 import gql from 'graphql-tag'
-import * as PropTypes from 'prop-types'
-import { Setting } from 'invest-types'
+import { Setting, SettingsMap } from 'invest-types'
 
 export interface OwnProps {
+    defaultSettings: SettingsMap
+    children: React.ReactElement<{ settings: SettingsMap }>
 }
 
 export type Response = {
@@ -21,32 +22,51 @@ interface GqlProps {
 
 type Props = OwnProps & GqlProps
 
-export type SettingContext = {
-    applicationSettings: Setting[]
+type State = {
+    settings: SettingsMap
 }
 
-class ApplicationSettingsContainer extends React.Component<Props> {
-
-    static childContextTypes = {
-        applicationSettings: PropTypes.arrayOf(PropTypes.object)
+class ApplicationSettings extends React.Component<Props, State> {
+    componentWillMount() {
+        if (this.props.data != null) {
+            this.updateSettings(this.props)
+        }
     }
 
-    getChildContext(): SettingContext {
-        if (!this.props.data || !this.props.data.investServer) {
-            return {
-                applicationSettings: []
-            }
-        }
-
-        const investServer = this.props.data.investServer
-
-        return {
-            applicationSettings: investServer.configuration.settings ? investServer.configuration.settings : []
+    componentWillReceiveProps(nextProps: Props) {
+        if (this.props.data !== nextProps.data && nextProps.data) {
+            this.updateSettings(nextProps)
         }
     }
 
     render() {
-        return this.props.children
+        const { settings } = this.state
+
+        return React.Children.map(this.props.children, c => {
+            if (React.isValidElement(c)) {
+                return React.cloneElement(c as React.ReactElement<{ settings: SettingsMap }>, { settings: settings })
+            } else {
+                return c
+            }
+        })
+
+    }
+
+    private updateSettings = (props: Props) => {
+        let settings: SettingsMap = Object.assign({}, this.props.defaultSettings)
+        if (props.data
+            && props.data.investServer
+            && props.data.investServer.configuration
+            && props.data.investServer.configuration.settings) {
+            props.data.investServer.configuration.settings
+                .forEach(s => {
+                    settings[s.key] = s.value
+                })
+        }
+
+        this.setState({
+            settings
+        })
     }
 }
 
@@ -63,4 +83,4 @@ query  {
   }
 `
 
-export default graphql<Response, OwnProps, Props>(QUERY)(ApplicationSettingsContainer)
+export default graphql<Response, OwnProps, Props>(QUERY)(ApplicationSettings)

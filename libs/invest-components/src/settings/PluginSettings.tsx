@@ -24,7 +24,7 @@ type State<T> = {
     settings?: T
 }
 
-class SettingsContainer<T> extends React.Component<Props, State<T>> {
+class PluginSettings<T> extends React.Component<Props, State<T>> {
     componentWillMount() {
         if (this.props.data != null) {
             this.updateSettings(this.props)
@@ -80,4 +80,4 @@ query GetSettings($pluginId:String!){
 }
 `
 
-export default graphql<Response, OwnProps, Props>(QUERY)(SettingsContainer)
+export default graphql<Response, OwnProps, Props>(QUERY)(PluginSettings)

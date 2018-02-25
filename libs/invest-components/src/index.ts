@@ -46,6 +46,7 @@ export { default as createDataContainer } from './data/DataContainer'
 
 // Invest settings
 
+export { default as ApplicationSettingsContext } from './settings/ApplicationSettingsContext'
 export { default as ApplicationSettings } from './settings/ApplicationSettings'
 export { default as PluginSettings } from './settings/PluginSettings'
 

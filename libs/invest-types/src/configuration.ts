@@ -4,6 +4,12 @@ export interface Setting {
     value: {}
 }
 
+export type SettingsList = Setting[]
+
+export type SettingsMap = {
+    [key: string]: {}
+}
+
 /** Global configuration */
 export interface InvestConfiguration {
     /** The application title */
