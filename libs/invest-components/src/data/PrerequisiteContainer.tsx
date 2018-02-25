@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Container } from 'semantic-ui-react'
+import * as PropTypes from 'prop-types'
+import { Container, Header } from 'semantic-ui-react'
 import MessageBox from '../general/message/MessageBox'
 import { PluginContext } from 'invest-plugin'
 import { PluginActionDefinition } from 'invest-types'
@@ -7,14 +8,14 @@ import PluginActionGridView from '../general/ui/PluginActionGridView'
 
 export interface OwnProps {
     fluid?: boolean
-    title: string
-    description: string
+    missingTitle: string
+    missingDescription: string
     check: () => boolean
     /** If set will display a set of plugins which fulfil that action. 
      * Pick the action so that its likely to provide the prereq
      * (and call this component back) eg document.search if you are document.view 
      */
-    action?: string
+    fulfillingAction?: string
 }
 
 export type State = {
@@ -27,6 +28,10 @@ export type Context = PluginContext
 
 export default class PrerequisiteContainer extends React.Component<Props, State> {
 
+    static contextTypes = {
+        pluginApi: PropTypes.object
+    }
+
     state: State = {
         plugins: []
     }
@@ -34,23 +39,23 @@ export default class PrerequisiteContainer extends React.Component<Props, State>
     context: Context
 
     componentWillMount() {
-        this.updatePlugins(this.props.action)
+        this.updatePlugins(this.props.fulfillingAction)
     }
 
     componentWillReceiveProps(nextProps: Props) {
-        if (this.props.action !== nextProps.action) {
-            this.updatePlugins(nextProps.action)
+        if (this.props.fulfillingAction !== nextProps.fulfillingAction) {
+            this.updatePlugins(nextProps.fulfillingAction)
         }
     }
 
     render() {
-        const { fluid, action, title, description, check, children } = this.props
+        const { fluid, fulfillingAction, missingTitle, missingDescription, check, children } = this.props
         const ok = check()
 
         return (
             <Container fluid={fluid} >
-                {!ok && <MessageBox title={title} description={description} />}
-                {action && this.renderAction()}
+                {!ok && <MessageBox title={missingTitle} description={missingDescription} />}
+                {fulfillingAction && this.renderAction()}
                 {ok && children}
             </Container>
         )
@@ -78,7 +83,7 @@ export default class PrerequisiteContainer extends React.Component<Props, State>
 
         return (
             <div>
-                <p>Use one of the following to find a suitable item</p>
+                <Header sub={true}>Use one of the following to find a suitable start point:</Header>
                 <PluginActionGridView plugins={this.state.plugins} onSelectPlugin={this.handleSelectPlugin} />
             </div>
         )
@@ -86,6 +91,6 @@ export default class PrerequisiteContainer extends React.Component<Props, State>
     }
 
     private handleSelectPlugin = (p: PluginActionDefinition) => {
-        this.context.pluginApi.navigate(p.pluginId, this.props.action, {})
+        this.context.pluginApi.navigate(p.pluginId, p.action, {})
     }
 }
