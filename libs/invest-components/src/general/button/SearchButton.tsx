@@ -18,6 +18,7 @@ class SearchButton extends React.Component<SearchButtonProps> {
                 content="Search"
                 onClick={this.props.onSubmit}
                 disabled={disabled}
+                primary={true}
             />
         )
     }
