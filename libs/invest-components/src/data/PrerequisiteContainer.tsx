@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { Container, Header } from 'semantic-ui-react'
+import { Container, Header, Divider } from 'semantic-ui-react'
 import MessageBox from '../general/message/MessageBox'
 import { PluginContext } from 'invest-plugin'
 import { PluginActionDefinition } from 'invest-types'
@@ -49,15 +49,14 @@ export default class PrerequisiteContainer extends React.Component<Props, State>
     }
 
     render() {
-        const { fluid, fulfillingAction, missingTitle, missingDescription, check, children } = this.props
+        const { check, children } = this.props
         const ok = check()
 
         return (
-            <Container fluid={fluid} >
-                {!ok && <MessageBox title={missingTitle} description={missingDescription} />}
-                {fulfillingAction && this.renderAction()}
+            <React.Fragment>
+                {!ok && this.renderMissing()}
                 {ok && children}
-            </Container>
+            </React.Fragment>
         )
     }
 
@@ -74,6 +73,18 @@ export default class PrerequisiteContainer extends React.Component<Props, State>
             .then((pads: PluginActionDefinition[]) => this.setState(state => ({
                 plugins: pads
             })))
+    }
+
+    private renderMissing = () => {
+        const { fluid, fulfillingAction, missingTitle, missingDescription, check, children } = this.props
+
+        return (
+            <Container fluid={fluid} >
+                <MessageBox title={missingTitle} description={missingDescription} />
+                <Divider hidden={true} />
+                {fulfillingAction && this.renderAction()}
+            </Container>
+        )
     }
 
     private renderAction = () => {
