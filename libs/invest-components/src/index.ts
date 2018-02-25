@@ -29,6 +29,8 @@ export { default as Card } from './general/ui/Card'
 export { default as Ellipsis } from './general/utils/Ellipsis'
 export { default as Pagination } from './general/ui/Pagination'
 export { default as ActionDropdown } from './general/ui/ActionDropdown'
+export { default as PluginActionGridView } from './general/ui/PluginActionGridView'
+export { default as PluginGridView } from './general/ui/PluginGridView'
 
 export { default as SearchQuery } from './general/search/SearchQuery'
 // 

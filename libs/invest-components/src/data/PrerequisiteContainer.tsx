@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Container } from 'semantic-ui-react'
 import MessageBox from '../general/message/MessageBox'
 import { PluginContext } from 'invest-plugin'
-import { UiPlugin, PluginActionDefinition } from 'invest-types'
+import { PluginActionDefinition } from 'invest-types'
 import PluginActionGridView from '../general/ui/PluginActionGridView'
 
 export interface OwnProps {
