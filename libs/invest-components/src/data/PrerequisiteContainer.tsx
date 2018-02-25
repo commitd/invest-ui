@@ -76,7 +76,7 @@ export default class PrerequisiteContainer extends React.Component<Props, State>
     }
 
     private renderMissing = () => {
-        const { fluid, fulfillingAction, missingTitle, missingDescription, check, children } = this.props
+        const { fluid, fulfillingAction, missingTitle, missingDescription } = this.props
 
         return (
             <Container fluid={fluid} >
