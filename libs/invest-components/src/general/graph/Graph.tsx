@@ -44,10 +44,12 @@ class Graph extends React.Component<GraphProps> {
     }
 
     handleRef = (container: HTMLDivElement) => {
-
-        console.log('hmm')
         if (this.renderer) {
-            this.sigma.killRenderer(this.renderer)
+            try {
+                this.sigma.killRenderer(this.renderer)
+            } catch (e) {
+                console.log('Kill failed, ignoring')
+            }
             this.renderer = undefined
         }
 
