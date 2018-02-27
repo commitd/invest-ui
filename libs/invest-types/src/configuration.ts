@@ -1,12 +1,12 @@
 
-export interface Setting {
+export interface Property {
     key: string
     value: {}
 }
 
-export type SettingsList = Setting[]
+export type PropertiesList = Property[]
 
-export type SettingsMap = {
+export type PropertiesMap = {
     [key: string]: {}
 }
 
@@ -16,5 +16,5 @@ export interface InvestConfiguration {
     title: string,
 
     /** All global settings */
-    settings: Setting[]
+    settings: PropertiesMap
 }

@@ -1,17 +1,17 @@
 import * as React from 'react'
 import { graphql, QueryProps } from 'react-apollo'
 import gql from 'graphql-tag'
-import { Setting, SettingsMap } from 'invest-types'
+import { PropertiesMap } from 'invest-types'
 
 export interface OwnProps {
-    defaultSettings: SettingsMap
-    children: React.ReactElement<{ settings: SettingsMap }>
+    defaultSettings: PropertiesMap
+    children: React.ReactElement<{ settings: PropertiesMap }>
 }
 
 export type Response = {
     investServer: {
         configuration: {
-            settings?: Setting[]
+            settings: { [key: string]: {} }
         }
     }
 }
@@ -23,7 +23,7 @@ interface GqlProps {
 type Props = OwnProps & GqlProps
 
 type State = {
-    settings: SettingsMap
+    settings: PropertiesMap
 }
 
 class ApplicationSettings extends React.Component<Props, State> {
@@ -44,7 +44,7 @@ class ApplicationSettings extends React.Component<Props, State> {
 
         return React.Children.map(this.props.children, c => {
             if (React.isValidElement(c)) {
-                return React.cloneElement(c as React.ReactElement<{ settings: SettingsMap }>, { settings: settings })
+                return React.cloneElement(c as React.ReactElement<{ settings: PropertiesMap }>, { settings: settings })
             } else {
                 return c
             }
@@ -53,14 +53,16 @@ class ApplicationSettings extends React.Component<Props, State> {
     }
 
     private updateSettings = (props: Props) => {
-        let settings: SettingsMap = Object.assign({}, this.props.defaultSettings)
+        console.log(props)
+        let settings: PropertiesMap = Object.assign({}, this.props.defaultSettings)
         if (props.data
             && props.data.investServer
             && props.data.investServer.configuration
             && props.data.investServer.configuration.settings) {
-            props.data.investServer.configuration.settings
-                .forEach(s => {
-                    settings[s.key] = s.value
+            const newSettings = props.data.investServer.configuration.settings
+            Object.keys(newSettings)
+                .forEach(k => {
+                    settings[k] = newSettings[k]
                 })
         }
 
@@ -74,10 +76,7 @@ const QUERY = gql`
 query  {
     investServer{
       configuration {
-        settings {
-          key
-          value
-        }
+        settings 
       }
     }
   }

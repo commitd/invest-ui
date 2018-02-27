@@ -165,10 +165,7 @@ const APP_QUERY = gql`
     investServer {
       configuration {
         title
-        settings {
-          key
-          value
-        }
+        settings
       }
       authentication {
         enabled

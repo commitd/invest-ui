@@ -2,7 +2,7 @@ import * as React from 'react'
 import { graphql, QueryProps } from 'react-apollo'
 import gql from 'graphql-tag'
 import * as PropTypes from 'prop-types'
-import { Setting } from 'invest-types'
+import { PropertiesMap } from 'invest-types'
 
 export interface OwnProps {
 }
@@ -10,7 +10,7 @@ export interface OwnProps {
 export type Response = {
     investServer: {
         configuration: {
-            settings?: Setting[]
+            settings?: PropertiesMap
         }
     }
 }
@@ -22,7 +22,7 @@ interface GqlProps {
 type Props = OwnProps & GqlProps
 
 export type SettingContext = {
-    applicationSettings: Setting[]
+    applicationSettings: PropertiesMap
 }
 
 class ApplicationSettingsContainer extends React.Component<Props> {
@@ -34,14 +34,14 @@ class ApplicationSettingsContainer extends React.Component<Props> {
     getChildContext(): SettingContext {
         if (!this.props.data || !this.props.data.investServer) {
             return {
-                applicationSettings: []
+                applicationSettings: {}
             }
         }
 
         const investServer = this.props.data.investServer
 
         return {
-            applicationSettings: investServer.configuration.settings ? investServer.configuration.settings : []
+            applicationSettings: investServer.configuration.settings ? investServer.configuration.settings : {}
         }
     }
 
@@ -54,10 +54,7 @@ const QUERY = gql`
 query  {
     investServer{
       configuration {
-        settings {
-          key
-          value
-        }
+        settings 
       }
     }
   }

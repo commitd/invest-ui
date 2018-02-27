@@ -13,7 +13,7 @@ export interface State {
 export const initialState = Immutable.from({
     configuration: {
         title: 'Invest',
-        settings: []
+        settings: {}
     }
 })
 
