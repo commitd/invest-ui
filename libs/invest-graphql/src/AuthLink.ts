@@ -1,6 +1,4 @@
-import { ApolloLink, Operation, NextLink, FetchResult } from 'apollo-link'
-import * as Observable from 'zen-observable'
-
+import { Observable, ApolloLink, Operation, NextLink, FetchResult } from 'apollo-link'
 import { loggerFactory } from 'invest-utils'
 const logger = loggerFactory.getLogger('InvestAuthLink')
 

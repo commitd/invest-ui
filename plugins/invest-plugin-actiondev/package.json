@@ -4,7 +4,7 @@
   "private": true,
   "license": "Apache-2.0",
   "dependencies": {
-    "graphql": "^0.11.0",
+    "graphql": "^0.13.1",
     "invest-components": "^0.3.0-SNAPSHOT",
     "invest-plugin": "^0.3.0-SNAPSHOT",
     "invest-types": "^0.3.0-SNAPSHOT",
@@ -13,7 +13,7 @@
     "react": "^16.0.0",
     "react-apollo": "^2",
     "react-dom": "^16.0.0",
-    "react-scripts-ts": "2.8.0"
+    "react-scripts-ts": "2.13.0"
   },
   "scripts": {
     "start": "PORT=3001 react-scripts-ts start",
@@ -29,11 +29,11 @@
     "@storybook/addon-knobs": "^3.2.14",
     "@storybook/addon-storyshots": "^3.2.14",
     "@storybook/react": "^3.2.14",
-    "@types/jest": "^21.1.5",
+    "@types/jest": "^22.1.3",
     "@types/lodash.isequal": "^4.5.2",
     "@types/loglevel": "^1.5.3",
-    "@types/node": "^8.0.48",
-    "@types/react": "^16",
+    "@types/node": "^9.4.6",
+    "@types/react": "^16.0.38",
     "@types/react-dom": "^16.0.2",
     "@types/storybook__addon-actions": "^3.0.1",
     "@types/storybook__addon-info": "^3.2.0",

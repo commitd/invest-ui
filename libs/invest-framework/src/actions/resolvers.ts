@@ -1,5 +1,5 @@
 import { PromiseCompletion, ResolverMeta, ResolverActionCreator } from './types'
-import { createAction } from 'redux-actions'
+import { createAction, ActionMeta, ActionFunction2 } from 'redux-actions'
 import { Dispatch } from 'redux'
 
 /**
@@ -35,7 +35,8 @@ export function resolverMeta<T>(payload: {}, meta: PromiseCompletion<T>): Resolv
 }
 
 /** A helper for generating actioncreators which work as 'resolver actions'  */
-export function createResolverAction<Payload, Response>(action: string) {
+export function createResolverAction<Payload, Response>(action: string)
+    : ActionFunction2<Payload, PromiseCompletion<Response>, ActionMeta<Payload, ResolverMeta<Response>>> {
     return createAction<Payload, ResolverMeta<Response>, Payload, PromiseCompletion<Response>>
-        (action, (payload: Payload) => payload, resolverMeta)
+        (action, (payload: Payload, ) => payload, resolverMeta)
 }

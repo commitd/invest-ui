@@ -8,10 +8,10 @@
   "license": "Apache-2.0",
   "dependencies": {
     "lodash.isequal": "^4.5.0",
-    "semantic-ui-react": "^0.76.0"
+    "semantic-ui-react": "^0.78.3"
   },
   "peerDependencies": {
-    "invest-components": "^0.1.0",
+    "invest-components": "*",
     "invest-rpc": "*",
     "invest-types": "*",
     "react": "^16.0.0",
@@ -27,7 +27,7 @@
     "@types/classnames": "^2.2.3",
     "@types/lodash.isequal": "^4.5.2",
     "@types/loglevel": "^1.5.1",
-    "@types/react": "^16",
+    "@types/react": "^16.0.38",
     "@types/react-dom": "^16.0.1",
     "@types/storybook__addon-actions": "^3.0.1",
     "@types/storybook__addon-info": "^3.2.0",
@@ -36,14 +36,14 @@
     "@types/storybook__react": "^3.0.5",
     "awesome-typescript-loader": "^3.3.0",
     "invest-components": "^0.3.0-SNAPSHOT",
-    "jest": "^21.2.1",
+    "jest": "^22.4.2",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "storybook-readme": "^3.1.1",
-    "ts-jest": "^21.1.4",
+    "ts-jest": "^22.4.0",
     "tslint": "^5.7.0",
-    "typescript": "~2.5.0"
+    "typescript": "~2.7.2"
   },
   "scripts": {
     "build": "tsc",

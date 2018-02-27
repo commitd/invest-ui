@@ -16,13 +16,13 @@
     "license": "Apache-2.0",
     "devDependencies": {
         "babel-core": "^6.18.2",
-        "babel-loader": "^6.2.7",
+        "babel-loader": "^7.1.3",
         "babel-preset-es2015": "^6.18.0",
         "babel-preset-es2015-webpack": "^6.4.3",
-        "eslint": "^3.9.1",
-        "eslint-loader": "^1.6.1",
+        "eslint": "^4.18.1",
+        "eslint-loader": "^2.0.0",
         "invest-plugin": "^0.3.0-SNAPSHOT",
-        "webpack": "^2.2.1",
+        "webpack": "^4.0.1",
         "webpack-visualizer-plugin": "^0.1.11"
     },
     "dependencies": {

@@ -8,16 +8,16 @@
   "license": "Apache-2.0",
   "dependencies": {
     "loglevel": "^1.5.1",
-    "loglevel-plugin-prefix": "^0.5.3",
+    "loglevel-plugin-prefix": "^0.8.3",
     "qs": "^6.5.1"
   },
   "devDependencies": {
-    "@types/jest": "^21.1.5",
+    "@types/jest": "^22.1.3",
     "@types/loglevel": "^1.5.1",
-    "jest": "^21.2.1",
-    "ts-jest": "^21.1.4",
+    "jest": "^22.4.2",
+    "ts-jest": "^22.4.0",
     "tslint": "^5.7.0",
-    "typescript": "~2.5.0"
+    "typescript": "~2.7.2"
   },
   "peerDependencies": {
     "invest-types": "*"

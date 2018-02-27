@@ -1,5 +1,4 @@
-import { ApolloLink, Operation, NextLink, FetchResult } from 'apollo-link'
-import * as Observable from 'zen-observable'
+import { Observable, ApolloLink, Operation, NextLink, FetchResult } from 'apollo-link'
 import { GraphQLSchema, graphql } from 'graphql'
 import { print } from 'graphql/language'
 import { loggerFactory } from 'invest-utils'

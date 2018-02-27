@@ -13,10 +13,10 @@
   "devDependencies": {
     "@types/loglevel": "^1.5.1",
     "@types/shortid": "^0.0.29",
-    "jest": "^21.2.1",
-    "ts-jest": "^21.1.4",
+    "jest": "^22.4.2",
+    "ts-jest": "^22.4.0",
     "tslint": "^5.7.0",
-    "typescript": "~2.5.0"
+    "typescript": "~2.7.2"
   },
   "scripts": {
     "build": "tsc",
