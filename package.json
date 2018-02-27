@@ -25,6 +25,7 @@
         "version:snapshot": "lerna publish --force-publish=* --skip-npm --skip-git"
     },
     "resolutions": {
-        "@types/react": "16.0.38"
+        "@types/react": "16.0.38",
+        "graphql": "0.13.0"
     }
 }

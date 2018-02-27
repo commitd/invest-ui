@@ -4,7 +4,7 @@
   "private": true,
   "license": "Apache-2.0",
   "dependencies": {
-    "graphql": "^0.13.1",
+    "graphql": "0.13.0",
     "invest-components": "^0.3.0-SNAPSHOT",
     "invest-plugin": "^0.3.0-SNAPSHOT",
     "invest-types": "^0.3.0-SNAPSHOT",

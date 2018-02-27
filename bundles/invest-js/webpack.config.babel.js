@@ -1,5 +1,6 @@
 
 const path = require('path');
+var webpack = require('webpack');
 // const Visualizer = require('webpack-visualizer-plugin');
 
 export default () => (
@@ -33,5 +34,8 @@ export default () => (
                 { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
             ]
         },
+        plugins: [
+            new webpack.optimize.UglifyJsPlugin({ mangle: false })
+        ]
     }
 );

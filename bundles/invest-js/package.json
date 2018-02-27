@@ -5,7 +5,7 @@
     "main": "build/invest.js",
     "scripts": {
         "dev": "webpack",
-        "build": "webpack --optimize-minimize",
+        "build": "webpack",
         "test": "echo 'No tests'"
     },
     "keywords": [
