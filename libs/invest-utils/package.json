@@ -1,6 +1,6 @@
 {
   "name": "invest-utils",
-  "version": "0.2.0",
+  "version": "0.3.0-SNAPSHOT",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",

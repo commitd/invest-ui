@@ -21,7 +21,8 @@
         "build": "lerna run build",
         "build:systemjs": "mkdir -p build; lerna run build:systemjs && lerna run copy:systemjs",
         "test": "lerna run test",
-        "release": "lerna publish --force-publish=* --skip-git"
+        "version:release": "lerna publish --force-publish=* --skip-git",
+        "version:snapshot": "lerna publish --force-publish=* --skip-npm --skip-git"
     },
     "resolutions": {
         "@types/react": "16.0.31"
