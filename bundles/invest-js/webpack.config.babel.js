@@ -1,6 +1,6 @@
 
 const path = require('path');
-const Visualizer = require('webpack-visualizer-plugin');
+// const Visualizer = require('webpack-visualizer-plugin');
 
 export default () => (
     {
@@ -11,7 +11,7 @@ export default () => (
             libraryTarget: 'umd',
             library: 'Invest'
         },
-        plugins: [new Visualizer()],
+        // plugins: [new Visualizer()],
         externals: {
             react: {
                 root: 'React',
