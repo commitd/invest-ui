@@ -13,7 +13,9 @@ export interface Props {
     /** Handler to pass all menssages pup to */
     globalHandler: Handler<{}>
     /** component to render if no plugin is selected */
-    fallback?: React.ReactElement<{}>
+    fallback?: React.ReactElement<{}>,
+    /** Root URL of server */
+    serverUrl: string
 }
 
 interface State {
@@ -55,7 +57,7 @@ class PluginViewManager extends React.Component<Props, State> {
                             key={v.plugin.plugin.id}
                             style={{ display: display, height: '100%', width: '100%' }}
                         >
-                            <PluginView plugin={v.plugin} globalHandler={globalHandler} hide={!show} />
+                            <PluginView serverUrl={this.props.serverUrl} plugin={v.plugin} globalHandler={globalHandler} hide={!show} />
                         </div>
                     }
                     )

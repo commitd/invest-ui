@@ -117,6 +117,10 @@ class Main extends React.Component<Props, State> {
 
   render() {
 
+    const serverUrl = this.guessServerUrl(this.props.data
+      && this.props.data.investServer && this.props.data.investServer.configuration
+      ? this.props.data.investServer.configuration : undefined)
+
     let plugins = this.getPlugins()
     const title = (this.props.data
       && this.props.data.investServer
@@ -149,6 +153,7 @@ class Main extends React.Component<Props, State> {
         <Route path="/auth/login" component={Login} />
         <Layout navBar={navBar} sideBar={sideBar} open={this.state.sidebarOpen}>
           <PluginViewManager
+            serverUrl={serverUrl}
             globalHandler={this.props.globalHandler}
             plugin={plugin}
             plugins={plugins}
@@ -158,6 +163,15 @@ class Main extends React.Component<Props, State> {
       </div >
     )
   }
+
+  private guessServerUrl(configuration?: InvestConfiguration): string {
+    const configurationUrl = configuration && configuration.serverUrl
+    if (configurationUrl) {
+      return configurationUrl
+    }
+
+    return window.location.protocol + '//' + window.location.host
+  }
 }
 
 const APP_QUERY = gql`
@@ -165,6 +179,7 @@ const APP_QUERY = gql`
     investServer {
       configuration {
         title
+        serverUrl
         settings
       }
       authentication {

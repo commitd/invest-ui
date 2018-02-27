@@ -13,6 +13,7 @@ export interface State {
 export const initialState = Immutable.from({
     configuration: {
         title: 'Invest',
+        serverUrl: 'http://localhost:8080',
         settings: {}
     }
 })
