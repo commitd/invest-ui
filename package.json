@@ -20,7 +20,8 @@
         "link:libs": "lerna exec yarn link",
         "build": "lerna run build",
         "build:systemjs": "mkdir -p build; lerna run build:systemjs && lerna run copy:systemjs",
-        "test": "lerna run test"
+        "test": "lerna run test",
+        "release": "lerna publish --force-publish=* --skip-git"
     },
     "resolutions": {
         "@types/react": "16.0.31"
