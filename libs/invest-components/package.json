@@ -9,6 +9,7 @@
   "dependencies": {
     "@types/sigmajs": "^1.0.27",
     "@types/victory": "^0.9.14",
+    "lodash-es": "^4.17.5",
     "numeral": "^2.0.6",
     "react-sizeme": "^2.3.6",
     "semantic-ui-react": "^0.78.3",
@@ -25,6 +26,7 @@
     "@storybook/addon-knobs": "^3.2.14",
     "@storybook/addon-storyshots": "^3.2.14",
     "@storybook/react": "^3.2.14",
+    "@types/lodash-es": "^4.17.0",
     "@types/loglevel": "^1.5.1",
     "@types/react": "^16.0.38",
     "@types/react-dom": "^16.0.1",
