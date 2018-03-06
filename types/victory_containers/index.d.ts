@@ -4,6 +4,8 @@
 // This is augmenting the types from @types/victory
 
 declare module "victory" {
+    import * as React from 'react'
+
     export type BrushDomain = { x?: [Date, Date], y?: [Date, Date] }
 
     export type VictoryBrushContainerProps = {
@@ -11,7 +13,9 @@ declare module "victory" {
         brushDomain?: BrushDomain,
         onBrushDomainChange(domain: BrushDomain): void,
         responsive?: boolean
-    } 
- 
+    }
+
     export class VictoryBrushContainer extends React.Component<VictoryBrushContainerProps, {}> { }
+
+    export class VictoryTooltip extends React.Component<{}, {}> { }
 }

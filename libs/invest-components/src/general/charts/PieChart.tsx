@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { VictoryPie } from 'victory'
+import { VictoryPie, VictoryTooltip } from 'victory'
 
 export interface Props {
     data: {
@@ -13,6 +13,7 @@ class SimplePieChart extends React.Component<Props> {
         const { data } = this.props
         return (
             <VictoryPie
+                labelComponent={<VictoryTooltip />}
                 data={data}
             />
         )
