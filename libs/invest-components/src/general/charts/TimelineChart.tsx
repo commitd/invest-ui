@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { ResponsiveContainer, LineChart, XAxis, YAxis, Line, Tooltip, ReferenceArea } from 'recharts'
 import debounce from 'lodash-es/debounce'
+import isEqual from 'lodash-es/isEqual'
+
 import { timeFormat } from 'd3-time-format'
 
 export type TimeDomain = { x: [Date, Date] }
@@ -52,7 +54,7 @@ class TimelineChart extends React.Component<Props, State> {
     componentWillReceiveProps(nextProps: Props) {
         let stateChanged = false
         const state: State = {}
-        if (nextProps.data !== this.props.data) {
+        if (!isEqual(nextProps.data, this.props.data)) {
             stateChanged = true
             state.start = undefined
             state.end = undefined
@@ -71,16 +73,19 @@ class TimelineChart extends React.Component<Props, State> {
     }
 
     render() {
-        const { height } = this.props
+        const { height, onSelectionChanged } = this.props
         const { data, start, end } = this.state
+
+        const brushing = onSelectionChanged != null
 
         return (
             <ResponsiveContainer height={height ? height : 400}>
                 <LineChart
                     data={data}
-                    onMouseDown={this.startSelection}
+                    onMouseDown={brushing ? this.startSelection : undefined}
                     onMouseMove={this.updateSelection}
                     onMouseUp={this.stopSelection}
+                    style={{ userSelect: 'none' }}
                 >
                     <XAxis
                         dataKey="x"
@@ -93,7 +98,7 @@ class TimelineChart extends React.Component<Props, State> {
                     <YAxis dataKey="y" name="Count" />
                     <Tooltip labelFormatter={(x: number) => new Date(x).toISOString()} />
                     <Line dataKey="y" stroke="#000" />
-                    {start && end ?
+                    {brushing && start && end ?
                         <ReferenceArea
                             x1={start}
                             x2={end}
@@ -129,7 +134,11 @@ class TimelineChart extends React.Component<Props, State> {
         this.setState(state => {
 
             if (this.state.onSelectionChanged && state.start && state.end) {
-                this.state.onSelectionChanged(new Date(state.start), new Date(state.end))
+
+                const from = Math.min(state.start, state.end)
+                const to = Math.max(state.start, state.end)
+
+                this.state.onSelectionChanged(new Date(from), new Date(to))
             }
 
             return { selecting: false }
