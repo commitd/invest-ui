@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { VictoryChart, VictoryLine, VictoryBrushContainer } from 'victory'
+import { ResponsiveContainer, LineChart, XAxis, YAxis, Line, Tooltip, ReferenceArea } from 'recharts'
 import debounce from 'lodash-es/debounce'
+import { timeFormat } from 'd3-time-format'
 
 export type TimeDomain = { x: [Date, Date] }
 
@@ -9,26 +10,43 @@ export interface OwnProps {
         x: Date,
         y: number
     }[],
-    onSelectionChanged?(from: Date, to: Date): void
+    height?: number
+    onSelectionChanged?(from: Date, to: Date): void,
 }
 
 export type Props = OwnProps
 
+export type IndexDomain = { startIndex: number, endIndex: number }
+
 export type State = {
-    selectedDomain?: TimeDomain
-    onSelectionChanged?(from: Date, to: Date): void
+    start?: number
+    end?: number
+    selecting?: boolean
+    data?: {
+        x: number,
+        y: number
+    }[]
+    onSelectionChanged?(from: Date, to: Date): void,
+
 }
 
 class TimelineChart extends React.Component<Props, State> {
 
-    state: State = {}
+    state: State = {
+        data: [],
+        selecting: false
+    }
 
     componentWillMount() {
-        if (this.props.onSelectionChanged) {
-            this.setState({
-                onSelectionChanged: debounce(this.props.onSelectionChanged, 250)
-            })
+        const state: State = {
+            data: this.convertData(this.props)
         }
+
+        if (this.props.onSelectionChanged) {
+            state.onSelectionChanged = debounce(this.props.onSelectionChanged, 250)
+        }
+
+        this.setState(state)
     }
 
     componentWillReceiveProps(nextProps: Props) {
@@ -36,7 +54,9 @@ class TimelineChart extends React.Component<Props, State> {
         const state: State = {}
         if (nextProps.data !== this.props.data) {
             stateChanged = true
-            state.selectedDomain = undefined
+            state.start = undefined
+            state.end = undefined
+            state.data = this.convertData(nextProps)
         }
 
         if (nextProps.onSelectionChanged && nextProps.onSelectionChanged !== this.props.onSelectionChanged) {
@@ -51,43 +71,70 @@ class TimelineChart extends React.Component<Props, State> {
     }
 
     render() {
-        const { data, onSelectionChanged } = this.props
-
-        let outerChartContainer = undefined
-        if (onSelectionChanged) {
-            outerChartContainer = (
-                <VictoryBrushContainer
-                    brushDimension="x"
-                    brushDomain={this.state.selectedDomain}
-                    onBrushDomainChange={this.handleBrush}
-                    responsive={true}
-                />
-            )
-        }
+        const { height } = this.props
+        const { data, start, end } = this.state
 
         return (
-            <VictoryChart
-                width={1500}
-                height={500}
-                domainPadding={100}
-                scale={{ x: 'time' }}
-                containerComponent={outerChartContainer}
-            >
-                <VictoryLine data={data} />
+            <ResponsiveContainer height={height ? height : 400}>
+                <LineChart
+                    data={data}
+                    onMouseDown={this.startSelection}
+                    onMouseMove={this.updateSelection}
+                    onMouseUp={this.stopSelection}
+                >
+                    <XAxis
+                        dataKey="x"
+                        name="Time"
+                        type="number"
+                        scale="time"
+                        tickFormatter={timeFormat('%Y-%m-%d')}
+                        domain={['auto', 'auto']}
+                    />
+                    <YAxis dataKey="y" name="Count" />
+                    <Tooltip labelFormatter={(x: number) => new Date(x).toISOString()} />
+                    <Line dataKey="y" stroke="#000" />
+                    {start && end ?
+                        <ReferenceArea
+                            x1={start}
+                            x2={end}
+                            strokeOpacity={0.3}
+                        />
+                        : null}
 
-            </VictoryChart>
+                </LineChart>
+            </ResponsiveContainer >
         )
     }
 
-    private handleBrush = (domain: TimeDomain) => {
-        this.setState({
-            selectedDomain: domain
+    private convertData = (props: Props) => {
+        return [...props.data].sort((a, b) => a.x.getTime() - b.x.getTime())
+            .map(d => ({ y: d.y, x: d.x.getTime() }))
+    }
+
+    private startSelection = (e: { activeLabel: number }) => {
+        this.setState({ selecting: true, start: e.activeLabel })
+    }
+
+    private updateSelection = (e: { activeLabel: number }) => {
+        this.setState(state => {
+            if (state.selecting) {
+                return { end: e.activeLabel }
+            } else {
+                return state
+            }
+        })
+    }
+
+    private stopSelection = () => {
+        this.setState(state => {
+
+            if (this.state.onSelectionChanged && state.start && state.end) {
+                this.state.onSelectionChanged(new Date(state.start), new Date(state.end))
+            }
+
+            return { selecting: false }
         })
 
-        if (this.state.onSelectionChanged) {
-            console.log(domain)
-            this.state.onSelectionChanged(domain.x[0], domain.x[1])
-        }
     }
 }
 
