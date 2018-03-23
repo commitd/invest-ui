@@ -33,7 +33,7 @@ class OuterDataContainer<Variables, Response> extends React.Component<OuterProps
 
         return React.createElement(
             graphql<Response, Variables>(query, {
-                options: { variables: variables },
+                options: { variables: variables, fetchPolicy: 'network-only' },
             })(InnerDataContainer),
             variables as Variables,
             children)

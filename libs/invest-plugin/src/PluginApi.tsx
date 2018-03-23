@@ -113,10 +113,12 @@ export class PluginApi {
         if (typeof options === 'string') {
             return this.client.query({
                 query: gql(options),
-                variables: variables
+                variables: variables,
+                fetchPolicy: 'network-only'
             })
         } else {
-            return this.client.query(options)
+            const query = Object.assign({ fetchPolicy: 'network-only' }, options)
+            return this.client.query(query)
         }
     }
 
@@ -148,7 +150,7 @@ export class PluginApi {
                 payload: payload && JSON.stringify(payload)
             }
         }).then((r: ApolloQueryResult<{ success: boolean }>) => {
-            return r.data
+            return r != null && r.data && r.data.success ? r.data : { success: false }
         })
     }
 
@@ -157,9 +159,17 @@ export class PluginApi {
             query: this.localMode ? LOCAL_FIND_PLUGINS_QUERY : REMOTE_FIND_PLUGINS_QUERY,
             variables: {
                 action
-            }
+            },
+            fetchPolicy: 'cache-first'
         }).then((r: ApolloQueryResult<FindPluginResponse>) => {
-            return r.data.investUi.actions.definitions
+            console.log(r)
+            return r != null
+                && r.data != null
+                && r.data.investUi != null
+                && r.data.investUi.actions != null
+                && r.data.investUi.actions.definitions != null
+                ? r.data.investUi.actions.definitions
+                : []
         })
     }
 }
