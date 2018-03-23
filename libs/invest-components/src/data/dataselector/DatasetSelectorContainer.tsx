@@ -16,6 +16,7 @@ interface Response {
     corpora: {
         id: string
         name: string
+        description: string
         providers: {
             providerType: string
             datasource: string
@@ -85,11 +86,14 @@ class DatasetSelectorContainer extends React.Component<Props> {
     }
 }
 
+// TODO: This is based on the Ketos graphql resolvers, these need to be moved generalica
+
 const CORPUS_SUMMARY_QUERY = gql`
 query Corpora {
   corpora {
     id
     name
+    description
     providers {
         providerType
         datasource

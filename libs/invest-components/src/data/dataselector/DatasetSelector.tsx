@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { Dropdown, Menu } from 'semantic-ui-react'
+import Ellipsis from '../../general/utils/Ellipsis'
 
 export interface Dataset {
     id: string,
-    name: string
+    name: string,
+    description: string
 }
 
 export interface OwnProps {
@@ -57,6 +59,11 @@ class DatasetSelector extends React.Component<Props> {
                     options={datasetOptions}
                     onChange={this.handleDatasetSelected}
                 />
+                {dataset && dataset.description &&
+                    <Menu.Item>
+                        <i><Ellipsis text={dataset.description} size={64} /></i>
+                    </Menu.Item>
+                }
             </Menu>
         )
     }
