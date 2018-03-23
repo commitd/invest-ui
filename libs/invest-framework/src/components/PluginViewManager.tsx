@@ -39,7 +39,7 @@ class PluginViewManager extends React.Component<Props, State> {
         if (nextProps.plugin
             && (!this.props.plugin || (this.props.plugin && nextProps.plugin.plugin.id !== this.props.plugin.plugin.id))
         ) {
-            this.ensureSelectedView(nextProps, this.state)
+            this.ensureSelectedView(nextProps, nextState)
         }
     }
 
@@ -57,7 +57,12 @@ class PluginViewManager extends React.Component<Props, State> {
                             key={v.plugin.plugin.id}
                             style={{ display: display, height: '100%', width: '100%' }}
                         >
-                            <PluginView serverUrl={this.props.serverUrl} plugin={v.plugin} globalHandler={globalHandler} hide={!show} />
+                            <PluginView
+                                serverUrl={this.props.serverUrl}
+                                plugin={v.plugin}
+                                globalHandler={globalHandler}
+                                hide={!show}
+                            />
                         </div>
                     }
                     )
@@ -66,40 +71,47 @@ class PluginViewManager extends React.Component<Props, State> {
         )
     }
 
-    private ensureSelectedView(props: Props, state: State) {
+    private ensureSelectedView(props: Props) {
         if (!props.plugin) {
             return
         }
 
         const selectedPlugin = props.plugin
 
-        // Look for an existing plugin view
-        const views = state.views.filter(p => p.plugin.plugin.id === selectedPlugin.plugin.id)
+        this.setState((state: State) => {
 
-        // Do we have a plugin view for that id already?
-        if (views.length === 0) {
-            // No, create one
+            // Look for an existing plugin view
+            const views = state.views.filter(p => p.plugin.plugin.id === selectedPlugin.plugin.id)
 
-            const view = {
-                plugin: props.plugin
+            // Do we have a plugin view for that id already?
+            if (views.length === 0) {
+                // No, create one
+
+                const view = {
+                    plugin: selectedPlugin
+                }
+
+                return {
+                    views: [view].concat(state.views)
+                }
+            } else if (views.length === 1) {
+                // Yes, udpate the pluginwithintent (if changed)
+                const view = views[0]
+                if (!isEqual(view.plugin, selectedPlugin)) {
+                    view.plugin = selectedPlugin
+
+                    const otherViews = state.views.filter(p => p.plugin.plugin.id !== selectedPlugin.plugin.id)
+
+                    return {
+                        views: [view].concat(otherViews)
+                    }
+                }
+            } else {
+                throw new Error('Multiple views per plugin are not supported (yet)!')
             }
+            return state
+        })
 
-            this.setState((s: State) => ({
-                views: [view].concat(s.views)
-            }))
-        } else if (views.length === 1) {
-            // Yes, udpate the pluginwithintent (if changed)
-            const view = views[0]
-            if (!isEqual(view.plugin, selectedPlugin)) {
-                view.plugin = selectedPlugin
-
-                this.setState((s: State) => ({
-                    views: [view].concat(s.views.filter(p => p.plugin.plugin.id !== selectedPlugin.plugin.id))
-                }))
-            }
-        } else {
-            throw new Error('Multiple views per plugin are not supported (yet)!')
-        }
     }
 }
 
