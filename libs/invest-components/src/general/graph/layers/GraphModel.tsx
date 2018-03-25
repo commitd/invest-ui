@@ -90,7 +90,7 @@ class GraphModel extends React.Component<GraphChild> {
         if (changes > 0) {
             sigma.refresh()
 
-            graph.layout(Math.max(2000, changes * 50))
+            graph.layout(Math.min(500, changes * 50))
         }
 
         return null
