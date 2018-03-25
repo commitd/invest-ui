@@ -31,7 +31,7 @@ class InnerDataContainer<Variables, Response> extends React.Component<Props<Vari
         if (hasDataBar) {
             return (
                 <React.Fragment>
-                    <Segment fluid={true} basic={true}>
+                    <Segment basic={true}>
                         {showRefresh &&
                             <Button floated="right" content="Refresh" icon="refresh" onClick={this.handleRefresh} />}
                     </Segment>
