@@ -18,8 +18,8 @@
         "local:publish": "lerna run publish:local",
         "local:clearcache": "rm -rf $(yarn cache dir)/npm-invest-*",
         "link:libs": "lerna exec yarn link",
-        "build": "lerna run build",
-        "build:systemjs": "mkdir -p build; lerna run build:systemjs && lerna run copy:systemjs",
+        "build": "lerna run build --concurrency 1",
+        "build:systemjs": "mkdir -p build; lerna run build:systemjs && lerna run copy:systemjs --concurrency 1",
         "test": "lerna run test",
         "version:release": "lerna publish --force-publish=* --skip-git",
         "version:snapshot": "lerna publish --force-publish=* --skip-npm --skip-git"

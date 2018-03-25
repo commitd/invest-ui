@@ -24,3 +24,9 @@ export type GeoBox = {
     e: number
     w: number
 }
+
+export type GeoRadius = {
+    lat: number
+    lon: number
+    radius: number
+}
