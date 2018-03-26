@@ -56,6 +56,7 @@
     "publish:local": "npm unpublish --registry http://localhost:4873 $npm_package_name@$npm_package_version && yarn publish --registry http://localhost:4873 --new-version $npm_package_version"
   },
   "jest": {
+    "testEnvironment": "node",
     "transform": {
       "^.+\\.jsx?$": "../../node_modules/babel-jest",
       "^.+\\.tsx?$": "../../node_modules/ts-jest/preprocessor.js"

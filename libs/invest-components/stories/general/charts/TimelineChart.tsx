@@ -15,5 +15,6 @@ const data = [
     { x: new Date(2015, 1, 1), y: 470 }
 ]
 
-storiesOf('TimelineChart', module)
-    .add('None', () => <div style={{ width: '100%', height: '500px' }}><TimelineChart data={data} /></div>)
+// TODO: lodash-es casues an error?
+// storiesOf('TimelineChart', module)
+//     .add('None', () => <div style={{ width: '100%', height: '500px' }}><TimelineChart data={data} /></div>)

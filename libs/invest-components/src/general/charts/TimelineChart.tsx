@@ -12,7 +12,7 @@ export interface OwnProps {
         x: Date,
         y: number
     }[],
-    height?: number
+    height?: number,
     onSelectionChanged?(from: Date, to: Date): void,
 }
 
@@ -27,7 +27,7 @@ export type State = {
     data?: {
         x: number,
         y: number
-    }[]
+    }[],
     onSelectionChanged?(from: Date, to: Date): void,
 
 }
