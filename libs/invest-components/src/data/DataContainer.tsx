@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql, QueryProps } from 'react-apollo'
+import { graphql, DataProps } from 'react-apollo'
 import { Segment, Divider, Button, Loader } from 'semantic-ui-react'
 
 import { DocumentNode } from 'graphql'
@@ -8,11 +8,9 @@ type ControlProps = {
     showRefresh?: boolean
 }
 
-type Props<Input, Response> = Input & ControlProps & {
-    data?: QueryProps & Partial<Response>
-}
+type InnerProps<Input, DataResponse> = ControlProps & Partial<DataProps<DataResponse, Input>>
 
-class InnerDataContainer<Variables, Response> extends React.Component<Props<Variables, Response>> {
+class InnerDataContainer<Variables, Response> extends React.Component<InnerProps<Variables, Response>> {
 
     render() {
         const { data, children, showRefresh } = this.props
@@ -59,7 +57,7 @@ class OuterDataContainer<Variables, Response> extends React.Component<OuterProps
         const { query, children, variables, showRefresh } = this.props
 
         return React.createElement(
-            graphql<Response, Variables>(query, {
+            graphql<ControlProps, Response, Variables>(query, {
                 options: { variables: variables, fetchPolicy: 'network-only' },
             })(InnerDataContainer),
             Object.assign({ showRefresh: showRefresh }, variables as Variables),

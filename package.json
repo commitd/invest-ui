@@ -26,6 +26,6 @@
     },
     "resolutions": {
         "@types/react": "16.0.41",
-        "graphql": "0.13.2"
+        "graphql": "0.13.0"
     }
 }
