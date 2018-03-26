@@ -1,6 +1,6 @@
 {
   "name": "invest-framework",
-  "version": "0.3.0-SNAPSHOT",
+  "version": "0.3.0",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
@@ -35,7 +35,7 @@
     "@types/storybook__addon-links": "^3.0.2",
     "@types/storybook__react": "^3.0.5",
     "awesome-typescript-loader": "^4.0.1",
-    "invest-components": "^0.3.0-SNAPSHOT",
+    "invest-components": "^0.3.0",
     "jest": "^22.4.2",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
