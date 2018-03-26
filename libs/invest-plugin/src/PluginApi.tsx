@@ -162,7 +162,6 @@ export class PluginApi {
             },
             fetchPolicy: 'cache-first'
         }).then((r: ApolloQueryResult<FindPluginResponse>) => {
-            console.log(r)
             return r != null
                 && r.data != null
                 && r.data.investUi != null

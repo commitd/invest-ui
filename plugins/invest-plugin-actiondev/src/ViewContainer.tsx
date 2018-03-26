@@ -2,25 +2,16 @@ import * as React from 'react'
 import { Loader } from 'semantic-ui-react'
 
 import View from './View'
-import { graphql, QueryProps } from 'react-apollo'
+import { graphql, DataProps } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Plugin } from './Types'
 
-type Response = {
+type DataResponse = {
     investServer: {
         uiPlugins: Plugin[]
     }
 }
-
-type OwnProps = {
-
-}
-
-type GqlProps = {
-    data?: QueryProps & Partial<Response>
-}
-
-type Props = OwnProps & GqlProps
+type Props = Partial<DataProps<DataResponse>>
 
 class ViewContainer extends React.Component<Props> {
 
@@ -55,4 +46,4 @@ query GET_PLUGINS {
 
 `
 
-export default graphql<Response, OwnProps, Props>(QUERY_PLUGINS)(ViewContainer)
+export default graphql<{}, DataResponse>(QUERY_PLUGINS)(ViewContainer)

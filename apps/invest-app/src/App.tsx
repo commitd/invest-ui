@@ -66,4 +66,5 @@ const mapStateToProps = (state: RootState, props: OwnProps & RouteComponentProps
 
 const apolloed = withApollo(App)
 const connected = connect(mapStateToProps)(apolloed)
-export default withRouter(connected)
+const routed = withRouter<OwnProps & RouteComponentProps<{}>>(connected)
+export default routed

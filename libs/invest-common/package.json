@@ -1,6 +1,6 @@
 {
   "name": "invest-common",
-  "version": "0.3.0-SNAPSHOT",
+  "version": "0.3.0",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "invest-components",
-  "version": "0.3.0-SNAPSHOT",
+  "version": "0.3.0",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
@@ -10,8 +10,8 @@
     "@types/sigmajs": "^1.0.27",
     "@types/victory": "^0.9.14",
     "d3-time-format": "^2.1.1",
-    "invest-plugin": "0.3.0-SNAPSHOT",
-    "invest-types": "0.3.0-SNAPSHOT",
+    "invest-plugin": "^0.3.0",
+    "invest-types": "^0.3.0",
     "lodash-es": "^4.17.5",
     "numeral": "^2.0.6",
     "react-sizeme": "^2.3.6",
