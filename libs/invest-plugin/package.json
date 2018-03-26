@@ -45,7 +45,6 @@
     "transform": {
       "^.+\\.tsx?$": "../../node_modules/ts-jest/preprocessor.js"
     },
-    "mapCoverage": true,
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "testPathIgnorePatterns": [
       "/node_modules/",
