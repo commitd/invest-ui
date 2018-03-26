@@ -376,7 +376,7 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.0.41":
+"@types/react@*", "@types/react@16.0.41", "@types/react@^16.0.41":
   version "16.0.41"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.41.tgz#72146737f4d439dc95a53315de4bfb43ac8542ca"
 
@@ -5577,14 +5577,6 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-invest-utils@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/invest-utils/-/invest-utils-0.2.0.tgz#4c53ac5cccb9fa22e9ae53bb5122847d82498785"
-  dependencies:
-    loglevel "^1.5.1"
-    loglevel-plugin-prefix "^0.5.3"
-    qs "^6.5.1"
-
 ip@^1.1.0, ip@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
@@ -6865,10 +6857,6 @@ log-update@^1.0.2:
   dependencies:
     ansi-escapes "^1.0.0"
     cli-cursor "^1.0.2"
-
-loglevel-plugin-prefix@^0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/loglevel-plugin-prefix/-/loglevel-plugin-prefix-0.5.3.tgz#8e9131b96e4697a0dba517996f76b9e6c3f43210"
 
 loglevel-plugin-prefix@^0.8.3:
   version "0.8.3"
