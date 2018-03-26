@@ -12,6 +12,8 @@
     "apollo-link-http": "^1.2.0",
     "graphql": "0.13.0",
     "graphql-tools": "^2.7.2",
+    "invest-types": "^0.3.0-SNAPSHOT",
+    "invest-utils": "^0.3.0-SNAPSHOT",
     "lodash.merge": "^4.6.0",
     "react-apollo": "^2"
   },

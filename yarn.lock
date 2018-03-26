@@ -368,7 +368,7 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@16.0.38", "@types/react@^16.0.38":
+"@types/react@*", "@types/react@^16.0.38":
   version "16.0.38"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.38.tgz#76617433ea10274505f60bb86eddfdd0476ffdc2"
 
@@ -628,14 +628,6 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
-apollo-cache-inmemory@1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.1.5.tgz#74111367fd59caee120197ef663dcb2516971300"
-  dependencies:
-    apollo-cache "^1.1.0"
-    apollo-utilities "^1.0.4"
-    graphql-anywhere "^4.1.1"
-
 apollo-cache-inmemory@1.1.9:
   version "1.1.9"
   resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.1.9.tgz#8bcd05e8ec4e7dc5ffda7f68252244cab3197b71"
@@ -643,12 +635,6 @@ apollo-cache-inmemory@1.1.9:
     apollo-cache "^1.1.4"
     apollo-utilities "^1.0.8"
     graphql-anywhere "^4.1.5"
-
-apollo-cache@^1.1.0:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.6.tgz#b953488bcc8244e001b9ab9c8b362a1512e9203f"
-  dependencies:
-    apollo-utilities "^1.0.10"
 
 apollo-cache@^1.1.4:
   version "1.1.4"
@@ -708,10 +694,6 @@ apollo-test-utils@0:
 apollo-utilities@^1.0.0, apollo-utilities@^1.0.1, apollo-utilities@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.8.tgz#74d797d38953d2ba35e16f880326e2abcbc8b016"
-
-apollo-utilities@^1.0.10, apollo-utilities@^1.0.4:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.10.tgz#0c35696891d4fa28d76768e0f7249d63c6da08b9"
 
 append-transform@^0.4.0:
   version "0.4.0"
@@ -4935,12 +4917,6 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
-graphql-anywhere@^4.1.1:
-  version "4.1.7"
-  resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-4.1.7.tgz#cbb9106905bcc25bc0e8390548a97f8b154d3f9b"
-  dependencies:
-    apollo-utilities "^1.0.10"
-
 graphql-anywhere@^4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-4.1.5.tgz#552ccd27b79a13a899022e20f658a2c2cb75e251"
@@ -4974,11 +4950,17 @@ graphql-tools@^2.7.2:
     iterall "^1.1.3"
     uuid "^3.1.0"
 
-graphql@0.13.0, graphql@^0.10.0, graphql@^0.11.7:
+graphql@0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.0.tgz#d1b44a282279a9ce0a6ec1037329332f4c1079b6"
   dependencies:
     iterall "1.1.x"
+
+graphql@^0.10.0:
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.10.5.tgz#c9be17ca2bdfdbd134077ffd9bbaa48b8becd298"
+  dependencies:
+    iterall "^1.1.0"
 
 grouped-queue@^0.3.0, grouped-queue@^0.3.3:
   version "0.3.3"
@@ -5522,40 +5504,6 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-invest-common@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/invest-common/-/invest-common-0.2.0.tgz#0105f9e0926f8982a6a9d6e49a25054c40276ce6"
-
-invest-graphql@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/invest-graphql/-/invest-graphql-0.2.0.tgz#f9f43101e46d6307f032dbd504e09ddc0e0a5258"
-  dependencies:
-    apollo-cache-inmemory "1.1.5"
-    apollo-client "^2.0.3"
-    apollo-link-http "^1.2.0"
-    graphql "^0.11.7"
-    graphql-tools "^2.7.2"
-    lodash.merge "^4.6.0"
-    react-apollo "^2"
-
-invest-plugin@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/invest-plugin/-/invest-plugin-0.2.0.tgz#7f19743f87bf5c00faefa37044a53d7e4245165b"
-  dependencies:
-    graphql-tag "^2.5.0"
-    invest-common "^0.2.0"
-    invest-graphql "^0.2.0"
-    invest-rpc "^0.2.0"
-    invest-types "^0.2.0"
-    invest-utils "^0.2.0"
-
-invest-rpc@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/invest-rpc/-/invest-rpc-0.2.0.tgz#31d5e49b2ac1125e1c4dd2a38ef7de89b455969b"
-  dependencies:
-    shortid "^2.2.8"
-    uniqueid "^1.0.0"
-
 invest-types@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/invest-types/-/invest-types-0.2.0.tgz#51e074c602e8696c3994d3aeae4f936b4ab42905"
@@ -6053,6 +6001,10 @@ isurl@^1.0.0-alpha5:
 iterall@1.1.x:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.4.tgz#0db40d38fdcf53ae14dc8ec674e62ab190d52cfc"
+
+iterall@^1.1.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
 
 iterall@^1.1.3:
   version "1.2.1"
