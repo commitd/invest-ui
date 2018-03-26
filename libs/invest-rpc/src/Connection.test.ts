@@ -1,44 +1,44 @@
-import Connection, { SourceWindow, TargetWindow } from './Connection'
-import { Handler } from './types'
+// import Connection, { SourceWindow, TargetWindow } from './Connection'
+// import { Handler } from './types'
 
-interface TestState {
-    handle(data: {}): string
-}
+// interface TestState {
+//     handle(data: {}): string
+// }
 
 describe('Connection', () => {
 
-    let sourceWindow: SourceWindow
-    let sourcePostMessage: jest.Mock<{}>
-    let targetWindow: TargetWindow
-    let targetPostMessage: jest.Mock<{}>
-    let handleCallback: jest.Mock<{}>
-    let handler: Handler<TestState>
+    // let sourceWindow: SourceWindow
+    // let sourcePostMessage: jest.Mock<{}>
+    // let targetWindow: TargetWindow
+    // let targetPostMessage: jest.Mock<{}>
+    // let handleCallback: jest.Mock<{}>
+    // let handler: Handler<TestState>
 
-    beforeEach(() => {
-        sourcePostMessage = jest.fn()
-        targetPostMessage = jest.fn()
-        handleCallback = jest.fn()
+    // beforeEach(() => {
+    //     sourcePostMessage = jest.fn()
+    //     targetPostMessage = jest.fn()
+    //     handleCallback = jest.fn()
 
-        sourceWindow = {
-            addEventListener: jest.fn(),
-            removeEventListener: jest.fn(),
-            dispatchEvent: jest.fn(),
-            location: {
-                origin: 'source'
-            }
-        }
+    //     sourceWindow = {
+    //         addEventListener: jest.fn(),
+    //         removeEventListener: jest.fn(),
+    //         dispatchEvent: jest.fn(),
+    //         location: {
+    //             origin: 'source'
+    //         }
+    //     }
 
-        targetWindow = {
-            postMessage: targetPostMessage,
-            location: {
-                origin: 'target'
-            }
-        }
+    //     targetWindow = {
+    //         postMessage: targetPostMessage,
+    //         location: {
+    //             origin: 'target'
+    //         }
+    //     }
 
-        handler = {
-            handle: handleCallback
-        }
-    })
+    //     handler = {
+    //         handle: handleCallback
+    //     }
+    // })
 
     // TODO FIXME - broken when I added queueing for on ready
     // it(' sends notifications', () => {

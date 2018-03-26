@@ -8,7 +8,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "lodash.isequal": "^4.5.0",
-    "semantic-ui-react": "^0.78.3"
+    "semantic-ui-react": "^0.79.0"
   },
   "peerDependencies": {
     "invest-components": "0.3.0-SNAPSHOT",
@@ -27,14 +27,14 @@
     "@types/classnames": "^2.2.3",
     "@types/lodash.isequal": "^4.5.2",
     "@types/loglevel": "^1.5.1",
-    "@types/react": "^16.0.38",
+    "@types/react": "^16.0.41",
     "@types/react-dom": "^16.0.1",
     "@types/storybook__addon-actions": "^3.0.1",
     "@types/storybook__addon-info": "^3.2.0",
     "@types/storybook__addon-knobs": "^3.2.1",
     "@types/storybook__addon-links": "^3.0.2",
     "@types/storybook__react": "^3.0.5",
-    "awesome-typescript-loader": "^3.3.0",
+    "awesome-typescript-loader": "^4.0.1",
     "invest-components": "^0.3.0-SNAPSHOT",
     "jest": "^22.4.2",
     "raw-loader": "^0.5.1",

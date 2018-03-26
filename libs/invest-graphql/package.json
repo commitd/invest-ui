@@ -7,10 +7,10 @@
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "apollo-cache-inmemory": "1.1.9",
+    "apollo-cache-inmemory": "1.1.11",
     "apollo-client": "^2.0.3",
     "apollo-link-http": "^1.2.0",
-    "graphql": "0.13.0",
+    "graphql": "0.13.2",
     "graphql-tools": "^2.7.2",
     "invest-types": "^0.3.0-SNAPSHOT",
     "invest-utils": "^0.3.0-SNAPSHOT",
@@ -18,9 +18,10 @@
     "react-apollo": "^2"
   },
   "devDependencies": {
+    "@types/graphql": "^0.12.6",
     "@types/lodash.merge": "^4.6.3",
     "@types/loglevel": "^1.5.1",
-    "@types/react": "^16.0.38",
+    "@types/react": "^16.0.41",
     "@types/react-dom": "^16.0.2",
     "jest": "^22.4.2",
     "react": "^16.0.0",
