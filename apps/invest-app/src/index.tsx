@@ -49,4 +49,4 @@ applicationClient.setup().then(() => {
   )
 })
 
-registerServiceWorker()
+// registerServiceWorker()
