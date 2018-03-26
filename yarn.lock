@@ -656,7 +656,7 @@ apollo-cache@^1.1.6:
   dependencies:
     apollo-utilities "^1.0.10"
 
-apollo-client@^2.0.3:
+apollo-client@2.2.7:
   version "2.2.7"
   resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.2.7.tgz#d5adbda81ef1f1c9c105ac71227ca8dc42b5731b"
   dependencies:
