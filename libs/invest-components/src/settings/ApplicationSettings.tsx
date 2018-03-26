@@ -49,7 +49,6 @@ class ApplicationSettings extends React.Component<Props, State> {
     }
 
     private updateSettings = (props: Props) => {
-        console.log(props)
         let settings: PropertiesMap = Object.assign({}, this.props.defaultSettings)
         if (props.data
             && props.data.investServer
