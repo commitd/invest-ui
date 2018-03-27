@@ -9,6 +9,7 @@
     ],
     "devDependencies": {
         "lerna": "^2.9.0",
+        "license-checker": "^18.0.0",
         "rimraf": "^2.6.2"
     },
     "scripts": {
@@ -27,7 +28,8 @@
         "build:systemjs": "mkdir -p build; lerna run build:systemjs && lerna run copy:systemjs --concurrency 4",
         "test": "lerna run test",
         "version:release": "lerna publish --force-publish=* --skip-git",
-        "version:snapshot": "lerna publish --force-publish=* --skip-npm --skip-git"
+        "version:snapshot": "lerna publish --force-publish=* --skip-npm --skip-git",
+        "licences": "yarn run license-checker --csv --out THIRD-PARTY-JS.csv; yarn run license-checker --summary"
     },
     "resolutions": {
         "@types/react": "16.0.41",
