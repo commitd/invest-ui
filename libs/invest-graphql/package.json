@@ -6,7 +6,18 @@
   "browser": "build/index.js",
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
-  "dependencies": {},
+  "dependencies": {
+    "lodash-es": "^4.17.5",
+    "apollo-cache-inmemory": "1.1.12",
+    "apollo-client": "2.2",
+    "apollo-link-http": "^1.2.0",
+    "graphql": "0.13.0",
+    "graphql-tools": "^2.7.2",
+    "invest-rpc": "^0.3.0",
+    "invest-types": "^0.3.0",
+    "invest-utils": "^0.3.0",
+    "react-apollo": "^2"
+  },
   "peerDependencies": {
     "lodash-es": "^4.17.5",
     "apollo-cache-inmemory": "1.1.12",

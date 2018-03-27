@@ -10,7 +10,16 @@
     "d3-time-format": "2",
     "react-sizeme": "2",
     "validate.js": "0.12",
-    "victory": "0.25"
+    "victory": "0.25",
+    "numeral": "^2.0.6",
+    "sigma": "^1.2.1",
+    "recharts": "^1.0.0-beta.10",
+    "semantic-ui-react": "^0.79.0",
+    "lodash-es": "^4.17.5",
+    "invest-plugin": "^0.3.0",
+    "invest-types": "^0.3.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "peerDependencies": {
     "numeral": "^2.0.6",

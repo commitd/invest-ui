@@ -9,7 +9,8 @@
   "dependencies": {
     "loglevel-plugin-prefix": "^0.8.3",
     "loglevel": "^1.5.1",
-    "qs": "^6.5.1"
+    "qs": "^6.5.1",
+    "invest-types": "0.3.0"
   },
   "peerDependencies": {
     "invest-types": "0.3.0"
