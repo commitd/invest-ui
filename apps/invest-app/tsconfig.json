@@ -1,6 +1,7 @@
 {
     "extends": "../../config/tsconfig",
     "compilerOptions": {
+        "baseUrl": ".",
         "rootDirs": [
             "src/",
             "stories/"

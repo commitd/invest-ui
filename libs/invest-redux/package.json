@@ -6,17 +6,16 @@
   "browser": "build/index.js",
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
-  "dependencies": {
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "seamless-immutable": "7",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-saga": "^0.16.0",
-    "reselect": "^3.0.1",
-    "seamless-immutable": "^7.1.2"
-  },
-  "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "reselect": "^3.0.1"
   },
   "devDependencies": {
     "@types/jest": "^22.1.3",

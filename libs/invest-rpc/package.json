@@ -7,9 +7,11 @@
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "invest-utils": "^0.3.0",
     "shortid": "^2.2.8",
     "uniqueid": "^1.0.0"
+  },
+  "peerDependencies": {
+    "invest-utils": "^0.3.0"
   },
   "devDependencies": {
     "@types/loglevel": "^1.5.1",
