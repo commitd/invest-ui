@@ -13,7 +13,9 @@
     },
     "scripts": {
         "bootstrap": "lerna bootstrap",
-        "clean": "lerna clean; yarn rimraf node_modules;",
+        "clean": "yarn clean:node_modules; yarn clean:build",
+        "clean:node_modules": "lerna clean; yarn rimraf node_modules",
+        "clean:build": "lerna exec rimraf build",
         "dev:app": "lerna run --stream --scope invest-app start",
         "dev:examples": "lerna run --parallel --scope example-* start",
         "dev:libs": "lerna run --parallel watch",
