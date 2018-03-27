@@ -7,18 +7,17 @@
   "browser": "build/index.js",
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
-  "dependencies": {
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "16",
+    "react-apollo": "2",
+    "react-dom": "16",
     "graphql-tag": "^2.5.0",
     "invest-common": "^0.3.0",
     "invest-graphql": "^0.3.0",
     "invest-rpc": "^0.3.0",
     "invest-types": "^0.3.0",
     "invest-utils": "^0.3.0"
-  },
-  "peerDependencies": {
-    "react": "16",
-    "react-apollo": "2",
-    "react-dom": "16"
   },
   "devDependencies": {
     "@types/prop-types": "^15.5.2",

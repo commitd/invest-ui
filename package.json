@@ -26,6 +26,26 @@
     },
     "resolutions": {
         "@types/react": "16.0.41",
-        "graphql": "0.13.0"
+        "graphql": "0.13.0",
+        "graphql-tag": "2.8.0",
+        "typescript": "2.7.2",
+        "numeral": "2.0.6",
+        "sigma": "1.2.1",
+        "recharts": "1.0.0-beta.10",
+        "semantic-ui-react": "0.79.0",
+        "lodash-es": "4.17.7",
+        "react": "16.2.0",
+        "react-dom": "16.2.0",
+        "seamless-immutable": "7.1.1",
+        "react-redux": "^5.0.6",
+        "redux": "3.7.2",
+        "redux-actions": "2.2.1",
+        "redux-saga": "0.16.0",
+        "reselect": "3.0.1",
+        "apollo-cache-inmemory": "1.1.12",
+        "apollo-client": "2.2.8",
+        "apollo-link-http": "1.5.3",
+        "graphql-tools": "2.23.1",
+        "react-apollo": "2.1.1"
     }
 }

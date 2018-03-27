@@ -7,15 +7,15 @@
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "lodash.isequal": "^4.5.0",
-    "semantic-ui-react": "^0.79.0"
+    "lodash.isequal": "^4.5.0"
   },
   "peerDependencies": {
     "invest-components": "0.3.0-SNAPSHOT",
     "invest-rpc": "0.3.0-SNAPSHOT",
     "invest-types": "0.3.0-SNAPSHOT",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "semantic-ui-react": "^0.79.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.14",
