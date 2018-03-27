@@ -12,7 +12,7 @@
     "qs": "^6.5.1"
   },
   "peerDependencies": {
-    "invest-types": "0.3.0-SNAPSHOT"
+    "invest-types": "0.3.0"
   },
   "devDependencies": {
     "@types/jest": "^22.1.3",
