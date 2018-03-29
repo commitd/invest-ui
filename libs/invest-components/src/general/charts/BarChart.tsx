@@ -1,28 +1,29 @@
 import * as React from 'react'
-import { VictoryChart, VictoryBar } from 'victory'
+import { ResponsiveContainer, BarChart, XAxis, YAxis, Bar, Tooltip } from 'recharts'
 
-export interface OwnProps {
+export interface Props {
     data: {
-        x: string | number,
+        x: string,
         y: number
-    }[]
+    }[],
+    height?: number
 }
 
-export type Props = OwnProps
-
-class BarChart extends React.Component<Props> {
+class SimpleBarChart extends React.Component<Props> {
     render() {
-        const { data } = this.props
+        const { data, height } = this.props
         return (
-            <VictoryChart
-                width={1500}
-                height={500}
-                domainPadding={100}
-            >
-                <VictoryBar data={data} />
-            </VictoryChart>
+            <ResponsiveContainer height={height ? height : 400}>
+                <BarChart data={data}>
+                    <XAxis dataKey="x" />
+                    <YAxis dataKey="y" />
+                    <Tooltip />
+                    <Bar dataKey="y" name="Value" fill="#000" />
+                </BarChart>
+            </ResponsiveContainer>
+
         )
     }
 }
 
-export default BarChart
+export default SimpleBarChart

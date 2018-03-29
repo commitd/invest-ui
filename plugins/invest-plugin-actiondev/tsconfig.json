@@ -1,6 +1,7 @@
 {
   "extends": "../../config/tsconfig.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "rootDir": ".",
     "outDir": "build/dist"
   }

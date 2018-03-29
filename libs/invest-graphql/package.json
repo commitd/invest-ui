@@ -1,32 +1,45 @@
 {
   "name": "invest-graphql",
-  "version": "0.2.0",
+  "version": "0.5.3",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "apollo-cache-inmemory": "1.1.5",
-    "apollo-client": "^2.0.3",
+    "apollo-cache-inmemory": "1.1.12",
+    "apollo-client": "2.2",
     "apollo-link-http": "^1.2.0",
-    "graphql": "^0.11.7",
+    "graphql": "0.13.0",
     "graphql-tools": "^2.7.2",
-    "lodash.merge": "^4.6.0",
+    "invest-rpc": "^0.5.2",
+    "invest-types": "^0.5.3",
+    "invest-utils": "^0.5.3",
+    "lodash-es": "^4.17.5",
     "react-apollo": "^2"
   },
+  "peerDependencies": {
+    "apollo-cache-inmemory": "1",
+    "apollo-client": "2",
+    "apollo-link-http": "1",
+    "graphql": "0.13",
+    "graphql-tools": "2.7",
+    "invest-rpc": "0",
+    "invest-types": "0",
+    "invest-utils": "0",
+    "lodash-es": "4",
+    "react-apollo": "2"
+  },
   "devDependencies": {
+    "@types/graphql": "^0.12.6",
     "@types/lodash.merge": "^4.6.3",
     "@types/loglevel": "^1.5.1",
-    "@types/react": "^16",
+    "@types/react": "^16.0.41",
     "@types/react-dom": "^16.0.2",
-    "jest": "^21.2.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "redux": "^3.7.2",
-    "ts-jest": "^21.1.4",
+    "jest": "^22.4.2",
+    "ts-jest": "^22.4.0",
     "tslint": "^5.7.0",
-    "typescript": "~2.5.0"
+    "typescript": "~2.7.2"
   },
   "scripts": {
     "build": "tsc",
@@ -37,10 +50,10 @@
     "publish:local": "npm unpublish --registry http://localhost:4873 $npm_package_name@$npm_package_version && yarn publish --registry http://localhost:4873 --new-version $npm_package_version"
   },
   "jest": {
+    "testEnvironment": "node",
     "transform": {
       "^.+\\.tsx?$": "../../node_modules/ts-jest/preprocessor.js"
     },
-    "mapCoverage": true,
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "testPathIgnorePatterns": [
       "/node_modules/",

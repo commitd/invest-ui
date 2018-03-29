@@ -7,9 +7,9 @@ export function termBinsToXY(array: TermBin[]): { x: string, y: number }[] {
     }))
 }
 
-export function timeBinsToXY(array: TimeBin[]): { x: Date | number, y: number }[] {
+export function timeBinsToXY(array: TimeBin[]): { x: Date, y: number }[] {
     return array.map(i => ({
-        x: i.ts,
+        x: i.ts instanceof Date ? i.ts : new Date(i.ts),
         y: i.count
     }))
 }

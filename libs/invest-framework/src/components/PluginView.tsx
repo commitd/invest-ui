@@ -11,12 +11,11 @@ export interface Props {
     /** Handler to pass messages up to */
     globalHandler: Handler<{}>
     /** Signal that the plugin is hidden (this component will not hide it for you!) */
-    hide?: boolean
-}
+    hide?: boolean,
+    /** Server root url, eg http://localhost:8080 */
+    serverUrl: String
 
-// window.location.hostname? That doesn;t work in dev mode with webpack .
-//  It might have to come from the server / config? And if null then fallback
-const baseServerPath = 'http://localhost:8080'
+}
 
 /**
  * A wrapper for displaying a plugin.
@@ -83,7 +82,7 @@ class PluginView extends React.Component<Props> {
         if (relativeUrl.startsWith('http')) {
             return relativeUrl
         } else {
-            return baseServerPath + relativeUrl
+            return this.props.serverUrl + relativeUrl
         }
     }
 

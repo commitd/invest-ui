@@ -67,3 +67,7 @@
 
 //     })
 // })
+
+test('TODO Update test', () => {
+    console.log('GlobalHandler tests needs to be updated')
+})

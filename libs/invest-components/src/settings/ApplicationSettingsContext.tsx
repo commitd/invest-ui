@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql, QueryProps } from 'react-apollo'
+import { graphql, DataProps } from 'react-apollo'
 import gql from 'graphql-tag'
 import * as PropTypes from 'prop-types'
 import { PropertiesMap } from 'invest-types'
@@ -15,11 +15,7 @@ export type Response = {
     }
 }
 
-interface GqlProps {
-    data?: QueryProps & Partial<Response>
-}
-
-type Props = OwnProps & GqlProps
+type Props = OwnProps & DataProps<Response>
 
 export type SettingContext = {
     applicationSettings: PropertiesMap
@@ -60,4 +56,4 @@ query  {
   }
 `
 
-export default graphql<Response, OwnProps, Props>(QUERY)(ApplicationSettingsContainer)
+export default graphql<OwnProps, Response>(QUERY)(ApplicationSettingsContainer)

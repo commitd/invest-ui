@@ -63,7 +63,6 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
                 password: this.state.password
             }
         }).then(value => {
-            console.log(value)
             if (value.loading) {
                 return
             }

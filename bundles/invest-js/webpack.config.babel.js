@@ -1,6 +1,7 @@
 
 const path = require('path');
-const Visualizer = require('webpack-visualizer-plugin');
+var webpack = require('webpack');
+// const Visualizer = require('webpack-visualizer-plugin');
 
 export default () => (
     {
@@ -11,7 +12,7 @@ export default () => (
             libraryTarget: 'umd',
             library: 'Invest'
         },
-        plugins: [new Visualizer()],
+        // plugins: [new Visualizer()],
         externals: {
             react: {
                 root: 'React',
@@ -33,5 +34,8 @@ export default () => (
                 { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
             ]
         },
+        plugins: [
+            new webpack.optimize.UglifyJsPlugin({ mangle: false })
+        ]
     }
 );

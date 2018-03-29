@@ -78,3 +78,7 @@
 //     //     })
 //     // })
 // })
+
+test('TODO Update test', () => {
+    console.log('PluginAPI tests needs to be updated')
+})

@@ -1,5 +1,4 @@
-import { ApolloLink, Operation, NextLink, FetchResult, GraphQLRequest } from 'apollo-link'
-import * as Observable from 'zen-observable'
+import { Observable, ApolloLink, Operation, NextLink, FetchResult, GraphQLRequest } from 'apollo-link'
 import { Connection } from 'invest-rpc'
 
 import { loggerFactory } from 'invest-utils'

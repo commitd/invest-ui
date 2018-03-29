@@ -15,6 +15,9 @@ export interface InvestConfiguration {
     /** The application title */
     title: string,
 
+    /** External URL of server */
+    serverUrl: string,
+
     /** All global settings */
     settings: PropertiesMap
 }

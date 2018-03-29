@@ -1,4 +1,4 @@
-import initStoryshots from '@storybook/addon-storyshots'
+// import initStoryshots from '@storybook/addon-storyshots'
 
 type GlobalWithAnimationFrame = NodeJS.Global & {
     requestAnimationFrame: (callback: () => {}) => void
@@ -9,4 +9,8 @@ if (!polyfilledGlobal.requestAnimationFrame) {
     polyfilledGlobal.requestAnimationFrame = (callback: () => {}) => setTimeout(callback, 0)
 }
 
-initStoryshots()
+// TODO
+// initStoryshots()
+test('TODO Enable storybook tests', () => {
+    console.log('Storybook disabled')
+})

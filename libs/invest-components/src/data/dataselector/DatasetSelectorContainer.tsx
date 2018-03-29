@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql, QueryProps } from 'react-apollo'
+import { graphql, DataProps } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import DatasetSelector from './DatasetSelector'
@@ -12,10 +12,11 @@ export interface OwnProps {
     onDatasetSelected?(id: string): void
 }
 
-interface Response {
+interface DataResponse {
     corpora: {
         id: string
         name: string
+        description: string
         providers: {
             providerType: string
             datasource: string
@@ -24,11 +25,7 @@ interface Response {
     }[]
 }
 
-interface GqlProps {
-    data?: QueryProps & Partial<Response>
-}
-
-type Props = OwnProps & GqlProps
+type Props = Partial<DataProps<DataResponse, {}>> & OwnProps
 
 class DatasetSelectorContainer extends React.Component<Props> {
 
@@ -85,11 +82,14 @@ class DatasetSelectorContainer extends React.Component<Props> {
     }
 }
 
+// TODO: This is based on the Ketos graphql resolvers, these need to be moved generalica
+
 const CORPUS_SUMMARY_QUERY = gql`
 query Corpora {
   corpora {
     id
     name
+    description
     providers {
         providerType
         datasource
@@ -99,4 +99,4 @@ query Corpora {
 }
 `
 
-export default graphql<Response, OwnProps, Props>(CORPUS_SUMMARY_QUERY)(DatasetSelectorContainer)
+export default graphql<OwnProps, DataResponse>(CORPUS_SUMMARY_QUERY)(DatasetSelectorContainer)

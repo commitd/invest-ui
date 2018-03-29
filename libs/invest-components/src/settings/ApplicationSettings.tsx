@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql, QueryProps } from 'react-apollo'
+import { graphql, DataProps } from 'react-apollo'
 import gql from 'graphql-tag'
 import { PropertiesMap } from 'invest-types'
 
@@ -8,7 +8,7 @@ export interface OwnProps {
     children: React.ReactElement<{ settings: PropertiesMap }>
 }
 
-export type Response = {
+export type DataResponse = {
     investServer: {
         configuration: {
             settings: { [key: string]: {} }
@@ -16,11 +16,7 @@ export type Response = {
     }
 }
 
-interface GqlProps {
-    data?: QueryProps & Partial<Response>
-}
-
-type Props = OwnProps & GqlProps
+type Props = Partial<DataProps<DataResponse, {}>> & OwnProps
 
 type State = {
     settings: PropertiesMap
@@ -53,7 +49,6 @@ class ApplicationSettings extends React.Component<Props, State> {
     }
 
     private updateSettings = (props: Props) => {
-        console.log(props)
         let settings: PropertiesMap = Object.assign({}, this.props.defaultSettings)
         if (props.data
             && props.data.investServer
@@ -82,4 +77,4 @@ query  {
   }
 `
 
-export default graphql<Response, OwnProps, Props>(QUERY)(ApplicationSettings)
+export default graphql<OwnProps, Response>(QUERY)(ApplicationSettings)

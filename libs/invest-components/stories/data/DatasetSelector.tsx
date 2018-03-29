@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import DatasetSelector from '../../src/invest/dataselector/DatasetSelector'
+import DatasetSelector from '../../src/data/dataselector/DatasetSelector'
 
 const datasets = [
     {

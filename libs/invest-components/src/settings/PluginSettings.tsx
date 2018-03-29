@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { graphql, QueryProps } from 'react-apollo'
+import { graphql, DataProps } from 'react-apollo'
 import gql from 'graphql-tag'
 
-export interface OwnProps {
+export interface Variables {
     pluginId: string
 }
 
@@ -14,11 +14,7 @@ export type Response = {
     }
 }
 
-interface GqlProps {
-    data?: QueryProps & Partial<Response>
-}
-
-type Props = OwnProps & GqlProps
+type Props = Partial<DataProps<Response, Variables>>
 
 type State<T> = {
     settings?: T
@@ -80,4 +76,4 @@ query GetSettings($pluginId:String!){
 }
 `
 
-export default graphql<Response, OwnProps, Props>(QUERY)(PluginSettings)
+export default graphql<{}, Response, Variables>(QUERY)(PluginSettings)

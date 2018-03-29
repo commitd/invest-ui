@@ -1,7 +1,7 @@
 {
   "name": "invest-plugin",
   "description": "Base library package containing plugin specific implementations",
-  "version": "0.2.0",
+  "version": "0.5.3",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
@@ -9,29 +9,35 @@
   "license": "Apache-2.0",
   "dependencies": {
     "graphql-tag": "^2.5.0",
-    "invest-common": "^0.2.0",
-    "invest-graphql": "^0.2.0",
-    "invest-rpc": "^0.2.0",
-    "invest-types": "^0.2.0",
-    "invest-utils": "^0.2.0"
+    "invest-common": "^0.5.3",
+    "invest-graphql": "^0.5.3",
+    "invest-rpc": "^0.5.2",
+    "invest-types": "^0.5.3",
+    "invest-utils": "^0.5.3",
+    "react": "16",
+    "react-apollo": "2",
+    "react-dom": "16"
   },
   "peerDependencies": {
+    "graphql-tag": "2",
+    "invest-common": "0",
+    "invest-graphql": "0",
+    "invest-rpc": "0",
+    "invest-types": "0",
+    "invest-utils": "0",
     "react": "16",
     "react-apollo": "2",
     "react-dom": "16"
   },
   "devDependencies": {
     "@types/prop-types": "^15.5.2",
-    "@types/react": "^16",
+    "@types/react": "^16.0.41",
     "@types/react-dom": "^16.0.2",
-    "apollo-test-utils": "0",
     "enzyme": "^3.1.0",
-    "jest": "^21.2.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "ts-jest": "^21.1.4",
+    "jest": "^22.4.2",
+    "ts-jest": "^22.4.0",
     "tslint": "^5.7.0",
-    "typescript": "~2.5.0"
+    "typescript": "~2.7.2"
   },
   "scripts": {
     "build": "tsc",
@@ -42,10 +48,10 @@
     "publish:local": "npm unpublish --registry http://localhost:4873 $npm_package_name@$npm_package_version && yarn publish --registry http://localhost:4873 --new-version $npm_package_version"
   },
   "jest": {
+    "testEnvironment": "node",
     "transform": {
       "^.+\\.tsx?$": "../../node_modules/ts-jest/preprocessor.js"
     },
-    "mapCoverage": true,
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "testPathIgnorePatterns": [
       "/node_modules/",

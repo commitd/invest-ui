@@ -79,7 +79,7 @@ export class SigmaGraphHelper implements GraphHelper {
 
             if (!this.sigma.isForceAtlas2Running()) {
                 this.sigma.startForceAtlas2()
-                const runtime = timeout !== undefined ? timeout : Math.min(2000, this.graph.nodes().length * 10)
+                const runtime = timeout !== undefined ? timeout : Math.max(250, this.graph.nodes().length * 10)
                 setTimeout(() => this.sigma.stopForceAtlas2(), runtime)
             }
         }
