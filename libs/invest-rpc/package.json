@@ -1,5 +1,6 @@
 {
   "name": "invest-rpc",
+  "description": "Library for RPC between iframes",
   "version": "0.5.2",
   "module": "src/index.ts",
   "main": "build/index.js",
