@@ -1,6 +1,6 @@
 {
   "name": "invest-components",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
@@ -8,8 +8,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "d3-time-format": "2",
-    "invest-plugin": "^0.5.1",
-    "invest-types": "^0.5.1",
+    "invest-plugin": "^0.5.2",
+    "invest-types": "^0.5.2",
     "lodash-es": "^4.17.5",
     "numeral": "^2.0.6",
     "react": "^16.0.0",
