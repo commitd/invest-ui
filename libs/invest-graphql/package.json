@@ -19,16 +19,16 @@
     "react-apollo": "^2"
   },
   "peerDependencies": {
-    "apollo-cache-inmemory": "1.1.12",
-    "apollo-client": "2.2",
-    "apollo-link-http": "^1.2.0",
-    "graphql": "0.13.0",
-    "graphql-tools": "^2.7.2",
-    "invest-rpc": "^0.3.0",
-    "invest-types": "^0.3.0",
-    "invest-utils": "^0.3.0",
-    "lodash-es": "^4.17.5",
-    "react-apollo": "^2"
+    "apollo-cache-inmemory": "1",
+    "apollo-client": "2",
+    "apollo-link-http": "1",
+    "graphql": "0.13",
+    "graphql-tools": "2.7",
+    "invest-rpc": "0",
+    "invest-types": "0",
+    "invest-utils": "0",
+    "lodash-es": "4",
+    "react-apollo": "2"
   },
   "devDependencies": {
     "@types/graphql": "^0.12.6",
