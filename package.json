@@ -18,7 +18,6 @@
         "clean:node_modules": "lerna clean; yarn rimraf node_modules",
         "clean:build": "lerna exec \"rm -rf build\"",
         "dev:app": "lerna run --stream --scope invest-app start",
-        "dev:examples": "lerna run --parallel --scope example-* start",
         "dev:libs": "lerna run --parallel watch",
         "local:publish": "lerna run publish:local",
         "local:clearcache": "rm -rf $(yarn cache dir)/npm-invest-*",

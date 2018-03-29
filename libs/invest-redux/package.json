@@ -1,6 +1,6 @@
 {
   "name": "invest-redux",
-  "version": "0.3.0",
+  "version": "0.5.3",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
@@ -9,22 +9,22 @@
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "seamless-immutable": "7",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-saga": "^0.16.0",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "seamless-immutable": "7"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "seamless-immutable": "7",
-    "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
-    "redux-actions": "^2.2.1",
-    "redux-saga": "^0.16.0",
-    "reselect": "^3.0.1"
+    "react": "16",
+    "react-dom": "16",
+    "react-redux": "5",
+    "redux": "3",
+    "redux-actions": "2",
+    "redux-saga": "0.16",
+    "reselect": "3",
+    "seamless-immutable": "7"
   },
   "devDependencies": {
     "@types/jest": "^22.1.3",

@@ -1,13 +1,13 @@
 {
   "name": "invest-plugin-actiondev",
-  "version": "0.3.0",
+  "version": "0.5.3",
   "private": true,
   "license": "Apache-2.0",
   "dependencies": {
     "graphql": "0.13.0",
-    "invest-components": "^0.3.0",
-    "invest-plugin": "^0.3.0",
-    "invest-types": "^0.3.0",
+    "invest-components": "^0.5.3",
+    "invest-plugin": "^0.5.3",
+    "invest-types": "^0.5.3",
     "lodash.isequal": "^4.5.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
