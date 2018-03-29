@@ -1,6 +1,6 @@
 {
   "name": "invest-graphql",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
@@ -12,9 +12,9 @@
     "apollo-link-http": "^1.2.0",
     "graphql": "0.13.0",
     "graphql-tools": "^2.7.2",
-    "invest-rpc": "^0.5.0",
-    "invest-types": "^0.5.0",
-    "invest-utils": "^0.5.0",
+    "invest-rpc": "^0.5.1",
+    "invest-types": "^0.5.1",
+    "invest-utils": "^0.5.1",
     "lodash-es": "^4.17.5",
     "react-apollo": "^2"
   },
