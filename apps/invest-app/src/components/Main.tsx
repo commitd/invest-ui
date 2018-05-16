@@ -1,20 +1,18 @@
-import * as React from 'react'
-import Helmet from 'react-helmet'
-import { graphql, ChildProps } from 'react-apollo'
 import gql from 'graphql-tag'
-import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
-import { connect, Dispatch } from 'react-redux'
-
-import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'invest-framework'
-import { UiPlugin, PluginWithIntent, InvestConfiguration } from 'invest-types'
-import { Layout, NavBar, Login } from 'invest-components'
+import { Layout, Login, NavBar } from 'invest-components'
+import { FallbackView, GlobalHandler, PluginListSidebar, PluginViewManager } from 'invest-framework'
+import { InvestConfiguration, PluginWithIntent, UiPlugin } from 'invest-types'
 import { searchToIntent } from 'invest-utils'
-
-import AuthMenu from './AuthMenu'
+import * as React from 'react'
+import { ChildProps, graphql } from 'react-apollo'
+import Helmet from 'react-helmet'
+import { Dispatch, connect } from 'react-redux'
+import { Route, RouteComponentProps, matchPath, withRouter } from 'react-router-dom'
 import * as RootAction from '../redux/RootAction'
 import { RootState } from '../redux/RootReducer'
 import { State as AuthState } from '../redux/reducers/auth'
 import { canUserSeePlugin } from '../utils/RoleUtils'
+import AuthMenu from './AuthMenu'
 
 interface GqlResponse {
   investServer: {
@@ -31,7 +29,7 @@ interface OwnProps {
 }
 
 interface MapStateProps {
-  auth: AuthState,
+  auth: AuthState
 }
 
 interface DispatchProps {
@@ -43,13 +41,12 @@ interface DispatchProps {
 type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}> & MapStateProps & DispatchProps
 
 interface State {
-  sidebarOpen: boolean,
+  sidebarOpen: boolean
 }
 
-// Note that we use the URL to decide on the plugin and we do it internally here. 
-// We don't rely on the Route from 
+// Note that we use the URL to decide on the plugin and we do it internally here.
+// We don't rely on the Route from
 class Main extends React.Component<Props, State> {
-
   state: State = {
     sidebarOpen: true
   }
@@ -67,7 +64,7 @@ class Main extends React.Component<Props, State> {
   }
 
   handleDrawerToggle = () => {
-    this.setState((state) => ({
+    this.setState(state => ({
       sidebarOpen: !state.sidebarOpen
     }))
   }
@@ -81,11 +78,10 @@ class Main extends React.Component<Props, State> {
   }
 
   findSelectedPlugin() {
-    const path =
-      matchPath<{ pluginId?: string }>(this.props.history.location.pathname, {
-        path: '/view/:pluginId',
-        exact: true
-      })
+    const path = matchPath<{ pluginId?: string }>(this.props.history.location.pathname, {
+      path: '/view/:pluginId',
+      exact: true
+    })
 
     if (path && path.params && path.params.pluginId) {
       return this.getPlugins().find(p => p.id === path.params.pluginId)
@@ -116,26 +112,26 @@ class Main extends React.Component<Props, State> {
   }
 
   render() {
-
-    const serverUrl = this.guessServerUrl(this.props.data
-      && this.props.data.investServer && this.props.data.investServer.configuration
-      ? this.props.data.investServer.configuration : undefined)
+    const serverUrl = this.guessServerUrl(
+      this.props.data && this.props.data.investServer && this.props.data.investServer.configuration
+        ? this.props.data.investServer.configuration
+        : undefined
+    )
 
     let plugins = this.getPlugins()
-    const title = (this.props.data
-      && this.props.data.investServer
-      && this.props.data.investServer.configuration.title)
-      || 'Invest'
-    const authenticationMode = (this.props.data
-      && this.props.data.investServer
-      && this.props.data.investServer.authentication.enabled)
+    const title =
+      (this.props.data && this.props.data.investServer && this.props.data.investServer.configuration.title) || 'Invest'
+    const authenticationMode =
+      this.props.data && this.props.data.investServer && this.props.data.investServer.authentication.enabled
 
     const selectedPlugin = this.findSelectedPlugin()
 
-    const plugin: PluginWithIntent | undefined = selectedPlugin ? {
-      plugin: selectedPlugin,
-      intent: searchToIntent(this.props.location.search)
-    } : undefined
+    const plugin: PluginWithIntent | undefined = selectedPlugin
+      ? {
+          plugin: selectedPlugin,
+          intent: searchToIntent(this.props.location.search)
+        }
+      : undefined
 
     const rightMenu = authenticationMode ? <AuthMenu /> : undefined
     const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} rightArea={rightMenu} />
@@ -160,7 +156,7 @@ class Main extends React.Component<Props, State> {
             fallback={<FallbackView plugins={plugins} onSelectPlugin={this.handlePluginSelected} />}
           />
         </Layout>
-      </div >
+      </div>
     )
   }
 
@@ -206,23 +202,31 @@ const mapStateToProps = (state: RootState) => ({
   auth: state.auth
 })
 
-const mapDispatchToProps = (
-  dispatch: Dispatch<{}>) => ({
-    updatePlugins: (plugins: UiPlugin[]) => dispatch(RootAction.actionCreators.plugins.setPlugins({
-      uiPlugins: plugins
-    })),
-    updateConfiguration: (configuration: InvestConfiguration) =>
-      dispatch(RootAction.actionCreators.configuration.setConfiguration({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  updatePlugins: (plugins: UiPlugin[]) =>
+    dispatch(
+      RootAction.actionCreators.plugins.setPlugins({
+        uiPlugins: plugins
+      })
+    ),
+  updateConfiguration: (configuration: InvestConfiguration) =>
+    dispatch(
+      RootAction.actionCreators.configuration.setConfiguration({
         configuration: configuration
-      })),
-    setAuthenticationMode: (enabled: boolean) =>
-      dispatch(RootAction.actionCreators.auth.setAuthenticationMode({
+      })
+    ),
+  setAuthenticationMode: (enabled: boolean) =>
+    dispatch(
+      RootAction.actionCreators.auth.setAuthenticationMode({
         enabled
-      }))
-  })
+      })
+    )
+})
 
-const connected = connect<MapStateProps, DispatchProps, ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>
-  (mapStateToProps, mapDispatchToProps)(Main)
+const connected = connect<MapStateProps, DispatchProps, ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main)
 const graphqled = graphql<OwnProps & RouteComponentProps<{}>, GqlResponse, {}>(APP_QUERY)(connected)
 const routed = withRouter<OwnProps & RouteComponentProps<{}>>(graphqled)
 export default routed

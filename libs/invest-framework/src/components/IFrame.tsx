@@ -33,7 +33,7 @@ class IFrame<S> extends React.Component<Props<S>, {}>  {
       this.ref.onload = () => {
         const handler = this.props.handler
         if (handler) {
-          this.connection = new Connection<S>(window, this.ref.contentWindow, handler)
+          this.connection = new Connection<S>(window, this.ref.contentWindow!, handler)
           this.connection.start()
         }
 
