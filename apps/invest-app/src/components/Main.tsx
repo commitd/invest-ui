@@ -42,7 +42,7 @@ interface State {
 
 // Note that we use the URL to decide on the plugin and we do it internally here.
 // We don't rely on the Route from
-@inject('authStore')
+@inject('authStore', 'uiPluginStore', 'configurationStore')
 @observer
 class Main extends React.Component<Props, State> {
   state: State = {

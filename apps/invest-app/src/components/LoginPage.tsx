@@ -1,5 +1,6 @@
 import gql from 'graphql-tag'
 import { Login } from 'invest-components'
+import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import { MutationFunc, graphql } from 'react-apollo'
 import { Redirect } from 'react-router-dom'
@@ -32,6 +33,8 @@ type OwnProps = {}
 
 type Props = OwnProps & GraphQLProps & InjectedProps
 
+@inject('authStore')
+@observer
 class LoginPage extends React.Component<OwnProps & GraphQLProps, State> {
   state = {
     username: '',
