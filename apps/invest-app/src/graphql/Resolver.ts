@@ -5,15 +5,13 @@ export function createGraphQLResolver(investUiResolverStore: InvestUiResolverSto
   const simpleRoot: InvestUiGraphQLRoot = {
     query: {
       investUi: {
-        status: () => dispatchAsAction(dispatch, RootAction.actionCreators.investUi.status, {}),
-        actions: (args: { input: QueryActionInput }) =>
-          dispatchAsAction(dispatch, RootAction.actionCreators.investUi.actions, args.input)
+        status: () => investUiResolverStore.status(),
+        actions: (args: { input: QueryActionInput }) => investUiResolverStore.actions(args.input)
       }
     },
     mutation: {
       investUi: {
-        navigate: (args: { input: NavigateInput }) =>
-          dispatchAsAction(dispatch, RootAction.actionCreators.investUi.navigate, args.input)
+        navigate: (args: { input: NavigateInput }) => investUiResolverStore.navigate(args.input)
       }
     }
   }
