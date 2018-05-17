@@ -2,13 +2,10 @@ import gql from 'graphql-tag'
 import { Login } from 'invest-components'
 import * as React from 'react'
 import { MutationFunc, graphql } from 'react-apollo'
-import { Dispatch, connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Action } from 'redux'
 import { Button, Modal } from 'semantic-ui-react'
 import History from '../history'
-import * as RootAction from '../redux/RootAction'
-import { RootState } from '../types'
+import AuthStore from '../stores/AuthStore'
 
 type State = {
   username: string
@@ -27,18 +24,26 @@ type GraphQLProps = {
   }>
 }
 
-type ConnectProps = {
-  authenticated: boolean
-  setAuth(username: string, session: string, name: string, roles: string[]): Action
+interface InjectedProps {
+  authStore?: AuthStore
 }
 
 type OwnProps = {}
 
-class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, State> {
+type Props = OwnProps & GraphQLProps & InjectedProps
+
+class LoginPage extends React.Component<OwnProps & GraphQLProps, State> {
   state = {
     username: '',
     password: '',
     failed: ''
+  }
+
+  private authStore: AuthStore
+
+  constructor(props: Props) {
+    super(props)
+    this.authStore = props.authStore!
   }
 
   handleClose = () => {
@@ -80,7 +85,7 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
           // Dispatch action to put token in the store
 
           const auth = value.data.login
-          this.props.setAuth(auth.username, auth.session, auth.name, auth.roles)
+          this.authStore.signInOnClient(auth.username, auth.session, auth.roles)
         }
       })
   }
@@ -90,7 +95,7 @@ class LoginPage extends React.Component<OwnProps & ConnectProps & GraphQLProps, 
 
   render() {
     const { username, password } = this.state
-    const { authenticated } = this.props
+    const { authenticated } = this.authStore
 
     const redirect = authenticated ? <Redirect to="/view" /> : undefined
 
@@ -132,13 +137,4 @@ const LOGIN_MUTATION = gql`
   }
 `
 
-const mapStateToProps = (state: RootState) => ({
-  authenticated: state.auth.authenticated
-})
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  setAuth: (username: string, session: string, name: string, roles: string[]) =>
-    dispatch(RootAction.actionCreators.auth.setAuth({ name, roles, username, session }))
-})
-
-export default graphql(LOGIN_MUTATION)(connect(mapStateToProps, mapDispatchToProps)(LoginPage))
+export default graphql(LOGIN_MUTATION)(LoginPage)
