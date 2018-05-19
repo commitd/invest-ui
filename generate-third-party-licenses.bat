@@ -1,1 +1,1 @@
-yarn licences
+call yarn licences

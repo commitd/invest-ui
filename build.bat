@@ -1,2 +1,2 @@
 ::Normal build
-yarn build
+call yarn build
