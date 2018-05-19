@@ -1,0 +1,2 @@
+::Normal build
+yarn build
