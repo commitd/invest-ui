@@ -1,14 +1,28 @@
 <html>
 
 <head>
+	<!-- Assume yo have the invest server (with ui-libs plugin running)-->
+	<script src="http://localhost:8080/ui/libs/react-16.0.js"></script>
+	<script src="http://localhost:8080/ui/libs/react-dom-16.0.js"></script>
+
 	<script src="build/invest.js"></script>
 </head>
 
 <body>
-	<p>Hello</p>
+	<p>Open console</p>
+
+	</div>
 
 	<script>
-		console.log(invest)
+		var invest;
+		if (typeof Invest !== 'undefined') {
+			invest = Invest.connect()
+			window.fetch = invest.fetch.bind(invest)
+			console.log(invest)
+			console.log(Invest)
+		} else {
+			console.log("Invest JS library is not available, falling back to browser only")
+		}
 	</script>
 </body>
 

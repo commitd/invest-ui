@@ -4,7 +4,7 @@
   "description": "A Ivnest Library you can import with script tags",
   "main": "build/invest.js",
   "scripts": {
-    "dev": "webpack",
+    "dev": "webpack --watch",
     "build": "webpack",
     "test": "echo 'No tests'"
   },
