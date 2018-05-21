@@ -1,14 +1,14 @@
 {
   "name": "invest-rpc",
   "description": "Library for RPC between iframes",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "invest-utils": "^0.5.3",
+    "invest-utils": "^0.6.0",
     "shortid": "^2.2.8",
     "uniqueid": "^1.0.0"
   },

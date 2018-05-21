@@ -1,13 +1,13 @@
 {
   "name": "invest-utils",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "invest-types": "^0.5.3",
+    "invest-types": "^0.6.0",
     "loglevel": "^1.5.1",
     "loglevel-plugin-prefix": "^0.8.3",
     "qs": "^6.5.2"
