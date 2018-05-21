@@ -4,7 +4,7 @@
 yarn global add lerna typedoc 
 
 # Boostrap
-yarn boostrap
+yarn bootstrap
 
 # Set up links for others
 call yarn link:libs
