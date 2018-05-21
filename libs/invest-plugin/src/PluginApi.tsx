@@ -8,6 +8,9 @@ import { PluginActionDefinition } from 'invest-types'
 import { hydrateSimpleResponse } from 'invest-utils'
 import gql from 'graphql-tag'
 
+// Save the original window fetch
+const windowFetch = window.fetch
+
 const LOCAL_NAVIGATE_MUTATION = gql`
 mutation navigate($pluginId: String!, $action: String, $payload: String) {
     navigateToPlugin(input: {pluginId: $pluginId, action: $action, payload: $payload}) {
@@ -98,7 +101,7 @@ export class PluginApi {
         if (this.connection) {
             return this.connection.request('fetch', request, init).then(hydrateSimpleResponse)
         } else {
-            return fetch(request, init)
+            return windowFetch(request, init)
         }
     }
 

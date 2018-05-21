@@ -1,22 +1,18 @@
-import * as React from 'react'
-import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
-import { Route, Redirect, Switch, withRouter, RouteComponentProps } from 'react-router-dom'
 import { ApolloClient } from 'apollo-client'
-import { withApollo } from 'react-apollo'
-
 import { GlobalHandler } from 'invest-framework'
-
+import * as React from 'react'
+import { withApollo } from 'react-apollo'
+import Helmet from 'react-helmet'
+import { Redirect, Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom'
 import LoginPage from './components/LoginPage'
 import Main from './components/Main'
-import { RootState } from './types'
 
 interface OwnProps {
   globalHandler: GlobalHandler
 }
 
 interface ConnectProps {
-  authenticated: boolean,
+  authenticated: boolean
   title: string
 }
 
@@ -27,7 +23,6 @@ interface WithApolloProps {
 type Props = WithApolloProps & ConnectProps & OwnProps & RouteComponentProps<{}>
 
 class App extends React.Component<Props> {
-
   renderMain = () => <Main globalHandler={this.props.globalHandler} />
 
   render() {
@@ -53,18 +48,11 @@ class App extends React.Component<Props> {
           <Route path="/view" component={this.renderMain} />
           {redirect}
         </Switch>
-
-      </div >
+      </div>
     )
   }
 }
 
-const mapStateToProps = (state: RootState, props: OwnProps & RouteComponentProps<{}>) => ({
-  authenticated: state.auth.authenticated,
-  title: state.configuration.configuration.title
-})
-
 const apolloed = withApollo(App)
-const connected = connect(mapStateToProps)(apolloed)
-const routed = withRouter<OwnProps & RouteComponentProps<{}>>(connected)
+const routed = withRouter<OwnProps & RouteComponentProps<{}>>(apolloed)
 export default routed

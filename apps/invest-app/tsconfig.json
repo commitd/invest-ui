@@ -1,11 +1,9 @@
 {
-    "extends": "../../config/tsconfig",
-    "compilerOptions": {
-        "baseUrl": ".",
-        "rootDirs": [
-            "src/",
-            "stories/"
-        ],
-        "outDir": "build/dist"
-    }
+  "extends": "../../config/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDirs": ["src/", "stories/"],
+    "outDir": "build/dist",
+    "experimentalDecorators": true
+  }
 }

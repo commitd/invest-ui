@@ -1,20 +1,18 @@
-import * as React from 'react'
-import Helmet from 'react-helmet'
-import { graphql, ChildProps } from 'react-apollo'
 import gql from 'graphql-tag'
-import { Route, withRouter, matchPath, RouteComponentProps } from 'react-router-dom'
-import { connect, Dispatch } from 'react-redux'
-
-import { PluginListSidebar, GlobalHandler, PluginViewManager, FallbackView } from 'invest-framework'
-import { UiPlugin, PluginWithIntent, InvestConfiguration } from 'invest-types'
-import { Layout, NavBar, Login } from 'invest-components'
+import { Layout, Login, NavBar } from 'invest-components'
+import { FallbackView, GlobalHandler, PluginListSidebar, PluginViewManager } from 'invest-framework'
+import { InvestConfiguration, PluginWithIntent, UiPlugin } from 'invest-types'
 import { searchToIntent } from 'invest-utils'
-
-import AuthMenu from './AuthMenu'
-import * as RootAction from '../redux/RootAction'
-import { RootState } from '../redux/RootReducer'
-import { State as AuthState } from '../redux/reducers/auth'
+import { inject, observer } from 'mobx-react'
+import * as React from 'react'
+import { ChildProps, graphql } from 'react-apollo'
+import Helmet from 'react-helmet'
+import { Route, RouteComponentProps, matchPath, withRouter } from 'react-router-dom'
+import AuthStore from '../stores/AuthStore'
+import ConfigurationStore from '../stores/ConfigurationStore'
+import UiPluginStore from '../stores/UiPluginStore'
 import { canUserSeePlugin } from '../utils/RoleUtils'
+import AuthMenu from './AuthMenu'
 
 interface GqlResponse {
   investServer: {
@@ -30,28 +28,36 @@ interface OwnProps {
   globalHandler: GlobalHandler
 }
 
-interface MapStateProps {
-  auth: AuthState,
+interface InjectedProps {
+  authStore?: AuthStore
+  uiPluginStore?: UiPluginStore
+  configurationStore?: ConfigurationStore
 }
 
-interface DispatchProps {
-  updatePlugins(plugins: UiPlugin[]): {}
-  updateConfiguration(configuration: InvestConfiguration): {}
-  setAuthenticationMode(enabled: boolean): {}
-}
-
-type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}> & MapStateProps & DispatchProps
+type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}> & InjectedProps
 
 interface State {
-  sidebarOpen: boolean,
+  sidebarOpen: boolean
 }
 
-// Note that we use the URL to decide on the plugin and we do it internally here. 
-// We don't rely on the Route from 
+// Note that we use the URL to decide on the plugin and we do it internally here.
+// We don't rely on the Route from
+@inject('authStore', 'uiPluginStore', 'configurationStore')
+@observer
 class Main extends React.Component<Props, State> {
-
   state: State = {
     sidebarOpen: true
+  }
+
+  private authStore: AuthStore
+  private uiPluginStore: UiPluginStore
+  private configurationStore: ConfigurationStore
+
+  constructor(props: Props) {
+    super(props)
+    this.authStore = props.authStore!
+    this.uiPluginStore = props.uiPluginStore!
+    this.configurationStore = props.configurationStore!
   }
 
   handleDrawerClose = () => {
@@ -67,7 +73,7 @@ class Main extends React.Component<Props, State> {
   }
 
   handleDrawerToggle = () => {
-    this.setState((state) => ({
+    this.setState(state => ({
       sidebarOpen: !state.sidebarOpen
     }))
   }
@@ -81,11 +87,10 @@ class Main extends React.Component<Props, State> {
   }
 
   findSelectedPlugin() {
-    const path =
-      matchPath<{ pluginId?: string }>(this.props.history.location.pathname, {
-        path: '/view/:pluginId',
-        exact: true
-      })
+    const path = matchPath<{ pluginId?: string }>(this.props.history.location.pathname, {
+      path: '/view/:pluginId',
+      exact: true
+    })
 
     if (path && path.params && path.params.pluginId) {
       return this.getPlugins().find(p => p.id === path.params.pluginId)
@@ -95,47 +100,46 @@ class Main extends React.Component<Props, State> {
   }
 
   getPlugins(): UiPlugin[] {
-    const allPlugins = this.props.data && this.props.data.investServer ? this.props.data.investServer.uiPlugins : []
-
-    return allPlugins.filter(p => canUserSeePlugin(this.props.auth, p))
+    const allPlugins = this.uiPluginStore.uiPlugins
+    return allPlugins.filter(p => canUserSeePlugin(this.authStore, p))
   }
 
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.data && !nextProps.data.loading) {
       const data = nextProps.data
       if (data.investServer && data.investServer.uiPlugins) {
-        this.props.updatePlugins(data.investServer.uiPlugins)
+        this.uiPluginStore.uiPlugins = data.investServer.uiPlugins
       }
       if (data.investServer && data.investServer.configuration) {
-        this.props.updateConfiguration(data.investServer.configuration)
+        this.configurationStore.configuration = data.investServer.configuration
       }
       if (data.investServer && data.investServer.authentication) {
-        this.props.setAuthenticationMode(data.investServer.authentication.enabled)
+        this.authStore.setAuthenticationMode(data.investServer.authentication.enabled)
       }
     }
   }
 
   render() {
-
-    const serverUrl = this.guessServerUrl(this.props.data
-      && this.props.data.investServer && this.props.data.investServer.configuration
-      ? this.props.data.investServer.configuration : undefined)
+    const serverUrl = this.guessServerUrl(
+      this.props.data && this.props.data.investServer && this.props.data.investServer.configuration
+        ? this.props.data.investServer.configuration
+        : undefined
+    )
 
     let plugins = this.getPlugins()
-    const title = (this.props.data
-      && this.props.data.investServer
-      && this.props.data.investServer.configuration.title)
-      || 'Invest'
-    const authenticationMode = (this.props.data
-      && this.props.data.investServer
-      && this.props.data.investServer.authentication.enabled)
+    const title =
+      (this.props.data && this.props.data.investServer && this.props.data.investServer.configuration.title) || 'Invest'
+    const authenticationMode =
+      this.props.data && this.props.data.investServer && this.props.data.investServer.authentication.enabled
 
     const selectedPlugin = this.findSelectedPlugin()
 
-    const plugin: PluginWithIntent | undefined = selectedPlugin ? {
-      plugin: selectedPlugin,
-      intent: searchToIntent(this.props.location.search)
-    } : undefined
+    const plugin: PluginWithIntent | undefined = selectedPlugin
+      ? {
+          plugin: selectedPlugin,
+          intent: searchToIntent(this.props.location.search)
+        }
+      : undefined
 
     const rightMenu = authenticationMode ? <AuthMenu /> : undefined
     const navBar = <NavBar title={title} onSideBarToggle={this.handleDrawerToggle} rightArea={rightMenu} />
@@ -160,7 +164,7 @@ class Main extends React.Component<Props, State> {
             fallback={<FallbackView plugins={plugins} onSelectPlugin={this.handlePluginSelected} />}
           />
         </Layout>
-      </div >
+      </div>
     )
   }
 
@@ -202,27 +206,6 @@ const APP_QUERY = gql`
   }
 `
 
-const mapStateToProps = (state: RootState) => ({
-  auth: state.auth
-})
-
-const mapDispatchToProps = (
-  dispatch: Dispatch<{}>) => ({
-    updatePlugins: (plugins: UiPlugin[]) => dispatch(RootAction.actionCreators.plugins.setPlugins({
-      uiPlugins: plugins
-    })),
-    updateConfiguration: (configuration: InvestConfiguration) =>
-      dispatch(RootAction.actionCreators.configuration.setConfiguration({
-        configuration: configuration
-      })),
-    setAuthenticationMode: (enabled: boolean) =>
-      dispatch(RootAction.actionCreators.auth.setAuthenticationMode({
-        enabled
-      }))
-  })
-
-const connected = connect<MapStateProps, DispatchProps, ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>
-  (mapStateToProps, mapDispatchToProps)(Main)
-const graphqled = graphql<OwnProps & RouteComponentProps<{}>, GqlResponse, {}>(APP_QUERY)(connected)
+const graphqled = graphql<OwnProps & RouteComponentProps<{}>, GqlResponse, {}>(APP_QUERY)(Main)
 const routed = withRouter<OwnProps & RouteComponentProps<{}>>(graphqled)
 export default routed

@@ -1,4 +1,3 @@
-
 export { default as IFrame } from './components/IFrame'
 export { default as FallbackView } from './components/FallbackView'
 export { default as PluginListSidebar } from './components/PluginListSidebar'
@@ -9,6 +8,3 @@ export * from './handlers/GlobalHandler'
 export * from './handlers/HandlerUtils'
 
 export * from './graphql'
-
-export * from './actions/types'
-export * from './actions/resolvers'

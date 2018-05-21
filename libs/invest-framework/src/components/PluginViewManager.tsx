@@ -37,8 +37,8 @@ class PluginViewManager extends React.Component<Props, State> {
 
     componentWillReceiveProps(nextProps: Props, nextState: State) {
         if (nextProps.plugin
-            && (!this.props.plugin || (this.props.plugin && nextProps.plugin.plugin.id !== this.props.plugin.plugin.id))
-        ) {
+            && (!this.props.plugin || (this.props.plugin && !isEqual(nextProps.plugin, this.props.plugin))
+        )) {
             this.ensureSelectedView(nextProps)
         }
     }

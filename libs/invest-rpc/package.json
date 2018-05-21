@@ -1,14 +1,14 @@
 {
   "name": "invest-rpc",
   "description": "Library for RPC between iframes",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "invest-utils": "^0.5.3",
+    "invest-utils": "^0.6.0",
     "shortid": "^2.2.8",
     "uniqueid": "^1.0.0"
   },
@@ -19,9 +19,9 @@
     "@types/loglevel": "^1.5.1",
     "@types/shortid": "^0.0.29",
     "jest": "^22.4.2",
-    "ts-jest": "^22.4.0",
-    "tslint": "^5.7.0",
-    "typescript": "~2.7.2"
+    "ts-jest": "^22.4.6",
+    "tslint": "^5.10.0",
+    "typescript": "~2.8.3"
   },
   "scripts": {
     "build": "tsc",

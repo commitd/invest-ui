@@ -1,6 +1,6 @@
 {
   "name": "invest-common",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
@@ -8,9 +8,9 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "jest": "22",
-    "ts-jest": "22",
-    "tslint": "5",
-    "typescript": "2"
+    "ts-jest": "22.4.6",
+    "tslint": "5.10.0",
+    "typescript": "2.8.3"
   },
   "scripts": {
     "build": "tsc",
