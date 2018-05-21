@@ -3,14 +3,14 @@ import { Layout, Login, NavBar } from 'invest-components'
 import { FallbackView, GlobalHandler, PluginListSidebar, PluginViewManager } from 'invest-framework'
 import { InvestConfiguration, PluginWithIntent, UiPlugin } from 'invest-types'
 import { searchToIntent } from 'invest-utils'
+import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import { ChildProps, graphql } from 'react-apollo'
 import Helmet from 'react-helmet'
-import { Dispatch, connect } from 'react-redux'
 import { Route, RouteComponentProps, matchPath, withRouter } from 'react-router-dom'
-import * as RootAction from '../redux/RootAction'
-import { RootState } from '../redux/RootReducer'
-import { State as AuthState } from '../redux/reducers/auth'
+import AuthStore from '../stores/AuthStore'
+import ConfigurationStore from '../stores/ConfigurationStore'
+import UiPluginStore from '../stores/UiPluginStore'
 import { canUserSeePlugin } from '../utils/RoleUtils'
 import AuthMenu from './AuthMenu'
 
@@ -28,17 +28,13 @@ interface OwnProps {
   globalHandler: GlobalHandler
 }
 
-interface MapStateProps {
-  auth: AuthState
+interface InjectedProps {
+  authStore?: AuthStore
+  uiPluginStore?: UiPluginStore
+  configurationStore?: ConfigurationStore
 }
 
-interface DispatchProps {
-  updatePlugins(plugins: UiPlugin[]): {}
-  updateConfiguration(configuration: InvestConfiguration): {}
-  setAuthenticationMode(enabled: boolean): {}
-}
-
-type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}> & MapStateProps & DispatchProps
+type Props = ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}> & InjectedProps
 
 interface State {
   sidebarOpen: boolean
@@ -46,9 +42,22 @@ interface State {
 
 // Note that we use the URL to decide on the plugin and we do it internally here.
 // We don't rely on the Route from
+@inject('authStore', 'uiPluginStore', 'configurationStore')
+@observer
 class Main extends React.Component<Props, State> {
   state: State = {
     sidebarOpen: true
+  }
+
+  private authStore: AuthStore
+  private uiPluginStore: UiPluginStore
+  private configurationStore: ConfigurationStore
+
+  constructor(props: Props) {
+    super(props)
+    this.authStore = props.authStore!
+    this.uiPluginStore = props.uiPluginStore!
+    this.configurationStore = props.configurationStore!
   }
 
   handleDrawerClose = () => {
@@ -91,22 +100,21 @@ class Main extends React.Component<Props, State> {
   }
 
   getPlugins(): UiPlugin[] {
-    const allPlugins = this.props.data && this.props.data.investServer ? this.props.data.investServer.uiPlugins : []
-
-    return allPlugins.filter(p => canUserSeePlugin(this.props.auth, p))
+    const allPlugins = this.uiPluginStore.uiPlugins
+    return allPlugins.filter(p => canUserSeePlugin(this.authStore, p))
   }
 
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.data && !nextProps.data.loading) {
       const data = nextProps.data
       if (data.investServer && data.investServer.uiPlugins) {
-        this.props.updatePlugins(data.investServer.uiPlugins)
+        this.uiPluginStore.uiPlugins = data.investServer.uiPlugins
       }
       if (data.investServer && data.investServer.configuration) {
-        this.props.updateConfiguration(data.investServer.configuration)
+        this.configurationStore.configuration = data.investServer.configuration
       }
       if (data.investServer && data.investServer.authentication) {
-        this.props.setAuthenticationMode(data.investServer.authentication.enabled)
+        this.authStore.setAuthenticationMode(data.investServer.authentication.enabled)
       }
     }
   }
@@ -198,35 +206,6 @@ const APP_QUERY = gql`
   }
 `
 
-const mapStateToProps = (state: RootState) => ({
-  auth: state.auth
-})
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  updatePlugins: (plugins: UiPlugin[]) =>
-    dispatch(
-      RootAction.actionCreators.plugins.setPlugins({
-        uiPlugins: plugins
-      })
-    ),
-  updateConfiguration: (configuration: InvestConfiguration) =>
-    dispatch(
-      RootAction.actionCreators.configuration.setConfiguration({
-        configuration: configuration
-      })
-    ),
-  setAuthenticationMode: (enabled: boolean) =>
-    dispatch(
-      RootAction.actionCreators.auth.setAuthenticationMode({
-        enabled
-      })
-    )
-})
-
-const connected = connect<MapStateProps, DispatchProps, ChildProps<OwnProps, GqlResponse> & RouteComponentProps<{}>>(
-  mapStateToProps,
-  mapDispatchToProps
-)(Main)
-const graphqled = graphql<OwnProps & RouteComponentProps<{}>, GqlResponse, {}>(APP_QUERY)(connected)
+const graphqled = graphql<OwnProps & RouteComponentProps<{}>, GqlResponse, {}>(APP_QUERY)(Main)
 const routed = withRouter<OwnProps & RouteComponentProps<{}>>(graphqled)
 export default routed
