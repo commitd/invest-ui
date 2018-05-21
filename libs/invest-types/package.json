@@ -1,6 +1,6 @@
 {
   "name": "invest-types",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "module": "src/index.ts",
   "main": "build/index.js",
   "browser": "build/index.js",
