@@ -14,9 +14,9 @@
     "invest-rpc": "^0.6.0",
     "invest-types": "^0.6.0",
     "invest-utils": "^0.6.0",
-    "react": "16.3.2",
-    "react-apollo": "2.1.4",
-    "react-dom": "16.3.2"
+    "react": "16.4.1",
+    "react-apollo": "2.1.9",
+    "react-dom": "16.4.1"
   },
   "peerDependencies": {
     "graphql-tag": "2",
@@ -30,14 +30,14 @@
     "react-dom": "16"
   },
   "devDependencies": {
-    "@types/prop-types": "^15.5.2",
-    "@types/react": "^16.3.14",
-    "@types/react-dom": "^16.0.5",
+    "@types/prop-types": "^15.5.3",
+    "@types/react": "^16.4.6",
+    "@types/react-dom": "^16.0.6",
     "enzyme": "^3.1.0",
-    "jest": "^22.4.2",
-    "ts-jest": "^22.4.6",
-    "tslint": "^5.10.0",
-    "typescript": "~2.8.3"
+    "jest": "^23.4.1",
+    "ts-jest": "^23.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "~2.9.2"
   },
   "scripts": {
     "build": "tsc",

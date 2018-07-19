@@ -7,16 +7,16 @@
   "types": "build/index.d.ts",
   "license": "Apache-2.0",
   "dependencies": {
-    "apollo-cache-inmemory": "1.2.1",
-    "apollo-client": "2.3.1",
+    "apollo-cache-inmemory": "1.2.5",
+    "apollo-client": "2.3.5",
     "apollo-link-http": "^1.5.4",
-    "graphql": "0.13.2",
-    "graphql-tools": "^3.0.1",
+    "graphql": "^0.13",
+    "graphql-tools": "^3",
     "invest-rpc": "^0.6.0",
     "invest-types": "^0.6.0",
     "invest-utils": "^0.6.0",
     "lodash-es": "^4.17.10",
-    "react-apollo": "^2.1.4"
+    "react-apollo": "^2.1.9"
   },
   "peerDependencies": {
     "apollo-cache-inmemory": "1",
@@ -31,15 +31,15 @@
     "react-apollo": "2"
   },
   "devDependencies": {
-    "@types/graphql": "^0.13.1",
+    "@types/graphql": "^0.13.3",
     "@types/lodash.merge": "^4.6.3",
     "@types/loglevel": "^1.5.1",
-    "@types/react": "^16.3.14",
-    "@types/react-dom": "^16.0.5",
-    "jest": "^22.4.2",
-    "ts-jest": "^22.4.6",
-    "tslint": "^5.10.0",
-    "typescript": "~2.8.3"
+    "@types/react": "^16.4.6",
+    "@types/react-dom": "^16.0.6",
+    "jest": "^23.4.1",
+    "ts-jest": "^23.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "~2.9.2"
   },
   "scripts": {
     "build": "tsc",
