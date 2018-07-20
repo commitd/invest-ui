@@ -1,6 +1,6 @@
 {
   "name": "invest",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "A Ivnest Library you can import with script tags",
   "main": "build/invest.js",
   "scripts": {
@@ -21,14 +21,14 @@
     "babel-preset-es2015-webpack": "^6.4.3",
     "eslint": "^4.18.1",
     "eslint-loader": "^2.0.0",
-    "invest-plugin": "^0.6.0",
+    "invest-plugin": "^0.7.0",
     "webpack": "^3.8.1"
   },
   "dependencies": {
-    "invest-graphql": "^0.6.0",
-    "invest-rpc": "^0.6.0",
-    "invest-types": "^0.6.0",
-    "invest-utils": "^0.6.0",
+    "invest-graphql": "^0.7.0",
+    "invest-rpc": "^0.7.0",
+    "invest-types": "^0.7.0",
+    "invest-utils": "^0.7.0",
     "semantic-ui-offline": "^2.3.2"
   }
 }
