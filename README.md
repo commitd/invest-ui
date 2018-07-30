@@ -6,32 +6,32 @@ A framework for building web compoents and application through plugins
 
 First install [yarn](https://yarnpkg.com).
 
-Then install [Lerna](https://lernajs.io/):
+Run
 
 ```
-yarn global add lerna
-```
-
-Then download the dependencies and link the sub projects together:
-
-```
-yarn bootstrap
+/setup.sh
 ```
 
 You can then build with:
 
 ```
+build.sh
+
+#or just
+
 yarn build
 ```
 
-If you want to clean a previous build use 
+If you want to clean a previous build use
 
 ```
-# Delete everything, including dependencies - use yarn bootstrap to get back 
+# Delete everything, including dependencies - use yarn bootstrap to get back
 yarn clean
 # Or just clean up the old builds
 yarn clean:build
 ```
+
+If you want to build the complete invest application refer to the `invest` project which will build both UI and server components.
 
 ## Developing
 
@@ -59,7 +59,7 @@ yarn dev:libs
 
 ## Documentation
 
-Further documentation is available under `invest-java` project.
+Further documentation is available under `invest` project repository.
 
 ## Licence
 
